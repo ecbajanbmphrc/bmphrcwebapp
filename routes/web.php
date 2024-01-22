@@ -1,0 +1,135 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use RealRashid\SweetAlert\Facades\Alert;
+
+use App\Http\Controllers\LandingController;
+
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegistrationController;
+
+use App\Http\Controllers\User\UserMenuController;
+use App\Http\Controllers\Merchandiser\MerchandiserMenuController;
+
+use App\Http\Controllers\AccountSupervisor\AccountSupervisorController;
+use App\Http\Controllers\PayrollHead\PayrollHeadController;
+use App\Http\Controllers\PayrollOfficer\PayrollOfficerController;
+
+// Super Admin Controllers
+use App\Http\Controllers\SuperAdmin\SuperAdminController;
+use App\Http\Controllers\SuperAdmin\SuperAdminSuperAdminListController;
+use App\Http\Controllers\SuperAdmin\SuperAdminAccountSupervisorListController;
+use App\Http\Controllers\SuperAdmin\SuperAdminPayrollOfficerListController;
+
+
+use App\Http\Middleware\Merchandiser;
+use App\Http\Middleware\SuperAdmin;
+use App\Http\Middleware\Guest;
+use App\Http\Middleware\AccountSupervisor;
+use App\Http\Middleware\PayrollHead;
+use App\Http\Middleware\PayrollOfficer;
+
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+// Route::get('/', function () {
+   
+//     return view('landing.Home');
+// });
+
+//Route::get('/', LandingController::class . '@home')->name('home');
+
+//Route::get('/login', LandingController::class . '@login')->name('auth.login');
+
+//Route::get('/login', [LoginController::class, 'index']);
+
+Route::post('/login_user', [LoginController::class, 'login_user'])->name('login_user');
+
+//Route::get('/registration', LoginController::class . '@registration')->name('auth.registration');
+
+Route::get('/logout' , [LoginController::class, 'logout'])->name('logout');
+
+Route::post('/registration', [RegistrationController::class, 'registerUser'])->name('auth.register');
+
+Route::post('/login/superadmin', [LoginController::class, 'loginsuperadmin'])->name('loginsuperadmin');
+
+
+// Route::get('superadmin', function(){
+//     return view('superadmin');
+// })->name('superadmin')->middleware('superadmin');
+
+Route::middleware([Guest::class])->group(function(){
+    Route::get('/', [LandingController::class, 'home'])->name('home'); 
+    Route::get('/login/superadmin', [LandingController::class, 'superadmin_login'])->name('auth.superadmin');
+    Route::get('/login/payrollhead', [LandingController::class, 'payrollhead_login'])->name('auth.payrollhead');
+    Route::get('/login/payrollofficer', [LandingController::class, 'payrollofficer_login'])->name('auth.payrollofficer');
+    Route::get('/login/accountsupervisor', [LandingController::class, 'accountsupervisor_login'])->name('auth.accountsupervisor');
+    Route::get('/login', [LandingController::class, 'login'])->name('auth.login'); 
+    Route::get('/registration', [LoginController::class, 'registration'])->name('auth.registration');
+});
+
+Route::middleware([SuperAdmin::class])->group(function(){
+    Route::get('/superadmin/dashboard', [SuperAdminController::class, 'view_dashboard'])->name('superadmin.view.dashboard');
+    Route::get('/superadmin/accountsupervisor', [SuperAdminController::class, 'view_accountsupervisor'])->name('superadmin.view.accountsupervisor');
+    Route::get('/superadmin/payrollofficer', [SuperAdminController::class, 'view_payrollofficer'])->name('superadmin.view.payrollofficer');
+    Route::get('/superadmin/superadmin', [SuperAdminController::class, 'view_superadmin'])->name('superadmin.view.superadmin');
+
+    //Account Supervisor Functions
+    Route::get('/superadmin/accountsupervisor/list/fetch-data', [SuperAdminAccountSupervisorListController::class, 'fetchData']);
+    Route::post('/superadmin/accountsupervisor/list/update-active-status', [SuperAdminAccountSupervisorListController::class, 'updateActiveStatus'])->name('superadmin.account-supervisor-list.update-active-status');
+    Route::post('/superadmin/accountsupervisor/list/register-account', [SuperAdminAccountSupervisorListController::class, 'saveAccount'])->name('superadmin.account-supervisor-list.register');
+    Route::post('/superadmin/accountsupervisor/list/update-account', [SuperAdminAccountSupervisorListController::class, 'updateAccount'])->name('superadmin.account-supervisor-list.update-account');
+    Route::post('/superadmin/accountsupervisor/list/retrieve-update', [SuperAdminAccountSupervisorListController::class, 'getUpdateData'])->name('superadmin.account-supervisor-list.retrieve-update');
+    Route::post('/superadmin/accountsupervisor/list/retrieve-view', [SuperAdminAccountSupervisorListController::class, 'getViewData'])->name('superadmin.account-supervisor-list.retrieve-view');
+  
+
+    
+    //Payroll Officer Functions
+    Route::get('/superadmin/payrollofficer/list/fetch-data', [SuperAdminPayrollOfficerListController::class, 'fetchData']);
+    Route::post('/superadmin/payrollofficer/list/update-active-status', [SuperAdminPayrollOfficerListController::class, 'updateActiveStatus'])->name('superadmin.payroll-officer-list.update-active-status');
+    Route::post('/superadmin/payrollofficer/list/register-account', [SuperAdminPayrollOfficerListController::class, 'saveAccount'])->name('superadmin.payroll-officer-list.register');
+    Route::post('/superadmin/payrollofficer/list/update-account', [SuperAdminPayrollOfficerListController::class, 'updateAccount'])->name('superadmin.payroll-officer-list.update-account');
+    Route::post('/superadmin/payrollofficer/list/retrieve-update', [SuperAdminPayrollOfficerListController::class, 'getUpdateData'])->name('superadmin.payroll-officer-list.retrieve-update');
+    Route::post('/superadmin/payrollofficer/list/retrieve-view', [SuperAdminPayrollOfficerListController::class, 'getViewData'])->name('superadmin.payroll-officer-list.retrieve-view');
+
+      //Super Admin Functions
+      Route::get('/superadmin/superadmin/list/fetch-data', [SuperAdminSuperAdminListController::class, 'fetchData']);
+      Route::post('/superadmin/superadmin/list/update-active-status', [SuperAdminSuperAdminListController::class, 'updateActiveStatus'])->name('superadmin.super-admin-list.update-active-status');
+      Route::post('/superadmin/superadmin/list/register-account', [SuperAdminSuperAdminListController::class, 'saveAccount'])->name('superadmin.super-admin-list.register');
+      Route::post('/superadmin/superadmin/list/update-account', [SuperAdminSuperAdminListController::class, 'updateAccount'])->name('superadmin.super-admin-list.update-account');
+      Route::post('/superadmin/superadmin/list/retrieve-update', [SuperAdminSuperAdminListController::class, 'getUpdateData'])->name('superadmin.super-admin-list.retrieve-update');
+      Route::post('/superadmin/superadmin/list/retrieve-view', [SuperAdminSuperAdminListController::class, 'getViewData'])->name('superadmin.super-admin-list.retrieve-view');
+  
+
+
+  
+});
+
+Route::middleware([PayrollHead::class])->group(function(){
+    Route::get('/payrollhead/dashboard', [PayrollHeadController::class, 'view_dashboard'])->name('payrollhead.view.dashboard');
+    
+});
+
+Route::middleware([PayrollOfficer::class])->group(function(){
+    Route::get('/payrollofficer/dashboard', [PayrollOfficerController::class, 'view_dashboard'])->name('payrollofficer.view.dashboard');
+});
+
+Route::middleware([AccountSupervisor::class])->group(function(){
+    Route::get('/accountsupervisor/dashboard', [AccountSupervisorController::class, 'view_dashboard'])->name('accountsupervisor.view.dashboard');
+});
+
+
+Route::middleware([Merchandiser::class])->group(function(){
+    Route::get('/merchandiser/menu', [MerchandiserMenuController::class, 'view_menu'])->name('merchandiser.view.menu');
+});
