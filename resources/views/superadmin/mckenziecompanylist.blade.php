@@ -54,13 +54,13 @@
                 </a>
                 <ul class="sidebar-dropdown-menu">
                     <li class="sidebar-dropdown-menu-item">
-                    <a href="{{ route('superadmin.view.superadmin') }}">Admin</a>
+                        <a href="{{ route('superadmin.view.superadmin') }}">Admin</a>
                     </li>
                     <li class="sidebar-dropdown-menu-item">
-                        <a href="{{ route('superadmin.view.payrollhead') }}">Payroll Head</a>
+                        <a href="#">Payroll Head</a>
                     </li>
                     <li class="sidebar-dropdown-menu-item">
-                    <a href="{{ route('superadmin.view.efc') }}">EFC</a>
+                        <a href="{{ route('superadmin.view.superadmin') }}">Payroll Officer</a>
                     </li>
                     <li class="sidebar-dropdown-menu-item">
                     <a href="{{ route('superadmin.view.accountsupervisor') }}">Account Supervisor</a>
@@ -75,7 +75,7 @@
                 </a>
                 <ul class="sidebar-dropdown-menu">
                     <li class="sidebar-dropdown-menu-item">
-                    <a href="{{ route('superadmin.view.superadmin') }}">EFC</a>
+                    <a href="{{ route('superadmin.view.efc') }}">EFC</a>
                     </li>
                     <li class="sidebar-dropdown-menu-item">
                         <a href="#">MCKENZIE</a>
@@ -184,13 +184,14 @@
     <h5 class="card-title">Account List</h5>
     <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
     
-    <table id="payrollofficer" class="table table-hover" style="width:100%">
+    <table id="superadmin" class="table table-hover" style="width:100%">
         <thead>
             <tr>
                 <th>#</th>
                 <th style="display:none">ID</th>
-                <th>Name</th>
-                <th>Email</th>
+                <th>Account</th>
+                <th>Region</th>
+                <th>Account Branch</th>
                 <th>Status</th>
                 <th>Actions</th>
             </tr>
@@ -221,7 +222,7 @@
         </button> -->
       </div>
       <div class="modal-body">
-        <form action="{{route('superadmin.payroll-officer-list.register')}}" method="POST">
+        <form action="{{route('superadmin.super-admin-list.register')}}" method="POST">
         @csrf
         @if (session('create-failed'))
 
@@ -303,7 +304,7 @@
 
       </div>
       <div class="modal-body">
-        <form action="{{route('superadmin.payroll-officer-list.update-account')}}" method="POST">
+        <form action="{{route('superadmin.super-admin-list.update-account')}}" method="POST">
 
         @csrf
                   <!-- First Name and Last name Input -->
@@ -430,9 +431,9 @@
 
     <script>
     $(document).ready(function () {
-        var dataTable = $('#payrollofficer').DataTable({
+        var dataTable = $('#superadmin').DataTable({
             ajax: {
-                url: '/superadmin/payrollofficer/list/fetch-data',
+                url: '/superadmin/superadmin/list/fetch-data',
                 dataSrc: 'data'
             },
             columns: [
@@ -445,7 +446,7 @@
             ]
         });
 
-        $('#payrollofficer tbody').on('click', 'a.clickable', function (e) {
+        $('#superadmin tbody').on('click', 'a.clickable', function (e) {
             e.preventDefault();
 
             var data = dataTable.row($(this).parents('tr')).data();
@@ -460,7 +461,7 @@
                 cancelButtonText: 'Cancel',
                
                 preConfirm: function () {
-                    return fetch('/superadmin/payrollofficer/list/update-active-status', {
+                    return fetch('/superadmin/superadmin/list/update-active-status', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -485,7 +486,7 @@
         });
 
 
-    $('#payrollofficer tbody').on('click', 'img.button-image2', function (e) {
+    $('#superadmin tbody').on('click', 'img.button-image2', function (e) {
         e.preventDefault();
 
             var selectedRowData = dataTable.row($(this).closest('tr')).data();
@@ -493,7 +494,7 @@
 
               $.ajax({
             type: 'POST',
-            url: '/superadmin/payrollofficer/list/retrieve-update',
+            url: '/superadmin/superadmin/list/retrieve-update',
             dataType: 'JSON',
             headers: {
                 'Content-Type': 'application/json',
@@ -523,7 +524,7 @@
       
 
 
-$('#payrollofficer tbody').on('click', 'img.button-image1', function (e) {
+$('#superadmin tbody').on('click', 'img.button-image1', function (e) {
         e.preventDefault();
 
     
@@ -533,7 +534,7 @@ $('#payrollofficer tbody').on('click', 'img.button-image1', function (e) {
 
           $.ajax({
         type: 'POST',
-        url: '/superadmin/payrollofficer/list/retrieve-view',
+        url: '/superadmin/superadmin/list/retrieve-view',
         dataType: 'JSON',
         headers: {
             'Content-Type': 'application/json',
