@@ -57,7 +57,7 @@
                     <a href="{{ route('superadmin.view.superadmin') }}">Admin</a>
                     </li>
                     <li class="sidebar-dropdown-menu-item">
-                        <a href="#">Payroll Head</a>
+                        <a href="{{ route('superadmin.view.payrollhead') }}">Payroll Head</a>
                     </li>
                     <li class="sidebar-dropdown-menu-item">
                         <a href="{{ route('superadmin.view.payrollofficer') }}">Payroll Officer</a>
@@ -109,38 +109,6 @@
                     <div class="dropdown-menu fx-dropdown-menu">
                         <h5 class="p-3 bg-indigo text-light">Notification</h5>
                         <div class="list-group list-group-flush">
-                            <a href="#"
-                                class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
-                                <div class="me-auto">
-                                    <div class="fw-semibold">Subheading</div>
-                                    <span class="fs-7">Content for list item</span>
-                                </div>
-                                <span class="badge bg-primary rounded-pill">14</span>
-                            </a>
-                            <a href="#"
-                                class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
-                                <div class="me-auto">
-                                    <div class="fw-semibold">Subheading</div>
-                                    <span class="fs-7">Content for list item</span>
-                                </div>
-                                <span class="badge bg-primary rounded-pill">14</span>
-                            </a>
-                            <a href="#"
-                                class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
-                                <div class="me-auto">
-                                    <div class="fw-semibold">Subheading</div>
-                                    <span class="fs-7">Content for list item</span>
-                                </div>
-                                <span class="badge bg-primary rounded-pill">14</span>
-                            </a>
-                            <a href="#"
-                                class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
-                                <div class="me-auto">
-                                    <div class="fw-semibold">Subheading</div>
-                                    <span class="fs-7">Content for list item</span>
-                                </div>
-                                <span class="badge bg-primary rounded-pill">14</span>
-                            </a>
                             <a href="#"
                                 class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
                                 <div class="me-auto">

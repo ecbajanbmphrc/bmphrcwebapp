@@ -48,6 +48,7 @@ class SuperAdminController extends Controller
              
     }
 
+
     public function view_company_efc(){
     
 
@@ -62,6 +63,13 @@ class SuperAdminController extends Controller
              
     }
 
+
+    public function view_payrollhead(){
+
     
+
+        return view('superadmin.payrollhead');
+             
+    }
     
 }
