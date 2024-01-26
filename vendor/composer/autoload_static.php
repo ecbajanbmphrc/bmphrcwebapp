@@ -358,8 +358,8 @@ class ComposerStaticInit77f330ea48ba749668a65bf24344babb
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -547,7 +547,10 @@ class ComposerStaticInit77f330ea48ba749668a65bf24344babb
         'App\\Http\\Controllers\\Merchandiser\\MerchandiserMenuController' => __DIR__ . '/../..' . '/app/Http/Controllers/Merchandiser/MerchandiserMenuController.php',
         'App\\Http\\Controllers\\PayrollHead\\PayrollHeadController' => __DIR__ . '/../..' . '/app/Http/Controllers/PayrollHead/PayrollHeadController.php',
         'App\\Http\\Controllers\\PayrollOfficer\\PayrollOfficerController' => __DIR__ . '/../..' . '/app/Http/Controllers/PayrollOfficer/PayrollOfficerController.php',
+        'App\\Http\\Controllers\\SuperAdmin\\SuperAdminAccountSupervisorListController' => __DIR__ . '/../..' . '/app/Http/Controllers/SuperAdmin/SuperAdminAccountSupervisorListController.php',
         'App\\Http\\Controllers\\SuperAdmin\\SuperAdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/SuperAdmin/SuperAdminController.php',
+        'App\\Http\\Controllers\\SuperAdmin\\SuperAdminPayrollOfficerListController' => __DIR__ . '/../..' . '/app/Http/Controllers/SuperAdmin/SuperAdminPayrollOfficerListController.php',
+        'App\\Http\\Controllers\\SuperAdmin\\SuperAdminSuperAdminListController' => __DIR__ . '/../..' . '/app/Http/Controllers/SuperAdmin/SuperAdminSuperAdminListController.php',
         'App\\Http\\Controllers\\User\\UserMenuController' => __DIR__ . '/../..' . '/app/Http/Controllers/User/UserMenuController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\AccountSupervisor' => __DIR__ . '/../..' . '/app/Http/Middleware/AccountSupervisor.php',
@@ -565,6 +568,7 @@ class ComposerStaticInit77f330ea48ba749668a65bf24344babb
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\ValidateSignature' => __DIR__ . '/../..' . '/app/Http/Middleware/ValidateSignature.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Models\\Company' => __DIR__ . '/../..' . '/app/Models/Company.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
@@ -3384,6 +3388,7 @@ class ComposerStaticInit77f330ea48ba749668a65bf24344babb
         'Nette\\Utils\\ImageColor' => __DIR__ . '/..' . '/nette/utils/src/Utils/ImageColor.php',
         'Nette\\Utils\\ImageException' => __DIR__ . '/..' . '/nette/utils/src/Utils/exceptions.php',
         'Nette\\Utils\\ImageType' => __DIR__ . '/..' . '/nette/utils/src/Utils/ImageType.php',
+        'Nette\\Utils\\Iterables' => __DIR__ . '/..' . '/nette/utils/src/Utils/Iterables.php',
         'Nette\\Utils\\Json' => __DIR__ . '/..' . '/nette/utils/src/Utils/Json.php',
         'Nette\\Utils\\JsonException' => __DIR__ . '/..' . '/nette/utils/src/Utils/exceptions.php',
         'Nette\\Utils\\ObjectHelpers' => __DIR__ . '/..' . '/nette/utils/src/Utils/ObjectHelpers.php',

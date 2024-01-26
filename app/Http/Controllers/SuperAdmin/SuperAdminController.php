@@ -48,6 +48,20 @@ class SuperAdminController extends Controller
              
     }
 
+    public function view_company_efc(){
+    
+
+        return view('superadmin.efccompanylist');
+             
+    }
+
+    public function view_company_mckenzie(){
+    
+
+        return view('superadmin.mckenziecompanylist');
+             
+    }
+
     
     
 }

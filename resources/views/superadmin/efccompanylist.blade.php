@@ -54,13 +54,13 @@
                 </a>
                 <ul class="sidebar-dropdown-menu">
                     <li class="sidebar-dropdown-menu-item">
-                    <a href="{{ route('superadmin.view.superadmin') }}">Admin</a>
+                        <a href="{{ route('superadmin.view.superadmin') }}">Admin</a>
                     </li>
                     <li class="sidebar-dropdown-menu-item">
                         <a href="#">Payroll Head</a>
                     </li>
                     <li class="sidebar-dropdown-menu-item">
-                        <a href="{{ route('superadmin.view.payrollofficer') }}">Payroll Officer</a>
+                        <a href="{{ route('superadmin.view.superadmin') }}">Payroll Officer</a>
                     </li>
                     <li class="sidebar-dropdown-menu-item">
                     <a href="{{ route('superadmin.view.accountsupervisor') }}">Account Supervisor</a>
@@ -100,7 +100,7 @@
             <!-- start: Navbar -->
             <nav class="px-3 py-2 bg-white rounded shadow-sm">
                 <i class="ri-menu-line sidebar-toggle me-3 d-block d-md-none"></i>
-                <h5 class="fw-bold mb-0 me-auto">Account Supervisor List</h5>
+                <h5 class="fw-bold mb-0 me-auto">Company EFC List</h5>
                 <div class="dropdown me-3 d-none d-sm-block">
                     <div class="cursor-pointer dropdown-toggle navbar-link" data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -174,7 +174,7 @@
 
             <div class="card">
   <div class="card-header">
-  <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#createUserModal" id="hitme" name="hitme">
+  <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#createAccountModal" id="hitme" name="hitme">
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
   <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0"/>
 </svg>
@@ -184,13 +184,14 @@
     <h5 class="card-title">Account List</h5>
     <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
     
-    <table id="accountsupervisor" class="table table-hover" style="width:100%">
+    <table id="efc" class="table table-hover" style="width:100%">
         <thead>
             <tr>
                 <th>#</th>
                 <th style="display:none">ID</th>
-                <th>Name</th>
-                <th>Email</th>
+                <th>Account</th>
+                <th>Region</th>
+                <th>Account Branch</th>
                 <th>Status</th>
                 <th>Actions</th>
             </tr>
@@ -211,17 +212,17 @@
     <!-- end: Main -->
 
         <!-- create user modal -->
- <div class="modal fade" id="createUserModal" name = "createUserModal" tabindex="-1" role="dialog" aria-labelledby="createUserModalLabel" aria-hidden="true">
+ <div class="modal fade" id="createAccountModal" name = "createAccountModal" tabindex="-1" role="dialog"  aria-labelledby="createAccountModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="createUserModalLabel">New message</h5>
+        <h5 class="modal-title" id="createAccountModalLabel">New Item</h5>
         <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button> -->
       </div>
       <div class="modal-body">
-        <form action="{{route('superadmin.account-supervisor-list.register')}}" method="POST">
+        <form action="{{route('superadmin.efc-list.register')}}" method="POST">
         @csrf
         @if (session('create-failed'))
 
@@ -239,55 +240,90 @@
 
         <div class="row">
           <div class="form-group col-md-6">
-            <label for="c_first_name" class="col-form-label">First Name:</label>
-            <input type="text" class="form-control" id="c_first_name" name="c_first_name" value="{{ old('c_first_name') }}" required>
-          </div>    
-       
+            <label for="c_account" class="col-form-label">Account:</label>
+            <select class="form-select" id="c_account" name="c_account" >
+            <option  value="" >---Select Account---</option>
+                <option  value="Ever" @if(old('c_account') == "Ever") {{'selected'}} @endif>Ever</option>
+                <option  value="Puregold" @if(old('c_account') == "Puregold") {{'selected'}} @endif>Puregold</option>
+                <option  value="Robinson" @if(old('c_account') == "Robinson") {{'selected'}} @endif>Robinson</option>
+                <option  value="Super 8" @if(old('c_account') == "Super 8") {{'selected'}} @endif>Super 8</option>
+                <option  value="Ultramega" @if(old('c_account') == "Ultramega") {{'selected'}} @endif>Ultramega</option>
+                <option  value="Waltermart" @if(old('c_account') == "Waltermart") {{'selected'}} @endif>Waltermart</option>
 
-        <div class="form-group col-md-6">
-            <label for="c_last_name" class="col-form-label">Last Name:</label>
-            <input type="text" class="form-control" id="c_last_name" name="c_last_name" value="{{ old('c_last_name') }}" required>
-          </div> 
-        </div>  
-
-
-        <div class="row">
-          <div class="form-group col-md-6">
-            <label for="c_number" class="col-form-label">Contact Number:</label>
-            <input type="text" class="form-control" id="c_number" name="c_number" value="{{ old('c_number') }}"  oninput='setCustomValidity(value.length < 11 ? "Number must be at least 11 digits long." : "")' onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="11" value="{{ old('number') }}" required>
-          </div>    
-       
-
-        <div class="form-group col-md-6">
-            <label for="c_email" class="col-form-label">Email Address:</label>
-            <input type="email" class="form-control" id="c_email" name = "c_email" value="{{ old('c_email') }}" required>
-          </div> 
-        </div>  
-
-
-        <div class="row">
-
-          <div class="form-group col-md-4">
-            <label for="c_company" class="col-form-label">Company:</label>
-            <select class="form-control" id="c_company" name="c_company">
-            <option  value="" >---Select a Company---</option>
-              @foreach ($data as $id => $value)
-              <option value="{{ $id }}" @if(old('c_company') == $id) selected @endif>{{ $value }}</option>
-                @endforeach
             </select>
           </div>    
-
-          <div class="form-group col-md-4">
-            <label for="c_password" class="col-form-label">Password:</label>
-            <input type="password" class="form-control" id="c_password" name="c_password" value="{{ old('c_password') }}" required>
-          </div>    
        
 
-        <div class="form-group col-md-4">
-            <label for="c_confirmPassword" class="col-form-label">Confirm Password:</label>
-            <input type="password" class="form-control" name="c_confirmPassword" id="c_confirm_password">
-          </div> 
+          <div class="form-group col-md-6">
+            <label for="c_region" class="col-form-label">Region:</label>
+            <select class="form-select" id="c_region" name="c_region">
+            <option  value="">---Select Region---</option>
+                <option  value="Region 1" @if(old('c_region') == "Region 1") {{'selected'}} @endif>Region 1</option>
+                <option  value="Region 2" @if(old('c_region') == "Region 2") {{'selected'}} @endif>Region 2</option>
+                <option  value="Region 3" @if(old('c_region') == "Region 3") {{'selected'}} @endif>Region 3</option>
+                <option  value="Region 4" @if(old('c_region') == "Region 4") {{'selected'}} @endif>Region 4</option>
+                <option  value="Region 5" @if(old('c_region') == "Region 5") {{'selected'}} @endif>Region 5</option>
+                <option  value="Region 6" @if(old('c_region') == "Region 6") {{'selected'}} @endif>Region 6</option>
+                <option  value="Region 7" @if(old('c_region') == "Region 7") {{'selected'}} @endif>Region 7</option>
+                <option  value="Region 8" @if(old('c_region') == "Region 8") {{'selected'}} @endif>Region 8</option>
+                <option  value="Region 9" @if(old('c_region') == "Region 9") {{'selected'}} @endif>Region 9</option>
+                <option  value="Region 10" @if(old('c_region') == "Region 10") {{'selected'}} @endif>Region 10</option>
+                <option  value="Region 11" @if(old('c_region') == "Region 11") {{'selected'}} @endif>Region 11</option>
+                <option  value="Region 12" @if(old('c_region') == "Region 12") {{'selected'}} @endif>Region 12</option>
+                <option  value="Region 13" @if(old('c_region') == "Region 13") {{'selected'}} @endif>Region 13</option>
+                <option  value="NCR" @if(old('c_region') == "NCR") {{'selected'}} @endif>NCR</option>
+                <option  value="MIMAROPA" @if(old('c_region') == "MIMAROPA") {{'selected'}} @endif>MIMAROPA</option>
+                <option  value="CAR" @if(old('c_region') == "CAR") {{'selected'}} @endif>CAR</option>
+                <option  value="BARMM" @if(old('c_region') == "BARMM") {{'selected'}} @endif>BARMM</option>
+            </select>
+          </div>
+          
+         
+
         </div>  
+
+
+        <div class="row">
+
+        <div class="form-group col-md-6">
+            <label for="c_area" class="col-form-label">Area:</label>
+            <select class="form-select" id="c_area" name="c_area">
+            <option  value="">---Select Area---</option>
+                <option  value="GMA" @if(old('c_area') == "GMA") {{'selected'}} @endif>GMA</option>
+                <option  value="MIN" @if(old('c_area') == "MIN") {{'selected'}} @endif>MIN</option>
+                <option  value="NOL" @if(old('c_area') == "NOL") {{'selected'}} @endif>NOL</option>
+                <option  value="SOL" @if(old('c_area') == "SOL") {{'selected'}} @endif>SOL</option>
+                <option  value="VIS" @if(old('c_area') == "VIS") {{'selected'}} @endif>VIS</option>
+            </select>
+          </div> 
+          
+          <div class="form-group col-md-6">
+            <label for="c_account_branch" class="col-form-label">Account Branch:</label>
+            <input type="text" class="form-control" id="c_account_branch" name="c_account_branch" value="{{ old('c_account_branch') }}" required>
+          </div>
+          
+        </div>  
+
+        <div class="row">
+
+        <div class="form-group col-md-6">
+        
+        <label for="c_type_of_deployment" class="col-form-label">Type of Deployment:</label>
+        <br>
+        <div class="form-check form-check-inline">
+         <input class="form-check-input" type="radio" name="c_type_of_deployment" id="c_type_stationary" value="Stationary" checked>
+         <label class="form-check-label" for="c_type_stationary">Stationary</label>
+      </div>
+    
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="c_type_of_deployment" id="c_type_roving" value="Roving">
+        <label class="form-check-label" for="c_type_roving">Roving</label>
+      </div>
+
+      </div>
+
+        </div>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" id="hide-modal">Close</button>
@@ -301,18 +337,18 @@
 
 
       <!-- edit user modal -->
-      <div class="modal fade" id="editUserModal" name = "editUserModal" tabindex="-1" role="dialog" aria-labelledby="editUserModalLabel" aria-hidden="true">
+      <div class="modal fade" id="editAccountModal" name = "editAccountModal" tabindex="-1" role="dialog" aria-labelledby="editAccountModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="editUserModalLabel">Edit Details</h5>
+        <h5 class="modal-title" id="editAccountModalLabel">Edit Details</h5>
         <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button> -->
 
       </div>
       <div class="modal-body">
-        <form action="{{route('superadmin.account-supervisor-list.update-account')}}" method="POST">
+        <form action="{{route('superadmin.efc-list.update-account')}}" method="POST">
 
         @csrf
                   <!-- First Name and Last name Input -->
@@ -332,42 +368,103 @@
 
         <div class="row">
           <div class="form-group col-md-6">
-            <label for="e_first_name" class="col-form-label">First Name:</label>
-            <input type="text" class="form-control" id="e_first_name" name="e_first_name" value="{{ old('e_first_name') }}" required>
+            <label for="e_account" class="col-form-label">Account:</label>
+            <select class="form-select" id="e_account" name="e_account" >
+            <option  value="" >---Select Account---</option>
+                <option  value="Ever" @if(old('e_account') == "Ever") {{'selected'}} @endif>Ever</option>
+                <option  value="Puregold" @if(old('e_account') == "Puregold") {{'selected'}} @endif>Puregold</option>
+                <option  value="Robinson" @if(old('e_account') == "Robinson") {{'selected'}} @endif>Robinson</option>
+                <option  value="Super 8" @if(old('e_account') == "Super 8") {{'selected'}} @endif>Super 8</option>
+                <option  value="Ultramega" @if(old('e_account') == "Ultramega") {{'selected'}} @endif>Ultramega</option>
+                <option  value="Waltermart" @if(old('e_account') == "Waltermart") {{'selected'}} @endif>Waltermart</option>
+
+            </select>
           </div>    
        
 
-         <div class="form-group col-md-6">
-            <label for="e_last_name" class="col-form-label">Last Name:</label>
-            <input type="text" class="form-control" id="e_last_name" name="e_last_name" value="{{ old('e_last_name') }}" required>
-          </div> 
+          <div class="form-group col-md-6">
+            <label for="e_region" class="col-form-label">Region:</label>
+            <select class="form-select" id="e_region" name="e_region">
+            <option  value="">---Select Region---</option>
+                <option  value="Region 1" @if(old('e_region') == "Region 1") {{'selected'}} @endif>Region 1</option>
+                <option  value="Region 2" @if(old('e_region') == "Region 2") {{'selected'}} @endif>Region 2</option>
+                <option  value="Region 3" @if(old('e_region') == "Region 3") {{'selected'}} @endif>Region 3</option>
+                <option  value="Region 4" @if(old('e_region') == "Region 4") {{'selected'}} @endif>Region 4</option>
+                <option  value="Region 5" @if(old('e_region') == "Region 5") {{'selected'}} @endif>Region 5</option>
+                <option  value="Region 6" @if(old('e_region') == "Region 6") {{'selected'}} @endif>Region 6</option>
+                <option  value="Region 7" @if(old('e_region') == "Region 7") {{'selected'}} @endif>Region 7</option>
+                <option  value="Region 8" @if(old('e_region') == "Region 8") {{'selected'}} @endif>Region 8</option>
+                <option  value="Region 9" @if(old('e_region') == "Region 9") {{'selected'}} @endif>Region 9</option>
+                <option  value="Region 10" @if(old('e_region') == "Region 10") {{'selected'}} @endif>Region 10</option>
+                <option  value="Region 11" @if(old('e_region') == "Region 11") {{'selected'}} @endif>Region 11</option>
+                <option  value="Region 12" @if(old('e_region') == "Region 12") {{'selected'}} @endif>Region 12</option>
+                <option  value="Region 13" @if(old('e_region') == "Region 13") {{'selected'}} @endif>Region 13</option>
+                <option  value="NCR" @if(old('e_region') == "NCR") {{'selected'}} @endif>NCR</option>
+                <option  value="MIMAROPA" @if(old('e_region') == "MIMAROPA") {{'selected'}} @endif>MIMAROPA</option>
+                <option  value="CAR" @if(old('e_region') == "CAR") {{'selected'}} @endif>CAR</option>
+                <option  value="BARMM" @if(old('e_region') == "BARMM") {{'selected'}} @endif>BARMM</option>
+            </select>
+          </div>
+          
+         
+
         </div>  
 
 
         <div class="row">
 
-            <div class="form-group col-md-4">
-            <label for="e_company" class="col-form-label">Company:</label>
-            <select class="form-control" id="e_company" name="e_company">
-            <option  value="" >---Select a Company---</option>
-              @foreach ($data as $id => $value)
-              <option value="{{ $id }}">{{ $value }}</option>
-                @endforeach
+         <div class="form-group col-md-6">
+            <label for="e_area" class="col-form-label">Area:</label>
+            <select class="form-select" id="e_area" name="e_area">
+            <option  value="">---Select Area---</option>
+                <option  value="GMA" @if(old('e_area') == "GMA") {{'selected'}} @endif>GMA</option>
+                <option  value="MIN" @if(old('e_area') == "MIN") {{'selected'}} @endif>MIN</option>
+                <option  value="NOL" @if(old('e_area') == "NOL") {{'selected'}} @endif>NOL</option>
+                <option  value="SOL" @if(old('e_area') == "SOL") {{'selected'}} @endif>SOL</option>
+                <option  value="VIS" @if(old('e_area') == "VIS") {{'selected'}} @endif>VIS</option>
             </select>
           </div> 
+          
+          <div class="form-group col-md-6">
+            <label for="e_account_branch" class="col-form-label">Account Branch:</label>
+            <input type="text" class="form-control" id="e_account_branch" name="e_account_branch" value="{{ old('e_account_branch') }}" required>
+          </div>
+          
+        </div>  
 
-          <div class="form-group col-md-4">
-            <label for="e_email" class="col-form-label">Email Address:</label>
-            <input type="email" class="form-control" id="e_email" name = "e_email" value="{{ old('e_email') }}" required>
+        <div class="row">
+
+        <div class="form-group col-md-6">
+            <label for="e_status" class="col-form-label">Status:</label>
+            <select class="form-select" id="e_status" name="e_status">
+            <option  value="">---Select Status---</option>
+                <option  value="active" @if(old('e_status') == "active") {{'selected'}} @endif>active</option>
+                <option  value="inactive" @if(old('e_status') == "inactive") {{'selected'}} @endif>inactive</option>
+                <option  value="closed store" @if(old('e_status') == "closed store") {{'selected'}} @endif>closed store</option>
+            </select>
           </div> 
+          
 
-          <div class="form-group col-md-4">
-            <label for="e_number" class="col-form-label">Contact Number:</label>
-            <input type="text" class="form-control" id="e_number" name="e_number" value="{{ old('e_number') }}" oninput='setCustomValidity(value.length < 11 ? "Number must be at least 11 digits long." : "")' onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="11" value="{{ old('number') }}" required>
-          </div>    
-          <input type="hidden" id="selectedId" name="selectedId" value="{{ old('selectedId') }}">
-        </div> 
-    </div>
+        <div class="form-group col-md-6">
+        
+        <label for="e_type_of_deployment" class="col-form-label">Type of Deployment:</label>
+        <br>
+        <div class="form-check form-check-inline">
+         <input class="form-check-input" type="radio" name="e_type_of_deployment" id="e_type_stationary" value="Stationary">
+         <label class="form-check-label" for="e_type_stationary">Stationary</label>
+      </div>
+    
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="e_type_of_deployment" id="e_type_roving" value="Roving">
+        <label class="form-check-label" for="e_type_roving">Roving</label>
+       </div>
+
+       </div>
+
+      </div>
+
+      </div>
+      <input type="hidden" id="selectedId" name="selectedId" />
         
         
      
@@ -389,7 +486,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="editUserModalLabel">View Details</h5>
+        <h5 class="modal-title" id="editAccountModalLabel">View Details</h5>
         <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button> -->
@@ -423,12 +520,7 @@
           </div> 
         </div>
 
-        <div class="row">
-        <div class="form-group col-md-4">
-            <label for="v_company" class="col-form-label">Company:</label>
-            <p class="h6" id="v_company" name="v_company"></p>
-          </div>  
-    </div>   
+    
 
         <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" id="vhide-modal">Close</button>
@@ -452,93 +544,58 @@
 
     <script>
     $(document).ready(function () {
-        var dataTable = $('#accountsupervisor').DataTable({
+        var dataTable = $('#efc').DataTable({
             ajax: {
-                url: '/superadmin/accountsupervisor/list/fetch-data',
+                url: '/superadmin/efc/list/fetch-data',
                 dataSrc: 'data'
             },
             columns: [
                 { data: '#' },
                 { data: 'id', visible: false },
-                { data: 'first_name' },
-                { data: 'email' },
-                { data: 'active', orderable: false },
+                { data: 'account' },
+                { data: 'region' },
+                { data: 'account_branch' },
+                { data: 'status', orderable: false },
                 { data: 'actions', orderable: false }
             ]
         });
 
-        $('#accountsupervisor tbody').on('click', 'a.clickable', function (e) {
-            e.preventDefault();
 
-            var data = dataTable.row($(this).parents('tr')).data();
-            var id = data.id;
-            var newStatus = (data.is_active == 1 ? 0 : 1);
 
-            Swal.fire({
-                text: 'Are you sure you want to change the account status?',
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonText: 'Yes, change it!',
-                cancelButtonText: 'Cancel',
-               
-                preConfirm: function () {
-                    return fetch('/superadmin/accountsupervisor/list/update-active-status', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        },
-                        body: JSON.stringify({ id: id, newStatus: newStatus })
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            dataTable.ajax.reload();
-                            Swal.fire('Active Status Changed!', '', 'success');
-                        } else {
-                            throw new Error('Failed to update active status.');
-                        }
-                    })
-                    .catch(error => {
-                        Swal.showValidationMessage(`Request failed: ${error}`);
-                    });
-                }
-            });
-        });
-
-        // $('#accountsupervisor tbody').on('click', 'img.button-image1', function (e) {
-        //     e.preventDefault();
-        // //  alert("button inside modal clicked");
-        // $("#editUserModal").modal('show');
-   
-        // });
-
-    $('#accountsupervisor tbody').on('click', 'img.button-image2', function (e) {
+    $('#efc tbody').on('click', 'img.button-image2', function (e) {
         e.preventDefault();
 
-    // Get the hidden ID from the parent row
-    //var id = $(this).closest('tr').find('td:eq(1)').text();
             var selectedRowData = dataTable.row($(this).closest('tr')).data();
-            var myid = selectedRowData.id;
+            var id = selectedRowData.id;
 
-              $.ajax({
-            type: 'POST',
-            url: '/superadmin/accountsupervisor/list/retrieve-update',
+            $.ajax({
+            url: '/superadmin/efc/list/retrieve-update/' + id ,
+            type: 'GET', 
             dataType: 'JSON',
             headers: {
                 'Content-Type': 'application/json',
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },   
-            data: JSON.stringify({id: myid}),
             success: function(response){
                 // response = JSON.parse(response);
-                $('#selectedId').val(response.id);
-                $('#e_first_name').val(response.first_name);
-                $('#e_last_name').val(response.last_name);
-                $('#e_number').val(response.contact_number);
-                $('#e_email').val(response.email);
-                $('#e_company').val(response.company_id);      
-                $('#editUserModal').modal('show');
+                $('#selectedId').val(id);
+                $('#e_account').val(response.account);
+                $('#e_region').val(response.region);
+                $('#e_area').val(response.area);
+                $('#e_account_branch').val(response.account_branch);
+                $('#e_status').val(response.status);
+
+                type = response.type_of_deployment;
+                // is_type = (type === "stationary" ? "stationary" : "roving");
+
+                if(type === "Stationary"){
+                    $("#e_type_stationary").attr('checked', true);
+                }else{
+                    $("#e_type_roving").attr('checked', true);
+                }
+
+           
+                $('#editAccountModal').modal('show');
             
             }
      
@@ -547,44 +604,24 @@
             
 
     
-    // $.ajax({
-    //             url: '/superadmin/accountsupervisor/retrieve-update/' + id, 
-    //             method: 'GET',
-    //             success: function(response) {
-                  
-    //                 $('#selectedId').val(response.id);
-    //                 $('#e_first_name').val(response.first_name);
-    //                 $('#e_last_name').val(response.last_name);
-    //                 $('#e_number').val(response.contact_number);
-    //                 $('#e_email').val(response.email);
-    //                 $('#e_company').val(response.company_id);
-    //                 // Handle the retrieved data
-    //                 console.log(response);
-    //                 console.log("this is id" , response.id);
-    //                 // You can update your UI or take further actions here
-    //                 $('#editUserModal').modal('show');
-    //             },
-    //             error: function(error) {
-    //                 console.error('Error retrieving data:', error);
-    //             }
-    //         });
-    // });
+   
 
 
 
       
 
 
-$('#accountsupervisor tbody').on('click', 'img.button-image1', function (e) {
+$('#efc tbody').on('click', 'img.button-image1', function (e) {
         e.preventDefault();
 
     
         var selectedRowData = dataTable.row($(this).closest('tr')).data();
         var myid = selectedRowData.id;
+        console.log(myid);
 
           $.ajax({
         type: 'POST',
-        url: '/superadmin/accountsupervisor/list/retrieve-view',
+        url: '/superadmin/efc/list/retrieve-view',
         dataType: 'JSON',
         headers: {
             'Content-Type': 'application/json',
@@ -596,8 +633,7 @@ $('#accountsupervisor tbody').on('click', 'img.button-image1', function (e) {
             $('#v_first_name').text(response.first_name);
             $('#v_last_name').text(response.last_name);
             $('#v_contact_number').text(response.contact_number);
-            $('#v_email').text(response.email);
-            $('#v_company').text(response.company_name);      
+            $('#v_email').text(response.email);   
             $('#viewUserModal').modal('show');
         
         }
@@ -608,29 +644,28 @@ $('#accountsupervisor tbody').on('click', 'img.button-image1', function (e) {
 
 
 
-        $("#hitme").click(function(){
-//  alert("button inside modal clicked");
-    $("#createUserModal").modal('show');
+       $("#hitme").click(function(){
+ //alert("button inside modal clicked");
+    $("#createAccountModal").modal('show');
     console.error();
+    });
+    $('#createAccountModal').modal({
+        backdrop: 'static',
+        keyboard: false,
     });
 
     $("#hide-modal").click(function(){
-        $("#createUserModal").modal('hide');
+        $("#createAccountModal").modal('hide');
     });
 
     $("#ehide-modal").click(function(){
-        $("#editUserModal").modal('hide');
+        $("#editAccountModal").modal('hide');
     });
 
     $("#vhide-modal").click(function(){
         $("#viewUserModal").modal('hide');
     });
 
-    // $("#register_account")
-    // @if (session('update-failed'))
-    //     // Show the modal using JavaScript
-    //     $('#editUserModal').modal('show');
-    // @endif
 
 
      });
@@ -650,7 +685,7 @@ $('#accountsupervisor tbody').on('click', 'img.button-image1', function (e) {
             }).then((result) => {
         if (result.isConfirmed) {
           
-            $('#createUserModal')[0].reset();
+            $('#createAccountModal')[0].reset();
         }
     });
 
@@ -680,7 +715,7 @@ $('#accountsupervisor tbody').on('click', 'img.button-image1', function (e) {
             }).then((result) => {
         if (result.isConfirmed) {
           
-            $('#editUserModal').modal('show');
+            $('#editAccountModal').modal('show');
         }
     });
 
@@ -698,7 +733,7 @@ $('#accountsupervisor tbody').on('click', 'img.button-image1', function (e) {
             }).then((result) => {
         if (result.isConfirmed) {
           
-            $('#createUserModal').modal('show');
+            $('#createAccountModal').modal('show');
         }
     });
 

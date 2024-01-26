@@ -54,13 +54,13 @@
                 </a>
                 <ul class="sidebar-dropdown-menu">
                     <li class="sidebar-dropdown-menu-item">
-                    <a href="{{ route('superadmin.view.superadmin') }}">Admin</a>
+                        <a href="{{ route('superadmin.view.superadmin') }}">Admin</a>
                     </li>
                     <li class="sidebar-dropdown-menu-item">
                         <a href="#">Payroll Head</a>
                     </li>
                     <li class="sidebar-dropdown-menu-item">
-                        <a href="{{ route('superadmin.view.payrollofficer') }}">Payroll Officer</a>
+                        <a href="{{ route('superadmin.view.superadmin') }}">Payroll Officer</a>
                     </li>
                     <li class="sidebar-dropdown-menu-item">
                     <a href="{{ route('superadmin.view.accountsupervisor') }}">Account Supervisor</a>
@@ -100,7 +100,7 @@
             <!-- start: Navbar -->
             <nav class="px-3 py-2 bg-white rounded shadow-sm">
                 <i class="ri-menu-line sidebar-toggle me-3 d-block d-md-none"></i>
-                <h5 class="fw-bold mb-0 me-auto">Account Supervisor List</h5>
+                <h5 class="fw-bold mb-0 me-auto">Payroll Officer List</h5>
                 <div class="dropdown me-3 d-none d-sm-block">
                     <div class="cursor-pointer dropdown-toggle navbar-link" data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -184,13 +184,14 @@
     <h5 class="card-title">Account List</h5>
     <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
     
-    <table id="accountsupervisor" class="table table-hover" style="width:100%">
+    <table id="superadmin" class="table table-hover" style="width:100%">
         <thead>
             <tr>
                 <th>#</th>
                 <th style="display:none">ID</th>
-                <th>Name</th>
-                <th>Email</th>
+                <th>Account</th>
+                <th>Region</th>
+                <th>Account Branch</th>
                 <th>Status</th>
                 <th>Actions</th>
             </tr>
@@ -221,7 +222,7 @@
         </button> -->
       </div>
       <div class="modal-body">
-        <form action="{{route('superadmin.account-supervisor-list.register')}}" method="POST">
+        <form action="{{route('superadmin.super-admin-list.register')}}" method="POST">
         @csrf
         @if (session('create-failed'))
 
@@ -267,23 +268,14 @@
 
         <div class="row">
 
-          <div class="form-group col-md-4">
-            <label for="c_company" class="col-form-label">Company:</label>
-            <select class="form-control" id="c_company" name="c_company">
-            <option  value="" >---Select a Company---</option>
-              @foreach ($data as $id => $value)
-              <option value="{{ $id }}" @if(old('c_company') == $id) selected @endif>{{ $value }}</option>
-                @endforeach
-            </select>
-          </div>    
 
-          <div class="form-group col-md-4">
+          <div class="form-group col-md-6">
             <label for="c_password" class="col-form-label">Password:</label>
             <input type="password" class="form-control" id="c_password" name="c_password" value="{{ old('c_password') }}" required>
           </div>    
        
 
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-6">
             <label for="c_confirmPassword" class="col-form-label">Confirm Password:</label>
             <input type="password" class="form-control" name="c_confirmPassword" id="c_confirm_password">
           </div> 
@@ -312,7 +304,7 @@
 
       </div>
       <div class="modal-body">
-        <form action="{{route('superadmin.account-supervisor-list.update-account')}}" method="POST">
+        <form action="{{route('superadmin.super-admin-list.update-account')}}" method="POST">
 
         @csrf
                   <!-- First Name and Last name Input -->
@@ -346,22 +338,14 @@
 
         <div class="row">
 
-            <div class="form-group col-md-4">
-            <label for="e_company" class="col-form-label">Company:</label>
-            <select class="form-control" id="e_company" name="e_company">
-            <option  value="" >---Select a Company---</option>
-              @foreach ($data as $id => $value)
-              <option value="{{ $id }}">{{ $value }}</option>
-                @endforeach
-            </select>
-          </div> 
+    
 
-          <div class="form-group col-md-4">
+          <div class="form-group col-md-6">
             <label for="e_email" class="col-form-label">Email Address:</label>
             <input type="email" class="form-control" id="e_email" name = "e_email" value="{{ old('e_email') }}" required>
           </div> 
 
-          <div class="form-group col-md-4">
+          <div class="form-group col-md-6">
             <label for="e_number" class="col-form-label">Contact Number:</label>
             <input type="text" class="form-control" id="e_number" name="e_number" value="{{ old('e_number') }}" oninput='setCustomValidity(value.length < 11 ? "Number must be at least 11 digits long." : "")' onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="11" value="{{ old('number') }}" required>
           </div>    
@@ -423,12 +407,7 @@
           </div> 
         </div>
 
-        <div class="row">
-        <div class="form-group col-md-4">
-            <label for="v_company" class="col-form-label">Company:</label>
-            <p class="h6" id="v_company" name="v_company"></p>
-          </div>  
-    </div>   
+    
 
         <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" id="vhide-modal">Close</button>
@@ -452,9 +431,9 @@
 
     <script>
     $(document).ready(function () {
-        var dataTable = $('#accountsupervisor').DataTable({
+        var dataTable = $('#superadmin').DataTable({
             ajax: {
-                url: '/superadmin/accountsupervisor/list/fetch-data',
+                url: '/superadmin/superadmin/list/fetch-data',
                 dataSrc: 'data'
             },
             columns: [
@@ -467,7 +446,7 @@
             ]
         });
 
-        $('#accountsupervisor tbody').on('click', 'a.clickable', function (e) {
+        $('#superadmin tbody').on('click', 'a.clickable', function (e) {
             e.preventDefault();
 
             var data = dataTable.row($(this).parents('tr')).data();
@@ -482,7 +461,7 @@
                 cancelButtonText: 'Cancel',
                
                 preConfirm: function () {
-                    return fetch('/superadmin/accountsupervisor/list/update-active-status', {
+                    return fetch('/superadmin/superadmin/list/update-active-status', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -506,24 +485,16 @@
             });
         });
 
-        // $('#accountsupervisor tbody').on('click', 'img.button-image1', function (e) {
-        //     e.preventDefault();
-        // //  alert("button inside modal clicked");
-        // $("#editUserModal").modal('show');
-   
-        // });
 
-    $('#accountsupervisor tbody').on('click', 'img.button-image2', function (e) {
+    $('#superadmin tbody').on('click', 'img.button-image2', function (e) {
         e.preventDefault();
 
-    // Get the hidden ID from the parent row
-    //var id = $(this).closest('tr').find('td:eq(1)').text();
             var selectedRowData = dataTable.row($(this).closest('tr')).data();
             var myid = selectedRowData.id;
 
               $.ajax({
             type: 'POST',
-            url: '/superadmin/accountsupervisor/list/retrieve-update',
+            url: '/superadmin/superadmin/list/retrieve-update',
             dataType: 'JSON',
             headers: {
                 'Content-Type': 'application/json',
@@ -536,8 +507,7 @@
                 $('#e_first_name').val(response.first_name);
                 $('#e_last_name').val(response.last_name);
                 $('#e_number').val(response.contact_number);
-                $('#e_email').val(response.email);
-                $('#e_company').val(response.company_id);      
+                $('#e_email').val(response.email);    
                 $('#editUserModal').modal('show');
             
             }
@@ -547,44 +517,24 @@
             
 
     
-    // $.ajax({
-    //             url: '/superadmin/accountsupervisor/retrieve-update/' + id, 
-    //             method: 'GET',
-    //             success: function(response) {
-                  
-    //                 $('#selectedId').val(response.id);
-    //                 $('#e_first_name').val(response.first_name);
-    //                 $('#e_last_name').val(response.last_name);
-    //                 $('#e_number').val(response.contact_number);
-    //                 $('#e_email').val(response.email);
-    //                 $('#e_company').val(response.company_id);
-    //                 // Handle the retrieved data
-    //                 console.log(response);
-    //                 console.log("this is id" , response.id);
-    //                 // You can update your UI or take further actions here
-    //                 $('#editUserModal').modal('show');
-    //             },
-    //             error: function(error) {
-    //                 console.error('Error retrieving data:', error);
-    //             }
-    //         });
-    // });
+   
 
 
 
       
 
 
-$('#accountsupervisor tbody').on('click', 'img.button-image1', function (e) {
+$('#superadmin tbody').on('click', 'img.button-image1', function (e) {
         e.preventDefault();
 
     
         var selectedRowData = dataTable.row($(this).closest('tr')).data();
         var myid = selectedRowData.id;
+        console.log(myid);
 
           $.ajax({
         type: 'POST',
-        url: '/superadmin/accountsupervisor/list/retrieve-view',
+        url: '/superadmin/superadmin/list/retrieve-view',
         dataType: 'JSON',
         headers: {
             'Content-Type': 'application/json',
@@ -596,8 +546,7 @@ $('#accountsupervisor tbody').on('click', 'img.button-image1', function (e) {
             $('#v_first_name').text(response.first_name);
             $('#v_last_name').text(response.last_name);
             $('#v_contact_number').text(response.contact_number);
-            $('#v_email').text(response.email);
-            $('#v_company').text(response.company_name);      
+            $('#v_email').text(response.email);   
             $('#viewUserModal').modal('show');
         
         }
@@ -626,11 +575,6 @@ $('#accountsupervisor tbody').on('click', 'img.button-image1', function (e) {
         $("#viewUserModal").modal('hide');
     });
 
-    // $("#register_account")
-    // @if (session('update-failed'))
-    //     // Show the modal using JavaScript
-    //     $('#editUserModal').modal('show');
-    // @endif
 
 
      });
