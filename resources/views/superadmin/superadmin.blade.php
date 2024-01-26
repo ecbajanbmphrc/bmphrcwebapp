@@ -57,10 +57,10 @@
                         <a href="{{ route('superadmin.view.superadmin') }}">Admin</a>
                     </li>
                     <li class="sidebar-dropdown-menu-item">
-                        <a href="#">Payroll Head</a>
+                        <a href="{{ route('superadmin.view.payrollhead') }}">Payroll Head</a>
                     </li>
                     <li class="sidebar-dropdown-menu-item">
-                        <a href="{{ route('superadmin.view.superadmin') }}">Payroll Officer</a>
+                        <a href="{{ route('superadmin.view.payrollofficer') }}">Payroll Officer</a>
                     </li>
                     <li class="sidebar-dropdown-menu-item">
                     <a href="{{ route('superadmin.view.accountsupervisor') }}">Account Supervisor</a>

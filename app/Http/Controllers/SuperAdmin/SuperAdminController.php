@@ -48,6 +48,11 @@ class SuperAdminController extends Controller
              
     }
 
+    public function view_payrollhead(){
     
+
+        return view('superadmin.payrollhead');
+             
+    }
     
 }

@@ -23,5 +23,18 @@ class AccountSupervisorController extends Controller
 
     }
 
+    public function view_doors(){
+
+        $data = array();
+        if (Session::has('user')){
+            $data = User::where('id', '=', Session::get('user')['current_user_id'])->first();
+
+         
+        }
+    
+       return view('accountsupervisor.doors', compact('data'));
+
+    }
+
     
 }
