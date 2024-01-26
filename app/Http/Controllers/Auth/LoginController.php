@@ -224,37 +224,42 @@ class LoginController extends Controller
     public function logout(){
 
 
-        
-   $redirect_login = Session::get('user')['usernum'];
-   Auth::logout();
-   Session::flush();
+        if (Session::has('user')){
+            
+            $redirect_login = Session::get('user')['usernum'];
+            Auth::logout();
+            Session::flush();
 
 
-   if($redirect_login == 1 ){
-    return redirect(route('auth.superadmin'));
-   }
+            if($redirect_login == 1 ){
+                return redirect(route('auth.superadmin'));
+            }
 
-   else if($redirect_login == 2 ){
-    return redirect(route('auth.payrollhead'));
-   }
+            else if($redirect_login == 2 ){
+                return redirect(route('auth.payrollhead'));
+            }
 
-   else if($redirect_login == 3 ){
-    return redirect(route('auth.payrollofficer'));
-   }
+            else if($redirect_login == 3 ){
+                return redirect(route('auth.payrollofficer'));
+            }
 
-   else if($redirect_login == 4 ){
-    return redirect(route('auth.accountsupervisor'));
-   }
+            else if($redirect_login == 4 ){
+                return redirect(route('auth.accountsupervisor'));
+            }
 
-   else if($redirect_login == 5 ){
-    return redirect(route('auth.login'));
-   }
-
-        
-       
-
-        
+            else if($redirect_login == 5 ){
+                return redirect(route('auth.login'));
+            }  
+        }
+        else{
+                return back();    
+        }
     }
+   
+   
+
+        
+    
 
 
 }

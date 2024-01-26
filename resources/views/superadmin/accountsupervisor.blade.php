@@ -57,7 +57,7 @@
                     <a href="{{ route('superadmin.view.superadmin') }}">Admin</a>
                     </li>
                     <li class="sidebar-dropdown-menu-item">
-                        <a href="#">Payroll Head</a>
+                        <a href="{{ route('superadmin.view.payrollhead') }}">Payroll Head</a>
                     </li>
                     <li class="sidebar-dropdown-menu-item">
                         <a href="{{ route('superadmin.view.payrollofficer') }}">Payroll Officer</a>
@@ -65,6 +65,22 @@
                     <li class="sidebar-dropdown-menu-item">
                     <a href="{{ route('superadmin.view.accountsupervisor') }}">Account Supervisor</a>
                     </li>
+                </ul>
+            </li>
+            <li class="sidebar-menu-item has-dropdown mt-2">
+                <a href="#">
+          
+                    <i class="ri-building-line sidebar-menu-item-icon"></i>Companies
+                    <i class="ri-arrow-down-s-line sidebar-menu-item-accordion ms-auto"></i>
+                </a>
+                <ul class="sidebar-dropdown-menu">
+                    <li class="sidebar-dropdown-menu-item">
+                    <a href="{{ route('superadmin.view.efc') }}">EFC</a>
+                    </li>
+                    <li class="sidebar-dropdown-menu-item">
+                        <a href="#">MCKENZIE</a>
+                    </li>
+        
                 </ul>
             </li>
             <li class="sidebar-menu-item">
@@ -93,38 +109,6 @@
                     <div class="dropdown-menu fx-dropdown-menu">
                         <h5 class="p-3 bg-indigo text-light">Notification</h5>
                         <div class="list-group list-group-flush">
-                            <a href="#"
-                                class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
-                                <div class="me-auto">
-                                    <div class="fw-semibold">Subheading</div>
-                                    <span class="fs-7">Content for list item</span>
-                                </div>
-                                <span class="badge bg-primary rounded-pill">14</span>
-                            </a>
-                            <a href="#"
-                                class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
-                                <div class="me-auto">
-                                    <div class="fw-semibold">Subheading</div>
-                                    <span class="fs-7">Content for list item</span>
-                                </div>
-                                <span class="badge bg-primary rounded-pill">14</span>
-                            </a>
-                            <a href="#"
-                                class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
-                                <div class="me-auto">
-                                    <div class="fw-semibold">Subheading</div>
-                                    <span class="fs-7">Content for list item</span>
-                                </div>
-                                <span class="badge bg-primary rounded-pill">14</span>
-                            </a>
-                            <a href="#"
-                                class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
-                                <div class="me-auto">
-                                    <div class="fw-semibold">Subheading</div>
-                                    <span class="fs-7">Content for list item</span>
-                                </div>
-                                <span class="badge bg-primary rounded-pill">14</span>
-                            </a>
                             <a href="#"
                                 class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
                                 <div class="me-auto">

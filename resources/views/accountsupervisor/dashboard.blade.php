@@ -31,7 +31,11 @@
                     <i class="ri-dashboard-line sidebar-menu-item-icon"></i>Dashboard
                 </a>
             </li>
-            <li class="sidebar-menu-divider mt-3 mb-1 text-uppercase">Custom</li>
+            <li class="sidebar-menu-item">
+                <a href="{{ route('accountsupervisor.view.doors') }}">
+                    <i class="ri-dashboard-line sidebar-menu-item-icon"></i>Doors
+                </a>
+            </li>
             <li class="sidebar-menu-item has-dropdown">
                 <a href="#">
                     <i class="ri-pages-line sidebar-menu-item-icon"></i>Home
@@ -53,36 +57,6 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="sidebar-dropdown-menu-item has-dropdown">
-                        <a href="#">Email Template<i class="ri-arrow-down-s-line sidebar-menu-item-accordion ms-auto"></i>
-                        </a>
-                        <ul class="sidebar-dropdown-menu">
-                            <li class="sidebar-dropdown-menu-item">
-                                <a href="#">Reset Password</a>
-                            </li>
-                            <li class="sidebar-dropdown-menu-item">
-                                <a href="#">Changed Password</a>
-                            </li>
-                            <li class="sidebar-dropdown-menu-item">
-                                <a href="#">Verify Email</a>
-                            </li>
-                            <li class="sidebar-dropdown-menu-item">
-                                <a href="#">Invitation</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="sidebar-dropdown-menu-item">
-                        <a href="#">Pricing</a>
-                    </li>
-                    <li class="sidebar-dropdown-menu-item">
-                        <a href="#">About Us</a>
-                    </li>
-                    <li class="sidebar-dropdown-menu-item">
-                        <a href="#">Contact Us</a>
-                    </li>
-                    <li class="sidebar-dropdown-menu-item">
-                        <a href="#">Our Team</a>
-                    </li>
                 </ul>
             </li>
             <li class="sidebar-menu-item has-dropdown">
@@ -99,139 +73,6 @@
                         <a href="#">Account Sup</a>
                     </li>
                 </ul>
-            </li>
-            <li class="sidebar-menu-item has-dropdown">
-                <a href="#">
-                    <i class="bi bi-cash-coin me-3" style="margin-left: 3px; font-size: 18px;"></i>
-                    Salary
-                    <i class="ri-arrow-down-s-line sidebar-menu-item-accordion ms-auto"></i>
-                </a>
-                <ul class="sidebar-dropdown-menu">
-                    <li class="sidebar-dropdown-menu-item">
-                        <a href="#">Charts</a>
-                    </li>
-                    <li class="sidebar-dropdown-menu-item">
-                        <a href="#">Tables</a>
-                    </li>
-                </ul>
-            </li>
-            <li class="sidebar-menu-item has-dropdown">
-                <a href="#">
-                    <i class="bi bi-person-plus me-3" style="margin-left: 3px; font-size: 18px;"></i>
-                    Attendance
-                    <i class="ri-arrow-down-s-line sidebar-menu-item-accordion ms-auto"></i>
-                </a>
-                <ul class="sidebar-dropdown-menu">
-                    <li class="sidebar-dropdown-menu-item">
-                        <a href="#">Coordinators</a>
-                    </li>
-                    <li class="sidebar-dropdown-menu-item">
-                        <a href="#">
-                            Merchandiser
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li class="sidebar-menu-item has-dropdown">
-                <a href="#">
-                    <i class="ri-user-line sidebar-menu-item-icon"></i>
-                    Authentication
-                    <i class="ri-arrow-down-s-line sidebar-menu-item-accordion ms-auto"></i>
-                </a>
-                <ul class="sidebar-dropdown-menu">
-                    <li class="sidebar-dropdown-menu-item">
-                        <a href="#">
-                            Login
-                        </a>
-                    </li>
-                    <li class="sidebar-dropdown-menu-item">
-                        <a href="#">
-                            Registration
-                        </a>
-                    </li>
-                    <li class="sidebar-dropdown-menu-item">
-                        <a href="#">
-                            Reset Password
-                        </a>
-                    </li>
-                    <li class="sidebar-dropdown-menu-item">
-                        <a href="#">
-                            Change Password
-                        </a>
-                    </li>
-                    <li class="sidebar-dropdown-menu-item">
-                        <a href="#">
-                            Confirm Password
-                        </a>
-                    </li>
-                    <li class="sidebar-dropdown-menu-item">
-                        <a href="#">
-                            Deactivate Account
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li class="sidebar-menu-item has-dropdown">
-                <a href="#">
-                    <i class="ri-window-line sidebar-menu-item-icon"></i>
-                    Widgets
-                    <i class="ri-arrow-down-s-line sidebar-menu-item-accordion ms-auto"></i>
-                </a>
-                <ul class="sidebar-dropdown-menu">
-                    <li class="sidebar-dropdown-menu-item">
-                        <a href="#">
-                            Charts
-                        </a>
-                    </li>
-                    <li class="sidebar-dropdown-menu-item">
-                        <a href="#">
-                            Tables
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            
-            <li class="sidebar-menu-divider mt-3 mb-1 text-uppercase">Apps</li>
-            <li class="sidebar-menu-item has-dropdown">
-                <a href="#">
-                    <i class="ri-shopping-cart-2-line sidebar-menu-item-icon"></i>
-                    eCommerce
-                    <i class="ri-arrow-down-s-line sidebar-menu-item-accordion ms-auto"></i>
-                </a>
-                <ul class="sidebar-dropdown-menu">
-                    <li class="sidebar-dropdown-menu-item">
-                        <a href="#">
-                            Shop
-                        </a>
-                    </li>
-                    <li class="sidebar-dropdown-menu-item">
-                        <a href="#">
-                            Checkout
-                        </a>
-                    </li>
-                    <li class="sidebar-dropdown-menu-item">
-                        <a href="#">
-                            Details
-                        </a>
-                    </li>
-                    <li class="sidebar-dropdown-menu-item">
-                        <a href="#">
-                            Wishlist
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li class="sidebar-menu-item">
-                <a href="#">
-                    <i class="ri-mail-line sidebar-menu-item-icon"></i>
-                    Email
-                </a>
-            </li>
-            <li class="sidebar-menu-item">
-                <a href="#">
-                    <i class="ri-calendar-line sidebar-menu-item-icon"></i>
-                    Calendar
-                </a>
             </li>
             <li class="sidebar-menu-item mt-auto">
                 <a href="{{ route('logout') }}" style="margin-top: 220px;">
