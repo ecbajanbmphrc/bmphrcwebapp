@@ -57,33 +57,17 @@
                         <a href="{{ route('superadmin.view.superadmin') }}">Admin</a>
                     </li>
                     <li class="sidebar-dropdown-menu-item">
-                        <a href="#">Payroll Head</a>
+                        <a href="{{ route('superadmin.view.payrollhead')}}">Payroll Head</a>
                     </li>
                     <li class="sidebar-dropdown-menu-item">
-                        <a href="{{ route('superadmin.view.superadmin') }}">Payroll Officer</a>
+                        <a href="{{ route('superadmin.view.payrollofficer') }}">Payroll Officer</a>
                     </li>
                     <li class="sidebar-dropdown-menu-item">
                         <a href="{{ route('superadmin.view.accountsupervisor') }}">Account Supervisor</a>
                     </li>
                     <li class="sidebar-dropdown-menu-item">
-                        <a href="{{ route('superadmin.view.treasury') }}">Account Supervisor</a>
+                        <a href="{{ route('superadmin.view.treasury') }}">Treasury</a>
                     </li>
-                </ul>
-            </li>
-            <li class="sidebar-menu-item has-dropdown mt-2">
-                <a href="#">
-          
-                    <i class="ri-building-line sidebar-menu-item-icon"></i>Companies
-                    <i class="ri-arrow-down-s-line sidebar-menu-item-accordion ms-auto"></i>
-                </a>
-                <ul class="sidebar-dropdown-menu">
-                    <li class="sidebar-dropdown-menu-item">
-                    <a href="{{ route('superadmin.view.efc') }}">EFC</a>
-                    </li>
-                    <li class="sidebar-dropdown-menu-item">
-                        <a href="#">MCKENZIE</a>
-                    </li>
-        
                 </ul>
             </li>
             <li class="sidebar-menu-item">
@@ -103,7 +87,7 @@
             <!-- start: Navbar -->
             <nav class="px-3 py-2 bg-white rounded shadow-sm">
                 <i class="ri-menu-line sidebar-toggle me-3 d-block d-md-none"></i>
-                <h5 class="fw-bold mb-0 me-auto">Payroll Officer List</h5>
+                <h5 class="fw-bold mb-0 me-auto">Treasury List</h5>
                 <div class="dropdown me-3 d-none d-sm-block">
                     <div class="cursor-pointer dropdown-toggle navbar-link" data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -112,38 +96,6 @@
                     <div class="dropdown-menu fx-dropdown-menu">
                         <h5 class="p-3 bg-indigo text-light">Notification</h5>
                         <div class="list-group list-group-flush">
-                            <a href="#"
-                                class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
-                                <div class="me-auto">
-                                    <div class="fw-semibold">Subheading</div>
-                                    <span class="fs-7">Content for list item</span>
-                                </div>
-                                <span class="badge bg-primary rounded-pill">14</span>
-                            </a>
-                            <a href="#"
-                                class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
-                                <div class="me-auto">
-                                    <div class="fw-semibold">Subheading</div>
-                                    <span class="fs-7">Content for list item</span>
-                                </div>
-                                <span class="badge bg-primary rounded-pill">14</span>
-                            </a>
-                            <a href="#"
-                                class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
-                                <div class="me-auto">
-                                    <div class="fw-semibold">Subheading</div>
-                                    <span class="fs-7">Content for list item</span>
-                                </div>
-                                <span class="badge bg-primary rounded-pill">14</span>
-                            </a>
-                            <a href="#"
-                                class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
-                                <div class="me-auto">
-                                    <div class="fw-semibold">Subheading</div>
-                                    <span class="fs-7">Content for list item</span>
-                                </div>
-                                <span class="badge bg-primary rounded-pill">14</span>
-                            </a>
                             <a href="#"
                                 class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
                                 <div class="me-auto">
@@ -187,14 +139,13 @@
     <h5 class="card-title">Account List</h5>
     <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
     
-    <table id="superadmin" class="table table-hover" style="width:100%">
+    <table id="treasury" class="table table-hover" style="width:100%">
         <thead>
             <tr>
                 <th>#</th>
                 <th style="display:none">ID</th>
-                <th>Account</th>
-                <th>Region</th>
-                <th>Account Branch</th>
+                <th>Name</th>
+                <th>Email</th>
                 <th>Status</th>
                 <th>Actions</th>
             </tr>
@@ -225,7 +176,7 @@
         </button> -->
       </div>
       <div class="modal-body">
-        <form action="{{route('superadmin.super-admin-list.register')}}" method="POST">
+        <form action="{{route('superadmin.treasury-list.register')}}" method="POST">
         @csrf
         @if (session('create-failed'))
 
@@ -307,7 +258,7 @@
 
       </div>
       <div class="modal-body">
-        <form action="{{route('superadmin.super-admin-list.update-account')}}" method="POST">
+        <form action="{{route('superadmin.treasury-list.update-account')}}" method="POST">
 
         @csrf
                   <!-- First Name and Last name Input -->
@@ -434,9 +385,9 @@
 
     <script>
     $(document).ready(function () {
-        var dataTable = $('#superadmin').DataTable({
+        var dataTable = $('#treasury').DataTable({
             ajax: {
-                url: '/superadmin/superadmin/list/fetch-data',
+                url: '/superadmin/treasury/list/fetch-data',
                 dataSrc: 'data'
             },
             columns: [
@@ -449,7 +400,7 @@
             ]
         });
 
-        $('#superadmin tbody').on('click', 'a.clickable', function (e) {
+        $('#treasury tbody').on('click', 'a.clickable', function (e) {
             e.preventDefault();
 
             var data = dataTable.row($(this).parents('tr')).data();
@@ -464,7 +415,7 @@
                 cancelButtonText: 'Cancel',
                
                 preConfirm: function () {
-                    return fetch('/superadmin/superadmin/list/update-active-status', {
+                    return fetch('/superadmin/treasury/list/update-active-status', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -489,7 +440,7 @@
         });
 
 
-    $('#superadmin tbody').on('click', 'img.button-image2', function (e) {
+    $('#treasury tbody').on('click', 'img.button-image2', function (e) {
         e.preventDefault();
 
             var selectedRowData = dataTable.row($(this).closest('tr')).data();
@@ -497,7 +448,7 @@
 
               $.ajax({
             type: 'POST',
-            url: '/superadmin/superadmin/list/retrieve-update',
+            url: '/superadmin/treasury/list/retrieve-update',
             dataType: 'JSON',
             headers: {
                 'Content-Type': 'application/json',
@@ -527,17 +478,17 @@
       
 
 
-$('#superadmin tbody').on('click', 'img.button-image1', function (e) {
+$('#treasury tbody').on('click', 'img.button-image1', function (e) {
         e.preventDefault();
 
     
         var selectedRowData = dataTable.row($(this).closest('tr')).data();
         var myid = selectedRowData.id;
-        console.log(myid);
+       
 
           $.ajax({
         type: 'POST',
-        url: '/superadmin/superadmin/list/retrieve-view',
+        url: '/superadmin/treasury/list/retrieve-view',
         dataType: 'JSON',
         headers: {
             'Content-Type': 'application/json',

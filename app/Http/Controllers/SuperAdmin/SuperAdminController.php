@@ -29,47 +29,40 @@ class SuperAdminController extends Controller
         $data = Company::where('name', '!=', 'none')->pluck('name', 'id');
 
         return view('superadmin.accountsupervisor', compact('data'));
-        // return view('superadmin.accountsupervisor');
-        
+        // return view('superadmin.accountsupervisor');   
     }
 
     public function view_payrollofficer(){
-    
 
-        return view('superadmin.payrollofficer');
-             
+        return view('superadmin.payrollofficer');       
     }
 
 
     public function view_superadmin(){
     
-
-        return view('superadmin.superadmin');
-             
+        return view('superadmin.superadmin');        
     }
 
 
     public function view_company_efc(){
-    
 
-        return view('superadmin.efccompanylist');
-             
+        return view('superadmin.efccompanylist');        
     }
 
     public function view_company_mckenzie(){
     
-
-        return view('superadmin.mckenziecompanylist');
-             
+        return view('superadmin.mckenziecompanylist');        
     }
 
 
     public function view_payrollhead(){
 
-    
+        return view('superadmin.payrollhead');       
+    }
 
-        return view('superadmin.payrollhead');
-             
+    public function view_treasury(){
+
+        return view('superadmin.treasury');       
     }
     
 }

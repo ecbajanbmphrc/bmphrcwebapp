@@ -65,7 +65,7 @@
                                   @csrf
                                     <input type="text" name="email" id="email" class="form-control my-4 py-2 mt-5" value="{{old('email')}}" placeholder="Email"/>
                                     <input type="password" name="password" id="password" class="form-control my-4 py-2" value="{{old('password')}}" placeholder="Password"/>
-                                    <input type="hidden" name="user_check" id="user_check" value = "5" />
+                                    <input type="hidden" name="user_check" id="user_check" value = "6" />
                                     
                                     <div class="text-center mt-3">
                                     <button type="submit" value="Login" class="btn btn-primary w-50">Login</button>
