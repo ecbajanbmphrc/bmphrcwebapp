@@ -30,6 +30,10 @@ class LandingController extends Controller
           return view('auth.accountsupervisorlogin');      
     }
 
+    public function treasury_login(){
+      return view('auth.treasurylogin');      
+    }
+
     // public function home(){
 
     //   if(Auth::check()){

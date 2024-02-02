@@ -10,4 +10,6 @@ class CompanyDoor extends Model
     use HasFactory;
     protected $table = 'company_doors';
     public $timestamps = false;
+
+    // protected $primaryKey = 'id';
 }
