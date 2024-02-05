@@ -11,52 +11,61 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     
-    <link rel="stylesheet" href="css/Nav.css">
-    <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/career.css">
-    <link rel="stylesheet" href="css/partners.css">
-    <link rel="stylesheet" href="css/Jin.css">
-    <link rel="stylesheet" href="css/testimonials.css">
+    <link rel="stylesheet" href="asset/css/Nav.css">
+    <link rel="stylesheet" href="asset/css/footer.css">
+    <link rel="stylesheet" href="asset/css/Jin.css">
 
 </head>
 <body>
 
-    <!--Nabvar-->
+    <!--Nabvar start-->
     <nav class="navbar navbar-expand-lg fixed-top">
       <div class="container-fluid">
-        <a class="navbar-brand me-auto" href="#">BMPHRC</a>
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-          <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><img src="public/asset/img/BMPower.logo.png" alt=""></h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-          </div>
-          <div class="offcanvas-body">
-            <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
-              <li class="nav-item">
-                <a class="nav-link active mx-lg-2 ms-auto" aria-current="page" href="1-Home.html">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link mx-lg-2" href="2-About.html">About Us</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link mx-lg-2" href="3-Careers.html">Careers</a>
+        <a class="navbar-brand me-auto" style="margin-left: 20px;" href="2-About.html"><img src="asset/img-careers/WEbLOGO.png" style="width: 55px;" alt=""></a>
+          <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><img src="public/asset/img/BMPower.logo.png" alt=""></h5>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav justify-content-center flex-grow-1" style="margin-left: 5px;">
+                <li class="nav-item">
+                  <a class="nav-link active mx-lg-2" aria-current="page" href="{{ route('home') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link mx-lg-2" href="{{ route('landing.about') }}">About Us</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link mx-lg-2" href="{{ route('landing.careers') }}">Careers</a>
                 </li>      
                 <li class="nav-item">
-                  <a class="nav-link mx-lg-2" href="4-OurPartners.html">Our Partners</a>
+                  <a class="nav-link mx-lg-2" href="{{ route('landing.our-partners') }}">Our Partners</a>
                 </li>                     
                 <li class="nav-item">
-                  <a class="nav-link mx-lg-2" href="5-Contact.html">Contact</a>
-                </li>
-                <a href="6.login.html" class="btn btn-outline-success">login</a>            
-            </ul>
+                  <a class="nav-link mx-lg-2" href="{{ route('landing.contact') }}">Contact</a>
+                </li>          
+              </ul>
+              <div class="dropdown show">
+                <a class="btn btn-secondary dropdown-toggle" style="margin-left: 5px; margin-top: 10px;" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Log In
+                </a>
+                <div class="dropdown-menu w-auto dropdown-menu-end" aria-labelledby="dropdownMenuLink">
+                  <a class="dropdown-item" href="PayrollSystem/html/P.SA-login.html"><i class="bi bi-wallet me-2"></i>Admin</i></a><hr class="my-1">
+                  <a class="dropdown-item" href="PayrollSystem/html/P-PH-login.html"><i class="bi bi-wallet me-2"></i>Payroll Head</i></a><hr class="my-1">
+                  <a class="dropdown-item" href="PayrollSystem/html/P.PO-login.html"><i class="bi bi-wallet me-2"></i>Payroll Officer</i></a><hr class="my-1">
+                  <a class="dropdown-item" href="PayrollSystem/html/P-AS-login.html"><i class="bi bi-wallet me-2"></i>Account supervisor</i></a><hr class="my-1">
+                  <a class="dropdown-item" href="6-login.html"><i class="bi bi-bootstrap me-2"></i>App</a><hr class="my-1">
+                  <a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i>Something else here</a>
+                </div>
+              </div>
           </div>
         </div>
-        <button class="navbar-toggler pe-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler pe-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
         </button>
       </div>
     </nav>
-  <!--End Nabvar -->
+  <!--End Nabvar end-->
     
   <div class="container-xxl py-5">
     <div class="container">

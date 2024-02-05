@@ -4,9 +4,9 @@
     height: 80px;
     padding: 0.5rem;
 }
+
 .nabvar-toggler{
     border: none;
-    font-size: 1.25rem;
 }
 
 .nabvar-toggler :focus, .btn-close:focus{
@@ -42,9 +42,11 @@
         width: 100%;
         visibility: visible;
     }
+    .navbar-nav {
+        justify-content: flex-start; /* Align items to the left in mobile view */
+    }
+
 }
-
-
 
 
 

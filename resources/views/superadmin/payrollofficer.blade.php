@@ -78,12 +78,20 @@
                 </a>
                 <ul class="sidebar-dropdown-menu">
                     <li class="sidebar-dropdown-menu-item">
-                    <a href="{{ route('superadmin.view.superadmin') }}">EFC</a>
+                    <a href="{{ route('superadmin.view.efc') }}">EFC</a>
                     </li>
                     <li class="sidebar-dropdown-menu-item">
-                        <a href="#">MCKENZIE</a>
+                        <a href="{{ route('superadmin.view.mckenzie') }}">MCKENZIE</a>
                     </li>
-        
+                    <li class="sidebar-dropdown-menu-item">
+                        <a href="{{ route('{{ route('superadmin.view.ecossential') }}">ECOSSENTIAL</a>
+                    </li>
+                    <li class="sidebar-dropdown-menu-item">
+                        <a href="{{ route('superadmin.view.rfm') }}">RFM</a>
+                    </li>
+                    <li class="sidebar-dropdown-menu-item">
+                        <a href="{{ route('superadmin.view.madis') }}">MADIS</a>
+                    </li>
                 </ul>
             </li>
             <li class="sidebar-menu-item">

@@ -10,3 +10,12 @@
         margin-bottom: 30px;
     }
 }
+
+.section-padding {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+.card {
+    margin-bottom: 20px; /* Add margin between cards for better spacing */
+}
