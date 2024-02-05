@@ -84,6 +84,18 @@ class UserSeeder extends Seeder
              'updated_at' => now(),
          ],
          [
+            'first_name' => 'Treasury',
+            'last_name' =>'Bmpower',
+            'contact_number' => '09123456789',
+             'email' => 'treasury@gmail.com',
+             'password' => Hash::make('Bmpower@123'),
+             'user_type' => 'Treasury',
+             'company_id' => '1',
+             'is_active' => 1,
+             'created_at' => now(),
+             'updated_at' => now(),
+         ],      
+         [
             'first_name' => 'Merchandiser',
             'last_name' =>'Bmpower',
             'contact_number' => '09123456789',

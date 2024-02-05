@@ -11,23 +11,29 @@ use App\Http\Controllers\Auth\RegistrationController;
 use App\Http\Controllers\User\UserMenuController;
 use App\Http\Controllers\Merchandiser\MerchandiserMenuController;
 
+// Account Supervisor
 use App\Http\Controllers\AccountSupervisor\AccountSupervisorController;
+use App\Http\Controllers\AccountSupervisor\AccountSupervisorDoorListController;
+
+
+
+
 use App\Http\Controllers\PayrollHead\PayrollHeadController;
 use App\Http\Controllers\PayrollOfficer\PayrollOfficerController;
+use App\Http\Controllers\Treasury\TreasuryController;
 
 // Super Admin Controllers
 use App\Http\Controllers\SuperAdmin\SuperAdminController;
 use App\Http\Controllers\SuperAdmin\SuperAdminSuperAdminListController;
 use App\Http\Controllers\SuperAdmin\SuperAdminAccountSupervisorListController;
 use App\Http\Controllers\SuperAdmin\SuperAdminPayrollOfficerListController;
-
 use App\Http\Controllers\SuperAdmin\EfcListController;
 use App\Http\Controllers\SuperAdmin\MckenzieListController;
 use App\Http\Controllers\SuperAdmin\EcossentialListController;
 use App\Http\Controllers\SuperAdmin\MadisListController;
 use App\Http\Controllers\SuperAdmin\RfmListController;
 use App\Http\Controllers\SuperAdmin\SuperAdminPayrollHeadListController;
-
+use App\Http\Controllers\SuperAdmin\SuperAdminTreasuryListController;
 
 
 use App\Http\Middleware\Merchandiser;
@@ -36,6 +42,7 @@ use App\Http\Middleware\Guest;
 use App\Http\Middleware\AccountSupervisor;
 use App\Http\Middleware\PayrollHead;
 use App\Http\Middleware\PayrollOfficer;
+use App\Http\Middleware\Treasury;
 
 
 
@@ -83,6 +90,7 @@ Route::middleware([Guest::class])->group(function(){
     Route::get('/login/payrollhead', [LandingController::class, 'payrollhead_login'])->name('auth.payrollhead');
     Route::get('/login/payrollofficer', [LandingController::class, 'payrollofficer_login'])->name('auth.payrollofficer');
     Route::get('/login/accountsupervisor', [LandingController::class, 'accountsupervisor_login'])->name('auth.accountsupervisor');
+    Route::get('/login/treasury', [LandingController::class, 'treasury_login'])->name('auth.treasury');
     Route::get('/login', [LandingController::class, 'login'])->name('auth.login'); 
     Route::get('/registration', [LoginController::class, 'registration'])->name('auth.registration');
     Route::get('/about', [LandingController::class, 'about'])->name('landing.about');
@@ -102,6 +110,7 @@ Route::middleware([SuperAdmin::class])->group(function(){
     Route::get('/superadmin/madis', [SuperAdminController::class, 'view_company_madis'])->name('superadmin.view.madis');
     Route::get('/superadmin/rfm', [SuperAdminController::class, 'view_company_rfm'])->name('superadmin.view.rfm');
     Route::get('/superadmin/payrollhead', [SuperAdminController::class, 'view_payrollhead'])->name('superadmin.view.payrollhead');
+    Route::get('/superadmin/treasury', [SuperAdminController::class, 'view_treasury'])->name('superadmin.view.treasury');
 
 
     //Account Supervisor Functions
@@ -128,13 +137,31 @@ Route::middleware([SuperAdmin::class])->group(function(){
     Route::post('/superadmin/superadmin/list/update-account', [SuperAdminSuperAdminListController::class, 'updateAccount'])->name('superadmin.super-admin-list.update-account');
     Route::post('/superadmin/superadmin/list/retrieve-update', [SuperAdminSuperAdminListController::class, 'getUpdateData'])->name('superadmin.super-admin-list.retrieve-update');
     Route::post('/superadmin/superadmin/list/retrieve-view', [SuperAdminSuperAdminListController::class, 'getViewData'])->name('superadmin.super-admin-list.retrieve-view');
+    
+    //Payroll Head Functions
+    Route::get('/superadmin/payrollhead/list/fetch-data', [SuperAdminPayrollHeadListController::class, 'fetchData']);
+    Route::post('/superadmin/payrollhead/list/update-active-status',[SuperAdminPayrollHeadListController::class, 'updateActiveStatus'])->name('superadmin.payroll-head-list.update-active-status');
+    Route::post('/superadmin/payrollhead/list/register-account',[SuperAdminPayrollHeadListController::class, 'saveAccount'])->name('superadmin.payroll-head-list.register');
+    Route::post('/superadmin/payrollhead/list/update-account', [SuperAdminPayrollHeadListController::class, 'updateAccount'])->name('superadmin.payroll-head-list.update-account');
+    Route::post('/superadmin/payrollhead/list/retrieve-update',[SuperAdminPayrollHeadListController::class, 'getUpdateData'])->name('superadmin.payroll-head-list.retrieve-update');
+    Route::post('/superadmin/payrollhead/list/retrieve-view', [SuperAdminPayrollHeadListController::class, 'getViewData'])->name('superadmin.payroll-head-list.retrieve-view');
+
+    //Treasury Functions
+    Route::get('/superadmin/treasury/list/fetch-data', [SuperAdminTreasuryListController::class, 'fetchData']);
+    Route::post('/superadmin/treasury/list/update-active-status',[SuperAdminTreasuryListController::class, 'updateActiveStatus'])->name('superadmin.treasury-list.update-active-status');
+    Route::post('/superadmin/treasury/list/register-account',[SuperAdminTreasuryListController::class, 'saveAccount'])->name('superadmin.treasury-list.register');
+    Route::post('/superadmin/treasury/list/update-account', [SuperAdminTreasuryListController::class, 'updateAccount'])->name('superadmin.treasury-list.update-account');
+    Route::post('/superadmin/treasury/list/retrieve-update',[SuperAdminTreasuryListController::class, 'getUpdateData'])->name('superadmin.treasury-list.retrieve-update');
+    Route::post('/superadmin/treasury/list/retrieve-view', [SuperAdminTreasuryListController::class, 'getViewData'])->name('superadmin.treasury-list.retrieve-view');
 
     //Company EFC  Functions
     Route::get('/superadmin/efc/list/fetch-data', [EfcListController::class, 'fetchData']);
     Route::post('/superadmin/efc/list/register-account', [EfcListController::class, 'saveAccount'])->name('superadmin.efc-list.register');
     Route::post('/superadmin/efc/list/update-account', [EfcListController::class, 'updateAccount'])->name('superadmin.efc-list.update-account');
     Route::get('/superadmin/efc/list/retrieve-update/{id}', [EfcListController::class, 'getUpdateData'])->name('superadmin.efc-list.retrieve-update');
-    Route::post('/superadmin/efc/list/retrieve-view', [EfcListController::class, 'getViewData'])->name('superadmin.efc-list.retrieve-view');
+
+    Route::get('/superadmin/efc/list/retrieve-view/{id}', [EfcListController::class, 'getViewData'])->name('superadmin.efc-list.retrieve-view');
+
 
      //Company MCKENZIE  Functions
      Route::get('/superadmin/mckenzie/list/fetch-data', [MckenzieListController::class, 'fetchData']);
@@ -183,7 +210,14 @@ Route::middleware([SuperAdmin::class])->group(function(){
 
   
 
+    //Company MCKENZIE  Functions
+    Route::get('/superadmin/superadmin/list/fetch-data', [SuperAdminSuperAdminListController::class, 'fetchData']);
+    Route::post('/superadmin/superadmin/list/register-account', [SuperAdminSuperAdminListController::class, 'saveAccount'])->name('superadmin.super-admin-list.register');
+    Route::post('/superadmin/superadmin/list/update-account', [SuperAdminSuperAdminListController::class, 'updateAccount'])->name('superadmin.super-admin-list.update-account');
+    Route::post('/superadmin/superadmin/list/retrieve-update', [SuperAdminSuperAdminListController::class, 'getUpdateData'])->name('superadmin.super-admin-list.retrieve-update');
+    Route::post('/superadmin/superadmin/list/retrieve-view', [SuperAdminSuperAdminListController::class, 'getViewData'])->name('superadmin.super-admin-list.retrieve-view');
 
+    
   
 });
 
@@ -198,7 +232,19 @@ Route::middleware([PayrollOfficer::class])->group(function(){
 
 Route::middleware([AccountSupervisor::class])->group(function(){
     Route::get('/accountsupervisor/dashboard', [AccountSupervisorController::class, 'view_dashboard'])->name('accountsupervisor.view.dashboard');
-    Route::get('/accountsupervisor/doors', [AccountSupervisorController::class, 'view_doors'])->name('accountsupervisor.view.doors');
+    Route::get('/accountsupervisor/door', [AccountSupervisorController::class, 'view_door'])->name('accountsupervisor.view.door');
+
+    //Door Function
+    Route::get('/accountsupervisor/door-list/fetch-data', [AccountSupervisorDoorListController::class, 'fetchData']);
+    // Route::post('/superadmin/efc/list/register-account', [EfcListController::class, 'saveAccount'])->name('superadmin.efc-list.register');
+    // Route::post('/superadmin/efc/list/update-account', [EfcListController::class, 'updateAccount'])->name('superadmin.efc-list.update-account');
+    // Route::get('/superadmin/efc/list/retrieve-update/{id}', [EfcListController::class, 'getUpdateData'])->name('superadmin.efc-list.retrieve-update');
+       Route::get('/accountsupervisor/door/list/retrieve-view/{id}', [AccountSupervisorDoorListController::class, 'getViewData'])->name('accountsupervisor.door-list.retrieve-view');
+});
+
+Route::middleware([Treasury::class])->group(function(){
+     Route::get('/treasury/dashboard', [TreasuryController::class, 'view_dashboard'])->name('treasury.view.dashboard');
+     Route::get('/treasury/rate', [TreasuryController::class, 'view_rate'])->name('treasury.view.rate');
 });
 
 

@@ -23,7 +23,7 @@ class AccountSupervisorController extends Controller
 
     }
 
-    public function view_doors(){
+    public function view_door(){
 
         $data = array();
         if (Session::has('user')){

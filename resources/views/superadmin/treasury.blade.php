@@ -87,7 +87,7 @@
             <!-- start: Navbar -->
             <nav class="px-3 py-2 bg-white rounded shadow-sm">
                 <i class="ri-menu-line sidebar-toggle me-3 d-block d-md-none"></i>
-                <h5 class="fw-bold mb-0 me-auto">Payroll Head List</h5>
+                <h5 class="fw-bold mb-0 me-auto">Treasury List</h5>
                 <div class="dropdown me-3 d-none d-sm-block">
                     <div class="cursor-pointer dropdown-toggle navbar-link" data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -139,7 +139,7 @@
     <h5 class="card-title">Account List</h5>
     <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
     
-    <table id="payrollhead" class="table table-hover" style="width:100%">
+    <table id="treasury" class="table table-hover" style="width:100%">
         <thead>
             <tr>
                 <th>#</th>
@@ -176,7 +176,7 @@
         </button> -->
       </div>
       <div class="modal-body">
-        <form action="{{route('superadmin.payroll-head-list.register')}}" method="POST">
+        <form action="{{route('superadmin.treasury-list.register')}}" method="POST">
         @csrf
         @if (session('create-failed'))
 
@@ -258,7 +258,7 @@
 
       </div>
       <div class="modal-body">
-        <form action="{{route('superadmin.payroll-head-list.update-account')}}" method="POST">
+        <form action="{{route('superadmin.treasury-list.update-account')}}" method="POST">
 
         @csrf
                   <!-- First Name and Last name Input -->
@@ -385,9 +385,9 @@
 
     <script>
     $(document).ready(function () {
-        var dataTable = $('#payrollhead').DataTable({
+        var dataTable = $('#treasury').DataTable({
             ajax: {
-                url: '/superadmin/payrollhead/list/fetch-data',
+                url: '/superadmin/treasury/list/fetch-data',
                 dataSrc: 'data'
             },
             columns: [
@@ -400,7 +400,7 @@
             ]
         });
 
-        $('#payrollhead tbody').on('click', 'a.clickable', function (e) {
+        $('#treasury tbody').on('click', 'a.clickable', function (e) {
             e.preventDefault();
 
             var data = dataTable.row($(this).parents('tr')).data();
@@ -415,7 +415,7 @@
                 cancelButtonText: 'Cancel',
                
                 preConfirm: function () {
-                    return fetch('/superadmin/payrollhead/list/update-active-status', {
+                    return fetch('/superadmin/treasury/list/update-active-status', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -440,7 +440,7 @@
         });
 
 
-    $('#payrollhead tbody').on('click', 'img.button-image2', function (e) {
+    $('#treasury tbody').on('click', 'img.button-image2', function (e) {
         e.preventDefault();
 
             var selectedRowData = dataTable.row($(this).closest('tr')).data();
@@ -448,7 +448,7 @@
 
               $.ajax({
             type: 'POST',
-            url: '/superadmin/payrollhead/list/retrieve-update',
+            url: '/superadmin/treasury/list/retrieve-update',
             dataType: 'JSON',
             headers: {
                 'Content-Type': 'application/json',
@@ -478,7 +478,7 @@
       
 
 
-$('#payrollhead tbody').on('click', 'img.button-image1', function (e) {
+$('#treasury tbody').on('click', 'img.button-image1', function (e) {
         e.preventDefault();
 
     
@@ -488,7 +488,7 @@ $('#payrollhead tbody').on('click', 'img.button-image1', function (e) {
 
           $.ajax({
         type: 'POST',
-        url: '/superadmin/payrollhead/list/retrieve-view',
+        url: '/superadmin/treasury/list/retrieve-view',
         dataType: 'JSON',
         headers: {
             'Content-Type': 'application/json',

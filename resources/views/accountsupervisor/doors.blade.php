@@ -13,8 +13,16 @@
     <!-- start: CSS -->
     <link rel="stylesheet" href="/asset/user/css/bootstrap.min.css">
     <link rel="stylesheet" href="/asset/user/css2/accountsup.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
     <!-- end: CSS -->
     <title>BMPHRC</title>
+
+    <style>
+        .button-image1{
+    cursor: pointer;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -33,7 +41,7 @@
             </li>
             <li class="sidebar-menu-item active">
                 <a href="#">
-                    <i class="ri-dashboard-line sidebar-menu-item-icon"></i>Doors
+                    <i class="ri-store-line sidebar-menu-item-icon"></i>Doors
                 </a>
             </li>
             <li class="sidebar-menu-item has-dropdown">
@@ -93,7 +101,7 @@
             <!-- start: Navbar -->
             <nav class="px-3 py-2 bg-white rounded shadow-sm">
                 <i class="ri-menu-line sidebar-toggle me-3 d-block d-md-none"></i>
-                <h5 class="fw-bold mb-0 me-auto">Dashboard</h5>
+                <h5 class="fw-bold mb-0 me-auto">DOOR</h5>
                 <div class="dropdown me-3 d-none d-sm-block">
                     <div class="cursor-pointer dropdown-toggle navbar-link" data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -116,7 +124,7 @@
                 <div class="dropdown">
                     <div class="d-flex align-items-center cursor-pointer dropdown-toggle" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        <span class="me-2 d-none d-sm-block">{{$data->first_name}}</span>
+                        <span class="me-2 d-none d-sm-block">{{ session('user')['first_name']}}</span>
                         <img class="navbar-profile-image"
                             src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cGVyc29ufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
                             alt="Image">
@@ -131,27 +139,23 @@
             <!-- end: Navbar -->
 
 
-        <div style="height:2vh;">
+        <div style="height:2vh;"> </div>
+
             <div class="card">
-                <div class="card-header">
-                <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#createUserModal" id="hitme" name="hitme">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
-                        <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0"/>
-                    </svg>
-                    ADD
-                </button>
-            </div>
+                <!-- <div class="card-header">
+               
+                </div> -->
             <div class="card-body">
-            <h5 class="card-title">Account List</h5>
+            <h5 class="card-title">Door List</h5>
             <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
-                <table id="superadmin" class="table table-hover" style="width:100%">
+                <table id="door" class="table table-hover" style="width:100%">
                     <thead>
                         <tr>
                             <th>#</th>
                             <th style="display:none">ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Status</th>
+                            <th>Account</th>
+                            <th>Region</th>
+                            <th>Account Branch</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -159,107 +163,137 @@
                     </tbody>
                 </table>
             </div>
-        </div>
+         </div>
 
         
             </div>
             <!-- end: Content -->
-        </div>
+       
     </main>
     <!-- end: Main -->
-    
-    <!-- create user modal -->
-        <div class="modal fade" id="createUserModal" name = "createUserModal" tabindex="-1" role="dialog" aria-labelledby="createUserModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="createUserModalLabel">New message</h5>
-                        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button> -->
-                    </div>
-                    <div class="modal-body">
-                        <form action="{{route('superadmin.super-admin-list.register')}}" method="POST">
-                            @csrf
-                            @if (session('create-failed'))
-                            <div style="background-color:rgba(255,255,255,0)" class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                            @endif
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label for="c_first_name" class="col-form-label">First Name:</label>
-                                    <input type="text" class="form-control" id="c_first_name" name="c_first_name" value="{{ old('c_first_name') }}" required>
-                                </div>    
-                                <div class="form-group col-md-6">
-                                    <label for="c_last_name" class="col-form-label">Last Name:</label>
-                                    <input type="text" class="form-control" id="c_last_name" name="c_last_name" value="{{ old('c_last_name') }}" required>
-                                </div> 
-                            </div>  
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label for="c_number" class="col-form-label">Contact Number:</label>
-                                    <input type="text" class="form-control" id="c_number" name="c_number" value="{{ old('c_number') }}"  oninput='setCustomValidity(value.length < 11 ? "Number must be at least 11 digits long." : "")' onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="11" value="{{ old('number') }}" required>
-                                </div>    
-                                <div class="form-group col-md-6">
-                                    <label for="c_email" class="col-form-label">Email Address:</label>
-                                    <input type="email" class="form-control" id="c_email" name = "c_email" value="{{ old('c_email') }}" required>
-                                </div> 
-                            </div>  
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label for="c_password" class="col-form-label">Password:</label>
-                                    <input type="password" class="form-control" id="c_password" name="c_password" value="{{ old('c_password') }}" required>
-                                </div>    
-                                <div class="form-group col-md-6">
-                                    <label for="c_confirmPassword" class="col-form-label">Confirm Password:</label>
-                                    <input type="password" class="form-control" name="c_confirmPassword" id="c_confirm_password">
-                                </div> 
-                            </div>  
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="hide-modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Save</button>
-                        </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+
+    <!-- View user modal -->
+<div class="modal fade" id="viewDoorModal" name = "viewDoorModal" tabindex="-1" role="dialog" aria-labelledby="viewDoorModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="viewAccountModalLabel">View Details</h5>
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button> -->
+
+      </div>
+      <div class="modal-body">
+
+      <div class="row">
+          <div class="form-group col-md-6">
+            <label for="v_account" class="col-form-label">Account:</label>
+            <p class="h6" id="v_account" name="v_account"></p>
+          </div>    
+       
+
+         <div class="form-group col-md-6">
+            <label for="v_region" class="col-form-label">Region:</label>
+            <p class="h6" id="v_region" name="v_region"></p>
+          </div> 
+        </div> 
+        
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label for="v_area" class="col-form-label">Area:</label>
+            <p class="h6" id="v_area" name="v_area"></p>
+          </div>    
+       
+
+         <div class="form-group col-md-6">
+            <label for="v_account_branch" class="col-form-label">Account Branch:</label>
+            <p class="h6" id="v_account_branch" name="v_account_branch"></p>
+          </div> 
         </div>
 
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label for="v_type_of_deployment" class="col-form-label">Type of Deployment:</label>
+            <p class="h6" id="v_type_of_deployment" name="v_type_of_deployment"></p>
+          </div>    
+    
+        </div>
+
+    
+
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="vhide-modal">Close</button>
+        </div>
+
+        </div>
+     </div>
+    </div>
+    
+   
     
 
     <!-- start: JS -->
-    <script src="/asset/user/js/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js" integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="/asset/user/js/bootstrap.bundle.min.js"></script>
-    <script src="/asset/user/js/script.js"></script>
-    <!-- end: JS -->
+
+<script src="/asset/user/js/jquery.min.js"></script>
+
+<script src="/asset/user/js/script.js"></script>
+
+
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
 
     @include('sweetalert::alert')
 
     <script>
-        $("#hitme").click(function(){
-            //  alert("button inside modal clicked");
-        $("#createUserModal").modal('show');
-            console.error();
+        $(document).ready(function () {
+        var dataTable = $('#door').DataTable({
+            ajax: {
+                url: '/accountsupervisor/door-list/fetch-data',
+                dataSrc: 'data'
+            },
+            columns: [
+                { data: '#' },
+                { data:  'id', visible: false },
+                { data: 'account' },
+                { data: 'region' },
+                { data: 'account_branch' }, 
+                { data: 'actions', orderable: false }
+            ]
         });
 
-        $("#hide-modal").click(function(){
-        $("#createUserModal").modal('hide');
-        });
+        $('#door tbody').on('click', 'img.button-image1', function (e) {
+        e.preventDefault();
 
-        $("#ehide-modal").click(function(){
-        $("#editUserModal").modal('hide');
-        });
+            var selectedRowData = dataTable.row($(this).closest('tr')).data();
+            var id = selectedRowData.id;
+            $.ajax({
+            url: '/accountsupervisor/door/list/retrieve-view/' + id ,
+            type: 'GET', 
+            dataType: 'JSON',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },   
+            success: function(response){
+                // response = JSON.parse(response);
+                $('#v_account').text(response.account);
+                $('#v_region').text(response.region);
+                $('#v_area').text(response.area);
+                $('#v_account_branch').text(response.account_branch);
+                $('#v_type_of_deployment').text(response.type_of_deployment);
+
+                $('#viewDoorModal').modal('show');
+            
+            }
+     
+        })
+     });
 
         $("#vhide-modal").click(function(){
-        $("#viewUserModal").modal('hide');
+        $("#viewDoorModal").modal('hide');
         });
+    });
     </script>
 </body>
 

@@ -25,7 +25,7 @@
         .button-image2{
     cursor: pointer;
         }
-        </style>
+    </style>
 </head>
 
 <body>
@@ -63,7 +63,10 @@
                         <a href="{{ route('superadmin.view.superadmin') }}">Payroll Officer</a>
                     </li>
                     <li class="sidebar-dropdown-menu-item">
-                    <a href="{{ route('superadmin.view.accountsupervisor') }}">Account Supervisor</a>
+                        <a href="{{ route('superadmin.view.accountsupervisor') }}">Account Supervisor</a>
+                    </li>
+                    <li class="sidebar-dropdown-menu-item">
+                        <a href="{{ route('superadmin.view.treasury') }}">Treasury</a>
                     </li>
                 </ul>
             </li>
@@ -456,11 +459,11 @@
 
 
 <!-- View user modal -->
-<div class="modal fade" id="viewUserModal" name = "viewUserModal" tabindex="-1" role="dialog" aria-labelledby="viewUserModalLabel" aria-hidden="true">
+<div class="modal fade" id="viewAccountModal" name = "viewAccountModal" tabindex="-1" role="dialog" aria-labelledby="viewAccountModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="editAccountModalLabel">View Details</h5>
+        <h5 class="modal-title" id="viewAccountModalLabel">View Details</h5>
         <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button> -->
@@ -470,27 +473,40 @@
 
       <div class="row">
           <div class="form-group col-md-6">
-            <label for="v_first_name" class="col-form-label">First Name:</label>
-            <p class="h6" id="v_first_name" name="v_first_name"></p>
+            <label for="v_account" class="col-form-label">Account:</label>
+            <p class="h6" id="v_account" name="v_account"></p>
           </div>    
        
 
          <div class="form-group col-md-6">
-            <label for="v_last_name" class="col-form-label">Last Name:</label>
-            <p class="h6" id="v_last_name" name="v_last_name"></p>
+            <label for="v_region" class="col-form-label">Region:</label>
+            <p class="h6" id="v_region" name="v_region"></p>
           </div> 
         </div> 
         
         <div class="row">
           <div class="form-group col-md-6">
-            <label for="v_contact_number" class="col-form-label">Contact Number:</label>
-            <p class="h6" id="v_contact_number" name="v_contact_number"></p>
+            <label for="v_area" class="col-form-label">Area:</label>
+            <p class="h6" id="v_area" name="v_area"></p>
           </div>    
        
 
          <div class="form-group col-md-6">
-            <label for="v_email" class="col-form-label">Email:</label>
-            <p class="h6" id="v_email" name="v_email"></p>
+            <label for="v_account_branch" class="col-form-label">Account Branch:</label>
+            <p class="h6" id="v_account_branch" name="v_account_branch"></p>
+          </div> 
+        </div>
+
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label for="v_type_of_deployment" class="col-form-label">Type of Deployment:</label>
+            <p class="h6" id="v_type_of_deployment" name="v_type_of_deployment"></p>
+          </div>    
+       
+
+         <div class="form-group col-md-6">
+            <label for="v_status" class="col-form-label">Status:</label>
+            <p class="h6" id="v_status" name="v_status"></p>
           </div> 
         </div>
 
@@ -578,35 +594,35 @@
               
 
 
-$('#efc tbody').on('click', 'img.button-image1', function (e) {
+    $('#efc tbody').on('click', 'img.button-image1', function (e) {
         e.preventDefault();
 
-    
-        var selectedRowData = dataTable.row($(this).closest('tr')).data();
-        var myid = selectedRowData.id;
-        console.log(myid);
+            var selectedRowData = dataTable.row($(this).closest('tr')).data();
+            var id = selectedRowData.id;
 
-          $.ajax({
-        type: 'POST',
-        url: '/superadmin/efc/list/retrieve-view',
-        dataType: 'JSON',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },   
-        data: JSON.stringify({id: myid}),
-        success: function(response){
+            $.ajax({
+            url: '/superadmin/efc/list/retrieve-view/' + id ,
+            type: 'GET', 
+            dataType: 'JSON',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },   
+            success: function(response){
+                // response = JSON.parse(response);
+                $('#v_account').text(response.account);
+                $('#v_region').text(response.region);
+                $('#v_area').text(response.area);
+                $('#v_account_branch').text(response.account_branch);
+                $('#v_type_of_deployment').text(response.type_of_deployment);
+                $('#v_status').text(response.status);
+
+                $('#viewAccountModal').modal('show');
             
-            $('#v_first_name').text(response.first_name);
-            $('#v_last_name').text(response.last_name);
-            $('#v_contact_number').text(response.contact_number);
-            $('#v_email').text(response.email);   
-            $('#viewUserModal').modal('show');
-        
-        }
- 
-    })
-});
+            }
+     
+        })
+     });
         
 
 
@@ -630,7 +646,7 @@ $('#efc tbody').on('click', 'img.button-image1', function (e) {
     });
 
     $("#vhide-modal").click(function(){
-        $("#viewUserModal").modal('hide');
+        $("#viewAccountModal").modal('hide');
     });
 
 

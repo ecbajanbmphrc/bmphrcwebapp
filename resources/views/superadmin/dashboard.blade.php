@@ -52,6 +52,9 @@
                     <li class="sidebar-dropdown-menu-item">
                         <a href="{{ route('superadmin.view.accountsupervisor') }}">Account Supervisor</a>
                     </li>
+                    <li class="sidebar-dropdown-menu-item">
+                        <a href="{{ route('superadmin.view.treasury') }}">Treasury</a>
+                    </li>
                 </ul>
             </li>
             <li class="sidebar-menu-item has-dropdown mt-2">

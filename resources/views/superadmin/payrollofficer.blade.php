@@ -54,16 +54,19 @@
                 </a>
                 <ul class="sidebar-dropdown-menu">
                     <li class="sidebar-dropdown-menu-item">
-                    <a href="{{ route('superadmin.view.superadmin') }}">Admin</a>
+                        <a href="{{ route('superadmin.view.superadmin') }}">Admin</a>
                     </li>
                     <li class="sidebar-dropdown-menu-item">
                         <a href="{{ route('superadmin.view.payrollhead') }}">Payroll Head</a>
                     </li>
                     <li class="sidebar-dropdown-menu-item">
-                    <a href="{{ route('superadmin.view.efc') }}">EFC</a>
+                        <a href="{{ route('superadmin.view.efc') }}">EFC</a>
                     </li>
                     <li class="sidebar-dropdown-menu-item">
-                    <a href="{{ route('superadmin.view.accountsupervisor') }}">Account Supervisor</a>
+                        <a href="{{ route('superadmin.view.accountsupervisor') }}">Account Supervisor</a>
+                    </li>
+                    <li class="sidebar-dropdown-menu-item">
+                        <a href="{{ route('superadmin.view.treasury') }}">Treasury</a>
                     </li>
                 </ul>
             </li>

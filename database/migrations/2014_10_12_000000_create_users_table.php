@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('user_type');
             $table->string('company_id');
-            $table->int('is_active');
+            $table->integer('is_active');
             $table->rememberToken();
             $table->timestamps();
         });

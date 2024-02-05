@@ -48,17 +48,17 @@ class EfcListController extends Controller
         }
     }
 
-    public function getViewData(Request $request)
+    public function getViewData($id)
     {
 
         
-        $user = User::where('id', '=', $request->id)
-        ->select('id' ,'first_name', 'last_name', 'email', 'contact_number')
+        $company_door = CompanyDoor::find($id)
+        ->select('account' ,'region', 'area', 'account_branch', 'type_of_deployment' , 'status')
         ->first();
 
-        if ($user) {
+        if ($company_door) {
             // Data found for the given ID
-            return response()->json($user);
+            return response()->json($company_door);
         } else {
             // Data not found
             return response()->json(['error' => 'Data not found'], 404);
@@ -103,8 +103,10 @@ class EfcListController extends Controller
 
     public function saveAccount(Request $request)
     {
-            //dd($request->all());
-            $company = 2;
+
+            // dd($request->all());
+            $company = 3;
+
             $status = "active";
             
 
