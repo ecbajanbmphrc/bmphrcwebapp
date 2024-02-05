@@ -13,7 +13,7 @@ use Illuminate\Validation\Rule;
 
 use DB;
 
-class EfcListController extends Controller
+class EcossentialListController extends Controller
 {
     // public function getUpdateData(Request $request)
     // {
@@ -68,10 +68,10 @@ class EfcListController extends Controller
     public function fetchData(Request $request)
     {
      
-       // $company_id = $request->input('u', '2');
+       // $company_id = $request->input('u', '4');
 
 
-        $data = CompanyDoor::where('company_id', '2')->get();
+        $data = CompanyDoor::where('company_id', '4')->get();
 
 
         $data = $data->map(function ($item, $key) {
@@ -94,7 +94,7 @@ class EfcListController extends Controller
     {
 
     $id = $request->input('id');
-    $data = User::find($id);
+    $data = User::find($id);s
 
     return response()->json(['data' => $data]);
     }
@@ -104,7 +104,7 @@ class EfcListController extends Controller
     public function saveAccount(Request $request)
     {
             //dd($request->all());
-            $company = 2;
+            $company = 4;
             $status = "active";
             
 
@@ -122,7 +122,7 @@ class EfcListController extends Controller
         
             if ($validator->fails()) {
                // Alert::error('Registration Failed');
-                return redirect('/superadmin/efc')
+                return redirect('/superadmin/ecossential')
                
                             ->withErrors($validator)
                             ->withInput()
@@ -144,7 +144,7 @@ class EfcListController extends Controller
            
                 //return view('auth.login', compact('Auth.login'));
                 //return redirect('registration');
-                return redirect(('/superadmin/efc'))->with('create-success', "Account registered successfully");
+                return redirect(('/superadmin/ecossential'))->with('create-success', "Account registered successfully");
                 //return redirect(route('auth.registration'))->withToastSuccess('Task Created Successfully!');
                
             }
@@ -182,7 +182,7 @@ class EfcListController extends Controller
 
             if ($validator->fails()) {
                // Alert::error('Registration Failed');
-                return redirect('/superadmin/efc')
+                return redirect('/superadmin/ecossential')
                
                             ->withErrors($validator)
                             ->withInput()
@@ -202,7 +202,7 @@ class EfcListController extends Controller
                 $company_door->update();
             
         
-                return redirect(('/superadmin/efc'))->with('update-success', "Account updated successfully");
+                return redirect(('/superadmin/ecossential'))->with('update-success', "Account updated successfully");
            
                
             }

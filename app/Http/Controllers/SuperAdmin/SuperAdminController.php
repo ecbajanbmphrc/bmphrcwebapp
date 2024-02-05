@@ -63,6 +63,24 @@ class SuperAdminController extends Controller
              
     }
 
+    public function view_company_ecossential(){
+
+        return view('superadmin.ecossentialcompanylist');
+        
+    }
+
+    public function view_company_madis(){
+
+        return view('superadmin.madiscompanylist');
+        
+    }
+
+    public function view_company_rfm(){
+
+        return view('superadmin.rfmcompanylist');
+
+    }
+
 
     public function view_payrollhead(){
 

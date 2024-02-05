@@ -23,6 +23,9 @@ use App\Http\Controllers\SuperAdmin\SuperAdminPayrollOfficerListController;
 
 use App\Http\Controllers\SuperAdmin\EfcListController;
 use App\Http\Controllers\SuperAdmin\MckenzieListController;
+use App\Http\Controllers\SuperAdmin\EcossentialListController;
+use App\Http\Controllers\SuperAdmin\MadisListController;
+use App\Http\Controllers\SuperAdmin\RfmListController;
 use App\Http\Controllers\SuperAdmin\SuperAdminPayrollHeadListController;
 
 
@@ -82,6 +85,10 @@ Route::middleware([Guest::class])->group(function(){
     Route::get('/login/accountsupervisor', [LandingController::class, 'accountsupervisor_login'])->name('auth.accountsupervisor');
     Route::get('/login', [LandingController::class, 'login'])->name('auth.login'); 
     Route::get('/registration', [LoginController::class, 'registration'])->name('auth.registration');
+    Route::get('/about', [LandingController::class, 'about'])->name('landing.about');
+    Route::get('/careers', [LandingController::class, 'careers'])->name('landing.careers');
+    Route::get('/our-partners', [LandingController::class, 'ourpartners'])->name('landing.our-partners');
+    Route::get('/contact', [LandingController::class, 'contact'])->name('landing.contact');
 });
 
 Route::middleware([SuperAdmin::class])->group(function(){
@@ -90,6 +97,10 @@ Route::middleware([SuperAdmin::class])->group(function(){
     Route::get('/superadmin/payrollofficer', [SuperAdminController::class, 'view_payrollofficer'])->name('superadmin.view.payrollofficer');
     Route::get('/superadmin/superadmin', [SuperAdminController::class, 'view_superadmin'])->name('superadmin.view.superadmin');
     Route::get('/superadmin/efc', [SuperAdminController::class, 'view_company_efc'])->name('superadmin.view.efc');
+    Route::get('/superadmin/mckenzie', [SuperAdminController::class, 'view_company_mckenzie'])->name('superadmin.view.mckenzie');
+    Route::get('/superadmin/ecossential', [SuperAdminController::class, 'view_company_ecossential'])->name('superadmin.view.ecossential');
+    Route::get('/superadmin/madis', [SuperAdminController::class, 'view_company_madis'])->name('superadmin.view.madis');
+    Route::get('/superadmin/rfm', [SuperAdminController::class, 'view_company_rfm'])->name('superadmin.view.rfm');
     Route::get('/superadmin/payrollhead', [SuperAdminController::class, 'view_payrollhead'])->name('superadmin.view.payrollhead');
 
 
@@ -126,11 +137,33 @@ Route::middleware([SuperAdmin::class])->group(function(){
     Route::post('/superadmin/efc/list/retrieve-view', [EfcListController::class, 'getViewData'])->name('superadmin.efc-list.retrieve-view');
 
      //Company MCKENZIE  Functions
-     Route::get('/superadmin/superadmin/list/fetch-data', [SuperAdminSuperAdminListController::class, 'fetchData']);
-     Route::post('/superadmin/superadmin/list/register-account', [SuperAdminSuperAdminListController::class, 'saveAccount'])->name('superadmin.super-admin-list.register');
-     Route::post('/superadmin/superadmin/list/update-account', [SuperAdminSuperAdminListController::class, 'updateAccount'])->name('superadmin.super-admin-list.update-account');
-     Route::post('/superadmin/superadmin/list/retrieve-update', [SuperAdminSuperAdminListController::class, 'getUpdateData'])->name('superadmin.super-admin-list.retrieve-update');
-     Route::post('/superadmin/superadmin/list/retrieve-view', [SuperAdminSuperAdminListController::class, 'getViewData'])->name('superadmin.super-admin-list.retrieve-view');
+     Route::get('/superadmin/mckenzie/list/fetch-data', [MckenzieListController::class, 'fetchData']);
+     Route::post('/superadmin/mckenzie/list/register-account', [MckenzieListController::class, 'saveAccount'])->name('superadmin.mckenzie-list.register');
+     Route::post('/superadmin/mckenzie/list/update-account', [MckenzieListController::class, 'updateAccount'])->name('superadmin.mckenzie-list.update-account');
+     Route::post('/superadmin/mckenzie/list/retrieve-update', [MckenzieListController::class, 'getUpdateData'])->name('superadmin.mckenzie-list.retrieve-update');
+     Route::post('/superadmin/mckenzie/list/retrieve-view', [MckenzieListController::class, 'getViewData'])->name('superadmin.mckenzie-list.retrieve-view');
+
+     //Company ECOSSENTIAL  Functions
+     Route::get('/superadmin/ecossential/list/fetch-data', [EcossentialListController::class, 'fetchData']);
+     Route::post('/superadmin/ecossential/list/register-account', [EcossentialListController::class, 'saveAccount'])->name('superadmin.ecossential-list.register');
+     Route::post('/superadmin/ecossential/list/update-account', [EcossentialListController::class, 'updateAccount'])->name('superadmin.ecossential-list.update-account');
+     Route::post('/superadmin/ecossential/list/retrieve-update', [EcossentialListController::class, 'getUpdateData'])->name('superadmin.ecossential-list.retrieve-update');
+     Route::post('/superadmin/ecossential/list/retrieve-view', [EcossentialListController::class, 'getViewData'])->name('superadmin.ecossential-list.retrieve-view');
+
+     //Company Madis  Functions
+     Route::get('/superadmin/madis/list/fetch-data', [MadisListController::class, 'fetchData']);
+     Route::post('/superadmin/madis/list/register-account', [MadisListController::class, 'saveAccount'])->name('superadmin.madis-list.register'); 
+     Route::post('/superadmin/madis/list/update-account', [MadisListController::class, 'updateAccount'])->name('superadmin.madis-list.update-account');
+     Route::get('/superadmin/madis/list/retrieve-update/{id}', [MadisListController::class, 'getUpdateData'])->name('superadmin.madis-list.retrieve-update');
+     Route::post('/superadmin/madis/list/retrieve-view', [MadisListController::class, 'getViewData'])->name('superadmin.madis-list.retrieve-view');
+
+     //Company RFM  Functions
+     Route::get('/superadmin/rfm/list/fetch-data', [RfmListController::class, 'fetchData']);
+     Route::post('/superadmin/rfm/list/register-account', [RfmListController::class, 'saveAccount'])->name('superadmin.rfm-list.register');
+     Route::post('/superadmin/rfm/list/update-account', [RfmListController::class, 'updateAccount'])->name('superadmin.rfm-list.update-account');
+     Route::get('/superadmin/rfm/list/retrieve-update/{id}', [RfmListController::class, 'getUpdateData'])->name('superadmin.rfm-list.retrieve-update');
+     Route::post('/superadmin/rfm/list/retrieve-view', [RfmListController::class, 'getViewData'])->name('superadmin.rfm-list.retrieve-view');
+
 
       //Super Admin Functions
       Route::get('/superadmin/superadmin/list/fetch-data', [SuperAdminSuperAdminListController::class, 'fetchData']);

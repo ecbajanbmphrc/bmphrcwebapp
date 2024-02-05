@@ -110,38 +110,6 @@
                                 </div>
                                 <span class="badge bg-primary rounded-pill">14</span>
                             </a>
-                            <a href="#"
-                                class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
-                                <div class="me-auto">
-                                    <div class="fw-semibold">Subheading</div>
-                                    <span class="fs-7">Content for list item</span>
-                                </div>
-                                <span class="badge bg-primary rounded-pill">14</span>
-                            </a>
-                            <a href="#"
-                                class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
-                                <div class="me-auto">
-                                    <div class="fw-semibold">Subheading</div>
-                                    <span class="fs-7">Content for list item</span>
-                                </div>
-                                <span class="badge bg-primary rounded-pill">14</span>
-                            </a>
-                            <a href="#"
-                                class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
-                                <div class="me-auto">
-                                    <div class="fw-semibold">Subheading</div>
-                                    <span class="fs-7">Content for list item</span>
-                                </div>
-                                <span class="badge bg-primary rounded-pill">14</span>
-                            </a>
-                            <a href="#"
-                                class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
-                                <div class="me-auto">
-                                    <div class="fw-semibold">Subheading</div>
-                                    <span class="fs-7">Content for list item</span>
-                                </div>
-                                <span class="badge bg-primary rounded-pill">14</span>
-                            </a>
                         </div>
                     </div>
                 </div>

@@ -75,12 +75,20 @@
                 </a>
                 <ul class="sidebar-dropdown-menu">
                     <li class="sidebar-dropdown-menu-item">
-                    <a href="{{ route('superadmin.view.efc') }}">EFC</a>
+                        <a href="{{ route('superadmin.view.efc') }}">EFC</a>
                     </li>
                     <li class="sidebar-dropdown-menu-item">
-                        <a href="#">MCKENZIE</a>
+                        <a href="{{ route('superadmin.view.mckenzie') }}">MCKENZIE</a>
                     </li>
-        
+                    <li class="sidebar-dropdown-menu-item">
+                        <a href="{{ route('superadmin.view.ecossential') }}">ECOSSENTIAL</a>
+                    </li>
+                    <li class="sidebar-dropdown-menu-item">
+                        <a href="{{ route('superadmin.view.rfm') }}">RFM</a>
+                    </li>
+                    <li class="sidebar-dropdown-menu-item">
+                        <a href="{{ route('superadmin.view.madis') }}">MADIS</a>
+                    </li>
                 </ul>
             </li>
             <li class="sidebar-menu-item">
@@ -109,38 +117,6 @@
                     <div class="dropdown-menu fx-dropdown-menu">
                         <h5 class="p-3 bg-indigo text-light">Notification</h5>
                         <div class="list-group list-group-flush">
-                            <a href="#"
-                                class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
-                                <div class="me-auto">
-                                    <div class="fw-semibold">Subheading</div>
-                                    <span class="fs-7">Content for list item</span>
-                                </div>
-                                <span class="badge bg-primary rounded-pill">14</span>
-                            </a>
-                            <a href="#"
-                                class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
-                                <div class="me-auto">
-                                    <div class="fw-semibold">Subheading</div>
-                                    <span class="fs-7">Content for list item</span>
-                                </div>
-                                <span class="badge bg-primary rounded-pill">14</span>
-                            </a>
-                            <a href="#"
-                                class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
-                                <div class="me-auto">
-                                    <div class="fw-semibold">Subheading</div>
-                                    <span class="fs-7">Content for list item</span>
-                                </div>
-                                <span class="badge bg-primary rounded-pill">14</span>
-                            </a>
-                            <a href="#"
-                                class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
-                                <div class="me-auto">
-                                    <div class="fw-semibold">Subheading</div>
-                                    <span class="fs-7">Content for list item</span>
-                                </div>
-                                <span class="badge bg-primary rounded-pill">14</span>
-                            </a>
                             <a href="#"
                                 class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
                                 <div class="me-auto">
