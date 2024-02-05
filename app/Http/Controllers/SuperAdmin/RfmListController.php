@@ -13,7 +13,7 @@ use Illuminate\Validation\Rule;
 
 use DB;
 
-class EfcListController extends Controller
+class RfmListController extends Controller
 {
     // public function getUpdateData(Request $request)
     // {
@@ -48,17 +48,17 @@ class EfcListController extends Controller
         }
     }
 
-    public function getViewData($id)
+    public function getViewData(Request $request)
     {
 
         
-        $company_door = CompanyDoor::find($id)
-        ->select('account' ,'region', 'area', 'account_branch', 'type_of_deployment' , 'status')
+        $user = User::where('id', '=', $request->id)
+        ->select('id' ,'first_name', 'last_name', 'email', 'contact_number')
         ->first();
 
-        if ($company_door) {
+        if ($user) {
             // Data found for the given ID
-            return response()->json($company_door);
+            return response()->json($user);
         } else {
             // Data not found
             return response()->json(['error' => 'Data not found'], 404);
@@ -68,10 +68,10 @@ class EfcListController extends Controller
     public function fetchData(Request $request)
     {
      
-       // $company_id = $request->input('u', '2');
+       // $company_id = $request->input('u', '5');
 
 
-        $data = CompanyDoor::where('company_id', '2')->get();
+        $data = CompanyDoor::where('company_id', '5')->get();
 
 
         $data = $data->map(function ($item, $key) {
@@ -103,10 +103,8 @@ class EfcListController extends Controller
 
     public function saveAccount(Request $request)
     {
-
-            // dd($request->all());
-            $company = 3;
-
+            //dd($request->all());
+            $company = 5;
             $status = "active";
             
 
@@ -124,7 +122,7 @@ class EfcListController extends Controller
         
             if ($validator->fails()) {
                // Alert::error('Registration Failed');
-                return redirect('/superadmin/efc')
+                return redirect('/superadmin/rfm')
                
                             ->withErrors($validator)
                             ->withInput()
@@ -146,7 +144,7 @@ class EfcListController extends Controller
            
                 //return view('auth.login', compact('Auth.login'));
                 //return redirect('registration');
-                return redirect(('/superadmin/efc'))->with('create-success', "Account registered successfully");
+                return redirect(('/superadmin/rfm'))->with('create-success', "Account registered successfully");
                 //return redirect(route('auth.registration'))->withToastSuccess('Task Created Successfully!');
                
             }
@@ -184,7 +182,7 @@ class EfcListController extends Controller
 
             if ($validator->fails()) {
                // Alert::error('Registration Failed');
-                return redirect('/superadmin/efc')
+                return redirect('/superadmin/rfm')
                
                             ->withErrors($validator)
                             ->withInput()
@@ -204,7 +202,7 @@ class EfcListController extends Controller
                 $company_door->update();
             
         
-                return redirect(('/superadmin/efc'))->with('update-success', "Account updated successfully");
+                return redirect(('/superadmin/rfm'))->with('update-success', "Account updated successfully");
            
                
             }

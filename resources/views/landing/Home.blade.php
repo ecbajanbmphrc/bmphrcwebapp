@@ -5,20 +5,21 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
-    <link href="asset/bootstrap-5.0.2-dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Bootstrap -->
+    <link href="asset/bootstrap-5.0.2-dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
 
-    <link rel="stylesheet" href="asset/css/views/Nav.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="asset/css/Nav.css">
     <link rel="stylesheet" href="asset/css/footer.css">
     <link rel="stylesheet" href="asset/css/career.css">
     <link rel="stylesheet" href="asset/css/partners.css">
     <link rel="stylesheet" href="asset/css/Jin.css">
     <link rel="stylesheet" href="asset/css/testimonials.css">
 
-    <title>Document</title>  
+    <title>Home</title>  
 </head>
 <body>
 
@@ -36,246 +37,255 @@
 }
      
    </style> 
-    <!--Nabvar-->
+    <!--Nabvar start-->
     <nav class="navbar navbar-expand-lg fixed-top">
-        <div class="container-fluid">
-          <a class="navbar-brand me-auto" href="#">BMPHRC</a>
+      <div class="container-fluid">
+        <a class="navbar-brand me-auto" style="margin-left: 20px;" href="2-About.html"><img src="asset/img-careers/WEbLOGO.png" style="width: 55px;" alt=""></a>
           <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
             <div class="offcanvas-header">
-              <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><img src="asset/img/BMPowerLogo.png" alt=""></h5>
+              <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><img src="public/asset/img/BMPower.logo.png" alt=""></h5>
               <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
-              <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
+              <ul class="navbar-nav justify-content-center flex-grow-1" style="margin-left: 5px;">
                 <li class="nav-item">
-                  <a class="nav-link active mx-lg-2" aria-current="page" href="1-Home.html">Home</a>
+                  <a class="nav-link active mx-lg-2" aria-current="page" href="{{ route('home') }}">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link mx-lg-2" href="2-About.html">About Us</a>
+                  <a class="nav-link mx-lg-2" href="{{ route('landing.about') }}">About Us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link mx-lg-2" href="3-Careers.html">Careers</a>
-                  </li>      
-                  <li class="nav-item">
-                    <a class="nav-link mx-lg-2" href="4-OurPartners.html">Our Partners</a>
-                  </li>                     
-                  <li class="nav-item">
-                    <a class="nav-link mx-lg-2" href="5-Contact.html">Contact</a>
-                  </li>
-                  <div class="col-md-3 text-end">
-                  <a href="{{ url('/login') }}" type="button" class="btn btn-outline-success me-2">Login</a>
-                  <a href="7.Registration.html" type="button" class="btn btn-primary">Sign-up</a>
-                </div>            
-            </div>
-          </div>
-          <button class="navbar-toggler pe-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-        </div>
-      </nav>
-    <!--End Nabvar -->
-
-        <!--career section start-->
-    
-        <section id="about" class="about section-padding">
-          <div class="container-xxl d-lg-flex justify-content-center mt-5 pt-5">
-            <div class="row g-5">
-              <div class="col-lg-8 me-5">
-                <h1 class="" style=" font-size: 45px; font-family: Verdana, Geneva, Tahoma, sans-serif;"><span style="color: green; font-weight: 700;">B</span><span style="color: blue; font-weight: 700;">M</span>Power</h1>
-                <p class="" style="font-size: 20px; font-weight: 600;">Human Resources Corporation</p>
+                  <a class="nav-link mx-lg-2" href="{{ route('landing.careers') }}">Careers</a>
+                </li>      
+                <li class="nav-item">
+                  <a class="nav-link mx-lg-2" href="{{ route('landing.our-partners') }}">Our Partners</a>
+                </li>                     
+                <li class="nav-item">
+                  <a class="nav-link mx-lg-2" href="{{ route('landing.contact') }}">Contact</a>
+                </li>          
+              </ul>
+              <div class="dropdown show">
+                <a class="btn btn-secondary dropdown-toggle" style="margin-left: 5px; margin-top: 10px;" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Log In
+                </a>
+                <div class="dropdown-menu w-auto dropdown-menu-end" aria-labelledby="dropdownMenuLink">
+                  <a class="dropdown-item" href="PayrollSystem/html/P.SA-login.html"><i class="bi bi-wallet me-2"></i>Admin</i></a><hr class="my-1">
+                  <a class="dropdown-item" href="PayrollSystem/html/P-PH-login.html"><i class="bi bi-wallet me-2"></i>Payroll Head</i></a><hr class="my-1">
+                  <a class="dropdown-item" href="PayrollSystem/html/P.PO-login.html"><i class="bi bi-wallet me-2"></i>Payroll Officer</i></a><hr class="my-1">
+                  <a class="dropdown-item" href="PayrollSystem/html/P-AS-login.html"><i class="bi bi-wallet me-2"></i>Account supervisor</i></a><hr class="my-1">
+                  <a class="dropdown-item" href="6-login.html"><i class="bi bi-bootstrap me-2"></i>App</a><hr class="my-1">
+                  <a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i>Something else here</a>
+                </div>
               </div>
-              <div class="col-lg-8 me-5">
-                <h1 class="fw-normal" style="font-size: 40px;">We are Hiring!!!</h1>
-                <p><a href="#" class="text-dark text-decoration-none"><i class="bi bi-globe"></i> bmphrc.com</a></p>
-                <p><a href="#" class="text-dark text-decoration-none"><i class="bi bi-envelope"></i> info@gmail.com</a></p>
-                <p><a href="#" class="text-dark text-decoration-none"><i class="bi bi-telephone"></i> +666 666 666</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="container-xxl d-flex justify-content-center mt-5">
-            <div class="image-section">
-              <img class="" src="asset/img/BMPowerLogo.png" alt="">
-            </div>
-          </div>
-        </section>
-
-        <!--hiring Section-->
-    <section id="hiring" class="section-padding">
-      <div class="container-xxl mt-5 pd-5 d-flex justify-content-center">
-        <div class="row gy-xxl-5">
-          <div class="col-12 text-center">
-            <h4 class="mb-4 mt-5" style="font-size: 30px; font-weight: normal; color: rgb(56, 54, 54);">URGENT HIRING</h4>
-          </div>
-          <!-- Column 1 -->
-          <div class="col-sm-6">
-            <h3 class="mb-5" style="font-size: 23px;">Join Our Team</h3>
-            <p>1. MERCHANDISER
-              <br>2. TACTICAL COMMANDO
-              <br>3. ACCOUNT COORDINATOR
-              <br>4. MOTORIZED SALESMAN
-              <br>5. VAN SALESMAN
-              <br>6. WAREHOUSEMAN
-              <br>7. DELIVERY HELPER
-              <br>8. HR STAFF
-              <br>9. FINANCE STAFF
-              <br>10. DATA ENCODER
-              <br>11. Office Staff</p>
-              <br><p>Start by applying here and attaching your resume, and <br>the application form with all of the valid requirements.</p>
-          </div>
-        
-          <!-- Column 2 -->
-          <div class="col-sm-6">
-            <h3 class="mb-5" style="font-size: 23px;">Apply Now</h3>
-            <form action="">
-              <div class="hiring-form">
-                <input type="text" name="" id="" class="form-control my-4 py-2" placeholder="Name" />
-                <input type="text" name="" id="" class="form-control my-4 py-2" placeholder="Phone" />
-                <input type="text" name="" id="" class="form-control my-4 py-2" placeholder="Email" />
-                <textarea class="form-control my-4 mt-4" id="remarks" name="remarks" placeholder="Message Us"></textarea>
-                <label for="file">Attach File:</label>
-                <input type="file" id="file" name="file" class="form-control-file mt-2"><br><br>
-                <button type="submit" class="btn btn-dark w-100">Submit</button>
-              </div>
-            </form>
-            <br><p class="text-black-50">This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.</p>
           </div>
         </div>
+        <button class="navbar-toggler pe-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
       </div>
-    </section>
-        <!--hiring Section end-->
-  
-        <!--About Section Start-->
+    </nav>
+  <!--End Nabvar end-->
 
-    <div class="container-xxl d-flex flex-column justify-content-top align-items-center mt-5 position-relative " style="height: auto; background-color: #fff;">
-        <img src="asset/img/BMPowerLogo.png" style="height: 200px; width: 200px; margin-top: 40px;" class="card-img-top" alt="img txt">
-            <H1 class="mt-5" style="font-weight: 700; font-family: 'Courier New', Courier, monospace; font-size: 20px;">HISTORY</h1>
-                <p class="mt-3" style="font-style: italic; font-weight: 400; color: rgb(75, 71, 71); font-size: 15px;">December 2005 Initial engagement in the service industry in partnership with Yukon General
-                    Manpower Services Corp. to service the manpower requirment of Caltex Services Inc.., a
-                    wholly owned subsidiary of Chevron Phils. Inc.
-                    <br><br>June 2007 Spun off and established an independent corporate identity, Tri-Bay
-                    Employment Network Inc. Initially serviced Zagu Foods Corp. and Tridharma Marketing Corp.
-                    <br><br>October 2013 The birth of the new company, BMPower Human Resouces Corp. incorporated
-                    by two principal stockholders of Tri-Bay Network Inc.
-                </p>
-            <H2 class="mt-5" style="font-weight: 700; font-family: 'Courier New', Courier, monospace; font-size: 20px;">VISION</h2>
-                <p class="mt-0" style="font-style: italic; font-weight: 400; color: rgb(75, 71, 71); font-size: 15px;">To provide consistent, exceptional and qaulity services that exceeds 
-                the expectatios of our valued customers.
-                </p>
-            <h3 class="mt-3" style="font-weight: 700; font-family: 'Courier New', Courier, monospace; font-size: 20px;">MISSION</h3>
-                <p class="mt-5" style="font-style: italic; font-weight: 400; color: rgb(75, 71, 71); ">To pursuelong term mutually beneficial relationships with high value clients by providing exceptional service
-                thorough and accurate assessment of employees' competencies and qualifications
-                development of each individual employee to his/her full potencial will be pursued through appropriate training
-                , mentoring and coaching.
-                <br><br>
-                To continuesly identify opportunities to supply manpower services in high value high growth industries
-                and contribute to the development of such. Continuesly develop knowledge and experties in the emerging
-                industries and attain recognition as the manpower service provider of choice. reputation execute sound
-                financial management practices to ensure sustained
-                <br><br>To consistently execute sound, prudent and disciplined financial management practices to 
-                ensure sustained viable profitability for the welfare of the company's clients and employee.
-                </p>
+    <!--1st image section start-->
+    <div class="container-sm mt-5 pt-5">
+      <div class="img">
+        <picture>
+          <img src="asset/img/facebook_cover_photo_final2.jpg" alt="" class="img-fluid" style="width: 100%;" />
+        </picture>
+      </div>
+    </div>
+    <div class="container-sm d-flex justify-content-center align-items-center">
+      <div class="img-fluid">
+        <picture>
+          <img src="asset/img/BMPowerlogo.png" alt="" class="img-fluid" />
+        </picture>
+      </div>
+    </div>
+    <!--1st image section end-->
+
+    <!--devider start-->
+    <div class="d-flex justify-content-center">
+      <hr class="mt-5 w-50">
+    </div>
+    <!--devider end-->
+
+    <!-- Hiring Section Start -->
+    <div class="container-sm mt-5 d-flex justify-content-center">
+      <div class="row g-sm-2">
+        <div class="col-12 text-center">
+          <h4 class="mb-5 text-muted fw-normal" style="font-size: 30px">
+          WE ARE LOOKING FOR ENTHUSIASTIC, 
+          MOTIVATED HARD-WORKING INDIVIDUALS TO COME AND 
+          JOIN OUR GROWING FAMILY.
+          </h4>
+        </div>
+        <!-- Column 1 Start -->
+        <div class="col-sm-6">
+          <h3 class="mb-5 fw-normal" style="font-size 23px; color: rgb(61, 57, 57);">Join Our Team</h3>
+          <p class="text-secondary">1. MERCHANDISER
+          <br>2. TACTICAL COMMANDO
+          <br>3. ACCOUNT COORDINATOR    
+          <br>4. MOTORIZED SALESMAN
+          <br>5. VAN SALESMAN
+          <BR>6. WAREHOUSEMAN
+          <br>7. DELIVERY HELPER
+          <br>8. HR STAFF
+          <br>9. FINANCE STAFF
+          <br>10. DATA ENCODER
+          <br>11. OFFICE STAFF
+          </p>
+          <br><p>Start by applying here and attaching your resume, and the
+          <br>application form with all of the valid requirements.
+          </p>
+        </div>
+        <!-- Column 1 end -->
+        <!-- Column 2 start -->
+        <div class="col-sm-6">
+          <h3 class="mb-5 fw-normal" style="font-size: 23px; rgb(61, 57, 57);">Apply Now</h3>
+        <form action="">
+          <div class="hiring-form">
+            <input type="text" name="" id="" class="form-control my-4 py-2" placeholder="Name" />
+            <input type="text" name="" id="" class="form-control my-4 py-2" placeholder="Phone" />
+            <input type="text" name="" id="" class="form-control my-4 py-2" placeholder="Email" />
+            <textarea class="form-control my-4 mt-4" id="remarks" name="remarks" placeholder="Message Us"></textarea>
+            <label for="file" class="text-control">Attach File:</label>
+            <input type="file" id="file" name="file" class="form-control-file mt-2"><br><br>
+            <button type="submit" class="btn btn-dark w-100">Submit</button>
+          </div>
+        </form>
+        <br><p class="Text-secondary">This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service Apply</p>  
+        </div>
+        <!-- Column 2 Ends -->
+      </div>
+    </div>
+    <!-- Hiring Section Ends -->
+
+    <!--devider start-->
+    <div class="d-flex justify-content-center">
+      <hr class="mt-5 w-50">
+    </div>
+    <!--devider end-->
+
+    <!-- About us starts here -->
+    <div class="container-sm mt-5 row gx-8 d-flex justify-content-center align-items-center mx-auto">
+      <h2 class="mb-4 text-muted lead d-flex align-items-center justify-content-center" style="font-size: 40px; text-transform: uppercase; font-family:'lato';">About us</h2>
+      <div class="col-12 col-lg-6 text-center">
+        <picture>
+          <img class="img-fluid rounded-circle shadow-sm" style="width: 450px; margin-top: 22px;" src="asset/img-careers/BM history.jpg" alt="">
+        </picture>
+      </div>
+    <div class="col-12 col-lg-6">
+      <h2 class="display-5 mb-6" style="color: rgb(61, 57, 57);">History</h2>
+        <p class="text-secondary fst-italic">December 2005 Initial engagement in the service industry in partnership with Yukon General
+        Manpower Services Corp. to service the manpower requirment of Caltex Services Inc.., a
+        wholly owned subsidiary of Chevron Phils. Inc.
+        <br><br>June 2007 Spun off and established an independent corporate identity, Tri-Bay
+        Employment Network Inc. Initially serviced Zagu Foods Corp. and Tridharma Marketing Corp.
+        <br><br>October 2013 The birth of the new company, BMPower Human Resouces Corp. incorporated
+        by two principal stockholders of Tri-Bay Network Inc.</p>
+        <a href="2-About.html" class="btn btn-dark">Read More</a>
     </div>
 
+    <div class="row mt-5">
+      <div class="col-12 col-lg-6 order-lg-2 mt-5">
+        <picture class="float-lg-end">
+            <img class="img-fluid rounded-circle shadow-sm" src="asset/img-careers/vision.webp" alt="">
+        </picture>
+      </div>
+      <div class="col-12 col-lg-6 order-lg-1 mt-5">
+        <h2 class="display-5 mb-6" style="color: rgb(61, 57, 57);">Vision</h2>
+        <p class="text-secondary fst-italic">To provide consistent, exceptional and quality services that exceed 
+        the expectations of our valued customers.</p>
+      </div>
+    </div>
+
+    <div class="col-12 col-lg-6 mt-5 pt-5">
+      <picture>
+        <img class="img-fluid rounded-circle shadow-sm" src="asset/img-careers/missio.jpg" alt="">
+      </picture>
+    </div>
+    <div class="col-12 col-lg-6 mt-5">
+      <h2 class="display-5 mb-6 mt-5 float-st" style="color: rgb(61, 57, 57);">Mission</h2>
+        <p class="text-secondary fst-italic">To pursue long-term mutually beneficial relationships with high-value 
+        clients by providing exceptional service thorough and accurate assessment of employees' competencies 
+        and qualifications development of each individual employee to his/her full potential will be pursued 
+        through appropriate training, mentoring, and coaching. <br><br> To continuously identify opportunities 
+        to supply manpower services in high-value high-growth industries and contribute to the development of such. 
+        Continuously develop knowledge and expertise in the emerging industries and attain recognition as the 
+        manpower service provider of choice. Reputation execute sound financial management practices to ensure 
+        sustained <br><br>To consistently execute sound, prudent and disciplined financial management practices 
+        to ensure sustained viable profitability for the welfare of the company's clients and employees.
+      </p>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-center my-5">
+      <div class="rounded-pill border px-5 py-3 text-muted d-flex align-items-center">
+        Want to join our team?<a href="3-Careers.html" class="fw-bold d-flex align-items-center ms-2" style="font-size: 15px;color: rgb(61, 57, 57);">
+        We are hiring<i class="bi bi-arrow-right ms-1"></i>
+        </a>
+      </div>
+    </div>
+  <!-- About us ends here -->
+    <div class="d-flex justify-content-center">
+      <hr class="mt-5 w-50">
+    </div>
+  <!-- Devider -->
+
+  <!-- Devider -->
+
+  <!--our partners section start-->
+  <div class="client-area">
+    <div class="container-sm mb-5">
+      <h2 class="mb-4 text-muted lead text-center " style="font-size: 40px;">Our Partners</h2>
+        <section class="logo-area slider">
+          <div class="slide"><img src="asset/img-partners/asian-streak-brokerage-logo.png" alt=""></div>
+          <div class="slide"><img src="asset/img-partners/ecosential-logo.png" alt=""></div>
+          <div class="slide"><img src="asset/img-partners/McKenzie-logo.png" alt=""></div>
+          <div class="slide"><img src="asset/img-partners/MDI-logo.png" alt=""></div>
+          <div class="slide"><img src="asset/img-partners/RFM-logo.png" alt=""></div>
+          <div class="slide"><img src="asset/img-partners/asian-streak-brokerage-logo.png" alt=""></div>
+          <div class="slide"><img src="asset/img-partners/ecosential-logo.png" alt=""></div>
+          <div class="slide"><img src="asset/img-partners/McKenzie-logo.png" alt=""></div>
+          <div class="slide"><img src="asset/img-partners/MDI-logo.png" alt=""></div>
+          <div class="slide"><img src="asset/img-partners/RFM-logo.png" alt=""></div>
+        </section>
+      </div>
+    </div>
     
-    <section id="about" class="about section-padding">
-        <div class="container-xxl mt-5 pt-5">
-          <div class="row gy-xxl-5">
-            <div class="col-lg-4 col-md-12 col-12">
-              <div class="image-about">
-                <img src="asset/img/vision.png" alt="" class="img-fluid mt-5" style="height: 200px; width: 250px;">
-              </div>
-            </div>
-            <div class="col-lg-8 col-md-12 ps-lg-5 mt-md-5">
-              <div class="about-text">
-                <h3>Vission</h3>
-                <p>To provide consistent, exceptional and qaulity services that exceeds 
-                    the expectatios of our valued customers.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
 
-
-
-    <section id="about" class="about section-padding">  
-        <div class="container-xxl mt-5 pt-5">
-          <div class="row gy-xxl-5">
-            <div class="col-lg-4 col-md-12 col-12">
-              <div class="image-about">
-                <img src="asset/img/mission.png" alt="" class="img-fluid mt-5" style="height: 200px; width: 250px;">
-              </div>
-            </div>
-            <div class="col-lg-8 col-md-12 ps-lg-5 mt-md-5">
-              <div class="about-text">
-                <h3>Mission</h3>
-                <p>To pursue long-term mutually beneficial relationships with high-value clients by providing exceptional service thorough and accurate assessment of employees' competencies and qualifications development of each individual employee to his/her full potential will be pursued through appropriate training, mentoring, and coaching.
-                  <br><br> To continuously identify opportunities to supply manpower services in high-value high-growth industries and contribute to the development of such. Continuously develop knowledge and expertise in the emerging industries and attain recognition as the manpower service provider of choice. Reputation execute sound financial management practices to ensure sustained
-                  <br><br>To consistently execute sound, prudent and disciplined financial management practices to ensure sustained viable profitability for the welfare of the company's clients and employees.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    <!--About Section end-->
-    
-    <!-- Testimonial Start -->
-
-
-    <!-- Testimonial End -->
-    
-    <!--our partner section start here-->
-
-    <div class="cliet-area-">
-        <div class="container-xxl">
-          <h2>Our <span>Partners</span></h2>
-            <section class="logo-area slider">
-              <div class="slide"><img src="asset/img-partners/asian-streak-brokerage-logo.png" alt=""></div>
-              <div class="slide"><img src="asset/img-partners/ecosential-logo.png" alt=""></div>
-              <div class="slide"><img src="asset/img-partners/McKenzie-logo.png" alt=""></div>
-              <dvi class="slide"><img src="asset/img-partners/MDI-logo.png" alt=""></dvi>
-              <div class="slide"><img src="asset/img-partners/RFM-logo.png" alt=""></div>
-              <div class="slide"><img src="asset/img-partners/asian-streak-brokerage-logo.png" alt=""></div>
-              <div class="slide"><img src="asset/img-partners/ecosential-logo.png" alt=""></div>
-              <div class="slide"><img src="asset/img-partners/McKenzie-logo.png" alt=""></div>
-              <dvi class="slide"><img src="asset/img-partners/MDI-logo.png" alt=""></dvi>
-              <div class="slide"><img src="asset/img-partners/RFM-logo.png" alt=""></div>
-            </section>
-          </div>
-        </div>
-        <script 
-        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js">
-        </script>
-        <script 
-        src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js">
-      </script>
-    
-      <script>
-        $(document).ready(function(){
-          $('.logo-area').slick({
-            slidesToShow: 5,
-            slidesToScroll: 1,
-            autoplay: true,
-            autoplaySpeed: 700,
-            arrows: false,
-            dots: false,
-            pauseOnHover: false,
-            reponsive:[{
+    <script>
+      $(document).ready(function(){
+        $('.logo-area').slick({
+          slidesToShow: 5,
+          slidesToScroll: 1,
+          autoplay: true,
+          autoplaySpeed: 700,
+          arrows: false,
+          dots: false,
+          pauseOnHover: false,
+          responsive: 
+          [
+            {
               breakpoint: 768,
-              settings: {
+                settings: {
                 slidesToShow: 4,
-              }
-            },{
+                  }
+            },
+            { 
               breakpoint: 520,
-              setting:{
-                slidesToShow: 3, 
-                }
-            }]
-          })
-        })
-      </script>
+                settings: {
+                slidesToShow: 3,
+                  }
+            }
+          ]
+        });
+      });
+    </script>
+  <!--our partner section end-->
 
-    <!--our partner section end-->
 
     <!--contact start here-->
     
@@ -414,7 +424,13 @@
 
     <!--Bootstrap js-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-   
+      
+      <!-- jQuery -->
+<script src="path/to/jquery/jquery.min.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="path/to/bootstrap/js/bootstrap.min.js"></script>
+
 @include('sweetalert::alert')
   </body>
 </html>

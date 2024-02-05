@@ -55,5 +55,29 @@ class LandingController extends Controller
      
     }
 
+    public function about(){
+
+      return view('landing.about');
+   
+  }
+
+  public function careers(){
+
+      return view('landing.careers');
+   
+  }
+
+  public function ourpartners(){
+
+      return view('landing.our-partners');
+   
+  }
+
+  public function contact(){
+
+      return view('landing.contact');
+   
+  }
+
 
 }

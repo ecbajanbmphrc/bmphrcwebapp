@@ -16,6 +16,7 @@ use App\Http\Middleware\Guest;
 use Session;
 use Auth;
 
+
 class LoginController extends Controller
 {
     //
