@@ -58,7 +58,7 @@ class LoginController extends Controller
                         $users = DB::table('users')
                         ->join('companies' , 'users.company_id' , '=' , 'companies.id')
                         ->select('users.*', 'companies.name as company_name')
-                        ->where('users.id', 1)
+                        ->where('users.email', $request->email)
                         ->first();
 
 
@@ -66,7 +66,7 @@ class LoginController extends Controller
 
                   
     
-                    Session::put('user', ['current_user_id' => $users->id , 'usernum' => $user_check , 'first_name' => $users->first_name , 'last_name' => $users->last_name , 'company' => $users->company_name]);
+                    Session::put('user', ['current_user_id' => $users->id , 'usernum' => $user_check , 'first_name' => $users->first_name , 'last_name' => $users->last_name , 'company' => $users->company_name, 'company_id' => $users->company_id]);
                 
                     $fname = session('user')['first_name']; 
 
@@ -90,13 +90,13 @@ class LoginController extends Controller
                     $users = DB::table('users')
                     ->join('companies' , 'users.company_id' , '=' , 'companies.id')
                     ->select('users.*', 'companies.name as company_name')
-                    ->where('users.id', 1)
+                    ->where('users.email', $request->email)
                     ->first();
     
     
                     //$request->session()->put('current_user_id', $user->id);
     
-                    Session::put('user', ['current_user_id' => $users->id , 'usernum' => $user_check , 'first_name' => $users->first_name , 'last_name' => $users->last_name , 'company' => $users->company_name]);
+                    Session::put('user', ['current_user_id' => $users->id , 'usernum' => $user_check , 'first_name' => $users->first_name , 'last_name' => $users->last_name , 'company' => $users->company_name , 'company_id' => $users->company_id]);
     
                   
     
@@ -127,13 +127,13 @@ class LoginController extends Controller
                         $users = DB::table('users')
                         ->join('companies' , 'users.company_id' , '=' , 'companies.id')
                         ->select('users.*', 'companies.name as company_name')
-                        ->where('users.id', 1)
+                        ->where('users.email', $request->email)
                         ->first();
         
         
                         //$request->session()->put('current_user_id', $user->id);
         
-                        Session::put('user', ['current_user_id' => $users->id , 'usernum' => $user_check , 'first_name' => $users->first_name , 'last_name' => $users->last_name , 'company' => $users->company_name]);
+                        Session::put('user', ['current_user_id' => $users->id , 'usernum' => $user_check , 'first_name' => $users->first_name , 'last_name' => $users->last_name , 'company' => $users->company_name , 'company_id' => $users->company_id]);
         
                       
         
@@ -164,7 +164,7 @@ class LoginController extends Controller
                             $users = DB::table('users')
                                 ->join('companies' , 'users.company_id' , '=' , 'companies.id')
                                 ->select('users.*', 'companies.name as company_name')
-                                ->where('users.id', 1)
+                                ->where('users.email', $request->email)
                                 ->first();
             
                            
@@ -172,7 +172,7 @@ class LoginController extends Controller
             
                             //$request->session()->put('current_user_id', $user->id);
             
-                            Session::put('user', ['current_user_id' => $users->id , 'usernum' => $user_check , 'first_name' => $users->first_name , 'last_name' => $users->last_name , 'company' => $users->company_name]);
+                            Session::put('user', ['current_user_id' => $users->id , 'usernum' => $user_check , 'first_name' => $users->first_name , 'last_name' => $users->last_name , 'company' => $users->company_name , 'company_id' => $users->company_id]);
             
                             $fname = session('user')['first_name']; 
 
@@ -202,7 +202,7 @@ class LoginController extends Controller
                         $users = DB::table('users')
                         ->join('companies' , 'users.company_id' , '=' , 'companies.id')
                         ->select('users.*', 'companies.name as company_name')
-                        ->where('users.id', 1)
+                        ->where('users.email', $request->email)
                         ->first();
 
 
@@ -210,7 +210,7 @@ class LoginController extends Controller
 
                   
     
-                  Session::put('user', ['current_user_id' => $users->id , 'usernum' => $user_check , 'first_name' => $users->first_name , 'last_name' => $users->last_name , 'company' => $users->company_name]);
+                  Session::put('user', ['current_user_id' => $users->id , 'usernum' => $user_check , 'first_name' => $users->first_name , 'last_name' => $users->last_name , 'company' => $users->company_name , 'company_id' => $users->company_id]);
                     $fname = session('user')['first_name']; 
 
                     toast("Login success ! Welcome user {$fname}" ,'success');
@@ -235,13 +235,13 @@ class LoginController extends Controller
                     $users = DB::table('users')
                     ->join('companies' , 'users.company_id' , '=' , 'companies.id')
                     ->select('users.*', 'companies.name as company_name')
-                    ->where('users.id', 1)
+                    ->where('users.email', $request->email)
                     ->first();
     
     
                     //$request->session()->put('current_user_id', $user->id);
     
-                    Session::put('user', ['current_user_id' => $users->id , 'usernum' => $user_check , 'first_name' => $users->first_name , 'last_name' => $users->last_name , 'company' => $users->company_name]);
+                    Session::put('user', ['current_user_id' => $users->id , 'usernum' => $user_check , 'first_name' => $users->first_name , 'last_name' => $users->last_name , 'company' => $users->company_name , 'company_id' => $users->company_id]);
     
                     
                     $fname = session('user')['first_name']; 

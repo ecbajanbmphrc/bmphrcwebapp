@@ -60,9 +60,6 @@
                         <a href="{{ route('superadmin.view.payrollhead') }}">Payroll Head</a>
                     </li>
                     <li class="sidebar-dropdown-menu-item">
-                        <a href="{{ route('superadmin.view.efc') }}">EFC</a>
-                    </li>
-                    <li class="sidebar-dropdown-menu-item">
                         <a href="{{ route('superadmin.view.accountsupervisor') }}">Account Supervisor</a>
                     </li>
                     <li class="sidebar-dropdown-menu-item">
@@ -84,7 +81,7 @@
                         <a href="{{ route('superadmin.view.mckenzie') }}">MCKENZIE</a>
                     </li>
                     <li class="sidebar-dropdown-menu-item">
-                        <a href="{{ route('{{ route('superadmin.view.ecossential') }}">ECOSSENTIAL</a>
+                        <a href="{{ route('superadmin.view.ecossential') }}">ECOSSENTIAL</a>
                     </li>
                     <li class="sidebar-dropdown-menu-item">
                         <a href="{{ route('superadmin.view.rfm') }}">RFM</a>

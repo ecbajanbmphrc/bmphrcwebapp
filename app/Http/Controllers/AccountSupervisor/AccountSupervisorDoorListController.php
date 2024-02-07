@@ -16,10 +16,13 @@ class AccountSupervisorDoorListController extends Controller
        // $company_id = $request->input('u', '3');
 
 
-       $user_type = session('user')['user_company'];
+       $user_type = session('user')['company_id'];
 
 
-        $data = CompanyDoor::where('company_id', $user_type )->get();
+        $data = CompanyDoor::where([
+            ['company_id', '=' , $user_type],
+            ['status', '=' , 'active']
+            ])->get();
 
 
         $data = $data->map(function ($item, $key) {

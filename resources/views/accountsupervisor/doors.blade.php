@@ -40,7 +40,7 @@
                 </a>
             </li>
             <li class="sidebar-menu-item active">
-                <a href="#">
+                <a href="{{ route('accountsupervisor.view.door') }}">
                     <i class="ri-store-line sidebar-menu-item-icon"></i>Doors
                 </a>
             </li>
