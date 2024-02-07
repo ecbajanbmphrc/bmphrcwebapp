@@ -159,7 +159,6 @@ Route::middleware([SuperAdmin::class])->group(function(){
     Route::post('/superadmin/efc/list/register-account', [EfcListController::class, 'saveAccount'])->name('superadmin.efc-list.register');
     Route::post('/superadmin/efc/list/update-account', [EfcListController::class, 'updateAccount'])->name('superadmin.efc-list.update-account');
     Route::get('/superadmin/efc/list/retrieve-update/{id}', [EfcListController::class, 'getUpdateData'])->name('superadmin.efc-list.retrieve-update');
-
     Route::get('/superadmin/efc/list/retrieve-view/{id}', [EfcListController::class, 'getViewData'])->name('superadmin.efc-list.retrieve-view');
 
 
@@ -167,8 +166,8 @@ Route::middleware([SuperAdmin::class])->group(function(){
      Route::get('/superadmin/mckenzie/list/fetch-data', [MckenzieListController::class, 'fetchData']);
      Route::post('/superadmin/mckenzie/list/register-account', [MckenzieListController::class, 'saveAccount'])->name('superadmin.mckenzie-list.register');
      Route::post('/superadmin/mckenzie/list/update-account', [MckenzieListController::class, 'updateAccount'])->name('superadmin.mckenzie-list.update-account');
-     Route::post('/superadmin/mckenzie/list/retrieve-update', [MckenzieListController::class, 'getUpdateData'])->name('superadmin.mckenzie-list.retrieve-update');
-     Route::post('/superadmin/mckenzie/list/retrieve-view', [MckenzieListController::class, 'getViewData'])->name('superadmin.mckenzie-list.retrieve-view');
+     Route::get('/superadmin/mckenzie/list/retrieve-update/{id}', [MckenzieListController::class, 'getUpdateData'])->name('superadmin.mckenzie-list.retrieve-update');
+     Route::get('/superadmin/mckenzie/list/retrieve-view/{id}', [MckenzieListController::class, 'getViewData'])->name('superadmin.mckenzie-list.retrieve-view');
 
      //Company ECOSSENTIAL  Functions
      Route::get('/superadmin/ecossential/list/fetch-data', [EcossentialListController::class, 'fetchData']);
@@ -191,33 +190,8 @@ Route::middleware([SuperAdmin::class])->group(function(){
      Route::get('/superadmin/rfm/list/retrieve-update/{id}', [RfmListController::class, 'getUpdateData'])->name('superadmin.rfm-list.retrieve-update');
      Route::post('/superadmin/rfm/list/retrieve-view', [RfmListController::class, 'getViewData'])->name('superadmin.rfm-list.retrieve-view');
 
-
-      //Super Admin Functions
-      Route::get('/superadmin/superadmin/list/fetch-data', [SuperAdminSuperAdminListController::class, 'fetchData']);
-      Route::post('/superadmin/superadmin/list/update-active-status', [SuperAdminSuperAdminListController::class, 'updateActiveStatus'])->name('superadmin.super-admin-list.update-active-status');
-      Route::post('/superadmin/superadmin/list/register-account', [SuperAdminSuperAdminListController::class, 'saveAccount'])->name('superadmin.super-admin-list.register');
-      Route::post('/superadmin/superadmin/list/update-account', [SuperAdminSuperAdminListController::class, 'updateAccount'])->name('superadmin.super-admin-list.update-account');
-      Route::post('/superadmin/superadmin/list/retrieve-update', [SuperAdminSuperAdminListController::class, 'getUpdateData'])->name('superadmin.super-admin-list.retrieve-update');
-      Route::post('/superadmin/superadmin/list/retrieve-view', [SuperAdminSuperAdminListController::class, 'getViewData'])->name('superadmin.super-admin-list.retrieve-view');
-
-      //Payroll Head Functions
-      Route::get('/superadmin/payrollhead/list/fetch-data', [SuperAdminPayrollHeadListController::class, 'fetchData']);
-      Route::post('/superadmin/payrollhead/list/update-active-status',[SuperAdminPayrollHeadListController::class, 'updateActiveStatus'])->name('superadmin..payroll-head-list.update-active-status');
-      Route::post('/superadmin/payrollhead/list/register-account',[SuperAdminPayrollHeadListController::class, 'saveAccount'])->name('superadmin.payroll-head-list.register');
-      Route::post('/superadmin/payrollhead/list/update-account', [SuperAdminPayrollHeadListController::class, 'updateAccount'])->name('superadmin.payroll-head-list.update-account');
-      Route::post('/superadmin/payrollhead/list/retrieve-update',[SuperAdminPayrollHeadListController::class, 'getUpdateData'])->name('superadmin.payroll-head-list.retrieve-update');
-      Route::post('/superadmin/payrollhead/list/retrieve-view', [SuperAdminPayrollHeadListController::class, 'getViewData'])->name('superadmin.payroll-head-list.retrieve-view');
-
   
 
-    //Company MCKENZIE  Functions
-    Route::get('/superadmin/superadmin/list/fetch-data', [SuperAdminSuperAdminListController::class, 'fetchData']);
-    Route::post('/superadmin/superadmin/list/register-account', [SuperAdminSuperAdminListController::class, 'saveAccount'])->name('superadmin.super-admin-list.register');
-    Route::post('/superadmin/superadmin/list/update-account', [SuperAdminSuperAdminListController::class, 'updateAccount'])->name('superadmin.super-admin-list.update-account');
-    Route::post('/superadmin/superadmin/list/retrieve-update', [SuperAdminSuperAdminListController::class, 'getUpdateData'])->name('superadmin.super-admin-list.retrieve-update');
-    Route::post('/superadmin/superadmin/list/retrieve-view', [SuperAdminSuperAdminListController::class, 'getViewData'])->name('superadmin.super-admin-list.retrieve-view');
-
-    
   
 });
 
