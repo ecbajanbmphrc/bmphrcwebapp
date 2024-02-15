@@ -36,6 +36,11 @@
                     <i class="ri-store-line sidebar-menu-item-icon"></i>Doors
                 </a>
             </li>
+            <li class="sidebar-menu-item">
+                <a href="{{ route('accountsupervisor.view.coordinator') }}">
+                    <i class="ri-account-pin-box-line sidebar-menu-item-icon"></i>Coordinator
+                </a>
+            </li>
             <li class="sidebar-menu-item has-dropdown">
                 <a href="#">
                     <i class="ri-pages-line sidebar-menu-item-icon"></i>Home

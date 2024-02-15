@@ -36,5 +36,11 @@ class AccountSupervisorController extends Controller
 
     }
 
+    public function view_coordinator(){
+
+        return view('accountsupervisor.coordinator');
+
+    }
+
     
 }

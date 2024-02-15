@@ -21,7 +21,8 @@ class AccountSupervisorDoorListController extends Controller
 
         $data = CompanyDoor::where([
             ['company_id', '=' , $user_type],
-            ['status', '=' , 'active']
+            ['status', '=' , 'active'] , 
+            ['id' , '<>' , 1]
             ])->get();
 
 
