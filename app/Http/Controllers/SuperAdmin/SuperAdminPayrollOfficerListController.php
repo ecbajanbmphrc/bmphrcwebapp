@@ -129,7 +129,7 @@ class SuperAdminPayrollOfficerListController extends Controller
 
             if ($validator->fails()) {
                // Alert::error('Registration Failed');
-                return redirect('/superadmin/payrollofficer/list')
+                return redirect('/superadmin/payrollofficer')
                
                             ->withErrors($validator)
                             ->withInput()
@@ -152,7 +152,7 @@ class SuperAdminPayrollOfficerListController extends Controller
            
                 //return view('auth.login', compact('Auth.login'));
                 //return redirect('registration');
-                return redirect(('/superadmin/payrollofficer/list'))->with('create-success', "Account registered successfully");
+                return redirect(('/superadmin/payrollofficer'))->with('create-success', "Account registered successfully");
                 //return redirect(route('auth.registration'))->withToastSuccess('Task Created Successfully!');
                
             }

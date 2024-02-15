@@ -70,6 +70,30 @@
                     </li>
                 </ul>
             </li>
+            <li class="sidebar-menu-item has-dropdown mt-2">
+                <a href="#">
+          
+                    <i class="ri-building-line sidebar-menu-item-icon"></i>Companies
+                    <i class="ri-arrow-down-s-line sidebar-menu-item-accordion ms-auto"></i>
+                </a>
+                <ul class="sidebar-dropdown-menu">
+                    <li class="sidebar-dropdown-menu-item">
+                    <a href="{{ route('superadmin.view.efc') }}">EFC</a>
+                    </li>
+                    <li class="sidebar-dropdown-menu-item">
+                        <a href="{{ route('superadmin.view.mckenzie') }}">MCKENZIE</a>
+                    </li>
+                    <li class="sidebar-dropdown-menu-item">
+                        <a href="{{ route('superadmin.view.ecossential') }}">ECOSSENTIAL</a>
+                    </li>
+                    <li class="sidebar-dropdown-menu-item">
+                        <a href="{{ route('superadmin.view.rfm') }}">RFM</a>
+                    </li>
+                    <li class="sidebar-dropdown-menu-item">
+                        <a href="{{ route('superadmin.view.madis') }}">MADIS</a>
+                    </li>
+                </ul>
+            </li>
             <li class="sidebar-menu-item">
                 <a href="{{ route('logout')}}">
                     <i class="ri-logout-box-line sidebar-menu-item-icon"></i>

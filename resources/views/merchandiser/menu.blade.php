@@ -81,30 +81,6 @@
                             <span class="fs-7">Content for list item</span> 
                         </div> 
                         <span class="badge bg-primary rounded-pill">14</span> </a> 
-                        <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-start"> 
-                        <div class="me-auto"> 
-                            <div class="fw-semibold">Subheading</div> 
-                        <span class="fs-7">Content for list item</span>
-                        </div>
-                        <span class="badge bg-primary rounded-pill">14</span> </a> 
-                        <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-start"> 
-                        <div class="me-auto"> 
-                            <div class="fw-semibold">Subheading</div> 
-                        <span class="fs-7">Content for list item</span>
-                        </div>
-                        <span class="badge bg-primary rounded-pill">14</span> </a> 
-                        <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-start"> 
-                        <div class="me-auto"> 
-                            <div class="fw-semibold">Subheading</div> 
-                        <span class="fs-7">Content for list item</span> 
-                        </div>
-                        <span class="badge bg-primary rounded-pill">14</span> </a> 
-                        <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-start"> 
-                        <div class="me-auto"> 
-                            <div class="fw-semibold">Subheading</div> 
-                        <span class="fs-7">Content for list item</span>
-                        </div>
-                        <span class="badge bg-primary rounded-pill">14</span> </a> 
                     </div> 
                 </div> 
             </div> 
@@ -187,17 +163,6 @@
             </div>
         </div>
     </div>
-
-    <div class="container">
-    <footer class="fixed-bottom text-dark text-center p-2">
-        <hr class="my-4 mx-auto w-50"><p>
-        <a href="/1-Home.html" style="text-decoration: none; color: #000;">
-        &copy; 2024 BMPower Human Resources corp. All rights reserved.</a></p>
-    </footer>
-    </div>
-
-    
-
 
     <!-- end: Navbar --> 
         </div> 
