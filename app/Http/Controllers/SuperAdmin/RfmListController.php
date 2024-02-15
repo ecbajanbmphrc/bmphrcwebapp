@@ -15,29 +15,11 @@ use DB;
 
 class RfmListController extends Controller
 {
-    // public function getUpdateData(Request $request)
-    // {
-    //     $id = $request->id;
-        
-    //     $company_door = CompanyDoor::where('id', '=', $id)
-    //     ->select('id' ,'account', 'region', 'area', 'account_branch' , 'type_of_deployment' , 'status' )
-    //     ->first();
-    //     if ($company_door) {
-    //         // Data found for the given ID
-    //         return response()->json($company_door);
-    //     } else {
-    //         // Data not found
-    //         return response()->json(['error' => 'Data not found'], 404);
-    //     }
-    // }
 
     public function getUpdateData($id)
     {
         
-        // $company_door = CompanyDoor::where('id', '=', $id)
-        $company_door = CompanyDoor::find($id)
-        ->select('account', 'region', 'area', 'account_branch' , 'type_of_deployment' , 'status' )
-        ->first();
+        $company_door = CompanyDoor::find($id , ['account' , 'region' , 'area' , 'account_branch' , 'status' , 'type_of_deployment']);
         if ($company_door) {
             // Data found for the given ID
              return response()->json($company_door);
@@ -48,17 +30,14 @@ class RfmListController extends Controller
         }
     }
 
-    public function getViewData(Request $request)
+    public function getViewData($id)
     {
 
-        
-        $user = User::where('id', '=', $request->id)
-        ->select('id' ,'first_name', 'last_name', 'email', 'contact_number')
-        ->first();
-
-        if ($user) {
+        $company_door = CompanyDoor::find($id , ['account' , 'region' , 'area' , 'account_branch' , 'status' , 'type_of_deployment']);
+        if ($company_door) {
             // Data found for the given ID
-            return response()->json($user);
+             return response()->json($company_door);
+       
         } else {
             // Data not found
             return response()->json(['error' => 'Data not found'], 404);
@@ -68,7 +47,6 @@ class RfmListController extends Controller
     public function fetchData(Request $request)
     {
      
-       // $company_id = $request->input('u', '5');
 
 
         $data = CompanyDoor::where('company_id', '5')->get();
@@ -76,9 +54,6 @@ class RfmListController extends Controller
 
         $data = $data->map(function ($item, $key) {
             $item['#'] = $key + 1;
-
-
-            // $item['active'] = '<a href="#" class="clickable" data-id="' . $item['id'] . '"><img src="' . ($item['is_active'] == 1 ? '/asset/img/button_img/active-48.png' : '/asset/img/button_img/inactive-48.png') . '" alt="' . ($item['is_active'] == 1 ? 'Active' : 'Inactive') . '"></a>';
 
 
             $item['actions'] = '<img src= "/asset/img/button_img/eye-blue-32.png" alt="Button 1" class="button-image1" style="height: 25px; width: 25px;"> <img src="/asset/img/button_img/pen-green-32.png" alt="Button 2" class="button-image2" style="height: 25px; width: 25px;">';
@@ -89,16 +64,6 @@ class RfmListController extends Controller
 
         return response()->json(['data' => $data]);
     }
-
-    public function getDataById(Request $request)
-    {
-
-    $id = $request->input('id');
-    $data = User::find($id);
-
-    return response()->json(['data' => $data]);
-    }
-
 
 
     public function saveAccount(Request $request)
@@ -129,8 +94,7 @@ class RfmListController extends Controller
                             ->with("create-failed", "Account failed to create");
             }else{
 
-              
-                
+                           
                 $company_door = new CompanyDoor;
                 $company_door->account = $request->input('c_account');
                 $company_door->region = $request->input('c_region');
@@ -140,12 +104,9 @@ class RfmListController extends Controller
                 $company_door->company_id = $company;
                 $company_door->status = $status;
                 $company_door->save();
-            
-           
-                //return view('auth.login', compact('Auth.login'));
-                //return redirect('registration');
-                return redirect(('/superadmin/rfm'))->with('create-success', "Account registered successfully");
-                //return redirect(route('auth.registration'))->withToastSuccess('Task Created Successfully!');
+                 
+                return redirect(('/superadmin/madis'))->with('create-success', "Account registered successfully");
+        
                
             }
           
@@ -161,7 +122,7 @@ class RfmListController extends Controller
 
              $id = $request->input('selectedId');
            
-            $company = 3;
+            $company = 5;
     
             
 
@@ -182,7 +143,7 @@ class RfmListController extends Controller
 
             if ($validator->fails()) {
                // Alert::error('Registration Failed');
-                return redirect('/superadmin/rfm')
+                return redirect('/superadmin/madis')
                
                             ->withErrors($validator)
                             ->withInput()
@@ -202,7 +163,7 @@ class RfmListController extends Controller
                 $company_door->update();
             
         
-                return redirect(('/superadmin/rfm'))->with('update-success', "Account updated successfully");
+                return redirect(('/superadmin/madis'))->with('update-success', "Account updated successfully");
            
                
             }

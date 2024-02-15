@@ -23,7 +23,7 @@
         <a class="navbar-brand me-auto" style="margin-left: 20px;" href="2-About.html"><img src="asset/img-careers/WEbLOGO.png" style="width: 55px;" alt=""></a>
           <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
             <div class="offcanvas-header">
-              <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><img src="public/asset/img/BMPower.logo.png" alt=""></h5>
+              <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><img src="asset/img/BMPower.logo.png" alt=""></h5>
               <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
@@ -49,11 +49,11 @@
                   Log In
                 </a>
                 <div class="dropdown-menu w-auto dropdown-menu-end" aria-labelledby="dropdownMenuLink">
-                  <a class="dropdown-item" href="PayrollSystem/html/P.SA-login.html"><i class="bi bi-wallet me-2"></i>Admin</i></a><hr class="my-1">
-                  <a class="dropdown-item" href="PayrollSystem/html/P-PH-login.html"><i class="bi bi-wallet me-2"></i>Payroll Head</i></a><hr class="my-1">
-                  <a class="dropdown-item" href="PayrollSystem/html/P.PO-login.html"><i class="bi bi-wallet me-2"></i>Payroll Officer</i></a><hr class="my-1">
-                  <a class="dropdown-item" href="PayrollSystem/html/P-AS-login.html"><i class="bi bi-wallet me-2"></i>Account supervisor</i></a><hr class="my-1">
-                  <a class="dropdown-item" href="6-login.html"><i class="bi bi-bootstrap me-2"></i>App</a><hr class="my-1">
+                  <a class="dropdown-item" href="{ route('auth.superadmin') }}"><i class="bi bi-wallet me-2"></i>Admin</i></a><hr class="my-1">
+                  <a class="dropdown-item" href="{ route('auth.payrollhead') }}"><i class="bi bi-wallet me-2"></i>Payroll Head</i></a><hr class="my-1">
+                  <a class="dropdown-item" href="{ route('auth.payrollofficer') }}"><i class="bi bi-wallet me-2"></i>Payroll Officer</i></a><hr class="my-1">
+                  <a class="dropdown-item" href="{ route('auth.accountsupervisor') }}"><i class="bi bi-wallet me-2"></i>Account supervisor</i></a><hr class="my-1">
+                  <a class="dropdown-item" href="{ route('auth.login') }}"><i class="bi bi-bootstrap me-2"></i>App</a><hr class="my-1">
                   <a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i>Something else here</a>
                 </div>
               </div>

@@ -16,41 +16,6 @@
     <title>Document</title>  
 </head>
 <body>
-        <!--Nabvar-->
-        <nav class="navbar navbar-expand-lg fixed-top">
-            <div class="container-fluid">
-              <a class="navbar-brand me-auto" href="#">BMPHRC</a>
-              <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-                <div class="offcanvas-header">
-                  <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><img src="public/asset/img/BMPower.logo.png" alt=""></h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
-                <div class="offcanvas-body">
-                  <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
-                    <li class="nav-item">
-                      <a class="nav-link active mx-lg-2" aria-current="page" href="1-Home.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link mx-lg-2" href="2-About.html">About Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link mx-lg-2" href="3-Careers.html">Careers</a>
-                      </li>      
-                      <li class="nav-item">
-                        <a class="nav-link mx-lg-2" href="4-OurPartners.html">Our Partners</a>
-                      </li>                     
-                      <li class="nav-item">
-                        <a class="nav-link mx-lg-2" href="5-Contact.html">Contact</a>
-                      </li>            
-                  </ul>
-                </div>
-              </div>
-              <button class="navbar-toggler pe-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </div>
-          </nav>
-        <!--End Nabvar -->
-
         <section>
             <div class="container mt-5 pt-5">
                 <div class="row">

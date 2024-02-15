@@ -17,7 +17,6 @@ use DB;
 class SuperAdminAccountSupervisorListController extends Controller
 {
 
-
     public function getUpdateData(Request $request)
     {
         $id = $request->id;
@@ -34,6 +33,9 @@ class SuperAdminAccountSupervisorListController extends Controller
             return response()->json(['error' => 'Data not found'], 404);
         }
     }
+
+
+
 
     public function getViewData(Request $request)
     {
@@ -134,7 +136,7 @@ class SuperAdminAccountSupervisorListController extends Controller
 
             if ($validator->fails()) {
                // Alert::error('Registration Failed');
-                return redirect('/superadmin/accountsupervisor/list')
+                return redirect('/superadmin/accountsupervisor')
                
                             ->withErrors($validator)
                             ->withInput()
@@ -157,7 +159,7 @@ class SuperAdminAccountSupervisorListController extends Controller
            
                 //return view('auth.login', compact('Auth.login'));
                 //return redirect('registration');
-                return redirect(('/superadmin/accountsupervisor/list'))->with('create-success', "Account registered successfully");
+                return redirect(('/superadmin/accountsupervisor'))->with('create-success', "Account registered successfully");
                 //return redirect(route('auth.registration'))->withToastSuccess('Task Created Successfully!');
                
             }
@@ -192,7 +194,7 @@ class SuperAdminAccountSupervisorListController extends Controller
 
             if ($validator->fails()) {
                // Alert::error('Registration Failed');
-                return redirect('/superadmin/accountsupervisor/list')
+                return redirect('/superadmin/accountsupervisor')
                
                             ->withErrors($validator)
                             ->withInput()
@@ -212,7 +214,7 @@ class SuperAdminAccountSupervisorListController extends Controller
            
                 //return view('auth.login', compact('Auth.login'));
                 //return redirect('registration');
-                return redirect(('/superadmin/accountsupervisor/list'))->with('update-success', "Account updated successfully");
+                return redirect(('/superadmin/accountsupervisor'))->with('update-success', "Account updated successfully");
                 //return redirect(route('auth.registration'))->withToastSuccess('Task Created Successfully!');
                
             }
