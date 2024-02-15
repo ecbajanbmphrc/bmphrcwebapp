@@ -82,7 +82,7 @@
                 </ul>
             </li>
             <li class="sidebar-menu-item">
-                <a href="/Admin/asset/html/payroll-login/P.SA-login.html">
+                <a href="{{ route('logout') }}">
                     <i class="ri-logout-box-line sidebar-menu-item-icon"></i>
                     Logout
                 </a>
@@ -136,6 +136,13 @@
             </nav>
             <!-- end: Navbar -->
             </div>
+
+        <!-- Dashboard  Starts Here -->
+        
+        
+        <!-- Dashboard Ends Here -->
+
+
             <!-- end: Content -->
         </div>
     </main>

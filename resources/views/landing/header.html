@@ -5,71 +5,87 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
-    <link href="public/asset/bootstrap-5.0.2-dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Bootstrap -->
+    <link href="asset/bootstrap-5.0.2-dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
 
-    <link rel="stylesheet" href="css/Nav.css">
-    <link rel="stylesheet" href="css/footer.css">
-  
-    <title>Document</title>  
+    <!-- CSS -->
+    <link rel="stylesheet" href="asset/css/Nav.css">
+    <link rel="stylesheet" href="asset/css/footer.css">
+    <link rel="stylesheet" href="asset/css/career.css">
+    <link rel="stylesheet" href="asset/css/partners.css">
+    <link rel="stylesheet" href="asset/css/Jin.css">
+    <link rel="stylesheet" href="asset/css/testimonials.css">
+
+    <title>Home</title>  
 </head>
 <body>
 
-    <div class="container">
-        <header class="d flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-            <a href="" class="d flex align-items-center col-md-2 mb-md-0 text-dark text-decoratio-none">
-                <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
-                    <use xlink:href="#bootstrap"></use>
-                </svg>
-            </a>
-            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                <li>
-                    <a href="#" class="nav-link px-2 link-secondary">Home</a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link px-2 link-dark">Lorem</a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link px-2 link-dark">Lorem</a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link px-2 link-dark">Lorem</a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link px-2 link-dark">Lorem</a>
-                </li>
-            </ul>
-            <div class="col-md-3" text-end>
-                <button type="button" class="btn btn-outline-primary me-2">Login</button>
-                <button type="button" class="btn btn-outline-primary">Sign-up</button>
-            </div>
-        </header>
-    </div>
+  <style>
+    row.gy-xxl-5 {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ flex-wrap: wrap; /* Allows the content to wrap to the next line if it doesn't fit in one line */
+}
 
-    <div class="" id="first">
-        <div class="container-fluid d-lg-flex justify-content-center mt-5 pt-5">
-          <div class="row g-5">
-            <div class="col-lg-8">
-              <h1 class="" style="font-size: 40px; font-family: Verdana, Geneva, Tahoma, sans-serif;"><span style="color: green; font-weight: 700;">B</span><span style="color: blue; font-weight: 700;">M</span>Power</h1>
-              <p class="" style="font-size: 20px; font-weight: 600;">Human Resources Corporation</p>
+.col-lg-8,
+.col-lg-4 {
+ flex: 1; /* Make the columns take up equal width */
+}
+     
+   </style> 
+    <!--Nabvar start-->
+    <nav class="navbar navbar-expand-lg fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand me-auto" style="margin-left: 20px;" href="2-About.html"><img src="asset/img-careers/WEbLOGO.png" style="width: 55px;" alt=""></a>
+          <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><img src="public/asset/img/BMPower.logo.png" alt=""></h5>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
-            <div class="col-lg-8">
-              <h1 class="fw-normal" style="font-size: 40px;">We are Hiring!!!</h1>
-              <p><a href="#" class="text-dark text-decoration-none"><i class="bi bi-globe"></i> bmphrc.com</a></p>
-              <p><a href="#" class="text-dark text-decoration-none"><i class="bi bi-envelope"></i> info@gmail.com</a></p>
-              <p><a href="#" class="text-dark text-decoration-none"><i class="bi bi-telephone"></i> +666 666 666</a></p>
-            </div>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav justify-content-center flex-grow-1" style="margin-left: 5px;">
+                <li class="nav-item">
+                  <a class="nav-link active mx-lg-2" aria-current="page" href="{{ route('home') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link mx-lg-2" href="{{ route('landing.about') }}">About Us</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link mx-lg-2" href="{{ route('landing.careers') }}">Careers</a>
+                </li>      
+                <li class="nav-item">
+                  <a class="nav-link mx-lg-2" href="{{ route('landing.our-partners') }}">Our Partners</a>
+                </li>                     
+                <li class="nav-item">
+                  <a class="nav-link mx-lg-2" href="{{ route('landing.contact') }}">Contact</a>
+                </li>          
+              </ul>
+              <ul>
+              <div class="dropdown show">
+                <a class="btn btn-secondary dropdown-toggle" style="margin-left: 5px; margin-top: 10px;" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Log In
+                </a>
+                <div class="dropdown-menu w-auto dropdown-menu-end" aria-labelledby="dropdownMenuLink">
+                  <a class="dropdown-item" href="{ route('auth.superadmin') }"><i class="bi bi-wallet me-2"></i>Admin</i></a><hr class="my-1">
+                  <a class="dropdown-item" href="{ route('auth.payrollhead') }"><i class="bi bi-wallet me-2"></i>Payroll Head</i></a><hr class="my-1">
+                  <a class="dropdown-item" href="{ route('auth.payrollofficer') }"><i class="bi bi-wallet me-2"></i>Payroll Officer</i></a><hr class="my-1">
+                  <a class="dropdown-item" href="{ route('auth.accountsupervisor') }"><i class="bi bi-wallet me-2"></i>Account supervisor</i></a><hr class="my-1">
+                  <a class="dropdown-item" href="{ route('auth.login') }"><i class="bi bi-bootstrap me-2"></i>App</a><hr class="my-1">
+                  <a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i>Something else here</a>
+                </div>
+              </div>
           </div>
         </div>
-        <div class="container-fluid d-flex justify-content-center mt-5">
-          <div class="image-section">
-            <img class="" src="/public/asset/img/BMPower.logo.png" alt="">
-          </div>
-        </div>
+        <button class="navbar-toggler pe-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
       </div>
+    </nav>
+  <!--End Nabvar end-->
       
             <!--hiring Section-->
       

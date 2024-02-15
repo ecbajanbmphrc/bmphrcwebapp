@@ -24,8 +24,10 @@
     color: #000;
 }
 
+
+
 @media (min-width: 991px){
-    .nav-link::before{
+    .nav-link::before {
         content: '';
         position: absolute;
         bottom: 0;
@@ -45,6 +47,7 @@
     .navbar-nav {
         justify-content: flex-start; /* Align items to the left in mobile view */
     }
+    
 
 }
 

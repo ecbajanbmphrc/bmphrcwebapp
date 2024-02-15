@@ -173,22 +173,22 @@ Route::middleware([SuperAdmin::class])->group(function(){
      Route::get('/superadmin/ecossential/list/fetch-data', [EcossentialListController::class, 'fetchData']);
      Route::post('/superadmin/ecossential/list/register-account', [EcossentialListController::class, 'saveAccount'])->name('superadmin.ecossential-list.register');
      Route::post('/superadmin/ecossential/list/update-account', [EcossentialListController::class, 'updateAccount'])->name('superadmin.ecossential-list.update-account');
-     Route::post('/superadmin/ecossential/list/retrieve-update', [EcossentialListController::class, 'getUpdateData'])->name('superadmin.ecossential-list.retrieve-update');
-     Route::post('/superadmin/ecossential/list/retrieve-view', [EcossentialListController::class, 'getViewData'])->name('superadmin.ecossential-list.retrieve-view');
+     Route::get('/superadmin/ecossential/list/retrieve-update/{id}', [EcossentialListController::class, 'getUpdateData'])->name('superadmin.ecossential-list.retrieve-update');
+     Route::get('/superadmin/ecossential/list/retrieve-view/{id}', [EcossentialListController::class, 'getViewData'])->name('superadmin.ecossential-list.retrieve-view');
 
      //Company Madis  Functions
      Route::get('/superadmin/madis/list/fetch-data', [MadisListController::class, 'fetchData']);
      Route::post('/superadmin/madis/list/register-account', [MadisListController::class, 'saveAccount'])->name('superadmin.madis-list.register'); 
      Route::post('/superadmin/madis/list/update-account', [MadisListController::class, 'updateAccount'])->name('superadmin.madis-list.update-account');
      Route::get('/superadmin/madis/list/retrieve-update/{id}', [MadisListController::class, 'getUpdateData'])->name('superadmin.madis-list.retrieve-update');
-     Route::post('/superadmin/madis/list/retrieve-view', [MadisListController::class, 'getViewData'])->name('superadmin.madis-list.retrieve-view');
+     Route::get('/superadmin/madis/list/retrieve-view/{id}', [MadisListController::class, 'getViewData'])->name('superadmin.madis-list.retrieve-view');
 
      //Company RFM  Functions
      Route::get('/superadmin/rfm/list/fetch-data', [RfmListController::class, 'fetchData']);
      Route::post('/superadmin/rfm/list/register-account', [RfmListController::class, 'saveAccount'])->name('superadmin.rfm-list.register');
      Route::post('/superadmin/rfm/list/update-account', [RfmListController::class, 'updateAccount'])->name('superadmin.rfm-list.update-account');
      Route::get('/superadmin/rfm/list/retrieve-update/{id}', [RfmListController::class, 'getUpdateData'])->name('superadmin.rfm-list.retrieve-update');
-     Route::post('/superadmin/rfm/list/retrieve-view', [RfmListController::class, 'getViewData'])->name('superadmin.rfm-list.retrieve-view');
+     Route::get('/superadmin/rfm/list/retrieve-view/{id}', [RfmListController::class, 'getViewData'])->name('superadmin.rfm-list.retrieve-view');
 
   
 

@@ -111,7 +111,7 @@
             <!-- start: Navbar -->
             <nav class="px-3 py-2 bg-white rounded shadow-sm">
                 <i class="ri-menu-line sidebar-toggle me-3 d-block d-md-none"></i>
-                <h5 class="fw-bold mb-0 me-auto">Company MCKenzie List</h5>
+                <h5 class="fw-bold mb-0 me-auto">MCKENZIE Client List</h5>
                 <div class="dropdown me-3 d-none d-sm-block">
                     <div class="cursor-pointer dropdown-toggle navbar-link" data-bs-toggle="dropdown"
                         aria-expanded="false">

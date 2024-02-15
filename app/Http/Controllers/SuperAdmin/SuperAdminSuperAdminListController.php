@@ -51,7 +51,7 @@ class SuperAdminSuperAdminListController extends Controller
     public function fetchData(Request $request)
     {
      
-        $userType = $request->input('user_type', 'Payroll Head');
+        $userType = $request->input('user_type', 'Super Admin');
 
 
         $data = User::where('user_type', $userType)->get();
