@@ -72,7 +72,7 @@
             </li>
             <li class="sidebar-menu-item has-dropdown mt-2">
                 <a href="#">
-                    <i class="ri-building-line sidebar-menu-item-icon"></i>Companies
+                    <i class="ri-building-line sidebar-menu-item-icon"></i>Client
                     <i class="ri-arrow-down-s-line sidebar-menu-item-accordion ms-auto"></i>
                 </a>
                 <ul class="sidebar-dropdown-menu">
@@ -83,13 +83,10 @@
                         <a href="{{ route('superadmin.view.mckenzie') }}">MCKENZIE</a>
                     </li>
                     <li class="sidebar-dropdown-menu-item">
-                        <a href="{{ route('superadmin.view.ecossential') }}">ECOSSENTIAL</a>
-                    </li>
-                    <li class="sidebar-dropdown-menu-item">
                         <a href="{{ route('superadmin.view.rfm') }}">RFM</a>
                     </li>
                     <li class="sidebar-dropdown-menu-item">
-                        <a href="{{ route('superadmin.view.madis') }}">MADIS</a>
+                        <a href="{{ route('superadmin.view.magis') }}">MAGIS</a>
                     </li>
                 </ul>
             </li>
@@ -110,7 +107,7 @@
             <!-- start: Navbar -->
             <nav class="px-3 py-2 bg-white rounded shadow-sm">
                 <i class="ri-menu-line sidebar-toggle me-3 d-block d-md-none"></i>
-                <h5 class="fw-bold mb-0 me-auto">Account Supervisor List</h5>
+                <h5 class="fw-bold mb-0 me-auto">Account Supervisor List  </h5>
                 <div class="dropdown me-3 d-none d-sm-block">
                     <div class="cursor-pointer dropdown-toggle navbar-link" data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -249,7 +246,7 @@
             <label for="c_company" class="col-form-label">Company:</label>
             <select class="form-control" id="c_company" name="c_company">
             <option  value="" >---Select a Company---</option>
-              @foreach ($data as $id => $value)
+              @foreach ($companies as $id => $value)
               <option value="{{ $id }}" @if(old('c_company') == $id) selected @endif>{{ $value }}</option>
                 @endforeach
             </select>
@@ -324,11 +321,11 @@
 
         <div class="row">
 
-            <div class="form-group col-md-4">
+          <div class="form-group col-md-4">
             <label for="e_company" class="col-form-label">Company:</label>
             <select class="form-control" id="e_company" name="e_company">
             <option  value="" >---Select a Company---</option>
-              @foreach ($data as $id => $value)
+              @foreach ($companies as $id => $value)
               <option value="{{ $id }}">{{ $value }}</option>
                 @endforeach
             </select>
@@ -547,7 +544,6 @@
     //             }
     //         });
     // });
-
 
 
       

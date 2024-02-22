@@ -73,7 +73,7 @@
             <li class="sidebar-menu-item has-dropdown mt-2">
                 <a href="#">
           
-                    <i class="ri-building-line sidebar-menu-item-icon"></i>Companies
+                    <i class="ri-building-line sidebar-menu-item-icon"></i>Client
                     <i class="ri-arrow-down-s-line sidebar-menu-item-accordion ms-auto"></i>
                 </a>
                 <ul class="sidebar-dropdown-menu">
@@ -84,13 +84,10 @@
                         <a href="{{ route('superadmin.view.mckenzie')}}">MCKENZIE</a>
                     </li>
                     <li class="sidebar-dropdown-menu-item">
-                        <a href="{{ route('superadmin.view.ecossential') }}">ECOSSENTIAL</a>
-                    </li>
-                    <li class="sidebar-dropdown-menu-item">
                         <a href="{{ route('superadmin.view.rfm') }}">RFM</a>
                     </li>
                     <li class="sidebar-dropdown-menu-item">
-                        <a href="{{ route('superadmin.view.madis') }}">MADIS</a>
+                        <a href="{{ route('superadmin.view.magis') }}">MAGIS</a>
                     </li>
                 </ul>
             </li>
@@ -170,7 +167,7 @@
                 <th style="display:none">ID</th>
                 <th>Account</th>
                 <th>Region</th>
-                <th>Account Branch</th>
+                <th>Store Name</th>
                 <th>Status</th>
                 <th>Actions</th>
             </tr>

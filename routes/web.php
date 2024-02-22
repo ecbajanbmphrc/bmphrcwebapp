@@ -30,8 +30,7 @@ use App\Http\Controllers\SuperAdmin\SuperAdminAccountSupervisorListController;
 use App\Http\Controllers\SuperAdmin\SuperAdminPayrollOfficerListController;
 use App\Http\Controllers\SuperAdmin\EfcListController;
 use App\Http\Controllers\SuperAdmin\MckenzieListController;
-use App\Http\Controllers\SuperAdmin\EcossentialListController;
-use App\Http\Controllers\SuperAdmin\MadisListController;
+use App\Http\Controllers\SuperAdmin\MagisListController;
 use App\Http\Controllers\SuperAdmin\RfmListController;
 use App\Http\Controllers\SuperAdmin\SuperAdminPayrollHeadListController;
 use App\Http\Controllers\SuperAdmin\SuperAdminTreasuryListController;
@@ -107,8 +106,7 @@ Route::middleware([SuperAdmin::class])->group(function(){
     Route::get('/superadmin/superadmin', [SuperAdminController::class, 'view_superadmin'])->name('superadmin.view.superadmin');
     Route::get('/superadmin/efc', [SuperAdminController::class, 'view_company_efc'])->name('superadmin.view.efc');
     Route::get('/superadmin/mckenzie', [SuperAdminController::class, 'view_company_mckenzie'])->name('superadmin.view.mckenzie');
-    Route::get('/superadmin/ecossential', [SuperAdminController::class, 'view_company_ecossential'])->name('superadmin.view.ecossential');
-    Route::get('/superadmin/madis', [SuperAdminController::class, 'view_company_madis'])->name('superadmin.view.madis');
+    Route::get('/superadmin/magis', [SuperAdminController::class, 'view_company_magis'])->name('superadmin.view.magis');
     Route::get('/superadmin/rfm', [SuperAdminController::class, 'view_company_rfm'])->name('superadmin.view.rfm');
     Route::get('/superadmin/payrollhead', [SuperAdminController::class, 'view_payrollhead'])->name('superadmin.view.payrollhead');
     Route::get('/superadmin/treasury', [SuperAdminController::class, 'view_treasury'])->name('superadmin.view.treasury');
@@ -170,19 +168,12 @@ Route::middleware([SuperAdmin::class])->group(function(){
      Route::get('/superadmin/mckenzie/list/retrieve-update/{id}', [MckenzieListController::class, 'getUpdateData'])->name('superadmin.mckenzie-list.retrieve-update');
      Route::get('/superadmin/mckenzie/list/retrieve-view/{id}', [MckenzieListController::class, 'getViewData'])->name('superadmin.mckenzie-list.retrieve-view');
 
-     //Company ECOSSENTIAL  Functions
-     Route::get('/superadmin/ecossential/list/fetch-data', [EcossentialListController::class, 'fetchData']);
-     Route::post('/superadmin/ecossential/list/register-account', [EcossentialListController::class, 'saveAccount'])->name('superadmin.ecossential-list.register');
-     Route::post('/superadmin/ecossential/list/update-account', [EcossentialListController::class, 'updateAccount'])->name('superadmin.ecossential-list.update-account');
-     Route::get('/superadmin/ecossential/list/retrieve-update/{id}', [EcossentialListController::class, 'getUpdateData'])->name('superadmin.ecossential-list.retrieve-update');
-     Route::get('/superadmin/ecossential/list/retrieve-view/{id}', [EcossentialListController::class, 'getViewData'])->name('superadmin.ecossential-list.retrieve-view');
-
-     //Company Madis  Functions
-     Route::get('/superadmin/madis/list/fetch-data', [MadisListController::class, 'fetchData']);
-     Route::post('/superadmin/madis/list/register-account', [MadisListController::class, 'saveAccount'])->name('superadmin.madis-list.register'); 
-     Route::post('/superadmin/madis/list/update-account', [MadisListController::class, 'updateAccount'])->name('superadmin.madis-list.update-account');
-     Route::get('/superadmin/madis/list/retrieve-update/{id}', [MadisListController::class, 'getUpdateData'])->name('superadmin.madis-list.retrieve-update');
-     Route::get('/superadmin/madis/list/retrieve-view/{id}', [MadisListController::class, 'getViewData'])->name('superadmin.madis-list.retrieve-view');
+     //Company Magis  Functions
+     Route::get('/superadmin/magis/list/fetch-data', [MagisListController::class, 'fetchData']);
+     Route::post('/superadmin/magis/list/register-account', [MagisListController::class, 'saveAccount'])->name('superadmin.magis-list.register'); 
+     Route::post('/superadmin/magis/list/update-account', [MagisListController::class, 'updateAccount'])->name('superadmin.magis-list.update-account');
+     Route::get('/superadmin/magis/list/retrieve-update/{id}', [MagisListController::class, 'getUpdateData'])->name('superadmin.magis-list.retrieve-update');
+     Route::get('/superadmin/magis/list/retrieve-view/{id}', [MagisListController::class, 'getViewData'])->name('superadmin.magis-list.retrieve-view');
 
      //Company RFM  Functions
      Route::get('/superadmin/rfm/list/fetch-data', [RfmListController::class, 'fetchData']);
@@ -213,11 +204,11 @@ Route::middleware([AccountSupervisor::class])->group(function(){
     //Door Functions
     Route::get('/accountsupervisor/door-list/fetch-data', [AccountSupervisorDoorListController::class, 'fetchData']);
     // Route::post('/superadmin/efc/list/register-account', [EfcListController::class, 'saveAccount'])->name('superadmin.efc-list.register');
-    // Route::post('/superadmin/efc/list/update-account', [EfcListController::class, 'updateAccount'])->name('superadmin.efc-list.update-account');
-    // Route::get('/superadmin/efc/list/retrieve-update/{id}', [EfcListController::class, 'getUpdateData'])->name('superadmin.efc-list.retrieve-update');
+    Route::post('/accountsupervisor/door/list/update-account', [AccountSupervisorDoorListController::class, 'updateAccount'])->name('accountsupervisor.door-list.update-account');
+    Route::get('/accountsupervisor/door/list/retrieve-update/{id}', [AccountSupervisorDoorListController::class, 'getUpdateData'])->name('accountsupervisor.door-list.retrieve-update');
     Route::get('/accountsupervisor/door/list/retrieve-view/{id}', [AccountSupervisorDoorListController::class, 'getViewData'])->name('accountsupervisor.door-list.retrieve-view');
 
-    //Company Coordinator Functions
+    //Client Coordinator Functions
     Route::get('/accountsupervisor/coordinator-list/fetch-data', [AccountSupervisorCoordinatorListController::class, 'fetchData']);
     Route::post('/accountsupervisor/coordinator/list/register-account', [AccountSupervisorCoordinatorListController::class, 'saveAccount'])->name('accountsupervisor.coordinator-list.register');
     Route::post('/accountsupervisor/coordinator/list/update-account', [AccountSupervisorCoordinatorListController::class, 'updateAccount'])->name('accountsupervisor.coordinator-list.update-account');

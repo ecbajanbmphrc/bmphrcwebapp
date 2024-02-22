@@ -7,8 +7,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Company;
+use App\Models\Coordinator;
 use Session;
 
+use DB;
 
 class SuperAdminController extends Controller
 {
@@ -25,10 +27,34 @@ class SuperAdminController extends Controller
 
     }
 
-    public function view_accountsupervisor(){
-        $data = Company::where('name', '!=', 'none')->pluck('name', 'id');
+    // function add_to_array($key_value)
+    // {
+    //     $arr = [];
+    //     foreach ($key_value as $key => $value) {
+    //         $arr[] = [$key=>$value];
+    //     }
+    //     return $arr;
+    // }
 
-        return view('superadmin.accountsupervisor', compact('data'));
+    public function view_accountsupervisor(){
+
+       
+        //$array = [1 => "none"];
+      
+        $companies = Company::where('name', '!=', 'none')
+        // ->select('name', 'id')
+        ->pluck('name' , 'id')
+        ->toArray();
+
+
+       // $array += $companies;
+    
+      //  dd ($array);
+    
+
+
+    
+       return view('superadmin.accountsupervisor', compact('companies'));
         // return view('superadmin.accountsupervisor');   
     }
 
@@ -46,6 +72,8 @@ class SuperAdminController extends Controller
 
     public function view_company_efc(){
 
+       
+
         return view('superadmin.efccompanylist');        
     }
 
@@ -60,9 +88,9 @@ class SuperAdminController extends Controller
         
     }
 
-    public function view_company_madis(){
+    public function view_company_magis(){
 
-        return view('superadmin.madiscompanylist');
+        return view('superadmin.magiscompanylist');
         
     }
 

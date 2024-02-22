@@ -13,7 +13,7 @@ use Illuminate\Validation\Rule;
 
 use DB;
 
-class EcossentialListController extends Controller
+class MagisListController extends Controller
 {
 
     public function getUpdateData($id)
@@ -49,7 +49,7 @@ class EcossentialListController extends Controller
      
 
 
-        $data = CompanyDoor::where('company_id', '4')->get();
+        $data = CompanyDoor::where('[company_id', '6')->get();
 
 
         $data = $data->map(function ($item, $key) {
@@ -69,7 +69,7 @@ class EcossentialListController extends Controller
     public function saveAccount(Request $request)
     {
             //dd($request->all());
-            $company = 4;
+            $company = 6;
             $status = "active";
             
 
@@ -87,7 +87,7 @@ class EcossentialListController extends Controller
         
             if ($validator->fails()) {
                // Alert::error('Registration Failed');
-                return redirect('/superadmin/ecossential')
+                return redirect('/superadmin/magis')
                
                             ->withErrors($validator)
                             ->withInput()
@@ -105,7 +105,7 @@ class EcossentialListController extends Controller
                 $company_door->status = $status;
                 $company_door->save();
                  
-                return redirect(('/superadmin/ecossential'))->with('create-success', "Account registered successfully");
+                return redirect(('/superadmin/magis'))->with('create-success', "Account registered successfully");
         
                
             }
@@ -122,7 +122,7 @@ class EcossentialListController extends Controller
 
              $id = $request->input('selectedId');
            
-            $company = 4;
+            $company = 6;
     
             
 
@@ -143,7 +143,7 @@ class EcossentialListController extends Controller
 
             if ($validator->fails()) {
                // Alert::error('Registration Failed');
-                return redirect('/superadmin/ecossential')
+                return redirect('/superadmin/magis')
                
                             ->withErrors($validator)
                             ->withInput()
@@ -163,7 +163,7 @@ class EcossentialListController extends Controller
                 $company_door->update();
             
         
-                return redirect(('/superadmin/ecossential'))->with('update-success', "Account updated successfully");
+                return redirect(('/superadmin/magis'))->with('update-success', "Account updated successfully");
            
                
             }

@@ -73,7 +73,7 @@
             <li class="sidebar-menu-item has-dropdown mt-2">
                 <a href="#">
           
-                    <i class="ri-building-line sidebar-menu-item-icon"></i>Companies
+                    <i class="ri-building-line sidebar-menu-item-icon"></i>Client
                     <i class="ri-arrow-down-s-line sidebar-menu-item-accordion ms-auto"></i>
                 </a>
                 <ul class="sidebar-dropdown-menu">
@@ -84,13 +84,10 @@
                         <a href="{{ route('superadmin.view.mckenzie') }}">MCKENZIE</a>
                     </li>
                     <li class="sidebar-dropdown-menu-item">
-                        <a href="{{ route('superadmin.view.ecossential') }}">ECOSSENTIAL</a>
-                    </li>
-                    <li class="sidebar-dropdown-menu-item">
                         <a href="{{ route('superadmin.view.rfm') }}">RFM</a>
                     </li>
                     <li class="sidebar-dropdown-menu-item">
-                        <a href="{{ route('superadmin.view.madis') }}">MADIS</a>
+                        <a href="{{ route('superadmin.view.magis') }}">MAGIS</a>
                     </li>
                 </ul>
             </li>
@@ -170,7 +167,7 @@
                 <th style="display:none">ID</th>
                 <th>Account</th>
                 <th>Region</th>
-                <th>Account Branch</th>
+                <th>Store Name</th>
                 <th>Status</th>
                 <th>Actions</th>
             </tr>
@@ -275,22 +272,20 @@
             </select>
           </div> 
           
-          <div class="form-group col-md-6">
-            <label for="c_account_branch" class="col-form-label">Account Branch:</label>
-            <input type="text" class="form-control" id="c_account_branch" name="c_account_branch" value="{{ old('c_account_branch') }}" required>
+        <div class="form-group col-md-6">
+            <label for="c_store_name" class="col-form-label">Store Name:</label>
+            <input type="text" class="form-control" id="c_store_name" name="c_store_name" value="{{ old('c_store_name') }}" required>
           </div>
         </div>  
 
         <div class="row">
-
-        <div class="form-group col-md-6">
-        
-        <label for="c_type_of_deployment" class="col-form-label">Type of Deployment:</label>
-        <br>
-        <div class="form-check form-check-inline">
-         <input class="form-check-input" type="radio" name="c_type_of_deployment" id="c_type_stationary" value="Stationary" checked>
-         <label class="form-check-label" for="c_type_stationary">Stationary</label>
-      </div>
+          <div class="form-group col-md-6">
+             <label for="c_type_of_deployment" class="col-form-label">Type of Deployment:</label>
+            <br>
+            <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="c_type_of_deployment" id="c_type_stationary" value="Stationary" checked>
+            <label class="form-check-label" for="c_type_stationary">Stationary</label>
+           </div>
     
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" name="c_type_of_deployment" id="c_type_roving" value="Roving">
@@ -403,8 +398,8 @@
           </div> 
           
           <div class="form-group col-md-6">
-            <label for="e_account_branch" class="col-form-label">Account Branch:</label>
-            <input type="text" class="form-control" id="e_account_branch" name="e_account_branch" value="{{ old('e_account_branch') }}" required>
+            <label for="e_store_name" class="col-form-label">Store Name:</label>
+            <input type="text" class="form-control" id="e_store_name" name="e_store_name" value="{{ old('e_store_name') }}" required>
           </div>
           
         </div>  
@@ -488,26 +483,32 @@
           <div class="form-group col-md-6">
             <label for="v_area" class="col-form-label">Area:</label>
             <p class="h6" id="v_area" name="v_area"></p>
-          </div>    
-       
-
-         <div class="form-group col-md-6">
-            <label for="v_account_branch" class="col-form-label">Account Branch:</label>
-            <p class="h6" id="v_account_branch" name="v_account_branch"></p>
+          </div>  
+          
+          <div class="form-group col-md-6">
+            <label for="v_store_name" class="col-form-label">Store Name:</label>
+            <p class="h6" id="v_store_name" name="v_store_name"></p>
           </div> 
         </div>
 
         <div class="row">
           <div class="form-group col-md-6">
+            <label for="v_coordinator" class="col-form-label">Coordinator:</label>
+            <p class="h6" id="v_coordinator" name="v_coordinator"></p>
+          </div>
+
+          <div class="form-group col-md-6">
             <label for="v_type_of_deployment" class="col-form-label">Type of Deployment:</label>
             <p class="h6" id="v_type_of_deployment" name="v_type_of_deployment"></p>
           </div>    
-       
+        </div>
 
-         <div class="form-group col-md-6">
+        <div class="class row">
+        <div class="form-group col-md-6">
             <label for="v_status" class="col-form-label">Status:</label>
             <p class="h6" id="v_status" name="v_status"></p>
           </div> 
+
         </div>
 
     
@@ -544,7 +545,7 @@
                 { data: 'id', visible: false },
                 { data: 'account' },
                 { data: 'region' },
-                { data: 'account_branch' },
+                { data: 'store_name' },
                 { data: 'status', orderable: false },
                 { data: 'actions', orderable: false }
             ]
@@ -572,7 +573,7 @@
                 $('#e_account').val(response.account);
                 $('#e_region').val(response.region);
                 $('#e_area').val(response.area);
-                $('#e_account_branch').val(response.account_branch);
+                $('#e_store_name').val(response.store_name);
                 $('#e_status').val(response.status);
 
                 type = response.type_of_deployment;
@@ -613,7 +614,7 @@
                 $('#v_account').text(response.account);
                 $('#v_region').text(response.region);
                 $('#v_area').text(response.area);
-                $('#v_account_branch').text(response.account_branch);
+                $('#v_store_name').text(response.store_name);
                 $('#v_type_of_deployment').text(response.type_of_deployment);
                 $('#v_status').text(response.status);
 
