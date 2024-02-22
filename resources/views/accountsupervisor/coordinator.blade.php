@@ -21,6 +21,9 @@
         .button-image1{
     cursor: pointer;
         }
+        .button-image2{
+    cursor: pointer;
+        }
     </style>
 
 </head>
@@ -149,7 +152,7 @@
             <div class="card">
              <div class="card-header">
 
-            <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#createAccountModal" id="hitme" name="hitme">
+            <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#createCoordinatorModal" id="hitme" name="hitme">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
                     <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0"/>
                 </svg>
@@ -167,7 +170,7 @@
                             <th>#</th>
                             <th style="display:none">ID</th>
                             <th>Full Name</th>
-                            <th>Account</th>
+                            <th>Email</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -184,12 +187,119 @@
      </main>
     <!-- end: Main -->
 
-     <!-- create user modal -->
- <div class="modal fade" id="createAccountModal" name = "createAccountModal" tabindex="-1" role="dialog"  aria-labelledby="createAccountModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+     <!-- edit coordinator modal -->
+ <div class="modal fade" id="editCoordinatorModal" name ="editCoordinatorModal" tabindex="-1" role="dialog"  aria-labelledby="editCoordinatorModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="createAccountModalLabel">New Coordinator</h5>
+        <h5 class="modal-title" id="editCoordinatorModalLabel">Edit Coordinator Details</h5>
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button> -->
+      </div>
+      <div class="modal-body">
+        <form action="{{route('accountsupervisor.coordinator-list.update-account')}}" method="POST">
+    @csrf
+    @if (session('update-failed'))
+
+    <div style="background-color:rgba(255,255,255,0)" class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+        </ul>
+    </div>
+
+    @endif
+
+    <div class="row">
+        
+        <div class="form-group col-md-4">
+            <label for="e_first_name" class="col-form-label">First Name: *</label>
+            <input type="text" class="form-control" id="e_first_name" name="e_first_name" value="{{ old('e_first_name') }}" required>
+        </div>    
+       
+
+        <div class="form-group col-md-4">
+            <label for="e_last_name" class="col-form-label">Last Name: *</label>
+            <input type="text" class="form-control" id="e_last_name" name="e_last_name" value="{{ old('e_last_name') }}" required>
+        </div>
+        
+        
+        <div class="form-group col-md-4">
+            <label for="e_middle_name" class="col-form-label">Middle Name:</label>
+            <input type="text" class="form-control" id="e_middle_name" name="e_middle_name" value="{{ old('e_middle_name') }}">
+        </div>
+
+    </div> 
+
+    <div class="row">
+
+        <div class="form-group col-md-4">
+            <label for="e_birthdate" class="col-form-label">Birthdate: *</label>
+            <input id="e_birthdate" name="e_birthdate" class="form-control" />
+        </div>
+
+        <div class="form-group col-md-4">
+            <label for="e_first_name" class="col-form-label">Age:</label>
+            <input type="text" class="form-control" id="e_age" name="e_age" readonly>
+        </div>
+
+        <div class="form-group col-md-4">
+        
+            <label for="e_gender" class="col-form-label">Gender: *</label>
+                <!-- <div style="height:10px;"></div> -->
+                <br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="e_gender" id="e_male" value="Male">
+                    <label class="form-check-label" for="e_male">Male</label>
+                </div>
+    
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="e_gender" id="e_female" value="Female">
+                    <label class="form-check-label" for="e_female">Female</label>
+                </div>
+
+        </div>
+
+    </div>
+    
+    <div class="row">
+
+        <div class="form-group col-md-6">
+            <label for="e_number" class="col-form-label">Contact Number:</label>
+            <input type="text" class="form-control" id="e_number" name="e_number" value="{{ old('e_number') }}"  oninput='setCustomValidity(value.length < 11 ? "Number must be at least 11 digits long." : "")' onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="11" value="{{ old('number') }}" required>
+        </div> 
+
+        <div class="form-group col-md-6">
+            <label for="e_email" class="col-form-label">Email Address:</label>
+            <input type="email" class="form-control" id="e_email" name = "e_email" value="{{ old('e_email') }}" required>
+        </div>  
+    
+    </div>
+        
+
+        
+
+      </div>
+      <input id="selectedId" name="selectedId" >
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="ehide-modal">Close</button>
+        <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+        </form>
+    </div>
+  </div>
+</div>
+</div>
+
+
+ <!-- create coordinator modal -->
+ <div class="modal fade" id="createCoordinatorModal" name = "createCoordinatorModal" tabindex="-1" role="dialog"  aria-labelledby="createCoordinatorModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="createCoordinatorModalLabel">New Coordinator</h5>
         <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button> -->
@@ -225,7 +335,7 @@
         
         <div class="form-group col-md-4">
             <label for="c_middle_name" class="col-form-label">Middle Name:</label>
-            <input type="text" class="form-control" id="c_middle_name" name="c_middle_name" value="{{ old('c_middle_name') }}" required>
+            <input type="text" class="form-control" id="c_middle_name" name="c_middle_name" value="{{ old('c_middle_name') }}" >
         </div>
 
     </div> 
@@ -356,8 +466,8 @@
          </div> 
          
          <div class="form-group col-md-4">
-            <label for="v_branch" class="col-form-label">Branch:</label>
-            <p class="h6" id="v_branch" name="v_branch"></p>
+            <label for="v_store_name" class="col-form-label">Store Count:</label>
+            <p class="h6" id="v_store_name" name="v_store_name"></p>
          </div> 
 
         </div>
@@ -426,16 +536,43 @@
 
         });
 
+
+        $('#e_birthdate').datepicker({
+            format: "mm/dd/yyyy",
+            uiLibrary: 'bootstrap5',
+            maxDate: new Date()
+        });
+
+        $("#e_birthdate").change(function(){
+
+        var birthDate = $('#e_birthdate').val();    
+   
+        var bday = new Date(birthDate).getTime();
+
+        var today = new Date().getTime();
+
+
+        var age = Math.floor((today-bday) / (365.25 * 24 * 60 * 60 * 1000));
+
+    
+
+        $('#e_age').val(age);
+
+       // console.log(age);
+
+
+        });
+
         var dataTable = $('#coordinator').DataTable({
             ajax: {
                 url: '/accountsupervisor/coordinator-list/fetch-data',
                 dataSrc: 'data'
             },
             columns: [
-                { data: 'count' },
+                { data: '#' },
                 { data:  'id', visible: false },
                 { data: 'fullname' },
-                { data: 'company_door_id' }, 
+                { data: 'email_address' }, 
                 { data: 'actions', orderable: false }
             ]
         });
@@ -447,8 +584,8 @@
         month: 'short',
         day: 'numeric',
         year: 'numeric'
-        });
-}
+         });
+        }
 
         $('#coordinator tbody').on('click', 'img.button-image1', function (e) {
         e.preventDefault();
@@ -484,10 +621,59 @@
                 $('#v_gender').text(response.gender);
                 $('#v_contact').text(response.contact_number);
                 $('#v_email').text(response.email_address);
-                $('#v_branch').text(response.branch);
+                $('#v_store_name').text(response.store_name);
                 $('#v_type_of_deployment').text(response.type_of_deployment);
 
                 $('#viewDoorModal').modal('show');
+            
+            }
+     
+        })
+     });
+
+
+     $('#coordinator tbody').on('click', 'img.button-image2', function (e) {
+        e.preventDefault();
+
+            var selectedRowData = dataTable.row($(this).closest('tr')).data();
+            var id = selectedRowData.id;
+            $.ajax({
+            url: '/accountsupervisor/coordinator/list/retrieve-update/' + id , 
+            type: 'GET', 
+            dataType: 'JSON',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },   
+            success: function(response){
+               
+              //  var date = new Date(response.birthdate).toLocaleDateString()
+                // response = JSON.parse(response);
+                var newDate = new Date(response.birthdate).toLocaleDateString()
+                
+                $('#selectedId').val(id);
+           
+                $('#e_middle_name').val(response.middle_name);
+                   console.log(newDate);
+                   console.log(yyyymmdd_to_mmmdyyyy(newDate));
+           
+                $('#e_first_name').val(response.first_name);
+                $('#e_last_name').val(response.last_name);
+                $('#e_birthdate').val(newDate);
+                $('#e_age').val(response.age);
+                $('#e_gender').val(response.gender);
+                $('#e_contact').val(response.contact_number);
+                $('#e_email').val(response.email_address);
+                $('#e_number').val(response.contact_number);
+
+              if(response.gender === "Male"){
+                $('#e_male').prop("checked" , true);
+               
+              }else{
+                $('#e_female').prop("checked" , true);
+              }
+
+                $('#editCoordinatorModal').modal('show');
             
             }
      
@@ -500,17 +686,21 @@
     // keyboard: false  // to prevent closing with Esc button (if you want this too)
     // });
 
-    $("#createAccountModal").modal({
+    $("#createCoordinatorModal").modal({
         show: false,
         backdrop: 'static'
     });
 
     $("#hitme").click(function(){
-        $("#createAccountModal").modal('show');
+        $("#createCoordinatorModal").modal('show');
+    });
+
+    $("#ehide-modal").click(function(){
+        $("#editCoordinatorModal").modal('hide');
     });
 
     $("#hide-modal").click(function(){
-        $("#createAccountModal").modal('hide');
+        $("#createCoordinatorModal").modal('hide');
     });
 
 
@@ -532,7 +722,7 @@
             }).then((result) => {
         if (result.isConfirmed) {
           
-            $('#createAccountModal')[0].reset();
+            $('#createCoordinatorModal')[0].reset();
         }
     });
 
@@ -562,7 +752,7 @@
             }).then((result) => {
         if (result.isConfirmed) {
           
-            $('#editAccountModal').modal('show');
+            $('#editCoordinatorModal').modal('show');
         }
     });
 
@@ -580,13 +770,15 @@
             }).then((result) => {
         if (result.isConfirmed) {
           
-            $('#createAccountModal').modal('show');
+            $('#createCoordinatorModal').modal('show');
         }
     });
 
         </script>
 @endif
 
+
+@include('sweetalert::alert')
 
 </body>
 

@@ -21,6 +21,9 @@
         .button-image1{
     cursor: pointer;
         }
+        .button-image2{
+    cursor: pointer;
+        }
     </style>
 
 </head>
@@ -160,7 +163,7 @@
                             <th style="display:none">ID</th>
                             <th>Account</th>
                             <th>Region</th>
-                            <th>Account Branch</th>
+                            <th>Store</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -177,7 +180,82 @@
     </main>
     <!-- end: Main -->
 
-    <!-- View user modal -->
+    <!-- Edit door modal -->
+<div class="modal fade" id="editDoorModal" name = "editDoorModal" tabindex="-1" role="dialog" aria-labelledby="viewDoorModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editDoorModalLabel">Edit Details</h5>
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button> -->
+
+      </div>
+      <div class="modal-body">
+        <form action="{{route('accountsupervisor.door-list.update-account')}}" method="POST">
+        @csrf
+      <div class="row">
+          <div class="form-group col-md-6">
+            <label for="e_account" class="col-form-label">Account:</label>
+            <p class="h6" id="e_account" name="e_account"></p>
+          </div>    
+       
+
+         <div class="form-group col-md-6">
+            <label for="e_region" class="col-form-label">Region:</label>
+            <p class="h6" id="e_region" name="e_region"></p>
+          </div> 
+        </div> 
+        
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label for="e_area" class="col-form-label">Area:</label>
+            <p class="h6" id="e_area" name="e_area"></p>
+          </div>    
+       
+
+         <div class="form-group col-md-6">
+            <label for="e_store_name" class="col-form-label">Store name:</label>
+            <p class="h6" id="e_store_name" name="e_store_name"></p>
+          </div> 
+        </div>
+
+        <div class="row">
+         
+          <div class="form-group col-md-6">
+            <label for="e_coordinator" class="col-form-label">Coordinator:</label>
+            <select class="form-control" id="e_coordinator" name="e_coordinator">
+            <option  value="" >---Select Coordinator---</option>
+              @foreach ($coordinator_array as $id => $value)
+              <option value="{{ $id }}">{{ $value }}</option>
+                @endforeach
+            </select>
+          </div>  
+
+          <div class="form-group col-md-6">
+            <label for="e_type_of_deployment" class="col-form-label">Type of Deployment:</label>
+            <p class="h6" id="e_type_of_deployment" name="e_type_of_deployment"></p>
+          </div> 
+    
+        </div>
+
+        <input type ="hidden" name="selectedID" id="selectedID">
+    
+        <!-- <div class="border-top my-3"></div> -->
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="ehide-modal">Close</button>
+            <button type="submit" class="btn btn-primary">Update</button>
+        </div>
+        </form>
+        </div>
+     </div>
+    </div>
+    </div>
+    
+
+
+     <!-- View door modal -->
 <div class="modal fade" id="viewDoorModal" name = "viewDoorModal" tabindex="-1" role="dialog" aria-labelledby="viewDoorModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
@@ -211,12 +289,17 @@
        
 
          <div class="form-group col-md-6">
-            <label for="v_account_branch" class="col-form-label">Account Branch:</label>
-            <p class="h6" id="v_account_branch" name="v_account_branch"></p>
+            <label for="v_store_name" class="col-form-label">Store name:</label>
+            <p class="h6" id="v_store_name" name="v_store_name"></p>
           </div> 
         </div>
 
         <div class="row">
+          <div class="form-group col-md-6">
+            <label for="v_coordinator" class="col-form-label">Coordinator:</label>
+            <p class="h6" id="v_coordinator" name="v_coordinator"></p>
+          </div>    
+
           <div class="form-group col-md-6">
             <label for="v_type_of_deployment" class="col-form-label">Type of Deployment:</label>
             <p class="h6" id="v_type_of_deployment" name="v_type_of_deployment"></p>
@@ -262,7 +345,7 @@
                 { data:  'id', visible: false },
                 { data: 'account' },
                 { data: 'region' },
-                { data: 'account_branch' }, 
+                { data: 'store_name' }, 
                 { data: 'actions', orderable: false }
             ]
         });
@@ -282,21 +365,67 @@
             },   
             success: function(response){
                 // response = JSON.parse(response);
+              
                 $('#v_account').text(response.account);
                 $('#v_region').text(response.region);
                 $('#v_area').text(response.area);
-                $('#v_account_branch').text(response.account_branch);
+                $('#v_store_name').text(response.store_name);
                 $('#v_type_of_deployment').text(response.type_of_deployment);
+                $('#v_coordinator').text(response.get_name);
 
                 $('#viewDoorModal').modal('show');
             
             }
      
-        })
-     });
+            })
+        });
+
+        $('#door tbody').on('click', 'img.button-image2', function (e) {
+        e.preventDefault();
+
+            var selectedRowData = dataTable.row($(this).closest('tr')).data();
+            var id = selectedRowData.id;
+            $.ajax({
+            url: '/accountsupervisor/door/list/retrieve-update/' + id ,
+            type: 'GET', 
+            dataType: 'JSON',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },   
+            success: function(response){
+                // response = JSON.parse(response);
+
+                $('#selectedID').val(id);
+            
+                $('#e_account').text(response.account);
+                $('#e_region').text(response.region);
+                $('#e_area').text(response.area);
+                $('#e_store_name').text(response.store_name);
+                $('#e_type_of_deployment').text(response.type_of_deployment);
+
+             
+
+                if(response.coordinator_id === null){
+                    $('#e_coordinator').val(0);
+               
+                }else{
+                $('#e_coordinator').val(response.coordinator_id);
+                }
+             
+             
+                $('#editDoorModal').modal('show');
+            
+            }
+     
+            })
+        }); 
 
         $("#vhide-modal").click(function(){
-        $("#viewDoorModal").modal('hide');
+            $("#viewDoorModal").modal('hide');
+        });
+        $("#ehide-modal").click(function(){
+            $("#editDoorModal").modal('hide');
         });
     });
     </script>
