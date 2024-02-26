@@ -15,6 +15,7 @@ use App\Http\Controllers\Merchandiser\MerchandiserMenuController;
 use App\Http\Controllers\AccountSupervisor\AccountSupervisorController;
 use App\Http\Controllers\AccountSupervisor\AccountSupervisorDoorListController;
 use App\Http\Controllers\AccountSupervisor\AccountSupervisorCoordinatorListController;
+use App\Http\Controllers\Accountsupervisor\AccountSupervisorMerchandiserListController;
 
 
 
@@ -195,11 +196,19 @@ Route::middleware([PayrollHead::class])->group(function(){
 Route::middleware([PayrollOfficer::class])->group(function(){
     Route::get('/payrollofficer/dashboard', [PayrollOfficerController::class, 'view_dashboard'])->name('payrollofficer.view.dashboard');
 });
-
+//* Account Supervisor
 Route::middleware([AccountSupervisor::class])->group(function(){
     Route::get('/accountsupervisor/dashboard', [AccountSupervisorController::class, 'view_dashboard'])->name('accountsupervisor.view.dashboard');
     Route::get('/accountsupervisor/door', [AccountSupervisorController::class, 'view_door'])->name('accountsupervisor.view.door');
     Route::get('/accountsupervisor/coordinator', [AccountSupervisorController::class, 'view_coordinator'])->name('accountsupervisor.view.coordinator');
+    Route::get('/accountsupervisor/merchandiser', [AccountSupervisorController::class, 'view_merchandiser'])->name('accountsupervisor.view.merchandiser');
+
+    //Merchandiser fuctions
+    Route::get('/accountsupervisor/merchandiser-list/fetch-data', [AccountSupervisorMerchandiserListController::class, 'fetchData']);
+    Route::post('/accountsupervisor/merchandiser/list/register-account', [AccountSupervisorMerchandiserListController::class, 'saveAccount'])->name('accountsupervisor.merchandiser-list.register');
+    Route::post('/accountsupervisor/merchandiser/list/update-account', [AccountSupervisorMerchandiserListController::class, 'updateAccount'])->name('accountsupervisor.merchandiser-list.update-account');
+    Route::get('/accountsupervisor/merchandiser/list/retrieve-update/{id}', [AccountSupervisorMerchandiserListController::class, 'getUpdateData'])->name('accountsupervisor.merchandiser-list.retrieve-update');
+    Route::get('/accountsupervisor/merchandiser/list/retrieve-view/{id}', [AccountSupervisorMerchandiserListController::class, 'getViewData'])->name('accountsupervisor.merchandiser-list.retrieve-view');
 
     //Door Functions
     Route::get('/accountsupervisor/door-list/fetch-data', [AccountSupervisorDoorListController::class, 'fetchData']);
@@ -214,6 +223,7 @@ Route::middleware([AccountSupervisor::class])->group(function(){
     Route::post('/accountsupervisor/coordinator/list/update-account', [AccountSupervisorCoordinatorListController::class, 'updateAccount'])->name('accountsupervisor.coordinator-list.update-account');
     Route::get('/accountsupervisor/coordinator/list/retrieve-update/{id}', [AccountSupervisorCoordinatorListController::class, 'getUpdateData'])->name('accountsupervisor.coordinator-list.retrieve-update');
     Route::get('/accountsupervisor/coordinator/list/retrieve-view/{id}', [AccountSupervisorCoordinatorListController::class, 'getViewData'])->name('accountsupervisor.coordinator-list.retrieve-view');
+
 
 });
 

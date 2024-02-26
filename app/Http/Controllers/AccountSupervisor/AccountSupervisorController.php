@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Coordinator;
+use App\Models\Merchandiser;
 
 use Session;
 use DB;
@@ -50,6 +51,12 @@ class AccountSupervisorController extends Controller
     public function view_coordinator(){
 
         return view('accountsupervisor.coordinator');
+
+    }
+
+    public function view_merchandiser(){
+
+        return view('accountsupervisor.merchandiser');
 
     }
 
