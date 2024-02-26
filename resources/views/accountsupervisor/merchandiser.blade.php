@@ -47,12 +47,12 @@
                     <i class="ri-store-line sidebar-menu-item-icon"></i>Doors
                 </a>
             </li>
-            <li class="sidebar-menu-item active">
+            <li class="sidebar-menu-item ">
                 <a href="{{ route('accountsupervisor.view.coordinator') }}">
                     <i class="ri-account-pin-box-line sidebar-menu-item-icon"></i>Coordinator
                 </a>
             </li>
-            <li class="sidebar-menu-item">
+            <li class="sidebar-menu-item active">
                 <a href="{{ route('accountsupervisor.view.merchandiser') }}">
                     <i class="ri-account-pin-box-line sidebar-menu-item-icon"></i>Merchandiser
                 </a>
@@ -114,7 +114,7 @@
             <!-- start: Navbar -->
             <nav class="px-3 py-2 bg-white rounded shadow-sm">
                 <i class="ri-menu-line sidebar-toggle me-3 d-block d-md-none"></i>
-                <h5 class="fw-bold mb-0 me-auto">COORDINATOR</h5>
+                <h5 class="fw-bold mb-0 me-auto">MERCHANDISER</h5>
                 <div class="dropdown me-3 d-none d-sm-block">
                     <div class="cursor-pointer dropdown-toggle navbar-link" data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -157,7 +157,7 @@
             <div class="card">
              <div class="card-header">
 
-            <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#createCoordinatorModal" id="hitme" name="hitme">
+            <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#createMerchandiserModal" id="hitme" name="hitme">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
                     <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0"/>
                 </svg>
@@ -167,9 +167,9 @@
 
                 
             <div class="card-body">
-            <h5 class="card-title">Coordinator List</h5>
+            <h5 class="card-title">Merchandiser List</h5>
             <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
-                <table id="coordinator" class="table table-hover" style="width:100%">
+                <table id="merchandiser" class="table table-hover" style="width:100%">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -192,18 +192,18 @@
      </main>
     <!-- end: Main -->
 
-     <!-- edit coordinator modal -->
- <div class="modal fade" id="editCoordinatorModal" name ="editCoordinatorModal" tabindex="-1" role="dialog"  aria-labelledby="editCoordinatorModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+     <!-- edit merchandiser modal -->
+ <div class="modal fade" id="editMerchandiserModal" name ="editMerchandiserModal" tabindex="-1" role="dialog"  aria-labelledby="editMerchandiserModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="editCoordinatorModalLabel">Edit Coordinator Details</h5>
+        <h5 class="modal-title" id="editMerchandiserModalLabel">Edit Merchandiser Details</h5>
         <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button> -->
       </div>
       <div class="modal-body">
-        <form action="{{route('accountsupervisor.coordinator-list.update-account')}}" method="POST">
+        <form action="{{route('accountsupervisor.merchandiser-list.update-account')}}" method="POST">
     @csrf
     @if (session('update-failed'))
 
@@ -271,15 +271,26 @@
     
     <div class="row">
 
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
             <label for="e_number" class="col-form-label">Contact Number:</label>
             <input type="text" class="form-control" id="e_number" name="e_number" value="{{ old('e_number') }}"  oninput='setCustomValidity(value.length < 11 ? "Number must be at least 11 digits long." : "")' onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="11" value="{{ old('number') }}" required>
         </div> 
 
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
             <label for="e_email" class="col-form-label">Email Address:</label>
             <input type="email" class="form-control" id="e_email" name = "e_email" value="{{ old('e_email') }}" required>
-        </div>  
+        </div>
+        
+        
+        <div class="form-group col-md-4">
+            <label for="e_status" class="col-form-label">Status:</label>
+            <select class="form-select" id="e_status" name="e_status">
+            <option  value="">---Select Status---</option>
+                <option  value="1" @if(old('e_status') == "active") {{'selected'}} @endif>active</option>
+                <option  value="0" @if(old('e_status') == "inactive") {{'selected'}} @endif>inactive</option>
+            </select>
+          </div> 
+        
     
     </div>
         
@@ -299,18 +310,18 @@
 </div>
 
 
- <!-- create coordinator modal -->
- <div class="modal fade" id="createCoordinatorModal" name = "createCoordinatorModal" tabindex="-1" role="dialog"  aria-labelledby="createCoordinatorModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+ <!-- create merchandiser modal -->
+ <div class="modal fade" id="createMerchandiserModal" name = "createMerchandiserModal" tabindex="-1" role="dialog"  aria-labelledby="createMerchandiserModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="createCoordinatorModalLabel">New Coordinator</h5>
+        <h5 class="modal-title" id="createMerchandiserModalLabel">New Merchandiser</h5>
         <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button> -->
       </div>
       <div class="modal-body">
-        <form action="{{route('accountsupervisor.coordinator-list.register')}}" method="POST">
+        <form action="{{route('accountsupervisor.merchandiser-list.register')}}" method="POST">
     @csrf
     @if (session('create-failed'))
 
@@ -408,8 +419,8 @@
 
 
 
-    <!-- View coordinator modal -->
-<div class="modal fade" id="viewCoordinatorModal" name = "viewCoordinatorModal" tabindex="-1" role="dialog" aria-labelledby="viewCoordinatorModalLabel" aria-hidden="true">
+    <!-- View user modal -->
+<div class="modal fade" id="viewMerchandiserModal" name = "viewMerchandiserModal" tabindex="-1" role="dialog" aria-labelledby="viewMerchandiserModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -469,11 +480,11 @@
             <label for="v_email" class="col-form-label">Email:</label>
             <p class="h6" id="v_email" name="v_email"></p>
          </div> 
-         
+
          <div class="form-group col-md-4">
-            <label for="v_store_name" class="col-form-label">Store Count:</label>
-            <p class="h6" id="v_store_name" name="v_store_name"></p>
-         </div> 
+            <label for="v_status" class="col-form-label">Status:</label>
+            <p class="h6" id="v_status" name="v_status"></p>     
+         </div>
 
         </div>
             
@@ -568,9 +579,9 @@
 
         });
 
-        var dataTable = $('#coordinator').DataTable({
+        var dataTable = $('#merchandiser').DataTable({
             ajax: {
-                url: '/accountsupervisor/coordinator-list/fetch-data',
+                url: '/accountsupervisor/merchandiser-list/fetch-data',
                 dataSrc: 'data'
             },
             columns: [
@@ -592,13 +603,13 @@
          });
         }
 
-        $('#coordinator tbody').on('click', 'img.button-image1', function (e) {
+        $('#merchandiser tbody').on('click', 'img.button-image1', function (e) {
         e.preventDefault();
 
             var selectedRowData = dataTable.row($(this).closest('tr')).data();
             var id = selectedRowData.id;
             $.ajax({
-            url: '/accountsupervisor/coordinator/list/retrieve-view/' + id ,
+            url: '/accountsupervisor/merchandiser/list/retrieve-view/' + id ,
             type: 'GET', 
             dataType: 'JSON',
             headers: {
@@ -627,9 +638,16 @@
                 $('#v_contact').text(response.contact_number);
                 $('#v_email').text(response.email_address);
                 $('#v_store_name').text(response.store_name);
-                $('#v_type_of_deployment').text(response.type_of_deployment);
+                $('#v_status').text(response.is_active);
 
-                $('#viewCoordinatorModal').modal('show');
+                $('#viewMerchandiserModal').modal('show');
+
+                if(response.is_active === 1){
+                $('#v_status').text("active");
+               
+              }else{
+                $('#v_status').text("inactive");
+              }
             
             }
      
@@ -637,13 +655,13 @@
      });
 
 
-     $('#coordinator tbody').on('click', 'img.button-image2', function (e) {
+     $('#merchandiser tbody').on('click', 'img.button-image2', function (e) {
         e.preventDefault();
 
             var selectedRowData = dataTable.row($(this).closest('tr')).data();
             var id = selectedRowData.id;
             $.ajax({
-            url: '/accountsupervisor/coordinator/list/retrieve-update/' + id , 
+            url: '/accountsupervisor/merchandiser/list/retrieve-update/' + id , 
             type: 'GET', 
             dataType: 'JSON',
             headers: {
@@ -669,6 +687,7 @@
                 $('#e_contact').val(response.contact_number);
                 $('#e_email').val(response.email_address);
                 $('#e_number').val(response.contact_number);
+                $('#e_status').val(response.is_active);
 
               if(response.gender === "Male"){
                 $('#e_male').prop("checked" , true);
@@ -677,8 +696,9 @@
                 $('#e_female').prop("checked" , true);
               }
 
-                $('#editCoordinatorModal').modal('show');
+                $('#editMerchandiserModal').modal('show');
             
+                
             }
      
         })
@@ -690,26 +710,26 @@
     // keyboard: false  // to prevent closing with Esc button (if you want this too)
     // });
 
-    $("#createCoordinatorModal").modal({
+    $("#createMerchandiserModal").modal({
         show: false,
         backdrop: 'static'
     });
 
     $("#hitme").click(function(){
-        $("#createCoordinatorModal").modal('show');
+        $("#createMerchandiserModal").modal('show');
     });
 
     $("#ehide-modal").click(function(){
-        $("#editCoordinatorModal").modal('hide');
+        $("#editMerchandiserModal").modal('hide');
     });
 
     $("#hide-modal").click(function(){
-        $("#createCoordinatorModal").modal('hide');
+        $("#createMerchandiserModal").modal('hide');
     });
 
 
     $("#vhide-modal").click(function(){
-        $("#viewCoordinatorModal").modal('hide');
+        $("#viewMerchandiserModal").modal('hide');
     });
   });
     </script>
@@ -726,7 +746,7 @@
             }).then((result) => {
         if (result.isConfirmed) {
           
-            $('#createCoordinatorModal')[0].reset();
+            $('#createMerchandiserModal')[0].reset();
         }
     });
 
@@ -756,7 +776,7 @@
             }).then((result) => {
         if (result.isConfirmed) {
           
-            $('#editCoordinatorModal').modal('show');
+            $('#editMerchandiserModal').modal('show');
         }
     });
 
@@ -774,7 +794,7 @@
             }).then((result) => {
         if (result.isConfirmed) {
           
-            $('#createCoordinatorModal').modal('show');
+            $('#createMerchandiserModal').modal('show');
         }
     });
 
