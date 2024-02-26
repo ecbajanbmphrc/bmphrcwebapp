@@ -11,6 +11,8 @@ use App\Http\Controllers\Auth\RegistrationController;
 use App\Http\Controllers\User\UserMenuController;
 use App\Http\Controllers\Merchandiser\MerchandiserMenuController;
 
+use App\Http\Controllers\UserExportController;
+
 // Account Supervisor
 use App\Http\Controllers\AccountSupervisor\AccountSupervisorController;
 use App\Http\Controllers\AccountSupervisor\AccountSupervisorDoorListController;
@@ -69,6 +71,8 @@ use App\Http\Middleware\Treasury;
 //Route::get('/login', LandingController::class . '@login')->name('auth.login');
 
 //Route::get('/login', [LoginController::class, 'index']);
+
+Route::get('users/export/', [UserExportController::class, 'export']);
 
 Route::post('/login_user', [LoginController::class, 'login_user'])->name('login_user');
 
