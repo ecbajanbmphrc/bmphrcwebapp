@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
     <html lang="en">
 
     <head>
@@ -119,7 +119,7 @@
                 <!-- start: Navbar -->
                 <nav class="px-3 py-2 bg-white rounded shadow-sm">
                     <i class="ri-menu-line sidebar-toggle me-3 d-block d-md-none"></i>
-                    <h5 class="fw-bold mb-0 me-auto">MERCHANDISER</h5>
+                    <h5 class="fw-bold mb-0 me-auto">MANNING</h5>
                     <div class="dropdown me-3 d-none d-sm-block">
                         <div class="cursor-pointer dropdown-toggle navbar-link" data-bs-toggle="dropdown"
                             aria-expanded="false">
@@ -172,7 +172,7 @@
 
                     
                 <div class="card-body">
-                <h5 class="card-title">Merchandiser List</h5>
+                <h5 class="card-title">Manning   List</h5>
                 <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
                     <table id="merchandiser" class="table table-hover" style="width:100%">
                         <thead>
@@ -230,7 +230,7 @@
             </div>    
             
             <div class="form-group col-md-4">
-                <label for="e_middle_name" class="col-form-label">Middle Name:</label>
+                <label for="e_middle_name" class="col-form-label">Middle Name: *</label>
                 <input type="text" class="form-control" id="e_middle_name" name="e_middle_name" value="{{ old('e_middle_name') }}">
             </div>
 
@@ -333,12 +333,12 @@
         <div class="row">
 
             <div class="form-group col-md-3">
-                <label for="e_total_days" class="col-form-label">Total Days: </label>
+                <label for="e_total_days" class="col-form-label">Total Days: *</label>
                 <input type="text" class="form-control" id="e_total_days" name="e_total_days" readonly>
             </div>
 
             <div class="form-group col-md-3">
-                <label for="e_remaining_days" class="col-form-label">Remaining Days: </label>
+                <label for="e_remaining_days" class="col-form-label">Remaining Days: *</label>
                 <input type="text" class="form-control" id="e_remaining_days" name="e_remaining_days" readonly>
             </div>
 
@@ -413,7 +413,7 @@
             </div>        
             
             <div class="form-group col-md-4">
-                <label for="c_middle_name" class="col-form-label">Middle Name: </label>
+                <label for="c_middle_name" class="col-form-label">Middle Name: *</label>
                 <input type="text" class="form-control" id="c_middle_name" name="c_middle_name" value="{{ old('c_middle_name') }}" >
             </div>
 
@@ -515,12 +515,12 @@
         <div class="row">
             
             <div class="form-group col-md-4">   
-                <label for="c_total_days" class="col-form-label">Total Days: </label>
+                <label for="c_total_days" class="col-form-label">Total Days: *</label>
                 <input type="text" class="form-control" id="c_total_days" name="c_total_days" readonly>
             </div>
 
             <div class="form-group col-md-4">
-                <label for="c_remaining_days" class="col-form-label">Remaining days: </label>
+                <label for="c_remaining_days" class="col-form-label">Remaining days: *</label>
                 <input type="text" class="form-control" id="c_remaining_days" name="c_remaining_days" readonly>
             </div>
 
@@ -728,44 +728,6 @@
                 maxDate: 0
             });
 
-            $("#c_date_started").change(function(){
-
-            var gettimeDs = new Date($('#c_date_started').val()).getTime();    
-    
-            var gettimeDe = new Date($('#c_end_of_contract').val()).getTime();
-
-            var today = new Date().getTime(); 
-
-            var total_days = Math.floor((gettimeDe-gettimeDs) / (365 * 24  * 10000));
-
-            $('#c_total_days').val(total_days);
-
-
-            });
-
-            $("#c_end_of_contract").change(function(){
-
-             var gettimeDs = new Date($('#c_date_started').val()).getTime();    
-    
-            var gettimeDe = new Date($('#c_end_of_contract').val()).getTime();
-
-            var today = new Date().getTime(); 
-
-
-            var total_days = Math.floor((gettimeDe-gettimeDs) / (365 * 24  * 10000));
-
-            var remaining_days = Math.floor((gettimeDe-today) / (365 * 24  * 10000));
-
-
-
-
-            $('#c_remaining_days').val(remaining_days);
-
-            $('#c_total_days').val(total_days);
-
-
-            });
-
             $("#c_birthdate").change(function(){
 
             var birthDate = $('#c_birthdate').val();    
@@ -777,6 +739,8 @@
             var age = Math.floor((today-bday) / (365.25 * 24 * 60 * 60 * 1000));
 
             $('#c_age').val(age);
+
+        // console.log(age);
 
 
             });
@@ -899,23 +863,24 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },   
                 success: function(response){
-              
+                
+                //  var date = new Date(response.birthdate).toLocaleDateString()
+                    // response = JSON.parse(response);
                     var newDate = new Date(response.birthdate).toLocaleDateString()
                     var newDateDs = new Date(response.date_started).toLocaleDateString()
-                    var newDateDe = new Date(response.end_of_contract).toLocaleDateString()
+                    var newDateEc = new Date(response.end_of_contract).toLocaleDateString()
 
-                    gettimeDs = new Date(newDateDs).getTime();
-                    gettimeDe = new Date(newDateDe).getTime();
+                    var gettimeDs = new Date(newDateDs).getTime();
+                    var gettimeEc = new Date(newDateEc).getTime();
 
-                    gettimeTd = new Date().getTime();
 
-                    var total_days = Math.floor((gettimeDe-gettimeDs) / (365 * 24  * 10000));
+              
 
-                    var remaining_days = Math.floor((gettimeDe-gettimeTd) / (365 * 24  * 10000));
+                        
+                        var remaining_days = Math.floor((gettimeEc-gettimeDs) / (365 * 24  * 10000));
+                     
 
-                    if (remaining_days < 0){
-                        remaining_days = 0;
-                    }
+                        //(365.25 * 24 * 60 * 1000));
                     
 
                     if(response.middle_name !== null){
@@ -937,8 +902,8 @@
                     $('#v_date_started').text(mddyyyy_to_mmmdyyyy(newDate));
                     $('#v_end_of_contract').text(mddyyyy_to_mmmdyyyy(newDate));
                     $('#v_remarks').text(response.remarks);
-                    $('#v_total_days').text(total_days);
-                    $('#v_remaining_days').text(remaining_days);
+                    $('#v_total_days').text(response.total_days);
+                    $('#v_remaining_days').text(response.remaining_days);
                     $('#v_store_name').text(response.store_name);
                     $('#v_status').text(response.is_active);
 
@@ -989,10 +954,6 @@
                     var total_days = Math.floor((gettimeDe-gettimeDs) / (365 * 24  * 10000));
 
                     var remaining_days = Math.floor((gettimeDe-gettimeTd) / (365 * 24  * 10000));
-
-                    if (remaining_days < 0){
-                        remaining_days = 0;
-                    }
                 
                     
                     $('#selectedId').val(id);

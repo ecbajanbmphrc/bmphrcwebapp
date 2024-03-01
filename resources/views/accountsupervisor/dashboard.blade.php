@@ -38,7 +38,7 @@
             </li>
             <li class="sidebar-menu-item">
                 <a href="{{ route('accountsupervisor.view.coordinator') }}">
-                    <i class="ri-account-pin-box-line sidebar-menu-item-icon"></i>Coordinator
+                    <i class="ri-account-pin-circle-line sidebar-menu-item-icon"></i>Coordinator
                 </a>
             </li>
             <li class="sidebar-menu-item">
@@ -46,9 +46,14 @@
                     <i class="ri-account-pin-box-line sidebar-menu-item-icon"></i>Merchandiser
                 </a>
             </li>
+            <li class="sidebar-menu-item">
+                <a href="{{ route('accountsupervisor.view.manning') }}">
+                    <i class="ri-file-user-line sidebar-menu-item-icon"></i>Manning
+                </a>
+            </li>
             <li class="sidebar-menu-item has-dropdown">
                 <a href="#">
-                    <i class="ri-pages-line sidebar-menu-item-icon"></i>Researve Page
+                    <i class="ri-pages-line sidebar-menu-item-icon"></i>Reserve Page
                     <i class="ri-arrow-down-s-line sidebar-menu-item-accordion ms-auto"></i>
                 </a>
                 <ul class="sidebar-dropdown-menu">
@@ -148,20 +153,20 @@
                         <a href="#"
                             class="text-dark text-decoration-none bg-white p-3 rounded shadow-sm d-flex justify-content-between summary-primary">
                             <div>
-                                <i class="ri-shopping-cart-2-line summary-icon bg-primary mb-2"></i>
-                                <div>Lorem</div>
+                                <i class="ri-team-line summary-icon bg-primary mb-2"></i>
+                                <div>Merchandiser</div>
                             </div>
-                            <h4>Lorem</h4>
+                            <h4>{{$merchandiser_count}}</h4>
                         </a>
                     </div>
                     <div class="col-12 col-sm-6 col-lg-3">
                         <a href="#"
                             class="text-dark text-decoration-none bg-white p-3 rounded shadow-sm d-flex justify-content-between summary-indigo">
                             <div>
-                                <i class="ri-shopping-cart-2-line summary-icon bg-indigo mb-2"></i>
-                                <div>Lorem</div>
+                                <i class="ri-store-line summary-icon bg-indigo mb-2"></i>
+                                <div>Store Count</div>
                             </div>
-                            <h4>Lorem</h4>
+                            <h4>{{$store_count}}</h4>
                         </a>
                     </div>
                     <div class="col-12 col-sm-6 col-lg-3">
@@ -169,9 +174,9 @@
                             class="text-dark text-decoration-none bg-white p-3 rounded shadow-sm d-flex justify-content-between summary-success">
                             <div>
                                 <i class="ri-shopping-cart-2-line summary-icon bg-success mb-2"></i>
-                                <div>Lorem</div>
+                                <div>Coordinator</div>
                             </div>
-                            <h4>Lorem</h4>
+                            <h4>{{$coordinator_count}}</h4>
                         </a>
                     </div>
                     <div class="col-12 col-sm-6 col-lg-3">
