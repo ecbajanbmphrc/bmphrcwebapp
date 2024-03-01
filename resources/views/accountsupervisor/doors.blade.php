@@ -49,7 +49,7 @@
             </li>
             <li class="sidebar-menu-item">
                 <a href="{{ route('accountsupervisor.view.coordinator') }}">
-                    <i class="ri-account-pin-box-line sidebar-menu-item-icon"></i>Coordinator
+                    <i class="ri-account-pin-circle-line sidebar-menu-item-icon"></i>Coordinator
                 </a>
             </li>
             <li class="sidebar-menu-item">
@@ -57,9 +57,14 @@
                     <i class="ri-account-pin-box-line sidebar-menu-item-icon"></i>Merchandiser
                 </a>
             </li>
+            <li class="sidebar-menu-item">
+                <a href="{{ route('accountsupervisor.view.manning') }}">
+                    <i class="ri-file-user-line sidebar-menu-item-icon"></i>Manning
+                </a>
+            </li>
             <li class="sidebar-menu-item has-dropdown">
                 <a href="#">
-                    <i class="ri-pages-line sidebar-menu-item-icon"></i>Researve Page
+                    <i class="ri-pages-line sidebar-menu-item-icon"></i>Reserve Page
                     <i class="ri-arrow-down-s-line sidebar-menu-item-accordion ms-auto"></i>
                 </a>
                 <ul class="sidebar-dropdown-menu">

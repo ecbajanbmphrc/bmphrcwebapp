@@ -206,6 +206,8 @@ Route::middleware([AccountSupervisor::class])->group(function(){
     Route::get('/accountsupervisor/door', [AccountSupervisorController::class, 'view_door'])->name('accountsupervisor.view.door');
     Route::get('/accountsupervisor/coordinator', [AccountSupervisorController::class, 'view_coordinator'])->name('accountsupervisor.view.coordinator');
     Route::get('/accountsupervisor/merchandiser', [AccountSupervisorController::class, 'view_merchandiser'])->name('accountsupervisor.view.merchandiser');
+    Route::get('/accountsupervisor/manning', [AccountSupervisorController::class, 'view_manning'])->name('accountsupervisor.view.manning');
+
 
     //Merchandiser fuctions
     Route::get('/accountsupervisor/merchandiser-list/fetch-data', [AccountSupervisorMerchandiserListController::class, 'fetchData']);
