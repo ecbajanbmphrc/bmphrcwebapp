@@ -267,38 +267,6 @@
                                 </div>
                                 <span class="badge bg-primary rounded-pill">14</span>
                             </a>
-                            <a href="#"
-                                class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
-                                <div class="me-auto">
-                                    <div class="fw-semibold">Subheading</div>
-                                    <span class="fs-7">Content for list item</span>
-                                </div>
-                                <span class="badge bg-primary rounded-pill">14</span>
-                            </a>
-                            <a href="#"
-                                class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
-                                <div class="me-auto">
-                                    <div class="fw-semibold">Subheading</div>
-                                    <span class="fs-7">Content for list item</span>
-                                </div>
-                                <span class="badge bg-primary rounded-pill">14</span>
-                            </a>
-                            <a href="#"
-                                class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
-                                <div class="me-auto">
-                                    <div class="fw-semibold">Subheading</div>
-                                    <span class="fs-7">Content for list item</span>
-                                </div>
-                                <span class="badge bg-primary rounded-pill">14</span>
-                            </a>
-                            <a href="#"
-                                class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
-                                <div class="me-auto">
-                                    <div class="fw-semibold">Subheading</div>
-                                    <span class="fs-7">Content for list item</span>
-                                </div>
-                                <span class="badge bg-primary rounded-pill">14</span>
-                            </a>
                         </div>
                     </div>
                 </div>
@@ -322,153 +290,81 @@
             <!-- end: Content -->
         </div>
 
-
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body shadow">
-                            <h2 class="">Employee</h2>
-                            <div class="col-md-6">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="me-3" for="inputAgency">Agency</label>
-                                        <input type="text" class="form-control" id="inputAgency" placeholder="BMPPower">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="" for="inputAgency">Coor</label>
-                                        <input type="text" class="form-control" id="inputRegion" placeholder="BMPPower">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="" for="inputAgency">Account Sup</label>
-                                        <input type="text" class="form-control" id="inputAccountSup" placeholder="BMPPower">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="" for="inputAgency">Region</label>
-                                        <input type="text" class="form-control" id="inputRegion" placeholder="BMPPower">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="" for="inputAgency">Account</label>
-                                        <input type="text" class="form-control" id="inputAccount" placeholder="BMPPower">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="" for="inputAgency">Door</label>
-                                        <input type="text" class="form-control" id="inputDoor" placeholder="BMPPower">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="" for="inputAgency">Area</label>
-                                        <input type="text" class="form-control" id="inputArea" placeholder="BMPPower">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="" for="inputAgency">TF</label>
-                                        <input type="text" class="form-control" id="inputTF" placeholder="BMPPower">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="" for="inputAgency">ON</label>
-                                        <input type="text" class="form-control" id="inputON" placeholder="BMPPower">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="" for="inputAgency">Branch Name</label>
-                                        <input type="text" class="form-control" id="inputBranchName" placeholder="BMPPower">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="" for="inputAgency">HC</label>
-                                        <input type="text" class="form-control" id="inputHC" placeholder="BMPPower">
-                                    </div>
-                                </div>
-                                <h2 class="">Employee</h2>
-                                <div class="col-md-6">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="me-3" for="inputAgency">Agency</label>
-                                            <input type="text" class="form-control" id="inputAgency" placeholder="BMPPower">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="" for="inputAgency">Coor</label>
-                                            <input type="text" class="form-control" id="inputRegion" placeholder="BMPPower">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="" for="inputAgency">Account Sup</label>
-                                            <input type="text" class="form-control" id="inputAccountSup" placeholder="BMPPower">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="" for="inputAgency">Region</label>
-                                            <input type="text" class="form-control" id="inputRegion" placeholder="BMPPower">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="" for="inputAgency">Account</label>
-                                            <input type="text" class="form-control" id="inputAccount" placeholder="BMPPower">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="" for="inputAgency">Door</label>
-                                            <input type="text" class="form-control" id="inputDoor" placeholder="BMPPower">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="" for="inputAgency">Area</label>
-                                            <input type="text" class="form-control" id="inputArea" placeholder="BMPPower">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="" for="inputAgency">TF</label>
-                                            <input type="text" class="form-control" id="inputTF" placeholder="BMPPower">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="" for="inputAgency">ON</label>
-                                            <input type="text" class="form-control" id="inputON" placeholder="BMPPower">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="" for="inputAgency">Branch Name</label>
-                                            <input type="text" class="form-control" id="inputBranchName" placeholder="BMPPower">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="" for="inputAgency">HC</label>
-                                            <input type="text" class="form-control" id="inputHC" placeholder="BMPPower">
-                                        </div>
+                    <!-- start: Content -->
+                    <div class="py-4">
+                <!-- start: Summary -->
+                <div class="row g-3">
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        <a href="#"
+                            class="text-dark text-decoration-none bg-white p-3 rounded shadow-sm d-flex justify-content-between summary-primary">
+                            <div>
+                                <i class="ri-shopping-cart-2-line summary-icon bg-primary mb-2"></i>
+                                <div>Sales</div>
+                            </div>
+                            <h4>$435</h4>
+                        </a>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        <a href="#"
+                            class="text-dark text-decoration-none bg-white p-3 rounded shadow-sm d-flex justify-content-between summary-indigo">
+                            <div>
+                                <i class="ri-shopping-cart-2-line summary-icon bg-indigo mb-2"></i>
+                                <div>Sales</div>
+                            </div>
+                            <h4>$435</h4>
+                        </a>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        <a href="#"
+                            class="text-dark text-decoration-none bg-white p-3 rounded shadow-sm d-flex justify-content-between summary-success">
+                            <div>
+                                <i class="ri-shopping-cart-2-line summary-icon bg-success mb-2"></i>
+                                <div>Sales</div>
+                            </div>
+                            <h4>$435</h4>
+                        </a>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        <a href="#"
+                            class="text-dark text-decoration-none bg-white p-3 rounded shadow-sm d-flex justify-content-between summary-danger">
+                            <div>
+                                <i class="ri-shopping-cart-2-line summary-icon bg-danger mb-2"></i>
+                                <div>Sales</div>
+                            </div>
+                            <h4>$435</h4>
+                        </a>
+                    </div>
+                </div>
+                <!-- end: Summary -->
+                <!-- start: Graph -->
+                <div class="row g-3 mt-2">
+                    <div class="col-12 col-md-7 col-xl-8">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-header bg-white">
+                                Sales
+                            </div>
+                            <div class="card-body">
+                                <canvas id="sales-chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-5 col-xl-4">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-header bg-white">
+                                Visitors
+                            </div>
+                            <div class="card-body">
+                                <canvas id="visitors-chart"></canvas>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- end: Graph -->
             </div>
-        </div>
+            <!-- end: Content -->
+        
 
-
-
-
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-body shadow">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h2 class="">Employee</h2>
-                                    <div class="form-group">
-                                        <label class="me-3" for="inputAgency">Agency</label>
-                                        <input type="text" class="form-control" id="inputAgency" placeholder="BMPPower">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="" for="inputRegion">Coor</label>
-                                        <input type="text" class="form-control" id="inputRegion" placeholder="BMPPower">
-                                    </div>
-                                    <!-- Add other form groups as needed -->
-                                </div>
-    
-                                <div class="col-md-6">
-                                    <h2 class="">Employee</h2>
-                                    <div class="form-group">
-                                        <label class="me-3" for="inputAgency">Agency</label>
-                                        <input type="text" class="form-control" id="inputAgency" placeholder="BMPPower">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="" for="inputRegion">Coor</label>
-                                        <input type="text" class="form-control" id="inputRegion" placeholder="BMPPower">
-                                    </div>
-                                    <!-- Add other form groups as needed -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- -->    
         </div>
     </main>
     <!-- end: Main -->

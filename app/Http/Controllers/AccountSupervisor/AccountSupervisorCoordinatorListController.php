@@ -24,7 +24,7 @@ class AccountSupervisorCoordinatorListController extends Controller
     {
         
         $coordinator = Coordinator::
-        find($id , ['first_name' , 'middle_name' , 'last_name' , 'birthdate' , 'age' , 'contact_number' , 'email_address' , 'gender'])
+        find($id , ['first_name' , 'middle_name' , 'last_name' , 'birthdate' , 'age' , 'address' , 'region' , 'contact_number' , 'email_address' , 'gender'])
         //find($id)
         ->toArray();
         if ($coordinator) {
@@ -131,7 +131,7 @@ class AccountSupervisorCoordinatorListController extends Controller
 
     public function saveAccount(Request $request)
     {
-            //dd($request->all());
+           // dd($request->all());
             $company = session('user')['company_id'];
             $status = 1;
 
@@ -168,6 +168,8 @@ class AccountSupervisorCoordinatorListController extends Controller
                 $coordinator ->birthdate = $newDate;
                 $coordinator ->age = $request->input('c_age');
                 $coordinator ->gender = $request->input('c_gender');
+                $coordinator ->address = $request->input('c_address');
+                $coordinator ->region = $request->input('c_region');
                 $coordinator ->contact_number = $request->input('c_number');
                 $coordinator ->email_address = $request->input('c_email');
                 $coordinator ->company_id = $company;
@@ -227,6 +229,8 @@ class AccountSupervisorCoordinatorListController extends Controller
                   $coordinator ->birthdate = $newDate;
                   $coordinator ->age = $request->input('e_age');
                   $coordinator ->gender = $request->input('e_gender');
+                  $coordinator ->address = $request->input('e_address');
+                  $coordinator ->region = $request->input('e_region');
                   $coordinator ->contact_number = $request->input('e_number');
                   $coordinator ->email_address = $request->input('e_email');
                   $coordinator ->company_id = $company;

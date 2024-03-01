@@ -24,7 +24,7 @@ class AccountSupervisorMerchandiserListController extends Controller
     {
         
         $merchandiser = Merchandiser::
-        find($id , ['first_name' , 'middle_name' , 'last_name' , 'birthdate' , 'age' , 'contact_number' , 'email_address' , 'gender' , 'is_active'])
+        find($id , ['first_name' , 'middle_name' , 'last_name' , 'birthdate' , 'age' , 'contact_number' , 'email_address' , 'gender' , 'address' , 'region' , 'date_started' , 'end_of_contract' , 'remarks' , 'is_active'])
         //find($id)
         ->toArray();
         if ($merchandiser) {
@@ -121,8 +121,6 @@ class AccountSupervisorMerchandiserListController extends Controller
         });
 
         
-
-
         
 
         return response()->json(['data' => $data]);
@@ -131,14 +129,24 @@ class AccountSupervisorMerchandiserListController extends Controller
 
     public function saveAccount(Request $request)
     {
+
+       // dd($request->all());
+
             
             $company = session('user')['company_id'];
             $status = 1;
 
-            $date = $request->c_birthdate;
-        $newDate = Carbon::createFromFormat('m/d/Y', $date)
-                            ->format('Y-m-d');
-            
+            $datebirth = $request->c_birthdate;
+            $newDate = Carbon::createFromFormat('m/d/Y', $datebirth)
+            ->format('Y-m-d');
+
+            $date_started = $request->c_date_started;
+            $newDateDS = Carbon::createFromFormat('m/d/Y', $date_started)
+            ->format('Y-m-d');
+
+            $end_of_contract = $request->c_end_of_contract;
+            $newDateEC = Carbon::createFromFormat('m/d/Y', $end_of_contract)
+            ->format('Y-m-d');
 
             $validator = Validator::make($request->all(), [
                 'c_email' => 'required|unique:merchandisers,email_address',
@@ -169,8 +177,13 @@ class AccountSupervisorMerchandiserListController extends Controller
                 $merchandiser ->birthdate = $newDate;
                 $merchandiser ->age = $request->input('c_age');
                 $merchandiser ->gender = $request->input('c_gender');
+                $merchandiser ->address = $request->input('c_address');
+                $merchandiser ->region = $request ->input('c_region');
                 $merchandiser ->contact_number = $request->input('c_number');
                 $merchandiser ->email_address = $request->input('c_email');
+                $merchandiser ->date_started = $newDateDS;
+                $merchandiser ->end_of_contract = $newDateEC;
+                $merchandiser ->remarks = $request ->input('c_remarks');
                 $merchandiser ->company_id = $company;
                 $merchandiser ->is_active = $status;
                 $merchandiser ->save();
@@ -189,15 +202,22 @@ class AccountSupervisorMerchandiserListController extends Controller
     {
               //dd($request->all());
 
-              $id = $request->input('selectedId');
+            $id = $request->input('selectedId');
         
-              $company = session('user')['company_id'];
+            $company = session('user')['company_id'];
              
-             $date = $request->input('e_birthdate');
-          $newDate = Carbon::createFromFormat('m/d/Y', $date)
-                             ->format('Y-m-d');
+            $date = $request->input('e_birthdate');
+            $newDate = Carbon::createFromFormat('m/d/Y', $date)
+             ->format('Y-m-d');
+
+            $date = $request->input('e_date_started');
+            $newDateDS = Carbon::createFromFormat('m/d/Y', $date)
+            ->format('Y-m-d');
               
-  
+            $date = $request->input('e_end_of_contract');
+            $newDateEC = Carbon::createFromFormat('m/d/Y', $date)
+            ->format('Y-m-d');
+                             
               $validator = Validator::make($request->all(), [
                   'e_email' =>  'max:255|required|email|unique:users,email,'.$id,
                   'e_gender' => 'required',
@@ -227,8 +247,13 @@ class AccountSupervisorMerchandiserListController extends Controller
                   $merchandiser ->birthdate = $newDate;
                   $merchandiser ->age = $request->input('e_age');
                   $merchandiser ->gender = $request->input('e_gender');
+                  $merchandiser ->address = $request->input('e_address');
+                  $merchandiser ->region = $request->input('e_region');
                   $merchandiser ->contact_number = $request->input('e_number');
                   $merchandiser ->email_address = $request->input('e_email');
+                  $merchandiser ->date_started = $newDateDS;
+                  $merchandiser ->end_of_contract = $newDateEC;
+                  $merchandiser ->remarks = $request->input('e_remarks');
                   $merchandiser ->is_active = $request->input('e_status');
                   $merchandiser ->company_id = $company;
                   $merchandiser ->update();
@@ -237,8 +262,6 @@ class AccountSupervisorMerchandiserListController extends Controller
           
                  
               }
-            
-  
 
            
     }
