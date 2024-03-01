@@ -39,27 +39,22 @@
    </style> 
    <!-- Ensure Bootstrap CSS and JavaScript are included -->
 
-<!-- Navbar Starts Here -->
+<!--Nabvar start-->
 <nav class="navbar navbar-expand-lg fixed-top">
   <div class="container-fluid">
-    <a class="navbar-brand me-auto" style="margin-left: 20px;" href="2-About.html">
-      <img src="asset/img-careers/WEbLOGO.png" style="width: 35px;" alt="">
-    </a>
-    <button class="navbar-toggler pe-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <a class="navbar-brand me-auto" style="margin-left: 20px;" href="{{ route('landing.about') }}"><img src="asset/img-careers/WEbLOGO.png" style="width: 55px;" alt=""></a>
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
       <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><img src="asset/img/BMPower.logo.png" alt=""></h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
-        <ul class="navbar-nav justify-content-center flex-grow-1" style="margin-left: 5px;">
+        <ul class="navbar-nav ms-auto" style="margin-left: 5px;">
           <li class="nav-item">
             <a class="nav-link active mx-lg-2" aria-current="page" href="{{ route('home') }}">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link mx-lg-2" href="{{ route('landing.about') }}">About Us</a>
+            <a class="nav-link  mx-lg-2" href="{{ route('landing.about') }}">About Us</a>
           </li>
           <li class="nav-item">
             <a class="nav-link mx-lg-2" href="{{ route('landing.careers') }}">Careers</a>
@@ -70,11 +65,13 @@
           <li class="nav-item">
             <a class="nav-link mx-lg-2" href="{{ route('landing.contact') }}">Contact</a>
           </li>
+        </ul>
+        <ul class="navbar-nav ms-auto" style="margin-left: 5px;">
           <li class="nav-item dropdown">
-            <a class="btn btn-secondary nav-link dropdown-toggle" style="margin-left: 5px; margin-top: 10px; float: right;" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="btn text-start nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Log In
             </a>
-            <ul class="dropdown-menu w-auto dropdown-menu-end" aria-labelledby="dropdownMenuLink">
+            <ul class="dropdown-menu w-auto dropdown-menu-e" aria-labelledby="dropdownMenuLink">
               <li><a class="dropdown-item" href="{{ route('auth.superadmin') }}"><i class="bi bi-wallet me-2"></i>Admin</a></li>
               <li><a class="dropdown-item" href="{{ route('auth.payrollhead') }}"><i class="bi bi-wallet me-2"></i>Payroll Head</a></li>
               <li><a class="dropdown-item" href="{{ route('auth.payrollofficer') }}"><i class="bi bi-wallet me-2"></i>Payroll Officer</a></li>
@@ -87,9 +84,12 @@
         </ul>
       </div>
     </div>
+    <button class="navbar-toggler pe-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
   </div>
 </nav>
-<!-- Navbar Ends Here-->
+<!--End Nabvar end-->
 
     <!--1st image section start-->
     <div class="container-sm mt-5 pt-5">

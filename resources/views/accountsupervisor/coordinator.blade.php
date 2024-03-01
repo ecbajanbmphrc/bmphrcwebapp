@@ -59,7 +59,7 @@
             </li>
             <li class="sidebar-menu-item has-dropdown">
                 <a href="#">
-                    <i class="ri-pages-line sidebar-menu-item-icon"></i>Home
+                    <i class="ri-pages-line sidebar-menu-item-icon"></i>Researve page
                     <i class="ri-arrow-down-s-line sidebar-menu-item-accordion ms-auto"></i>
                 </a>
                 <ul class="sidebar-dropdown-menu">
@@ -96,7 +96,7 @@
                 </ul>
             </li>
             <li class="sidebar-menu-item mt-auto">
-                <a href="{{ route('logout') }}" style="margin-top: 220px;">
+                <a href="{{ route('logout') }}">
                     <i class="ri-logout-box-line sidebar-menu-item-icon"></i>
                     Logout
                 </a>
@@ -223,17 +223,15 @@
             <label for="e_first_name" class="col-form-label">First Name: *</label>
             <input type="text" class="form-control" id="e_first_name" name="e_first_name" value="{{ old('e_first_name') }}" required>
         </div>    
-       
+     
+        <div class="form-group col-md-4">
+            <label for="e_middle_name" class="col-form-label">Middle Name:</label>
+            <input type="text" class="form-control" id="e_middle_name" name="e_middle_name" value="{{ old('e_middle_name') }}">
+        </div>
 
         <div class="form-group col-md-4">
             <label for="e_last_name" class="col-form-label">Last Name: *</label>
             <input type="text" class="form-control" id="e_last_name" name="e_last_name" value="{{ old('e_last_name') }}" required>
-        </div>
-        
-        
-        <div class="form-group col-md-4">
-            <label for="e_middle_name" class="col-form-label">Middle Name:</label>
-            <input type="text" class="form-control" id="e_middle_name" name="e_middle_name" value="{{ old('e_middle_name') }}">
         </div>
 
     </div> 
@@ -269,6 +267,41 @@
 
     </div>
     
+    <div class="row">
+
+        <div class="form-group col-md-6">
+            <label for="e_address" class="col-form-label">Address:</label>
+            <input type="text" class="form-control" id="e_address" name="e_address" value="{{ old('e_address') }}" required>
+        </div> 
+
+        <div class="form-group col-md-6">
+            <label for="e_region" class="col-form-label">Region:</label>
+            <select type="text" class="form-select" id="e_region" name = "e_region" value="{{ old('e_region') }}" required>
+            <option  value="">---Select Region---</option>
+                <option  value="Region 1" @if(old('c_region') == "Region 1") {{'selected'}} @endif>Region 1</option>
+                <option  value="Region 2" @if(old('c_region') == "Region 2") {{'selected'}} @endif>Region 2</option>
+                <option  value="Region 3" @if(old('c_region') == "Region 3") {{'selected'}} @endif>Region 3</option>
+                <option  value="Region 4" @if(old('c_region') == "Region 4") {{'selected'}} @endif>Region 4</option>
+                <option  value="Region 5" @if(old('c_region') == "Region 5") {{'selected'}} @endif>Region 5</option>
+                <option  value="Region 6" @if(old('c_region') == "Region 6") {{'selected'}} @endif>Region 6</option>
+                <option  value="Region 7" @if(old('c_region') == "Region 7") {{'selected'}} @endif>Region 7</option>
+                <option  value="Region 8" @if(old('c_region') == "Region 8") {{'selected'}} @endif>Region 8</option>
+                <option  value="Region 9" @if(old('c_region') == "Region 9") {{'selected'}} @endif>Region 9</option>
+                <option  value="Region 10" @if(old('c_region') == "Region 10") {{'selected'}} @endif>Region 10</option>
+                <option  value="Region 11" @if(old('c_region') == "Region 11") {{'selected'}} @endif>Region 11</option>
+                <option  value="Region 12" @if(old('c_region') == "Region 12") {{'selected'}} @endif>Region 12</option>
+                <option  value="Region 13" @if(old('c_region') == "Region 13") {{'selected'}} @endif>Region 13</option>
+                <option  value="NCR" @if(old('c_region') == "NCR") {{'selected'}} @endif>NCR</option>
+                <option  value="MIMAROPA" @if(old('c_region') == "MIMAROPA") {{'selected'}} @endif>MIMAROPA</option>
+                <option  value="CAR" @if(old('c_region') == "CAR") {{'selected'}} @endif>CAR</option>
+                <option  value="BARMM" @if(old('c_region') == "BARMM") {{'selected'}} @endif>BARMM</option>
+            </select>
+        </div>
+
+        
+    
+    </div>
+
     <div class="row">
 
         <div class="form-group col-md-6">
@@ -330,17 +363,15 @@
             <label for="c_first_name" class="col-form-label">First Name: *</label>
             <input type="text" class="form-control" id="c_first_name" name="c_first_name" value="{{ old('c_first_name') }}" required>
         </div>    
-       
-
-        <div class="form-group col-md-4">
-            <label for="c_last_name" class="col-form-label">Last Name: *</label>
-            <input type="text" class="form-control" id="c_last_name" name="c_last_name" value="{{ old('c_last_name') }}" required>
-        </div>
-        
         
         <div class="form-group col-md-4">
             <label for="c_middle_name" class="col-form-label">Middle Name:</label>
             <input type="text" class="form-control" id="c_middle_name" name="c_middle_name" value="{{ old('c_middle_name') }}" >
+        </div>
+
+        <div class="form-group col-md-4">
+            <label for="c_last_name" class="col-form-label">Last Name: *</label>
+            <input type="text" class="form-control" id="c_last_name" name="c_last_name" value="{{ old('c_last_name') }}" required>
         </div>
 
     </div> 
@@ -353,7 +384,7 @@
         </div>
 
         <div class="form-group col-md-4">
-            <label for="c_first_name" class="col-form-label">Age:</label>
+            <label for="c_age" class="col-form-label">Age:</label>
             <input type="text" class="form-control" id="c_age" name="c_age" readonly>
         </div>
 
@@ -372,6 +403,39 @@
                     <label class="form-check-label" for="c_type_roving">Female</label>
                 </div>
 
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="form-group col-md-6">
+            <label for="c_address" class="col-form-label">Address:</label>
+            <input type="text" class="form-control" id="c_address" name="c_address" value="{{ old('c_address') }}" required>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="e_region" class="col-form-label">Region:</label>   
+            <select type="text" class="form-select" id="c_region" name = "c_region" value="{{ old('c_region') }}" required>
+            <option  value="">---Select Region---</option>
+                <option  value="Region 1" @if(old('c_region') == "Region 1") {{'selected'}} @endif>Region 1</option>
+                <option  value="Region 2" @if(old('c_region') == "Region 2") {{'selected'}} @endif>Region 2</option>
+                <option  value="Region 3" @if(old('c_region') == "Region 3") {{'selected'}} @endif>Region 3</option>
+                <option  value="Region 4" @if(old('c_region') == "Region 4") {{'selected'}} @endif>Region 4</option>
+                <option  value="Region 5" @if(old('c_region') == "Region 5") {{'selected'}} @endif>Region 5</option>
+                <option  value="Region 6" @if(old('c_region') == "Region 6") {{'selected'}} @endif>Region 6</option>
+                <option  value="Region 7" @if(old('c_region') == "Region 7") {{'selected'}} @endif>Region 7</option>
+                <option  value="Region 8" @if(old('c_region') == "Region 8") {{'selected'}} @endif>Region 8</option>
+                <option  value="Region 9" @if(old('c_region') == "Region 9") {{'selected'}} @endif>Region 9</option>
+                <option  value="Region 10" @if(old('c_region') == "Region 10") {{'selected'}} @endif>Region 10</option>
+                <option  value="Region 11" @if(old('c_region') == "Region 11") {{'selected'}} @endif>Region 11</option>
+                <option  value="Region 12" @if(old('c_region') == "Region 12") {{'selected'}} @endif>Region 12</option>
+                <option  value="Region 13" @if(old('c_region') == "Region 13") {{'selected'}} @endif>Region 13</option>
+                <option  value="NCR" @if(old('c_region') == "NCR") {{'selected'}} @endif>NCR</option>
+                <option  value="MIMAROPA" @if(old('c_region') == "MIMAROPA") {{'selected'}} @endif>MIMAROPA</option>
+                <option  value="CAR" @if(old('c_region') == "CAR") {{'selected'}} @endif>CAR</option>
+                <option  value="BARMM" @if(old('c_region') == "BARMM") {{'selected'}} @endif>BARMM</option>
+            </select>
         </div>
 
     </div>
@@ -439,6 +503,7 @@
           </div>
        </div> 
         
+       <hr class="w-100 mt-1 mb-1">
         <div class="row">
           
          <div class="form-group col-md-4">
@@ -458,6 +523,22 @@
 
         </div>
 
+        <hr class="w-100 mt-1 mb-1">
+        <div class="row">
+
+            <div class="form-group col-md-6">
+                <label for="v_address" class="col-form-label">Address:</label>
+                <p class="h6" id="v_address" name="v_address"></p>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="v_region" class="col-form-label">Region:</label>
+                <p class="h6" id="v_region" name="v_region"></p>
+            </div>
+            
+        </div>
+
+        <hr class="w-100 mt-1 mb-1">
         <div class="row">
           
          <div class="form-group col-md-4">
@@ -624,6 +705,8 @@
                 $('#v_birthdate').text(mddyyyy_to_mmmdyyyy(newDate));
                 $('#v_age').text(response.age);
                 $('#v_gender').text(response.gender);
+                $('#v_address').text(response.address);
+                $('#v_region').text(response.region);
                 $('#v_contact').text(response.contact_number);
                 $('#v_email').text(response.email_address);
                 $('#v_store_name').text(response.store_name);
@@ -666,6 +749,8 @@
                 $('#e_birthdate').val(newDate);
                 $('#e_age').val(response.age);
                 $('#e_gender').val(response.gender);
+                $('#e_address').val(response.address);
+                $('#e_region').val(response.region);
                 $('#e_contact').val(response.contact_number);
                 $('#e_email').val(response.email_address);
                 $('#e_number').val(response.contact_number);

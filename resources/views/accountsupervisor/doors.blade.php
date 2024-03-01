@@ -59,7 +59,7 @@
             </li>
             <li class="sidebar-menu-item has-dropdown">
                 <a href="#">
-                    <i class="ri-pages-line sidebar-menu-item-icon"></i>Home
+                    <i class="ri-pages-line sidebar-menu-item-icon"></i>Researve Page
                     <i class="ri-arrow-down-s-line sidebar-menu-item-accordion ms-auto"></i>
                 </a>
                 <ul class="sidebar-dropdown-menu">
