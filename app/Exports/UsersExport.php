@@ -22,7 +22,7 @@ use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Style\Border;
 
 
-class UsersExport implements FromCollection, WithColumnWidths, WithStyles, WithHeadingRow, WithHeadings, WithEvents, ShouldAutoSize
+class UsersExport implements FromCollection, WithColumnWidths, WithStyles, WithHeadingRow, WithHeadings, ShouldAutoSize
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -84,33 +84,31 @@ class UsersExport implements FromCollection, WithColumnWidths, WithStyles, WithH
     {
         return [
             // Style the first row as bold text.
-            1    => ['font' => ['bold' => true , 'size' => 13 , 'color' => ['argb' => 'FFFFFF']]],
+            1    => ['font' => ['bold' => true , 'size' => 13 , 'color' => ['argb' => '000000']]],
 
         ];
     }
 
-    public function registerEvents(): array
-    {
-        return [
-            BeforeExport::class  => function(BeforeExport $event) {
-                $event->writer->setCreator('Patrick');
-            },
-            AfterSheet::class    => function(AfterSheet $event) {
-              
-
-                $event->sheet->styleCells(
-                    'A1:F1',
-                    [
-                        'borders' => [
-                            'outline' => [
-                                'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK,
-                                'color' => ['argb' => 'FFFF0000'],
-                            ],
-                        ]
-                    ]
-                );
-            },
-        ];
-    }
+    // public function registerEvents(): array
+    // {
+    //     return [
+    //         BeforeExport::class  => function(BeforeExport $event) {
+    //             $event->writer->setCreator('Patrick');
+    //         },
+    //         AfterSheet::class => function(AfterSheet $event) {             
+    //             $event->sheet->styleCells(
+    //                 'A1:F1',
+    //                 [
+    //                     'borders' => [
+    //                         'outline' => [
+    //                             'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK,
+    //                             'color' => ['argb' => 'FFFF0000'],
+    //                         ],
+    //                     ]
+    //                 ]
+    //             );
+    //         },
+    //     ];
+    // }
 
 }

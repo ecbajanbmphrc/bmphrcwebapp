@@ -52,12 +52,12 @@
                         <i class="ri-account-pin-circle-line sidebar-menu-item-icon"></i>Coordinator
                     </a>
                 </li>
-                <li class="sidebar-menu-item active">
+                <li class="sidebar-menu-item">
                     <a href="{{ route('accountsupervisor.view.merchandiser') }}">
                         <i class="ri-account-pin-box-line sidebar-menu-item-icon"></i>Merchandiser
                     </a>
                 </li>
-                <li class="sidebar-menu-item">
+                <li class="sidebar-menu-item active">
                     <a href="{{ route('accountsupervisor.view.manning') }}">
                         <i class="ri-file-user-line sidebar-menu-item-icon"></i>Manning
                     </a>
@@ -162,7 +162,7 @@
                 <div class="card">
                 <div class="card-header">
 
-                <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#createMerchandiserModal" id="hitme" name="hitme">
+                <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#createManningModal" id="hitme" name="hitme">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
                         <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0"/>
                     </svg>
@@ -174,13 +174,15 @@
                 <div class="card-body">
                 <h5 class="card-title">Manning   List</h5>
                 <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
-                    <table id="merchandiser" class="table table-hover" style="width:100%">
+                    <table id="manning" class="table table-hover" style="width:100%">
                         <thead>
                             <tr>
                                 <th>#</th>
                                 <th style="display:none">ID</th>
-                                <th>Full Name</th>
-                                <th>Email</th>
+                                <th>Store Name</th>
+                                <th>Address Address</th>
+                                <th>Region</th>
+                                <th>Coordinator</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -198,17 +200,17 @@
         <!-- end: Main -->
 
         <!-- edit merchandiser modal -->
-    <div class="modal fade" id="editMerchandiserModal" name ="editMerchandiserModal" tabindex="-1" role="dialog"  aria-labelledby="editMerchandiserModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal fade" id="editManningModal" name ="editManningModal" tabindex="-1" role="dialog"  aria-labelledby="editManningModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="editMerchandiserModalLabel">Edit Merchandiser Details</h5>
+            <h5 class="modal-title" id="editManningModalLabel">Edit Merchandiser Details</h5>
             <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button> -->
         </div>
         <div class="modal-body">
-            <form action="{{route('accountsupervisor.merchandiser-list.update-account')}}" method="POST">
+            <form action="{{route('accountsupervisor.manning-list.update-account')}}" method="POST">
         @csrf
         @if (session('update-failed'))
 
@@ -222,63 +224,32 @@
 
         @endif
 
-        <div class="row">
-            
-            <div class="form-group col-md-4">
-                <label for="e_first_name" class="col-form-label">First Name: *</label>
-                <input type="text" class="form-control" id="e_first_name" name="e_first_name" value="{{ old('e_first_name') }}" required>
-            </div>    
-            
-            <div class="form-group col-md-4">
-                <label for="e_middle_name" class="col-form-label">Middle Name: *</label>
-                <input type="text" class="form-control" id="e_middle_name" name="e_middle_name" value="{{ old('e_middle_name') }}">
+        <div class="row">   
+            <div class="form-group col-md-6">
+              <label for="e_store Name" class="col-form-label">Store Name *</label>
+                <select class="form-control" id="e_coordinator" name="e_coordinator">
+                    <option  value="" >---Select Coordinator---</option>
+                    @foreach ($store_array as $id => $value)
+                    <option value="{{ $id }}">{{ $value }}</option>
+                    @endforeach
+                </select>
+            </div>       
+            <div class="form-group col-md-6">
+                <label for="e_coordinator" class="col-form-label">Merchandiser: *</label>
+                <select class="form-control" id="e_coordinator" name="e_coordinator">
+                    <option  value="" >---Select Merchandiserr---</option>
+                    @foreach ($store_array as $id => $value)
+                    <option value="{{ $id }}">{{ $value }}</option>
+                    @endforeach
+                </select>
             </div>
-
-            <div class="form-group col-md-4">
-                <label for="e_last_name" class="col-form-label">Last Name: *</label>
-                <input type="text" class="form-control" id="e_last_name" name="e_last_name" value="{{ old('e_last_name') }}" required>
-            </div>
-
         </div> 
-
+    
         <div class="row">
-
             <div class="form-group col-md-4">
-                <label for="e_birthdate" class="col-form-label">Birthdate: *</label>
-                <input id="e_birthdate" name="e_birthdate" class="form-control" />
+                <label for="e_store_address" class="col-form-label">Store Address: *</label>
+                <input type="text" class="form-control" id="e_store_address" name="e_store_address" value="{{ old('e_store_address') }}" required>
             </div>
-
-            <div class="form-group col-md-4">
-                <label for="e_first_name" class="col-form-label">Age: *</label>
-                <input type="text" class="form-control" id="e_age" name="e_age" readonly>
-            </div>
-
-            <div class="form-group col-md-4">
-            
-                <label for="e_gender" class="col-form-label">Gender: *</label>
-                    <!-- <div style="height:10px;"></div> -->
-                    <br>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="e_gender" id="e_male" value="Male">
-                        <label class="form-check-label" for="e_male">Male</label>
-                    </div>
-        
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="e_gender" id="e_female" value="Female">
-                        <label class="form-check-label" for="e_female">Female</label>
-                    </div>
-
-            </div>
-
-        </div>
-        
-        <div class="row">
-
-            <div class="form-group col-md-4">
-                <label for="e_address" class="col-form-label">Address: *</label>
-                <input type="text" class="form-control" id="e_address" name="e_address" value="{{ old('e_address') }}" required>
-            </div>
-
             <div class="form-group col-md-4">
                 <label for="e_region" class="col-form-label">Region: *</label>
                 <select type="text" class="form-select" id="e_region" name = "e_region" value="{{ old('e_region') }}" required>
@@ -302,71 +273,8 @@
                     <option  value="BARMM" @if(old('c_region') == "BARMM") {{'selected'}} @endif>BARMM</option>
                 </select>
             </div>
-
-            <div class="form-group col-md-4">
-                <label for="e_number" class="col-form-label">Contact Number: *</label>
-                <input type="text" class="form-control" id="e_number" name="e_number" value="{{ old('e_number') }}"  oninput='setCustomValidity(value.length < 11 ? "Number must be at least 11 digits long." : "")' onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="11" value="{{ old('number') }}" required>
-            </div>
-
         </div>
-
-        <div class="row"> 
-
-            <div class="form-group col-md-4">
-                <label for="e_email" class="col-form-label">Email Address: *</label>
-                <input type="email" class="form-control" id="e_email" name = "e_email" value="{{ old('e_email') }}" required>
-            </div>
-        
-            <div class="form-group col-md-4">
-                <label for="e_date_started" class="col-form-label">Date Started: *</label>
-                <input id="e_date_started" name="e_date_started" class="form-control" />
-            </div>
-
-            <div class="form-group col-md-4">
-                <label for="e_end_of_contract" class="col-form-label">End of Contract: *</label>
-                <input id="e_end_of_contract" name="e_end_of_contract" class="form-control" />
-            </div>
-
-        </div>
-
-
-        <div class="row">
-
-            <div class="form-group col-md-3">
-                <label for="e_total_days" class="col-form-label">Total Days: *</label>
-                <input type="text" class="form-control" id="e_total_days" name="e_total_days" readonly>
-            </div>
-
-            <div class="form-group col-md-3">
-                <label for="e_remaining_days" class="col-form-label">Remaining Days: *</label>
-                <input type="text" class="form-control" id="e_remaining_days" name="e_remaining_days" readonly>
-            </div>
-
-            <div class="form-group col-md-3">
-                <label for="e_remarks" class="col-form-label">Type of Contract: *</label>
-                <select type="text" class="form-select" id="e_remarks" name = "e_remarks" value="{{ old('e_remarks') }}" required>
-                <option  value="">---Select Remarks---</option>
-                    <option  value="Lvl 1 fix-term" @if(old('c_remarks') == "Lvl 1 fix-term") {{'selected'}} @endif>Lvl 1 fix-term</option>
-                    <option  value="Lvl 2 fix-term" @if(old('c_remarks') == "Lvl 2 fix-term") {{'selected'}} @endif>Lvl 2 fix-term</option>
-                    <option  value="Provisionary" @if(old('c_remarks') == "Provisionary") {{'selected'}} @endif>Provisionary</option>
-                    <option  value="Regular" @if(old('c_remarks') == "Regular") {{'selected'}} @endif>Regular</option>
-                </select>
-            </div>
-
-            <div class="form-group col-md-3">
-                <label for="e_status" class="col-form-label">Status: *</label>
-                <select class="form-select" id="e_status" name="e_status">
-                <option  value="">---Select Status---</option>
-                    <option value="1" @if(old('e_status') == "active") {{'selected'}} @endif>Active</option>
-                    <option value="0" @if(old('e_status') == "inactive") {{'selected'}} @endif>Inactive</option>
-                </select>
-            </div> 
-
-        </div>
-            
-
-            
-
+          
         </div>
         <input type="hidden" id="selectedId" name="selectedId" >
         <div class="modal-footer">
@@ -381,17 +289,17 @@
 
 
     <!-- create merchandiser modal -->
-    <div class="modal fade" id="createMerchandiserModal" name = "createMerchandiserModal" tabindex="-1" role="dialog"  aria-labelledby="createMerchandiserModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
-    <div class="modal-dialog modal-xl" role="document">
+    <div class="modal fade" id="createManningModal" name = "createManningModal" tabindex="-1" role="dialog"  aria-labelledby="createManningModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="createMerchandiserModalLabel">New Merchandiser</h5>
+            <h5 class="modal-title" id="createManningModalLabel">Manning List</h5>
             <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button> -->
         </div>
         <div class="modal-body">
-            <form action="{{route('accountsupervisor.merchandiser-list.register')}}" method="POST">
+            <form action="{{route('accountsupervisor.manning-list.register')}}" method="POST">
         @csrf
         @if (session('create-failed'))
 
@@ -406,63 +314,35 @@
         @endif
 
         <div class="row">
-            
-            <div class="form-group col-md-4">
-                <label for="c_first_name" class="col-form-label">First Name: *</label>
-                <input type="text" class="form-control" id="c_first_name" name="c_first_name" value="{{ old('c_first_name') }}" required>
-            </div>        
-            
-            <div class="form-group col-md-4">
-                <label for="c_middle_name" class="col-form-label">Middle Name: *</label>
-                <input type="text" class="form-control" id="c_middle_name" name="c_middle_name" value="{{ old('c_middle_name') }}" >
-            </div>
-
-            <div class="form-group col-md-4">
-                <label for="c_last_name" class="col-form-label">Last Name: *</label>
-                <input type="text" class="form-control" id="c_last_name" name="c_last_name" value="{{ old('c_last_name') }}" required>
-            </div>
+            <div class="form-group col-md-6">
+              <label for="e_store Name" class="col-form-label">Store Name *</label>
+                <select class="form-control" id="e_coordinator" name="e_coordinator">
+                    <option  value="" >---Select Store---</option>
+                    @foreach ($store_array as $id => $value)
+                    <option value="{{ $id }}">{{ $value }}</option>
+                    @endforeach
+            </select>
+            </div>                  
+            <div class="form-group col-md-6">
+                <label for="c_coordinator" class="col-form-label">Merchandiser: *</label>
+                <select class="form-control" id="e_coordinator" name="e_coordinator">
+                    <option  value="" >---Select Coordinator---</option>
+                    @foreach ($merchandiser_array as $id => $value)
+                    <option value="{{ $id }}">{{ $value }}</option>
+                    @endforeach
+                </select>
+            </div>  
 
         </div> 
+   
 
         <div class="row">
-
-            <div class="form-group col-md-4">
-                <label for="c_birthdate" class="col-form-label">Birthdate: *</label>
-                <input id="c_birthdate" name="c_birthdate" class="form-control" />
-            </div>
-
-            <div class="form-group col-md-4">
-                <label for="c_first_name" class="col-form-label">Age: *</label>
-                <input type="text" class="form-control" id="c_age" name="c_age" readonly>
-            </div>
-
-            <div class="form-group col-md-4">
-            
-                <label for="c_gender" class="col-form-label">Gender: *</label>
-                    <!-- <div style="height:10px;"></div> -->
-                    <br>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="c_gender" id="c_male" value="Male">
-                        <label class="form-check-label" for="c_type_stationary">Male</label>
-                    </div>
-        
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="c_gender" id="c_female" value="Female">
-                        <label class="form-check-label" for="c_type_roving">Female</label>
-                    </div>
-
-            </div>
-
-        </div>
-
-        <div class="row">
-
-            <div class="form-group col-md-4">
-                <label for="c_address" class="col-form-label">Address: *</label>
-                <input type="text" class="form-control" id="c_address" name="c_address" value="{{ old('c_address') }}" required>
+            <div class="form-group col-md-6">
+                <label for="c_store_address" class="col-form-label">Store Address: *</label>
+                <input type="text" class="form-control" id="c_store_address" name="c_store_address" value="{{ old('c_store_address') }}" required>
             </div> 
 
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-6">
                 <label for="c_region" class="col-form-label">Region: *</label>
                 <select type="text" class="form-select" id="c_region" name = "c_region" value="{{ old('c_region') }}" required>
                 <option  value="">---Select Region---</option>
@@ -485,59 +365,7 @@
                     <option  value="BARMM" @if(old('c_region') == "BARMM") {{'selected'}} @endif>BARMM</option>
                 </select>
             </div>  
-
-            <div class="form-group col-md-4">
-                <label for="c_number" class="col-form-label">Contact Number: *</label>
-                <input type="text" class="form-control" id="c_number" name="c_number" value="{{ old('c_number') }}"  oninput='setCustomValidity(value.length < 11 ? "Number must be at least 11 digits long." : "")' onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="11" value="{{ old('number') }}" required>
-            </div>
-        
         </div>
-        
-        <div class="row">
-
-            <div class="form-group col-md-4">
-                <label for="c_email" class="col-form-label">Email Address: *</label>
-                <input type="email" class="form-control" id="c_email" name = "c_email" value="{{ old('c_email') }}" required>
-            </div>
-
-            <div class="form-group col-md-4">
-                <label for="c_date_started" class="col-form-label">Date Started: *</label>
-                <input id="c_date_started" name="c_date_started" class="form-control"/>
-            </div>
-
-            <div class="form-group col-md-4">
-                <label for="c_end_of_contract" class="col-form-label">End of Contract: *</label>
-                <input id="c_end_of_contract" name="c_end_of_contract" class="form-control"/>
-            </div>
-
-        </div>
-
-        <div class="row">
-            
-            <div class="form-group col-md-4">   
-                <label for="c_total_days" class="col-form-label">Total Days: *</label>
-                <input type="text" class="form-control" id="c_total_days" name="c_total_days" readonly>
-            </div>
-
-            <div class="form-group col-md-4">
-                <label for="c_remaining_days" class="col-form-label">Remaining days: *</label>
-                <input type="text" class="form-control" id="c_remaining_days" name="c_remaining_days" readonly>
-            </div>
-
-            <div class="form-group col-md-4">
-                <label for="c_remarks" class="col-form-label">Type of Contract: *</label>
-                <select type="text" class="form-select" id="c_remarks" name = "c_remarks" value="{{ old('c_remarks') }}" required>
-                <option  value="">---Select Remarks---</option>
-                    <option  value="Lvl 1 fix-term" @if(old('c_remarks') == "Lvl 1 fix-term") {{'selected'}} @endif>Lvl 1 fix-term</option>
-                    <option  value="Lvl 2 fix-term" @if(old('c_remarks') == "Lvl 2 fix-term") {{'selected'}} @endif>Lvl 2 fix-term</option>
-                    <option  value="Provisionary" @if(old('c_remarks') == "Provisionary") {{'selected'}} @endif>Provisionary</option>
-                    <option  value="Regular" @if(old('c_remarks') == "Regular") {{'selected'}} @endif>Regular</option>
-                </select>
-            </div>  
-
-        </div>
-            
-
             
 
         </div>
@@ -556,7 +384,7 @@
 
 
         <!-- View user modal -->
-    <div class="modal fade" id="viewMerchandiserModal" name = "viewMerchandiserModal" tabindex="-1" role="dialog" aria-labelledby="viewMerchandiserModalLabel" aria-hidden="true">
+    <div class="modal fade" id="viewManningModal" name = "viewMerchandiserModal" tabindex="-1" role="dialog" aria-labelledby="viewManningModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
         <div class="modal-header">
@@ -564,113 +392,33 @@
             <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button> -->
-
         </div>
+
         <div class="modal-body">
-
-        <div class="row">
-            <div class="form-group col-md-4">
-                <label for="v_first_name" class="col-form-label">First Name:</label>
-                <p class="h6" id="v_first_name" name="v_first_name"></p>
-            </div>    
-        
-
-            <div class="form-group col-md-4">
-                <label for="v_middle_name" class="col-form-label">Middle Name:</label>
-                <p class="h6" id="v_middle_name" name="v_middle_name"></p>
-            </div>
-            
-            <div class="form-group col-md-4">
-                <label for="v_last_name" class="col-form-label">Last Name:</label>
-                <p class="h6" id="v_last_name" name="v_last_name"></p>
-            </div>
-        </div> 
-            
-            <hr class="w-100 mt-1 mb-1">
             <div class="row">
-            
-            <div class="form-group col-md-4">
-                <label for="v_birthdate" class="col-form-label">Birthdate:</label>
-                <p class="h6" id="v_birthdate" name="v_birthdate"></p>
+                <div class="form-group col-md-6">
+                    <label for="v_store_name" class="col-form-label">Store Name:</label>
+                    <p class="h6" id="v_store_name" name="v_store_name"></p>
+                </div>    
+          
+                <div class="form-group col-md-6">
+                    <label for="v_coordinator" class="col-form-label">Coordinator:</label>
+                    <p class="h6" id="v_coordinator" name="v_coordinator"></p>
+                </div>              
             </div> 
-
-            <div class="form-group col-md-4">
-                <label for="v_age" class="col-form-label">Age:</label>
-                <p class="h6" id="v_age" name="v_age"></p>
-            </div> 
-            
-            <div class="form-group col-md-4">
-                <label for="v_gender" class="col-form-label">Gender:</label>
-                <p class="h6" id="v_gender" name="v_gender"></p>
-            </div> 
-
-            </div>
-
+                
             <hr class="w-100 mt-1 mb-1">
-            <div class="row">
-
-            <div class="form-group col-md-4">
-                <label for="v_address" class="col-form-label">Address:</label>
-                <p class="h6" id="v_address" name="v_address"></p>
+            <div class="row">               
+                <div class="form-group col-md-6">
+                    <label for="v_address" class="col-form-label">Address:</label>
+                    <p class="h6" id="v_address" name="v_address"></p>
+                </div> 
+                <div class="form-group col-md-6">
+                    <label for="v_region" class="col-form-label">Region:</label>
+                    <p class="h6" id="v_region" name="v_region"></p>
+                </div>       
             </div>
-
-            <div class="form-group col-md-4">
-                <label for="v_region" class="col-form-label
-                ">Region:</label>
-                <p class="h6" id="v_region" name="v_region"></p>
-            </div>
-
-            <div class="form-group col-md-4">
-                <label for="v_contact" class="col-form-label">Contact:</label>
-                <p class="h6" id="v_contact" name="v_contact"></p>
-            </div>
-
-            </div>
-
-            <hr class="w-100 mt-1 mb-1">
-            <div class="row"> 
-
-            <div class="form-group col-md-4">
-                <label for="v_email" class="col-form-label">Email:</label>
-                <p class="h6" id="v_email" name="v_email"></p>
-            </div> 
-
-            <div class="form-group col-md-4">
-                <label for="v_date_started" class="col-form-label">Date Started:</label>
-                <p class="h6" id="v_date_started" name="v_date_started"></p>
-            </div> 
-
-            <div class="form-group col-md-4">
-                <label for="v_end_of_contract" class="col-form-label">End of Contract:</label>
-                <p class="h6" id="v_end_of_contract" name="v_end_of_contract"></p>
-            </div> 
-
-            </div>
-
-            <hr class="w-100 mt-1 mb-1">
-            <div class="row">
-
-            <div class="form-group col-md-3">
-                <label for="v_total_days" class="col-form-label">Total Days:</label>
-                <p class="h6" id="v_total_days" name="v_total_days"></p>
-            </div>
-
-            <div class="form-group col-md-3">
-                <label for="v_remaining_days" class="col-form-label">Remaining Days:</label>
-                <p class="h6" id="v_remaining_days" name="v_remaining_days"></p>
-            </div>
-            
-            <div class="form-group col-md-3">
-                <label for="v_remarks" class="col-form-label">Type of Contract:</label>
-                <p class="h6" id="v_remarks" name="v_remarks"></p>
-            </div>
-
-            <div class="form-group col-md-3">
-                <label for="v_status" class="col-form-label">Status:</label>
-                <p class="h6" id="v_status" name="v_status"></p>     
-            </div>
-
-            </div>
+         </div>
                 
         
         
@@ -708,154 +456,34 @@
         @include('sweetalert::alert')
 
         <script>
-            $(document).ready(function () {
+          $(document).ready(function () {
 
-            $('#c_birthdate').datepicker({
-                format: "mm/dd/yyyy",
-                uiLibrary: 'bootstrap5',
-                maxDate: new Date()
-            });
-
-            $('#c_date_started').datepicker({
-                format: "mm/dd/yyyy",
-                uiLibrary: 'bootstrap5',
-                maxDate: 0
-            });
-
-            $('#c_end_of_contract').datepicker({
-                format: "mm/dd/yyyy",
-                uiLibrary: 'bootstrap5',
-                maxDate: 0
-            });
-
-            $("#c_birthdate").change(function(){
-
-            var birthDate = $('#c_birthdate').val();    
-    
-            var bday = new Date(birthDate).getTime();
-
-            var today = new Date().getTime();
-
-            var age = Math.floor((today-bday) / (365.25 * 24 * 60 * 60 * 1000));
-
-            $('#c_age').val(age);
-
-        // console.log(age);
-
-
-            });
-
-
-            //birthdate
-            $('#e_birthdate').datepicker({
-                format: "mm/dd/yyyy",
-                uiLibrary: 'bootstrap5',
-                maxDate: new Date()
-            });
-
-            $("#e_birthdate").change(function(){
-
-            var birthDate = $('#e_birthdate').val();    
-    
-            var bday = new Date(birthDate).getTime();
-
-            var today = new Date().getTime(); 
-
-            var age = Math.floor((today-bday) / (365.25 * 24 * 60 * 60 * 1000));
-
-        
-
-            $('#e_age').val(age);
-
-        // console.log(age);
-
-
-            });
-
-
-            //date started
-            $('#e_date_started').datepicker({
-                format: "mm/dd/yyyy",
-                uiLibrary: 'bootstrap5',
-                maxDate: 0
-            });
-
-            $("#e_date_started").change(function(){
-
-            var gettimeDs = new Date($('#e_date_started').val()).getTime();    
-    
-            var gettimeDe = new Date($('#e_end_of_contract').val()).getTime();
-
-            var today = new Date().getTime(); 
-
-            var total_days = Math.floor((gettimeDe-gettimeDs) / (365 * 24  * 10000));
-
-            $('#e_total_days').val(total_days);
 
             
-            });
-
-            //end of contract
-            $('#e_end_of_contract').datepicker({
-                format: "mm/dd/yyyy",
-                uiLibrary: 'bootstrap5',
-                maxDate: 0
-            });
-
-            $("#e_end_of_contract").change(function(){
-
-            var gettimeDs = new Date($('#e_date_started').val()).getTime();    
-    
-            var gettimeDe = new Date($('#e_end_of_contract').val()).getTime();
-
-            var today = new Date().getTime(); 
-
-
-            var total_days = Math.floor((gettimeDe-gettimeDs) / (365 * 24  * 10000));
-
-            var remaining_days = Math.floor((gettimeDe-today) / (365 * 24  * 10000));
-
-
-
-
-            $('#e_remaining_days').val(remaining_days);
-
-            $('#e_total_days').val(total_days);
-
-            });
-
-            
-            var dataTable = $('#merchandiser').DataTable({
+            var dataTable = $('#manning').DataTable({
                 ajax: {
-                    url: '/accountsupervisor/merchandiser-list/fetch-data',
+                    url: '/accountsupervisor/manning-list/fetch-data',
                     dataSrc: 'data'
                 },
                 columns: [
                     { data: '#' },
                     { data:  'id', visible: false },
-                    { data: 'fullname' },
-                    { data: 'email_address' }, 
+                    { data: 'store_name' },
+                    { data: 'store_address' },
+                    { data: 'region'},
+                    { data: 'coordinator'}, 
                     { data: 'actions', orderable: false }
                 ]
             });
 
-            function mddyyyy_to_mmmdyyyy(s) {
-            var s = s.split(/\D/),
-            dt = new Date(s[2], s[0] - 1, s[1]);
-            return dt.toLocaleString('en-CA', {
-            month: 'short',
-            day: 'numeric',
-            year: 'numeric'
-            });
-            }
 
-            $('#merchandiser tbody').on('click', 'img.button-image1', function (e) {
+            $('#manning tbody').on('click', 'img.button-image1', function (e) {
             e.preventDefault();
 
                 var selectedRowData = dataTable.row($(this).closest('tr')).data();
                 var id = selectedRowData.id;
                 $.ajax({
-                url: '/accountsupervisor/merchandiser/list/retrieve-view/' + id ,
+                url: '/accountsupervisor/manning/list/retrieve-view/' + id ,
                 type: 'GET', 
                 dataType: 'JSON',
                 headers: {
@@ -866,18 +494,18 @@
                 
                 //  var date = new Date(response.birthdate).toLocaleDateString()
                     // response = JSON.parse(response);
-                    var newDate = new Date(response.birthdate).toLocaleDateString()
-                    var newDateDs = new Date(response.date_started).toLocaleDateString()
-                    var newDateEc = new Date(response.end_of_contract).toLocaleDateString()
+                    // var newDate = new Date(response.birthdate).toLocaleDateString()
+                    // var newDateDs = new Date(response.date_started).toLocaleDateString()
+                    // var newDateEc = new Date(response.end_of_contract).toLocaleDateString()
 
-                    var gettimeDs = new Date(newDateDs).getTime();
-                    var gettimeEc = new Date(newDateEc).getTime();
+                    // var gettimeDs = new Date(newDateDs).getTime();
+                    // var gettimeEc = new Date(newDateEc).getTime();
 
 
               
 
                         
-                        var remaining_days = Math.floor((gettimeEc-gettimeDs) / (365 * 24  * 10000));
+                        // var remaining_days = Math.floor((gettimeEc-gettimeDs) / (365 * 24  * 10000));
                      
 
                         //(365.25 * 24 * 60 * 1000));
@@ -925,13 +553,13 @@
         });
 
 
-        $('#merchandiser tbody').on('click', 'img.button-image2', function (e) {
+        $('#manning tbody').on('click', 'img.button-image2', function (e) {
             e.preventDefault();
 
                 var selectedRowData = dataTable.row($(this).closest('tr')).data();
                 var id = selectedRowData.id;
                 $.ajax({
-                url: '/accountsupervisor/merchandiser/list/retrieve-update/' + id , 
+                url: '/accountsupervisor/manning/list/retrieve-update/' + id , 
                 type: 'GET', 
                 dataType: 'JSON',
                 headers: {
@@ -942,18 +570,18 @@
                 
                 //  var date = new Date(response.birthdate).toLocaleDateString()
                     // response = JSON.parse(response);
-                    var newDate = new Date(response.birthdate).toLocaleDateString()
-                    var newDateDs = new Date(response.date_started).toLocaleDateString()
-                    var newDateDe = new Date(response.end_of_contract).toLocaleDateString()
+                    // var newDate = new Date(response.birthdate).toLocaleDateString()
+                    // var newDateDs = new Date(response.date_started).toLocaleDateString()
+                    // var newDateDe = new Date(response.end_of_contract).toLocaleDateString()
 
-                    gettimeDs = new Date(newDateDs).getTime();
-                    gettimeDe = new Date(newDateDe).getTime();
+                    // gettimeDs = new Date(newDateDs).getTime();
+                    // gettimeDe = new Date(newDateDe).getTime();
 
-                    gettimeTd = new Date().getTime();
+                    // gettimeTd = new Date().getTime();
 
-                    var total_days = Math.floor((gettimeDe-gettimeDs) / (365 * 24  * 10000));
+                    // var total_days = Math.floor((gettimeDe-gettimeDs) / (365 * 24  * 10000));
 
-                    var remaining_days = Math.floor((gettimeDe-gettimeTd) / (365 * 24  * 10000));
+                    // var remaining_days = Math.floor((gettimeDe-gettimeTd) / (365 * 24  * 10000));
                 
                     
                     $('#selectedId').val(id);
@@ -999,26 +627,26 @@
         // keyboard: false  // to prevent closing with Esc button (if you want this too)
         // });
 
-        $("#createMerchandiserModal").modal({
+        $("#createManningModal").modal({
             show: false,
             backdrop: 'static'
         });
 
         $("#hitme").click(function(){
-            $("#createMerchandiserModal").modal('show');
+            $("#createManningModal").modal('show');
         });
 
         $("#ehide-modal").click(function(){
-            $("#editMerchandiserModal").modal('hide');
+            $("#editManningModal").modal('hide');
         });
 
         $("#hide-modal").click(function(){
-            $("#createMerchandiserModal").modal('hide');
+            $("#createManningModal").modal('hide');
         });
 
 
         $("#vhide-modal").click(function(){
-            $("#viewMerchandiserModal").modal('hide');
+            $("#viewManningModal").modal('hide');
         });
     });
         </script>
@@ -1035,7 +663,7 @@
                 }).then((result) => {
             if (result.isConfirmed) {
             
-                $('#createMerchandiserModal')[0].reset();
+                $('#createManningModal')[0].reset();
             }
         });
 
@@ -1065,7 +693,7 @@
                 }).then((result) => {
             if (result.isConfirmed) {
             
-                $('#editMerchandiserModal').modal('show');
+                $('#editManningModal').modal('show');
             }
         });
 
@@ -1083,7 +711,7 @@
                 }).then((result) => {
             if (result.isConfirmed) {
             
-                $('#createMerchandiserModal').modal('show');
+                $('#createManningModal').modal('show');
             }
         });
 
