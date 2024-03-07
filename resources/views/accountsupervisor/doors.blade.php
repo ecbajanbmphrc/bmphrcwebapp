@@ -8,6 +8,7 @@
     <!-- start: Icons -->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    
 
     <!-- start: Icons -->
     <!-- start: CSS -->
@@ -249,6 +250,25 @@
     
         </div>
 
+
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="e_merchandiser" class="col-form-label">Merchandiser Count:</label>
+                <div class="input-group">
+                    <input class="form-control" id="e_merchandiser" name="e_merchandiser" readonly>
+                    <div class="input-group-append">
+                     <span class="input-group-text" style="border-radius: 0 6px 6px 0;">
+                        <button type="button" class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#exampleModal" id="show_merchandiser"></button>
+                    </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+   
+
+
+
         <input type ="hidden" name="selectedID" id="selectedID">
     
         <!-- <div class="border-top my-3"></div> -->
@@ -262,84 +282,121 @@
      </div>
     </div>
     </div>
-    
+
+
+    <div class="modal fade" id="exampleModal" name ="exampleModal" tabindex="-1" role="dialog" aria-labelledby="viewDoorModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Merchandiser List</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    <table id="manning" class="table table-hover" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>First Name</th>
+                                <th>Middle Name</th>
+                                <th>Last Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                   
+                        </tbody>
+                    </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" id="closeModal" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Ends Here -->
 
 
      <!-- View door modal -->
-<div class="modal fade" id="viewDoorModal" name = "viewDoorModal" tabindex="-1" role="dialog" aria-labelledby="viewDoorModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="viewAccountModalLabel">View Details</h5>
-        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button> -->
+    <div class="modal fade" id="viewDoorModal" name = "viewDoorModal" tabindex="-1" role="dialog" aria-labelledby="viewDoorModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="viewAccountModalLabel">View Details</h5>
+            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button> -->
 
-      </div>
-      <div class="modal-body">
+        </div>
+        <div class="modal-body">
 
-      <div class="row">
-          <div class="form-group col-md-6">
-            <label for="v_account" class="col-form-label">Account:</label>
-            <p class="h6" id="v_account" name="v_account"></p>
-          </div>    
-       
-
-         <div class="form-group col-md-6">
-            <label for="v_region" class="col-form-label">Region:</label>
-            <p class="h6" id="v_region" name="v_region"></p>
-          </div> 
-        </div> 
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="v_account" class="col-form-label">Account:</label>
+                <p class="h6" id="v_account" name="v_account"></p>
+            </div>    
         
-        <div class="row">
-          <div class="form-group col-md-6">
-            <label for="v_area" class="col-form-label">Area:</label>
-            <p class="h6" id="v_area" name="v_area"></p>
-          </div>    
-       
 
-         <div class="form-group col-md-6">
-            <label for="v_store_name" class="col-form-label">Store name:</label>
-            <p class="h6" id="v_store_name" name="v_store_name"></p>
-          </div> 
+            <div class="form-group col-md-6">
+                <label for="v_region" class="col-form-label">Region:</label>
+                <p class="h6" id="v_region" name="v_region"></p>
+            </div> 
+            </div> 
+            
+            <div class="row">
+            <div class="form-group col-md-6">
+                <label for="v_area" class="col-form-label">Area:</label>
+                <p class="h6" id="v_area" name="v_area"></p>
+            </div>    
+        
+
+            <div class="form-group col-md-6">
+                <label for="v_store_name" class="col-form-label">Store name:</label>
+                <p class="h6" id="v_store_name" name="v_store_name"></p>
+            </div> 
+            </div>
+
+            <div class="row">
+            <div class="form-group col-md-6">
+                <label for="v_coordinator" class="col-form-label">Coordinator:</label>
+                <p class="h6" id="v_coordinator" name="v_coordinator"></p>
+            </div>    
+
+            <div class="form-group col-md-6">
+                <label for="v_type_of_deployment" class="col-form-label">Type of Deployment:</label>
+                <p class="h6" id="v_type_of_deployment" name="v_type_of_deployment"></p>
+            </div>    
+        
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="v_merchandiser_count" class="col-form-label">Merchandiser Counts:</label>
+                    <p class="h6" id="v_merchandiser_count" name="v_merchandiser_count"></p>
+                </div>
+            </div>
+
+        
+
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="vhide-modal">Close</button>
+            </div>
+
+            </div>
         </div>
-
-        <div class="row">
-          <div class="form-group col-md-6">
-            <label for="v_coordinator" class="col-form-label">Coordinator:</label>
-            <p class="h6" id="v_coordinator" name="v_coordinator"></p>
-          </div>    
-
-          <div class="form-group col-md-6">
-            <label for="v_type_of_deployment" class="col-form-label">Type of Deployment:</label>
-            <p class="h6" id="v_type_of_deployment" name="v_type_of_deployment"></p>
-          </div>    
-    
         </div>
-
+        
     
+        <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-        <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="vhide-modal">Close</button>
-        </div>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script> -->
+        <!-- start: JS -->
+        <script src="/asset/user/js/bootstrap.bundle.min.js"></script>
 
-        </div>
-     </div>
-    </div>
-    
-   
-    
+    <script src="/asset/user/js/jquery.min.js"></script>
 
-    <!-- start: JS -->
-    <script src="/asset/user/js/bootstrap.bundle.min.js"></script>
-
-<script src="/asset/user/js/jquery.min.js"></script>
-
-<script src="/asset/user/js/script.js"></script>
+    <script src="/asset/user/js/script.js"></script>
 
 
-<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
 
     @include('sweetalert::alert')
 
@@ -376,12 +433,13 @@
             success: function(response){
                 // response = JSON.parse(response);
               
-                $('#v_account').text(response.account);
-                $('#v_region').text(response.region);
-                $('#v_area').text(response.area);
-                $('#v_store_name').text(response.store_name);
-                $('#v_type_of_deployment').text(response.type_of_deployment);
-                $('#v_coordinator').text(response.get_name);
+                $('#v_account').text(response.door.account);
+                $('#v_region').text(response.door.region);
+                $('#v_area').text(response.door.area);
+                $('#v_store_name').text(response.door.store_name);
+                $('#v_type_of_deployment').text(response.door.type_of_deployment);
+                $('#v_coordinator').text(response.door.get_name);
+                $('#v_merchandiser_count').text(response.merchandiser_count);
 
                 $('#viewDoorModal').modal('show');
             
@@ -408,19 +466,20 @@
 
                 $('#selectedID').val(id);
             
-                $('#e_account').text(response.account);
-                $('#e_region').text(response.region);
-                $('#e_area').text(response.area);
-                $('#e_store_name').text(response.store_name);
-                $('#e_type_of_deployment').text(response.type_of_deployment);
+                $('#e_account').text(response.door.account);
+                $('#e_region').text(response.door.region);
+                $('#e_area').text(response.door.area);
+                $('#e_store_name').text(response.door.store_name);
+                $('#e_type_of_deployment').text(response.door.type_of_deployment);
 
+                $('#e_merchandiser').val(response.count)
              
 
-                if(response.coordinator_id === null){
+                if(response.door.coordinator_id === null){
                     $('#e_coordinator').val(0);
                
                 }else{
-                $('#e_coordinator').val(response.coordinator_id);
+                $('#e_coordinator').val(response.door.coordinator_id);
                 }
              
              
@@ -429,7 +488,10 @@
             }
      
             })
-        }); 
+        });
+        //
+        
+        // 
 
         $("#vhide-modal").click(function(){
             $("#viewDoorModal").modal('hide');
@@ -437,8 +499,56 @@
         $("#ehide-modal").click(function(){
             $("#editDoorModal").modal('hide');
         });
+
+        $("#show_merchandiser").click(function(){
+        
+
+            var id = $('#selectedID').val();
+
+            console.log(id)
+
+            //$("#exampleModal").modal('show');
+        
+            $.ajax({
+            url: '/accountsupervisor/door/list/retrieve-merhandiser-door/' + id ,
+            
+            type: 'GET', 
+            dataType: 'JSON',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },   
+            success: function(response){
+                var mytable = document.getElementById('manning')
+
+                var row = `
+                    <tr>
+                    <td>response.fname</td>
+                    </tr>`
+
+                    mytable.innerHTML += row;
+                
+               console.log(response.fname)
+        
+            
+            }
+     
+            })  
+           
+        //
+        });
+
+       
+        $("#closeModal").click(function(){
+        $("#exampleModal").modal('hide'); 
+        $("#exampleModal").on('hidden.bs.modal', function () {
+        $("#editDoorModal").modal('show'); 
+        });
+    });
+
     });
     </script>
 </body>
 
 </html>
+

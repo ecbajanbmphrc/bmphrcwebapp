@@ -477,121 +477,121 @@
 
 
 
-    <!-- View coordinator modal -->
-<div class="modal fade" id="viewCoordinatorModal" name = "viewCoordinatorModal" tabindex="-1" role="dialog" aria-labelledby="viewCoordinatorModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="viewAccountModalLabel">View Details</h5>
-        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button> -->
+        <!-- View coordinator modal -->
+    <div class="modal fade" id="viewCoordinatorModal" name = "viewCoordinatorModal" tabindex="-1" role="dialog" aria-labelledby="viewCoordinatorModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="viewAccountModalLabel">View Details</h5>
+            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button> -->
 
-      </div>
-      <div class="modal-body">
+        </div>
+        <div class="modal-body">
 
-      <div class="row">
-          <div class="form-group col-md-4">
-            <label for="v_first_name" class="col-form-label">First Name:</label>
-            <p class="h6" id="v_first_name" name="v_first_name"></p>
-          </div>    
-       
-
-          <div class="form-group col-md-4">
-            <label for="v_middle_name" class="col-form-label">Middle Name:</label>
-            <p class="h6" id="v_middle_name" name="v_middle_name"></p>
-          </div>
-          
-          <div class="form-group col-md-4">
-            <label for="v_last_name" class="col-form-label">Last Name:</label>
-            <p class="h6" id="v_last_name" name="v_last_name"></p>
-          </div>
-       </div> 
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label for="v_first_name" class="col-form-label">First Name:</label>
+                <p class="h6" id="v_first_name" name="v_first_name"></p>
+            </div>    
         
-       <hr class="w-100 mt-1 mb-1">
-        <div class="row">
-          
-         <div class="form-group col-md-4">
-            <label for="v_birthdate" class="col-form-label">Birthdate:</label>
-            <p class="h6" id="v_birthdate" name="v_birthdate"></p>
-         </div> 
 
-         <div class="form-group col-md-4">
-            <label for="v_age" class="col-form-label">Age:</label>
-            <p class="h6" id="v_age" name="v_age"></p>
-         </div> 
-         
-         <div class="form-group col-md-4">
-            <label for="v_gender" class="col-form-label">Gender:</label>
-            <p class="h6" id="v_gender" name="v_gender"></p>
-         </div> 
-
-        </div>
-
-        <hr class="w-100 mt-1 mb-1">
-        <div class="row">
-
-            <div class="form-group col-md-6">
-                <label for="v_address" class="col-form-label">Address:</label>
-                <p class="h6" id="v_address" name="v_address"></p>
-            </div>
-
-            <div class="form-group col-md-6">
-                <label for="v_region" class="col-form-label">Region:</label>
-                <p class="h6" id="v_region" name="v_region"></p>
+            <div class="form-group col-md-4">
+                <label for="v_middle_name" class="col-form-label">Middle Name:</label>
+                <p class="h6" id="v_middle_name" name="v_middle_name"></p>
             </div>
             
-        </div>
-
-        <hr class="w-100 mt-1 mb-1">
-        <div class="row">
-          
-         <div class="form-group col-md-4">
-            <label for="v_contact" class="col-form-label">Contact:</label>
-            <p class="h6" id="v_contact" name="v_contact"></p>
-         </div> 
-
-         <div class="form-group col-md-4">
-            <label for="v_email" class="col-form-label">Email:</label>
-            <p class="h6" id="v_email" name="v_email"></p>
-         </div> 
-         
-         <div class="form-group col-md-4">
-            <label for="v_store_name" class="col-form-label">Store Count:</label>
-            <p class="h6" id="v_store_name" name="v_store_name"></p>
-         </div> 
-
-        </div>
+            <div class="form-group col-md-4">
+                <label for="v_last_name" class="col-form-label">Last Name:</label>
+                <p class="h6" id="v_last_name" name="v_last_name"></p>
+            </div>
+        </div> 
             
-    
-      
+        <hr class="w-100 mt-1 mb-1">
+            <div class="row">
+            
+            <div class="form-group col-md-4">
+                <label for="v_birthdate" class="col-form-label">Birthdate:</label>
+                <p class="h6" id="v_birthdate" name="v_birthdate"></p>
+            </div> 
 
-    
+            <div class="form-group col-md-4">
+                <label for="v_age" class="col-form-label">Age:</label>
+                <p class="h6" id="v_age" name="v_age"></p>
+            </div> 
+            
+            <div class="form-group col-md-4">
+                <label for="v_gender" class="col-form-label">Gender:</label>
+                <p class="h6" id="v_gender" name="v_gender"></p>
+            </div> 
 
-        <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="vhide-modal">Close</button>
+            </div>
+
+            <hr class="w-100 mt-1 mb-1">
+            <div class="row">
+
+                <div class="form-group col-md-6">
+                    <label for="v_address" class="col-form-label">Address:</label>
+                    <p class="h6" id="v_address" name="v_address"></p>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="v_region" class="col-form-label">Region:</label>
+                    <p class="h6" id="v_region" name="v_region"></p>
+                </div>
+                
+            </div>
+
+            <hr class="w-100 mt-1 mb-1">
+            <div class="row">
+            
+            <div class="form-group col-md-4">
+                <label for="v_contact" class="col-form-label">Contact:</label>
+                <p class="h6" id="v_contact" name="v_contact"></p>
+            </div> 
+
+            <div class="form-group col-md-4">
+                <label for="v_email" class="col-form-label">Email:</label>
+                <p class="h6" id="v_email" name="v_email"></p>
+            </div> 
+            
+            <div class="form-group col-md-4">
+                <label for="v_store_name" class="col-form-label">Store Count:</label>
+                <p class="h6" id="v_store_name" name="v_store_name"></p>
+            </div> 
+
+            </div>
+                
+        
+        
+
+        
+
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="vhide-modal">Close</button>
+            </div>
+
+            </div>
         </div>
-
         </div>
-     </div>
-    </div>
+        
     
-   
-    
+        
 
-    <!-- start: JS -->
-    <script src="/asset/user/js/bootstrap.bundle.min.js"></script>
+        <!-- start: JS -->
+        <script src="/asset/user/js/bootstrap.bundle.min.js"></script>
 
-<script src="/asset/user/js/jquery.min.js"></script>
+    <script src="/asset/user/js/jquery.min.js"></script>
 
-<script src="/asset/user/js/script.js"></script>
+    <script src="/asset/user/js/script.js"></script>
 
 
-<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
 
-<script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js" type="text/javascript"></script>
-<link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 
 
 

@@ -17,9 +17,8 @@ use App\Http\Controllers\UserExportController;
 use App\Http\Controllers\AccountSupervisor\AccountSupervisorController;
 use App\Http\Controllers\AccountSupervisor\AccountSupervisorDoorListController;
 use App\Http\Controllers\AccountSupervisor\AccountSupervisorCoordinatorListController;
+use App\Http\Controllers\AccountSupervisor\AccountSupervisorManningListController;
 use App\Http\Controllers\Accountsupervisor\AccountSupervisorMerchandiserListController;
-
-
 
 
 use App\Http\Controllers\PayrollHead\PayrollHeadController;
@@ -208,6 +207,12 @@ Route::middleware([AccountSupervisor::class])->group(function(){
     Route::get('/accountsupervisor/merchandiser', [AccountSupervisorController::class, 'view_merchandiser'])->name('accountsupervisor.view.merchandiser');
     Route::get('/accountsupervisor/manning', [AccountSupervisorController::class, 'view_manning'])->name('accountsupervisor.view.manning');
 
+    //Manning fuctions
+    Route::get('/accountsupervisor/manning-list/fetch-data', [AccountSupervisorManningListController::class, 'fetchData']);
+    Route::post('/accountsupervisor/manning/list/register-account', [AccountSupervisorManningListController::class, 'saveAccount'])->name('accountsupervisor.manning-list.register');
+    Route::post('/accountsupervisor/manning/list/update-account', [AccountSupervisorManningListController::class, 'updateAccount'])->name('accountsupervisor.manning-list.update-account');
+    Route::get('/accountsupervisor/manning/list/retrieve-update/{id}', [AccountSupervisorManningListController::class, 'getUpdateData'])->name('accountsupervisor.manning-list.retrieve-update');
+    Route::get('/accountsupervisor/maning/list/retrieve-view/{id}', [AccountSupervisorManningListController::class, 'getViewData'])->name('accountsupervisor.manning-list.retrieve-view');
 
     //Merchandiser fuctions
     Route::get('/accountsupervisor/merchandiser-list/fetch-data', [AccountSupervisorMerchandiserListController::class, 'fetchData']);
@@ -222,6 +227,7 @@ Route::middleware([AccountSupervisor::class])->group(function(){
     Route::post('/accountsupervisor/door/list/update-account', [AccountSupervisorDoorListController::class, 'updateAccount'])->name('accountsupervisor.door-list.update-account');
     Route::get('/accountsupervisor/door/list/retrieve-update/{id}', [AccountSupervisorDoorListController::class, 'getUpdateData'])->name('accountsupervisor.door-list.retrieve-update');
     Route::get('/accountsupervisor/door/list/retrieve-view/{id}', [AccountSupervisorDoorListController::class, 'getViewData'])->name('accountsupervisor.door-list.retrieve-view');
+    Route::get('/accountsupervisor/door/list/retrieve-merhandiser-door/{id}', [AccountSupervisorDoorListController::class, 'getViewMerchandiserManning'])->name('accountsupervisor.merchandiser-door-list');
 
     //Client Coordinator Functions
     Route::get('/accountsupervisor/coordinator-list/fetch-data', [AccountSupervisorCoordinatorListController::class, 'fetchData']);

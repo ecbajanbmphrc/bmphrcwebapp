@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Coordinator;
 use App\Models\Merchandiser;
 use App\Models\CompanyDoor;
+use App\Models\Manning;
 
 use Session;
 use DB;
@@ -45,6 +46,8 @@ class AccountSupervisorController extends Controller
     public function view_door(){
 
         $coordinator_array = [0 => "None"];
+
+        $company_me =  session('user')['company_id'];
       
         // $coordinators = Coordinator::where('first_name', '!=', 'none')
         // // ->select('name', 'id')
@@ -62,10 +65,11 @@ class AccountSupervisorController extends Controller
 
          $coordinator_array += $coordinators;
 
+
         // dd($coordinator_array);
     
     
-       return view('accountsupervisor.doors' , compact('coordinator_array'));
+       return view('accountsupervisor.doors' , compact('coordinator_array' ));
 
     }
 
@@ -82,15 +86,28 @@ class AccountSupervisorController extends Controller
     }
 
     public function view_manning(){
-        $coordinator_array = [0 => "None"];
+
+        $company_me =  session('user')['company_id'];
+        
+        $store_array = [0 => "None"];
+
+        $merchandiser_array = [0 => "None"];
       
-        // $coordinators = Coordinator::where('first_name', '!=', 'none')
-        // // ->select('name', 'id')
-        // ->pluck('first_name' , 'id')
-        // ->toArray();
+
+        $company_doors = CompanyDoor::
+        where([
+            'company_id'  => $company_me,
+            'status' => 'active' 
+        ])
+        ->get()
+        ->pluck('store_name','id')
+        ->toArray();
+
+        $store_array += $company_doors;
 
 
-        $coordinators = Coordinator::
+
+        $merchandisers = Merchandiser::
         select(DB::raw("CONCAT(first_name ,' ',  last_name) AS display_name"),'id')
         ->get()
         ->pluck('display_name','id')
@@ -98,9 +115,9 @@ class AccountSupervisorController extends Controller
 
 
 
-         $coordinator_array += $coordinators;
+        $merchandiser_array += $merchandisers;
 
-        return view('accountsupervisor.manning' , compact('coordinator_array'));
+        return view('accountsupervisor.manning' , compact('store_array', 'merchandiser_array'));
 
     }
 
