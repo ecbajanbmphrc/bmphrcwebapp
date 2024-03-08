@@ -44,7 +44,7 @@
                 </li>
                 <li class="sidebar-menu-item">
                     <a href="{{ route('accountsupervisor.view.door') }}">
-                        <i class="ri-store-line sidebar-menu-item-icon"></i>Doors
+                        <i class="ri-store-line sidebar-menu-item-icon"></i>Store
                     </a>
                 </li>
                 <li class="sidebar-menu-item ">
@@ -348,7 +348,7 @@
                 <option  value="">---Select Remarks---</option>
                     <option  value="Lvl 1 fix-term" @if(old('c_remarks') == "Lvl 1 fix-term") {{'selected'}} @endif>Lvl 1 fix-term</option>
                     <option  value="Lvl 2 fix-term" @if(old('c_remarks') == "Lvl 2 fix-term") {{'selected'}} @endif>Lvl 2 fix-term</option>
-                    <option  value="Provisionary" @if(old('c_remarks') == "Provisionary") {{'selected'}} @endif>Provisionary</option>
+                    <option  value="Probasionary" @if(old('c_remarks') == "Probasionary") {{'selected'}} @endif>Probationary</option>
                     <option  value="Regular" @if(old('c_remarks') == "Regular") {{'selected'}} @endif>Regular</option>
                 </select>
             </div>
