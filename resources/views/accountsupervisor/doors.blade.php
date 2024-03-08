@@ -45,7 +45,7 @@
             </li>
             <li class="sidebar-menu-item active">
                 <a href="{{ route('accountsupervisor.view.door') }}">
-                    <i class="ri-store-line sidebar-menu-item-icon"></i>Doors
+                    <i class="ri-store-line sidebar-menu-item-icon"></i>Store
                 </a>
             </li>
             <li class="sidebar-menu-item">
@@ -120,7 +120,7 @@
             <!-- start: Navbar -->
             <nav class="px-3 py-2 bg-white rounded shadow-sm">
                 <i class="ri-menu-line sidebar-toggle me-3 d-block d-md-none"></i>
-                <h5 class="fw-bold mb-0 me-auto">DOOR</h5>
+                <h5 class="fw-bold mb-0 me-auto">Store List</h5>
                 <div class="dropdown me-3 d-none d-sm-block">
                     <div class="cursor-pointer dropdown-toggle navbar-link" data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -258,7 +258,7 @@
                     <input class="form-control" id="e_merchandiser" name="e_merchandiser" readonly>
                     <div class="input-group-append">
                      <span class="input-group-text" style="border-radius: 0 6px 6px 0;">
-                        <button type="button" class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#exampleModal" id="show_merchandiser"></button>
+                        <button type="button" class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#merchandiserAssign" id="show_merchandiser"></button>
                     </span>
                     </div>
                 </div>
@@ -279,17 +279,17 @@
         </div>
         </form>
         </div>
+        </div>
      </div>
     </div>
-    </div>
 
 
-    <div class="modal fade" id="exampleModal" name ="exampleModal" tabindex="-1" role="dialog" aria-labelledby="viewDoorModalLabel" aria-hidden="true">
+    <div class="modal fade" id="merchandiserAssign" name ="merchandiserAssign" tabindex="-1" role="dialog" aria-labelledby="viewDoorModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Merchandiser List</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <h5 class="modal-title" id="merchandiserAssignLabel">Merchandiser List</h5>
+                        <button type="button" class="btn-close" id="closeModal" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body">
                     <table id="manning" class="table table-hover" style="width:100%">
@@ -300,18 +300,67 @@
                                 <th>Last Name</th>
                             </tr>
                         </thead>
-                        <tbody>
+                            <tbody id="manning-body">
                    
-                        </tbody>
-                    </table>
+                            </tbody >
+                        </table>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" id="closeModal" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id= "openMerchandiserModalList">Add</button>
+                        <!-- <button type="button" class="btn btn-secondary" id="closeModal" data-bs-dismiss="modal">Close</button> -->
                     </div>
-                </div>
             </div>
         </div>
-        <!-- Modal Ends Here -->
+    </div>
+    
+
+
+        <div class="modal fade" id="merchandiserList" name="merchandiserList" tabinex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="merchandiserAssignLabel">Add Merchandiser</h5>
+
+                        
+                   
+                    </div>
+                 <div class="modal-body">
+
+                 <div class="row">
+                    <div class="form-group col-md-12">
+
+                 <table id="merchandiser-list" class="table table-hover" style="width:100%">
+                 
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th style="display:none">ID</th>
+                            <th>First Name</th>
+                            <th>Middle Name</th>
+                            <th>Last Name</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                
+                  </div>
+                
+                  </div>
+        
+            
+                 </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-close" id="closeModal" data-bs-dismiss="modal"></button>
+                </div>
+            </div>
+            </div>
+        </div>
+
+
+
+   
 
 
      <!-- View door modal -->
@@ -381,7 +430,9 @@
 
             </div>
         </div>
-        </div>
+    </div>
+
+       
         
     
         <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -413,6 +464,20 @@
                 { data: 'account' },
                 { data: 'region' },
                 { data: 'store_name' }, 
+                { data: 'actions', orderable: false }
+            ]
+        });
+
+        var merchandiserDataTable = $('#merchandiser-list').DataTable({
+            ajax: {
+                url: '/accountsupervisor/door-list/fetch-merchandiser-data',
+                dataSrc: 'data'
+            },
+            columns: [
+                { data: '#' },
+                { data: 'first_name' },
+                { data: 'middle_name' },
+                { data: 'last_name' },
                 { data: 'actions', orderable: false }
             ]
         });
@@ -507,7 +572,7 @@
 
             console.log(id)
 
-            //$("#exampleModal").modal('show');
+            //$("#merchandiserAssign").modal('show');
         
             $.ajax({
             url: '/accountsupervisor/door/list/retrieve-merhandiser-door/' + id ,
@@ -519,32 +584,65 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },   
             success: function(response){
-                var mytable = document.getElementById('manning')
+              
+                var data = response.data;
 
-                var row = `
-                    <tr>
-                    <td>response.fname</td>
-                    </tr>`
+                console.log(data)
 
-                    mytable.innerHTML += row;
-                
-               console.log(response.fname)
+                populateTable(data);
+
+
+        function populateTable(data) {
+            var tbody = $('#manning-body');
+
+   
+            tbody.empty();
+
+
+            if (Array.isArray(data)) {
         
-            
-            }
+        data.forEach(function (item) {
+            var row = $('<tr>');
+            row.append('<td>' + item.fname + '</td>');
+            row.append('<td>' + item.mname + '</td>');
+            row.append('<td>' + item.lname + '</td>');
      
-            })  
-           
-        //
+            tbody.append(row);
         });
+    } else {
+        console.error("Invalid data format: Data is not an array.");
+        }
+    }
+
+
+    },
+    error: function (error) {
+
+    console.error('Error fetching data:', error);
+    }
+    });
+
+    });
+
+
+    $("#openMerchandiserModalList").click(function(){
+          $("#merchandiserAssign").modal('hide'); 
+         
+          $("#merchandiserList").modal('show'); 
+      
+    });
+    
 
        
-        $("#closeModal").click(function(){
-        $("#exampleModal").modal('hide'); 
-        $("#exampleModal").on('hidden.bs.modal', function () {
-        $("#editDoorModal").modal('show'); 
-        });
+    $("#closeModal").click(function(){
+            $("#merchandiserAssign").modal('hide'); 
+
+            $("#editDoorModal").modal('show'); 
+       
     });
+
+
+    
 
     });
     </script>

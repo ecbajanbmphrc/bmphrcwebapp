@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\CompanyDoor;
 use App\Models\Manning;
+use App\Models\Merchandiser;
 
 use Session;
 use DB;
@@ -26,10 +27,8 @@ class AccountSupervisorDoorListController extends Controller
 
         $data = $data->map(function ($item, $key) {
             $item['#'] = $key + 1;
-
-            $item['actions'] = '<img src= "/asset/img/button_img/eye-blue-32.png" alt="Button 1" class="button-image1" style="height: 25px; width: 25px;"> <img src="/asset/img/button_img/pen-green-32.png" alt="Button 2" class="button-image2" style="height: 25px; width: 25px;">';
             //
-            $item['fullname'] = $item['first_name'] . " " . $item['last_name'];
+   
             $item['actions'] = '<img src= "/asset/img/button_img/eye-blue-32.png" alt="Button 1" class="button-image1" style="height: 25px; width: 25px;"> <img src="/asset/img/button_img/pen-green-32.png" alt="Button 2" class="button-image2" style="height: 25px; width: 25px;">';
             //
             return $item;
@@ -38,6 +37,31 @@ class AccountSupervisorDoorListController extends Controller
         return response()->json(['data' => $data]);
 
     }
+
+    public function fetchMerchandiserData(Request $request)
+    {     
+       // $company_id = $request->input('u', '3');
+
+       $user_type = session('user')['company_id'];
+
+        $data = Merchandiser::where([
+            ['company_id', '=' , $user_type],
+            ['is_active', '=' , '1'] , 
+            ['id' , '<>' , 1]
+            ])->get();
+
+        $data = $data->map(function ($item, $key) {
+            $item['#'] = $key + 1;
+
+            $item['actions'] = '<img src= "/asset/img/button_img/eye-blue-32.png" alt="Button 1" class="button-image1" style="height: 25px; width: 25px;"> <img src="/asset/img/button_img/pen-green-32.png" alt="Button 2" class="button-image2" style="height: 25px; width: 25px;">';
+            //
+            return $item;
+        });
+
+        return response()->json(['data' => $data]);
+
+    }
+    
     
 
     //
@@ -107,32 +131,50 @@ class AccountSupervisorDoorListController extends Controller
 
         $company_door = DB::table('manning_lists')
         ->leftJoin('merchandisers', 'manning_lists.merchandiser_id', '=', 'merchandisers.id')
-        ->select('manning_lists.*' , 'merchandisers.first_name as fname')
+        ->select('manning_lists.*' , 'merchandisers.first_name as fname' , 'merchandisers.middle_name as mname' , 'merchandisers.last_name as lname' )
         ->where('door_id', $id)
-        ->get()
-        ->toArray();
+        ->get();
 
 
-        $collection = collect([
-            ['account_id' => 'account-x10', 'product' => 'Chair'],
-            ['account_id' => 'account-x10', 'product' => 'Bookcase'],
-            ['account_id' => 'account-x11', 'product' => 'Desk'],
-        ]);
+      //  $result = json_decode($company_door, true);
+
+
+
+
+        // $collection = collect([
+        //     ['account_id' => 'account-x10', 'product' => 'Chair'],
+        //     ['account_id' => 'account-x10', 'product' => 'Bookcase'],
+        //     ['account_id' => 'account-x11', 'product' => 'Desk'],
+        // ]);
+    
+        // $grouped = $collection->groupBy('account_id');
         
-        $grouped = $collection->groupBy('account_id');
+        // $grouped->toArray();
+
+        $company_door = $company_door->map(function ($item) {
+            $item = (array)$item; // Convert stdClass object to an array
         
-        $grouped->toArray();
+            // Add a new key 'fullname' with the value of 'fname'
+            $item['fname'] = $item['fname'];
+            $item['mname'] = $item['mname'];
+            $item['lname'] = $item['lname'];
+            
+        
+            return $item;
+        });
+
+        return response()->json(['data' => $company_door]);
 
         
 
-        if ($company_door) {
-            // Data found for the given ID
-            return response()->json($company_door);
+        // if ($company_door) {
+        //     // Data found for the given ID
+        //     return response()->json($company_door);
           
-        } else {
-            // Data not found
-            return response()->json(['error' => 'Data not found'], 404);
-        }
+        // } else {
+        //     // Data not found
+        //     return response()->json(['error' => 'Data not found'], 404);
+        // }
 
     }
 
