@@ -53,15 +53,64 @@ class AccountSupervisorDoorListController extends Controller
         $data = $data->map(function ($item, $key) {
             $item['#'] = $key + 1;
 
-            $item['actions'] = '<img src= "/asset/img/button_img/eye-blue-32.png" alt="Button 1" class="button-image1" style="height: 25px; width: 25px;"> <img src="/asset/img/button_img/pen-green-32.png" alt="Button 2" class="button-image2" style="height: 25px; width: 25px;">';
-            //
+            $item['actions'] = '<img src= "/asset/img/button_img/add32.png" alt="Button 1" class="button-image3" style="height: 25px; width: 25px; ">';
+    
             return $item;
         });
 
-        return response()->json(['data' => $data]);
+        return response()->json(['mdata' => $data]);
 
     }
+
+
+    //
+    // Plus circle function starts here
+    // first code-error
+
+    public function save(Request $request)
+    {
+        // dd(request->all());
     
+        $company = session('user')['user_id'];
+        $status = 1;
+
+        $door = session('door')['door_id'];
+        $status = 4;
+
+        $coordinator = session('coordinator')['coordinator_id'];
+        $status = 2;
+
+        $merchandiser = session('merchandiser')['merchandiser_id'];
+        $status = 2;
+
+        $company = session('user')['company_id'];
+        $status = 2;
+
+        //new code added
+        return view('merchandiserList', compact('company', 'door', 'coordinator', 'merchandiser'));
+        
+    }
+
+    // second code-error
+    // public function save(Request $request)
+    // {
+    //     // dd($request->all());
+        
+    //     $user_id = $request->input('user_id');
+    //     $door_id = $request->input('door_id');
+    //     $coordinator_id = $request->input('coordinator_id');
+    //     $merchandiser_id = $request->input('merchandiser_id');
+    //     $company_id = $request->input('company_id');
+
+    //     $status = 1;
+    
+    // }
+
+    //plus circle function ends here
+    //
+
+
+
     
 
     //
@@ -224,6 +273,32 @@ class AccountSupervisorDoorListController extends Controller
                   
                 return redirect(('/accountsupervisor/door'))->with('update-success', "Account updated successfully");
            
+    }
+
+    public function saveMerchandiserData(Request $request){
+       //  dd($request->all());
+
+       $company = session('user')['company_id'];
+      
+
+        $manning = new Manning;
+        $manning ->door_id = $request->_store_id;
+        $manning ->coordinator_id = $request->_coordinator_id;
+        $manning ->merchandiser_id = $request->_merchandiser_id;
+        $manning ->company_id = $company;
+        $manning -> save();
+
+        // $manning->door_id = $data['door_id'];
+        // $manning->merchandiser_id = $data['merchandiser_id'];
+        // $manning->coordinator_id = $data['coordinator_id'];
+        // $manning->company_id = $data['company_id'];
+
+        // $manning ->save();
+
+       // return response()->json(['data'=>$id]);
+        //new code added ends here (still not working)
+
+       // return response()->json(['data' => $id])
     }
 
 }

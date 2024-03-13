@@ -229,6 +229,10 @@ Route::middleware([AccountSupervisor::class])->group(function(){
     Route::get('/accountsupervisor/door/list/retrieve-view/{id}', [AccountSupervisorDoorListController::class, 'getViewData'])->name('accountsupervisor.door-list.retrieve-view');
     Route::get('/accountsupervisor/door/list/retrieve-merhandiser-door/{id}', [AccountSupervisorDoorListController::class, 'getViewMerchandiserManning'])->name('accountsupervisor.merchandiser-door-list');
     Route::get('/accountsupervisor/door-list/fetch-merchandiser-data', [AccountSupervisorDoorListController::class, 'fetchMerchandiserData']);
+    //for circle-plus Button
+    Route::post('/accountsupervisor/door-list/save-merchandiser-data', [AccountSupervisorDoorListController::class, 'saveMerchandiserData']);
+    //new code added
+    // Route::get('accountsupervisor/door-list/save-merchandiser-data', [AccountSupervisorDoorListController::class, 'saveMerchandiserData']);
 
     //Client Coordinator Functions
     Route::get('/accountsupervisor/coordinator-list/fetch-data', [AccountSupervisorCoordinatorListController::class, 'fetchData']);
