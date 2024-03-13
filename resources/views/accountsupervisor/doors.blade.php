@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- start: Icons -->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
@@ -23,6 +24,9 @@
     cursor: pointer;
         }
         .button-image2{
+    cursor: pointer;
+        }
+        .button-image3{
     cursor: pointer;
         }
     </style>
@@ -232,7 +236,7 @@
         </div>
 
         <div class="row">
-         
+         <!-- can we do 38,788 in 3 laptop -->
           <div class="form-group col-md-6">
             <label for="e_coordinator" class="col-form-label">Coordinator:</label>
             <select class="form-control" id="e_coordinator" name="e_coordinator">
@@ -283,7 +287,7 @@
      </div>
     </div>
 
-
+    <!-- merchandiser table list modal starts here -->
     <div class="modal fade" id="merchandiserAssign" name ="merchandiserAssign" tabindex="-1" role="dialog" aria-labelledby="viewDoorModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -312,24 +316,23 @@
             </div>
         </div>
     </div>
+    <!-- merchandiser table list modal ends here -->
     
 
-
+        <!-- Merchandiser list assign modal starts here -->
         <div class="modal fade" id="merchandiserList" name="merchandiserList" tabinex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="merchandiserAssignLabel">Add Merchandiser</h5>
-
-                        
-                   
+                        <button type="button" class="btn-close" id="closeModal1" data-bs-dismiss="modal"></button>
                     </div>
                  <div class="modal-body">
 
                  <div class="row">
                     <div class="form-group col-md-12">
 
-                 <table id="merchandiser-list" class="table table-hover" style="width:100%">
+                 <table id="merchandiserListTable" class="table table-hover" style="width:100%">
                  
                     <thead>
                         <tr>
@@ -344,6 +347,10 @@
                     <tbody>
                     </tbody>
                 </table>
+
+                <input type ="hidden" name="coordinator_ID" id="coordinator_ID">
+                <input type ="hidden" name="store_ID" id="store_ID">
+            
                 
                   </div>
                 
@@ -352,15 +359,12 @@
             
                  </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn-close" id="closeModal" data-bs-dismiss="modal"></button>
+                    
                 </div>
             </div>
             </div>
         </div>
-
-
-
-   
+        <!-- Merchandiser list assign modal ends here -->
 
 
      <!-- View door modal -->
@@ -468,19 +472,55 @@
             ]
         });
 
-        var merchandiserDataTable = $('#merchandiser-list').DataTable({
+        var merchandiserDataTable = $('#merchandiserListTable').DataTable({
             ajax: {
                 url: '/accountsupervisor/door-list/fetch-merchandiser-data',
-                dataSrc: 'data'
+                dataSrc: 'mdata'
             },
             columns: [
                 { data: '#' },
+                { data:  'id', visible: false },
                 { data: 'first_name' },
                 { data: 'middle_name' },
                 { data: 'last_name' },
                 { data: 'actions', orderable: false }
             ]
         });
+
+          // for cicle-plus button starts here
+          $('#merchandiserListTable').on('click', 'tr', function (e){
+            e.preventDefault();
+
+            var table = $('#merchandiserListTable').DataTable();
+
+           var merchandiser_myid = table.row(this).data().id;
+
+           var store_id = $('#store_ID').val();
+
+           var coordinator_id = $('#coordinator_ID').val();
+
+        $.ajax({
+        type: 'POST',
+        url: '/accountsupervisor/door-list/save-merchandiser-data',
+        dataType: 'JSON',
+        headers: {
+            // 'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },   
+        data: {
+            _merchandiser_id: merchandiser_myid,
+            _coordinator_id: coordinator_id,
+            _store_id: store_id, 
+            _token: @json(csrf_token()), },
+        success: function(response){
+            //  response = JSON.parse(response);
+
+            console.log(response.data);
+        
+            }
+        })
+        //new code added ends here
+         });
 
         $('#door tbody').on('click', 'img.button-image1', function (e) {
         e.preventDefault();
@@ -516,8 +556,11 @@
         $('#door tbody').on('click', 'img.button-image2', function (e) {
         e.preventDefault();
 
+        
+
             var selectedRowData = dataTable.row($(this).closest('tr')).data();
             var id = selectedRowData.id;
+
             $.ajax({
             url: '/accountsupervisor/door/list/retrieve-update/' + id ,
             type: 'GET', 
@@ -538,13 +581,17 @@
                 $('#e_type_of_deployment').text(response.door.type_of_deployment);
 
                 $('#e_merchandiser').val(response.count)
+
+              
              
 
                 if(response.door.coordinator_id === null){
                     $('#e_coordinator').val(0);
+                    $('#coordinator_ID').val(0);
                
                 }else{
                 $('#e_coordinator').val(response.door.coordinator_id);
+                $('#coordinator_ID').val(response.door.coordinator_id);
                 }
              
              
@@ -554,9 +601,13 @@
      
             })
         });
-        //
         
-        // 
+
+
+
+      
+
+
 
         $("#vhide-modal").click(function(){
             $("#viewDoorModal").modal('hide');
@@ -566,12 +617,24 @@
         });
 
         $("#show_merchandiser").click(function(){
-        
 
-            var id = $('#selectedID').val();
+           var id =  $('#selectedID').val();
 
-            console.log(id)
+           var check_coor = $('#e_coordinator').val();
 
+           console.log("check coor" , check_coor);
+
+           //$('#selectedID').val();
+
+           
+
+           $('#store_ID').val(id);
+           
+
+         //  console.log(check_door_id);
+
+         console.log(id);
+    
             //$("#merchandiserAssign").modal('show');
         
             $.ajax({
@@ -626,13 +689,14 @@
 
 
     $("#openMerchandiserModalList").click(function(){
+        
           $("#merchandiserAssign").modal('hide'); 
          
           $("#merchandiserList").modal('show'); 
+         
       
     });
     
-
        
     $("#closeModal").click(function(){
             $("#merchandiserAssign").modal('hide'); 
@@ -642,11 +706,64 @@
     });
 
 
+    // Merchandiser Assign And List
+    $("#openMerchandiserAssign").click(function(){
+          $("#merchandiserAssign").modal('hide'); 
+         
+          $("#merchandiserList").modal('show'); 
+      
+    });
     
+       
+    $("#closeModal").click(function(){
+            $("#merchandiserAssign").modal('hide'); 
+
+            $("#merchandiserModalList").modal('show'); 
+       
+    });
+
+    // 2nd and 3rd modal
+    $('#openmerchandiserModalList').click(function(){
+        $("#merchandiserModalList").modal('hide');
+        $("#merchandiserAssign").modal('show');
+    });
+
+    $('#closeModal1').click(function(){
+        $('#merchandiserList').modal('hide');
+        
+        $('#merchandiserAssign').modal('show');
+    });
+
+    // $('#openmerchandiserModalList').click(function(){
+    //     $("#merchandiserModalList").modal('hide');
+
+    //     $("#merchandiserAssign").modal('show');
+    // });
+
+    // $('#closeModal').click(function(){
+    //     $('#merchandiserAssign').modal('hide');
+
+    //     $('#merchandiserModalList').modal('show');
+    // });
+
+
+    // $("#openMerchandiserModalList").click(function(){
+    // $("#merchandiserAssign").modal('hide'); 
+    // $("#merchandiserList").modal('show'); 
+    // });
+
+    // $("#closeModal").click(function(){
+    //     $("#merchandiserAssign").modal('hide'); 
+    //     $("#merchandiserList").modal('show'); 
+    // });
+
 
     });
     </script>
 </body>
 
 </html>
+
+
+
 
