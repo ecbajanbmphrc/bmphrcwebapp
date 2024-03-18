@@ -452,6 +452,7 @@
 
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script> 
 
     @include('sweetalert::alert')
 
@@ -472,7 +473,14 @@
             ]
         });
 
-        var merchandiserDataTable = $('#merchandiserListTable').DataTable({
+        
+
+        function populatemerchandiserDataTable(){
+
+            $('#merchandiserListTable').DataTable().destroy();
+
+            var merchandiserDataTable = $('#merchandiserListTable').DataTable({
+
             ajax: {
                 url: '/accountsupervisor/door-list/fetch-merchandiser-data',
                 dataSrc: 'mdata'
@@ -487,6 +495,8 @@
             ]
         });
 
+        }
+
           // for cicle-plus button starts here
           $('#merchandiserListTable').on('click', 'tr', function (e){
             e.preventDefault();
@@ -498,8 +508,23 @@
            var store_id = $('#store_ID').val();
 
            var coordinator_id = $('#coordinator_ID').val();
+           Swal.fire({
+            title: "Are you sure you want this merchandiser to this store?",
+            text: "You won't be able to revert this!",
+            icon: "info",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Confirm!"
+            }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+            title: "Success!",
+            text: "Merchandiser added successfully.",
+            icon: "success"
+                });
 
-        $.ajax({
+                $.ajax({
         type: 'POST',
         url: '/accountsupervisor/door-list/save-merchandiser-data',
         dataType: 'JSON',
@@ -519,7 +544,12 @@
         
             }
         })
-        //new code added ends here
+            }
+
+         
+        });
+
+      
          });
 
         $('#door tbody').on('click', 'img.button-image1', function (e) {
@@ -604,11 +634,6 @@
         
 
 
-
-      
-
-
-
         $("#vhide-modal").click(function(){
             $("#viewDoorModal").modal('hide');
         });
@@ -625,19 +650,16 @@
            console.log("check coor" , check_coor);
 
            //$('#selectedID').val();
-
-           
-
-           $('#store_ID').val(id);
-           
-
-         //  console.log(check_door_id);
-
-         console.log(id);
     
-            //$("#merchandiserAssign").modal('show');
-        
-            $.ajax({
+
+           $('#store_ID').val(id); 
+
+           get_merchandiser_door(id);
+          
+    });
+
+    function get_merchandiser_door(id){
+    $.ajax({
             url: '/accountsupervisor/door/list/retrieve-merhandiser-door/' + id ,
             
             type: 'GET', 
@@ -650,12 +672,21 @@
               
                 var data = response.data;
 
-                console.log(data)
+              
 
                 populateTable(data);
 
 
-        function populateTable(data) {
+    },
+    error: function (error) {
+
+    console.error('Error fetching data:', error);
+    }
+    })
+    };
+
+
+    function populateTable(data) {
             var tbody = $('#manning-body');
 
    
@@ -678,17 +709,9 @@
     }
 
 
-    },
-    error: function (error) {
-
-    console.error('Error fetching data:', error);
-    }
-    });
-
-    });
-
-
     $("#openMerchandiserModalList").click(function(){
+
+        populatemerchandiserDataTable();
         
           $("#merchandiserAssign").modal('hide'); 
          
@@ -722,40 +745,18 @@
        
     });
 
-    // 2nd and 3rd modal
-    $('#openmerchandiserModalList').click(function(){
-        $("#merchandiserModalList").modal('hide');
-        $("#merchandiserAssign").modal('show');
-    });
+   
 
     $('#closeModal1').click(function(){
+
+        var id =  $('#selectedID').val();
+
+        get_merchandiser_door(id);
+        
         $('#merchandiserList').modal('hide');
         
         $('#merchandiserAssign').modal('show');
     });
-
-    // $('#openmerchandiserModalList').click(function(){
-    //     $("#merchandiserModalList").modal('hide');
-
-    //     $("#merchandiserAssign").modal('show');
-    // });
-
-    // $('#closeModal').click(function(){
-    //     $('#merchandiserAssign').modal('hide');
-
-    //     $('#merchandiserModalList').modal('show');
-    // });
-
-
-    // $("#openMerchandiserModalList").click(function(){
-    // $("#merchandiserAssign").modal('hide'); 
-    // $("#merchandiserList").modal('show'); 
-    // });
-
-    // $("#closeModal").click(function(){
-    //     $("#merchandiserAssign").modal('hide'); 
-    //     $("#merchandiserList").modal('show'); 
-    // });
 
 
     });
