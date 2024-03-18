@@ -38,17 +38,28 @@ class AccountSupervisorDoorListController extends Controller
 
     }
 
+
     public function fetchMerchandiserData(Request $request)
     {     
        // $company_id = $request->input('u', '3');
+        $arrayid = [];
 
+        $xmerchandiser = Manning::select('merchandiser_id')
+       // ->where('door_id' , '4')
+        ->distinct()
+        ->get();
+
+        $name = $request->input('selectedID');
+  
        $user_type = session('user')['company_id'];
 
         $data = Merchandiser::where([
             ['company_id', '=' , $user_type],
-            ['is_active', '=' , '1'] , 
-            ['id' , '<>' , 1]
-            ])->get();
+            ['is_active', '=' , '1']  
+         //   ['id' , '<>' , [23,2]]
+            ])
+            ->whereNotIn('id', $xmerchandiser)
+            ->get();
 
         $data = $data->map(function ($item, $key) {
             $item['#'] = $key + 1;
@@ -63,9 +74,6 @@ class AccountSupervisorDoorListController extends Controller
     }
 
 
-    //
-    // Plus circle function starts here
-    // first code-error
 
     public function save(Request $request)
     {
@@ -91,54 +99,9 @@ class AccountSupervisorDoorListController extends Controller
         
     }
 
-    // second code-error
-    // public function save(Request $request)
-    // {
-    //     // dd($request->all());
-        
-    //     $user_id = $request->input('user_id');
-    //     $door_id = $request->input('door_id');
-    //     $coordinator_id = $request->input('coordinator_id');
-    //     $merchandiser_id = $request->input('merchandiser_id');
-    //     $company_id = $request->input('company_id');
-
-    //     $status = 1;
-    
-    // }
-
-    //plus circle function ends here
-    //
-
-
+   
 
     
-
-    //
-            //     $data = Doors::
-            //     where('Doors.company_id', session('user')['company_id'] )
-            // //  ->select('coordinators.*', 'company_doors.account_branch as branch')
-            // ->get();
-
-
-            // $data = $data->map(function ($item, $key) {
-            // $item['#'] = $key + 1;
-
-            // $item['fullname'] = $item['first_name'] . " " . $item['last_name'];
-
-
-            // $item['actions'] = '<img src= "/asset/img/button_img/eye-blue-32.png" alt="Button 1" class="button-image1" style="height: 25px; width: 25px;"> <img src="/asset/img/button_img/pen-green-32.png" alt="Button 2" class="button-image2" style="height: 25px; width: 25px;">';
-
-
-            // return $item;
-            // });
-
-            // return response()->json(['data' => $data]);
-
-            
-        
-    
-
-    //
 
     protected function getViewData($id)
     {   
@@ -185,25 +148,11 @@ class AccountSupervisorDoorListController extends Controller
         ->get();
 
 
-      //  $result = json_decode($company_door, true);
-
-
-
-
-        // $collection = collect([
-        //     ['account_id' => 'account-x10', 'product' => 'Chair'],
-        //     ['account_id' => 'account-x10', 'product' => 'Bookcase'],
-        //     ['account_id' => 'account-x11', 'product' => 'Desk'],
-        // ]);
-    
-        // $grouped = $collection->groupBy('account_id');
-        
-        // $grouped->toArray();
 
         $company_door = $company_door->map(function ($item) {
-            $item = (array)$item; // Convert stdClass object to an array
+            $item = (array)$item; 
         
-            // Add a new key 'fullname' with the value of 'fname'
+          
             $item['fname'] = $item['fname'];
             $item['mname'] = $item['mname'];
             $item['lname'] = $item['lname'];
@@ -216,14 +165,7 @@ class AccountSupervisorDoorListController extends Controller
 
         
 
-        // if ($company_door) {
-        //     // Data found for the given ID
-        //     return response()->json($company_door);
-          
-        // } else {
-        //     // Data not found
-        //     return response()->json(['error' => 'Data not found'], 404);
-        // }
+    
 
     }
 
