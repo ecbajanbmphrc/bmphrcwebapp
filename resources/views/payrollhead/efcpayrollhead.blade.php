@@ -4,17 +4,33 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- start: Icons -->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    
 
     <!-- start: Icons -->
     <!-- start: CSS -->
     <link rel="stylesheet" href="/asset/user/css/bootstrap.min.css">
     <link rel="stylesheet" href="/asset/user/css2/payrollhead.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
     <!-- end: CSS -->
     <title>BMPHRC</title>
+
+    <style>
+        .button-image1{
+    cursor: pointer;
+        }
+        .button-image2{
+    cursor: pointer;
+        }
+        .button-image3{
+    cursor: pointer;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -26,13 +42,13 @@
             <i class="sidebar-toggle ri-arrow-left-circle-line ms-auto fs-5 d-none d-md-block"></i>
         </div>
         <ul class="sidebar-menu p-3 m-0 mb-0">
-            <li class="sidebar-menu-item active">
+            <li class="sidebar-menu-item">
                 <a href="{{ route('payrollhead.view.dashboard') }}">
                     <i class="ri-dashboard-line sidebar-menu-item-icon"></i>Dashboard
                 </a>
             </li>
             <li class="sidebar-menu-divider mt-3 mb-1 text-uppercase">Clients</li>
-            <li class="sidebar-menu-item ">
+            <li class="sidebar-menu-item active ">
                 <a href="{{ route('payrollhead.view.efcpayrollhead') }}">
                     <i class="bi bi-dash-square sidebar-menu-item-icon"></i>EFC
                 </a>
@@ -61,15 +77,16 @@
         </ul>
     </div>
     <div class="sidebar-overlay"></div>
+    
     <!-- end: Sidebar -->
 
     <!-- start: Main -->
     <main class="bg-light">
-        <div class="p-5">
+        <div class="p-2">
             <!-- start: Navbar -->
             <nav class="px-3 py-2 bg-white rounded shadow-sm">
                 <i class="ri-menu-line sidebar-toggle me-3 d-block d-md-none"></i>
-                <h5 class="fw-bold mb-0 me-auto">Dashboard</h5>
+                <h5 class="fw-bold mb-0 me-auto">Store List</h5>
                 <div class="dropdown me-3 d-none d-sm-block">
                     <div class="cursor-pointer dropdown-toggle navbar-link" data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -105,97 +122,94 @@
                 </div>
             </nav>
             <!-- end: Navbar -->
-            </div>
-            <!-- end: Content -->
-        </div>
 
-                    <!-- start: Content -->
-                    <div class="py-4">
-                <!-- start: Summary -->
-                <div class="row g-3">
-                    <div class="col-12 col-sm-6 col-lg-3">
-                        <a href="#"
-                            class="text-dark text-decoration-none bg-white p-3 rounded shadow-sm d-flex justify-content-between summary-primary">
-                            <div>
-                                <i class="ri-shopping-cart-2-line summary-icon bg-primary mb-2"></i>
-                                <div>Sales</div>
-                            </div>
-                            <h4>$435</h4>
-                        </a>
-                    </div>
-                    <div class="col-12 col-sm-6 col-lg-3">
-                        <a href="#"
-                            class="text-dark text-decoration-none bg-white p-3 rounded shadow-sm d-flex justify-content-between summary-indigo">
-                            <div>
-                                <i class="ri-shopping-cart-2-line summary-icon bg-indigo mb-2"></i>
-                                <div>Sales</div>
-                            </div>
-                            <h4>$435</h4>
-                        </a>
-                    </div>
-                    <div class="col-12 col-sm-6 col-lg-3">
-                        <a href="#"
-                            class="text-dark text-decoration-none bg-white p-3 rounded shadow-sm d-flex justify-content-between summary-success">
-                            <div>
-                                <i class="ri-shopping-cart-2-line summary-icon bg-success mb-2"></i>
-                                <div>Sales</div>
-                            </div>
-                            <h4>$435</h4>
-                        </a>
-                    </div>
-                    <div class="col-12 col-sm-6 col-lg-3">
-                        <a href="#"
-                            class="text-dark text-decoration-none bg-white p-3 rounded shadow-sm d-flex justify-content-between summary-danger">
-                            <div>
-                                <i class="ri-shopping-cart-2-line summary-icon bg-danger mb-2"></i>
-                                <div>Sales</div>
-                            </div>
-                            <h4>$435</h4>
-                        </a>
-                    </div>
-                </div>
-                <!-- end: Summary -->
-                <!-- start: Graph -->
-                <div class="row g-3 mt-2">
-                    <div class="col-12 col-md-7 col-xl-8">
-                        <div class="card border-0 shadow-sm h-100">
-                            <div class="card-header bg-white">
-                                Sales
-                            </div>
-                            <div class="card-body">
-                                <canvas id="sales-chart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-5 col-xl-4">
-                        <div class="card border-0 shadow-sm h-100">
-                            <div class="card-header bg-white">
-                                Visitors
-                            </div>
-                            <div class="card-body">
-                                <canvas id="visitors-chart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- end: Graph -->
+
+        <div style="height:2vh;"> </div>
+
+            <div class="card">
+                <!-- <div class="card-header">
+               
+                </div> -->
+            <div class="card-body">
+            <h5 class="card-title">Door List</h5>
+            <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
+                <table id="door" class="table table-hover" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th style="display:none">ID</th>
+                            <th>Account</th>
+                            <th>Region</th>
+                            <th>Store</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
             </div>
-            <!-- end: Content -->
+         </div>
+
         
-
-        <!-- -->    
-        </div>
+            </div>
+            <!-- end: Content -->
+       
     </main>
     <!-- end: Main -->
+
+   
     
 
-    <!-- start: JS -->
+     
+        <!-- Merchandiser list assign modal ends here -->
+
+
+   
+
+       
+        
+    
+        <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script> -->
+        <!-- start: JS -->
+        <script src="/asset/user/js/bootstrap.bundle.min.js"></script>
+
     <script src="/asset/user/js/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js" integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="/asset/user/js/bootstrap.bundle.min.js"></script>
+
     <script src="/asset/user/js/script.js"></script>
-    <!-- end: JS -->
+
+
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script> 
+
     @include('sweetalert::alert')
+
+    <script>
+        $(document).ready(function () {
+        var dataTable = $('#door').DataTable({
+            ajax: {
+                url: '/payrollhead/efc-door-list/fetch-data',
+                dataSrc: 'data'
+            },
+            columns: [
+                { data: '#' },
+                { data:  'id', visible: false },
+                { data: 'account' },
+                { data: 'region' },
+                { data: 'store_name' }, 
+                { data: 'actions', orderable: false }
+            ]
+        });
+
+
+    });
+    </script>
 </body>
 
 </html>
+
+
+
+

@@ -156,18 +156,40 @@ class AccountSupervisorDoorListController extends Controller
             $item['fname'] = $item['fname'];
             $item['mname'] = $item['mname'];
             $item['lname'] = $item['lname'];
+
+            //<!-- 11-03-2024 new code added starts here -->
+            $item['actions'] = '<i class="bi bi-x-circle-fill" id="gpower" alt="Button" style="height: 40px; width: 40px; color: red;"></i>';
             
-        
+            //
+            //
+            
+            //<!-- 11-03-2024 new code added ends here -->
             return $item;
         });
 
         return response()->json(['data' => $company_door]);
 
-        
-
-    
 
     }
+
+    // 18-03-2024 new code added starts here
+    public function destroy($id) {
+        try {
+            
+            DB::table('manning_lists')->where('id', $id)->delete();
+
+    
+           // return redirect()->route('accountsupervisor.view.door')->with('success', 'Merchandiser deleted successfully');
+           return response()->json(['success' => 'success']);
+        } catch (Exception $e) {
+            
+            //return redirect()->route('accountsupervisor.view.door')->with('error', 'Error deleting merchandiser');
+        }
+    }
+
+
+    //18-03-2024 new code added ends here
+
 
    
 

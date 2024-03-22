@@ -299,9 +299,13 @@
                     <table id="manning" class="table table-hover" style="width:100%">
                         <thead>
                             <tr>
+                            <th style="display:none">ID</th>
                                 <th>First Name</th>
                                 <th>Middle Name</th>
                                 <th>Last Name</th>
+                                <!-- 18-03-2024 new code added starts here -->
+                                <th>Actions</th>
+                                <!-- 18-03-2024 new code added ends here -->
                             </tr>
                         </thead>
                             <tbody id="manning-body">
@@ -340,8 +344,9 @@
                             <th style="display:none">ID</th>
                             <th>First Name</th>
                             <th>Middle Name</th>
-                            <th>Last Name</th>
+                            <th>Last Name</th>                           
                             <th>Actions</th>
+                        
                         </tr>
                     </thead>
                     <tbody>
@@ -497,6 +502,7 @@
 
         }
 
+
           // for cicle-plus button starts here
           $('#merchandiserListTable').on('click', 'tr', function (e){
             e.preventDefault();
@@ -523,6 +529,8 @@
             text: "Merchandiser added successfully.",
             icon: "success"
                 });
+
+            //   
 
                 $.ajax({
         type: 'POST',
@@ -551,6 +559,7 @@
 
       
          });
+
 
         $('#door tbody').on('click', 'img.button-image1', function (e) {
         e.preventDefault();
@@ -589,6 +598,7 @@
         
 
             var selectedRowData = dataTable.row($(this).closest('tr')).data();
+            
             var id = selectedRowData.id;
 
             $.ajax({
@@ -658,6 +668,8 @@
           
     });
 
+  
+
     function get_merchandiser_door(id){
     $.ajax({
             url: '/accountsupervisor/door/list/retrieve-merhandiser-door/' + id ,
@@ -677,13 +689,13 @@
                 populateTable(data);
 
 
-    },
-    error: function (error) {
+            },
+            error: function (error) {
 
-    console.error('Error fetching data:', error);
-    }
-    })
-    };
+            console.error('Error fetching data:', error);
+            }
+            })
+            };
 
 
     function populateTable(data) {
@@ -697,10 +709,14 @@
         
         data.forEach(function (item) {
             var row = $('<tr>');
+            row.append('<td  style="display:none">' + item.id + '</td>');
+
             row.append('<td>' + item.fname + '</td>');
             row.append('<td>' + item.mname + '</td>');
             row.append('<td>' + item.lname + '</td>');
-     
+    
+            row.append('<td>' + item.actions  + '</td>');
+            // 18-03-2024 new code added ends here
             tbody.append(row);
         });
     } else {
@@ -708,6 +724,76 @@
         }
     }
 
+    //
+    //19-03-2024 new code added starts here
+ 
+    $('#manning tbody').on('click','i.bi-x-circle-fill', function (e) {
+        e.preventDefault();
+
+
+        // new sweet alert starts here
+
+        Swal.fire({
+            title: "Are you sure you want this merchandiser to this store?",
+            text: "You won't be able to revert this!",
+            icon: "info",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Confirm!"
+            }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+            title: "Success!",
+            text: "Merchandiser added successfully.",
+            icon: "success"
+                });
+
+                var currentRow=$(this).closest("tr"); 
+         
+         var id=currentRow.find("td:eq(0)").text();
+
+
+
+        $.ajax({
+            url: '/accountsupervisor/door-list-remove-merchandiser-data/' + id,
+            type: 'post',
+            dataType: 'json',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: {
+            _id: id,
+            _token: @json(csrf_token()), },
+            success: function(response) {
+                if (response.success) {
+                    table = $('#manning').DataTable();
+                    table.row(currentRow).remove().draw();
+                    console.log(response);
+                   
+                } else {
+                    console.error('Error deleting resource:', response.message);
+                }
+            },   
+        });
+
+            }
+         
+
+
+        // new sweet alert ends here
+   
+
+
+       
+        
+       
+    });
+    });
+
+
+    //19-03-2024 new code added ends here
+    //
 
     $("#openMerchandiserModalList").click(function(){
 

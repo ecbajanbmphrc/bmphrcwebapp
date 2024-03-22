@@ -20,8 +20,15 @@ use App\Http\Controllers\AccountSupervisor\AccountSupervisorCoordinatorListContr
 use App\Http\Controllers\AccountSupervisor\AccountSupervisorManningListController;
 use App\Http\Controllers\Accountsupervisor\AccountSupervisorMerchandiserListController;
 
-
+//payrollhead
 use App\Http\Controllers\PayrollHead\PayrollHeadController;
+use App\Http\Controllers\PayrollHead\PayrollHeadEfcListController;
+use App\Http\Controllers\PayrollHead\PayrollHeadMckenzieListController;
+use App\Http\Controllers\PayrollHead\PayrollHeadRfmListController;
+use App\Http\Controllers\PayrollHead\PayrollHeadMagisListController;
+
+
+
 use App\Http\Controllers\PayrollOfficer\PayrollOfficerController;
 use App\Http\Controllers\Treasury\TreasuryController;
 
@@ -132,7 +139,6 @@ Route::middleware([SuperAdmin::class])->group(function(){
     Route::post('/superadmin/payrollofficer/list/retrieve-update', [SuperAdminPayrollOfficerListController::class, 'getUpdateData'])->name('superadmin.payroll-officer-list.retrieve-update');
     Route::post('/superadmin/payrollofficer/list/retrieve-view', [SuperAdminPayrollOfficerListController::class, 'getViewData'])->name('superadmin.payroll-officer-list.retrieve-view');
 
-
     //Super Admin Functions
     Route::get('/superadmin/superadmin/list/fetch-data', [SuperAdminSuperAdminListController::class, 'fetchData']);
     Route::post('/superadmin/superadmin/list/update-active-status', [SuperAdminSuperAdminListController::class, 'updateActiveStatus'])->name('superadmin.super-admin-list.update-active-status');
@@ -191,13 +197,29 @@ Route::middleware([SuperAdmin::class])->group(function(){
   
 });
 
+// Payrollhead routes
 Route::middleware([PayrollHead::class])->group(function(){
     Route::get('/payrollhead/dashboard', [PayrollHeadController::class, 'view_dashboard'])->name('payrollhead.view.dashboard');
-    
-});
+    // new code added for payrollhead routes starts here
+    Route::get('/payrollhead/efcpayrollhead', [PayrollHeadController::class, 'view_efc_payrollhead'])->name('payrollhead.view.efcpayrollhead');
+    Route::get('/payrollhead/mckenziepayrollhead', [PayrollHeadController::class, 'view_mckenzie_payrollhead'])->name('payrollhead.view.mckenziepayrollhead');
+    Route::get('/payrollhead/rfmpayrollhead', [PayrollHeadController::class, 'view_rfm_payrollhead'])->name('payrollhead.view.rfmpayrollhead');
+    Route::get('/payrollhead/magispayrollhead', [PayrollHeadController::class, 'view_magis_payrollhead'])->name('payrollhead.view.magispayrollhead');
+    //new code added for payrollhead routes ends here 
 
-Route::middleware([PayrollOfficer::class])->group(function(){
+    Route::get('/payrollhead/efc-door-list/fetch-data', [PayrollHeadEfcListController::class, 'fetchData']);
+    Route::get('/payrollhead/mckenzie-door-list/fetch-data', [PayrollHeadMckenzieListController::class, 'fetchData']);
+    Route::get('/payrollhead/rfm-door-list/fetch-data', [PayrollHeadRfmListController::class, 'fetchData']);
+    Route::get('/payrollhead/magis-door-list/fetch-data', [PayrollHeadMagisListController::class, 'fetchData']);
+
+
+
+
+});
+    // Payroll officer routes
+    Route::middleware([PayrollOfficer::class])->group(function(){ 
     Route::get('/payrollofficer/dashboard', [PayrollOfficerController::class, 'view_dashboard'])->name('payrollofficer.view.dashboard');
+
 });
 //* Account Supervisor
 Route::middleware([AccountSupervisor::class])->group(function(){
@@ -232,7 +254,10 @@ Route::middleware([AccountSupervisor::class])->group(function(){
     //for circle-plus Button
     Route::post('/accountsupervisor/door-list/save-merchandiser-data', [AccountSupervisorDoorListController::class, 'saveMerchandiserData']);
     //new code added
-    // Route::get('accountsupervisor/door-list/save-merchandiser-data', [AccountSupervisorDoorListController::class, 'saveMerchandiserData']);
+    // Route::get('accountsupervisor///door-list/save-merchandiser-data', [AccountSupervisorDoorListController::class, 'saveMerchandiserData']);
+    //<!-- 11-03-2024 new code added starts here -->
+    Route::post('/accountsupervisor/door-list-remove-merchandiser-data/{id}', [AccountSupervisorDoorListController::class, 'destroy']);
+    // <!-- 11-03-2024 new code added ends here -->
 
     //Client Coordinator Functions
     Route::get('/accountsupervisor/coordinator-list/fetch-data', [AccountSupervisorCoordinatorListController::class, 'fetchData']);
