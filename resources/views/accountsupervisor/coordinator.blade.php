@@ -353,7 +353,7 @@
     @if (session('create-failed'))
 
     <div style="background-color:rgba(255,255,255,0)" class="alert alert-danger">
-    <ul>
+        <ul>
         @foreach ($errors->all() as $error)
         <li>{{ $error }}</li>
         @endforeach

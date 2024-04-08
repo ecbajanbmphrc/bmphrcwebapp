@@ -496,7 +496,7 @@
             var selectedRowData = dataTable.row($(this).closest('tr')).data();
             var myid = selectedRowData.id;
 
-              $.ajax({
+            $.ajax({
             type: 'POST',
             url: '/superadmin/accountsupervisor/list/retrieve-update',
             dataType: 'JSON',

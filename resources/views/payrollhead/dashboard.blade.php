@@ -4,17 +4,33 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- start: Icons -->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    
 
     <!-- start: Icons -->
     <!-- start: CSS -->
     <link rel="stylesheet" href="/asset/user/css/bootstrap.min.css">
     <link rel="stylesheet" href="/asset/user/css2/payrollhead.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
     <!-- end: CSS -->
     <title>BMPHRC</title>
+
+    <style>
+        .button-image1{
+    cursor: pointer;
+        }
+        .button-image2{
+    cursor: pointer;
+        }
+        .button-image3{
+    cursor: pointer;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -32,7 +48,7 @@
                 </a>
             </li>
             <li class="sidebar-menu-divider mt-3 mb-1 text-uppercase">Clients</li>
-            <li class="sidebar-menu-item ">
+            <li class="sidebar-menu-item">
                 <a href="{{ route('payrollhead.view.efcpayrollhead') }}">
                     <i class="bi bi-dash-square sidebar-menu-item-icon"></i>EFC
                 </a>
@@ -61,11 +77,12 @@
         </ul>
     </div>
     <div class="sidebar-overlay"></div>
+    
     <!-- end: Sidebar -->
 
     <!-- start: Main -->
     <main class="bg-light">
-        <div class="p-5">
+        <div class="p-2">
             <!-- start: Navbar -->
             <nav class="px-3 py-2 bg-white rounded shadow-sm">
                 <i class="ri-menu-line sidebar-toggle me-3 d-block d-md-none"></i>
@@ -105,12 +122,10 @@
                 </div>
             </nav>
             <!-- end: Navbar -->
-            </div>
-            <!-- end: Content -->
-        </div>
 
-                    <!-- start: Content -->
-                    <div class="py-4">
+
+            <!-- start: Content -->
+            <div class="py-4">
                 <!-- start: Summary -->
                 <div class="row g-3">
                     <div class="col-12 col-sm-6 col-lg-3">
@@ -181,13 +196,27 @@
                 <!-- end: Graph -->
             </div>
             <!-- end: Content -->
+            
         
+        </main>
+        <!-- end: Main -->
 
-        <!-- -->    
-        </div>
-    </main>
-    <!-- end: Main -->
-    
+
+
+        <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script> -->
+        <!-- start: JS -->
+        <script src="/asset/user/js/bootstrap.bundle.min.js"></script>
+
+    <script src="/asset/user/js/jquery.min.js"></script>
+
+    <script src="/asset/user/js/script.js"></script>
+
+
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script> 
 
     <!-- start: JS -->
     <script src="/asset/user/js/jquery.min.js"></script>
@@ -196,6 +225,11 @@
     <script src="/asset/user/js/script.js"></script>
     <!-- end: JS -->
     @include('sweetalert::alert')
+
 </body>
 
 </html>
+
+
+
+
