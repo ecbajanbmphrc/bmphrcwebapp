@@ -23,4 +23,24 @@ class PayrollOfficerController extends Controller
        return view('payrollofficer.dashboard', compact('data'));
 
         }
+
+    public function view_payrollofficerlist(){
+        $data = array();
+        if (Session::has('user')){
+            $data = User::where('id', '=', Session::get('user')['current_user_id'])->first();
+
+        }
+        return view('payrollofficer.payrollofficerlist', compact('data'));
+    }
+
+    public function view_payrolltransferlist(){
+        $data = array();
+        if (Session::has('user')){
+            $data = User::where('id', '=', Session::get('user')['current_user_id'])->first();
+        
+        }
+
+        return view('payrollofficer.payrolltransferlist', compact('data'));
+    }
+
 }

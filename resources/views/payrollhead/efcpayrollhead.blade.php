@@ -86,7 +86,7 @@
             <!-- start: Navbar -->
             <nav class="px-3 py-2 bg-white rounded shadow-sm">
                 <i class="ri-menu-line sidebar-toggle me-3 d-block d-md-none"></i>
-                <h5 class="fw-bold mb-0 me-auto">Store List</h5>
+                <h5 class="fw-bold mb-0 me-auto">EFC</h5>
                 <div class="dropdown me-3 d-none d-sm-block">
                     <div class="cursor-pointer dropdown-toggle navbar-link" data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -126,17 +126,21 @@
 
         <div style="height:2vh;"> </div>
 
-            <div class="card">
-                <!-- <div class="card-header">
-               
-                </div> -->
+        <div class="card">
             <div class="card-body">
-            <h5 class="card-title">Door List</h5>
-            <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
+                <div class="row">
+                    <div class="col">
+                        <h5 class="card-title">Door List</h5>
+                    </div>
+                    <div class="col text-end">
+                        <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#myModal">Move</button>
+                    </div>
+                </div>
                 <table id="door" class="table table-hover" style="width:100%">
                     <thead>
                         <tr>
                             <th>#</th>
+                            <th></th>
                             <th style="display:none">ID</th>
                             <th>Account</th>
                             <th>Region</th>
@@ -144,36 +148,60 @@
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="transfer-table">
+                        <tr>
+                            <td class="check">
+                                <input type="checkbox"/>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
-         </div>
+        </div>
 
-        
+    <!-- modal starts here -->
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog medium-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Select Payroll Officer</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="e_user" class="form-label">Select Payroll Officer:</label>
+                            <select class="form-select" id="s_user" name="s_user">
+                                <option value="">---Select Payroll Officer---</option>
+                                @foreach ($efcPayrollheadArray as $id => $value)
+                                <option value="{{ $id }}">{{ $value }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" id="saveChangesBtn" class="btn btn-primary">Save changes</button>
+                </div>
             </div>
+        </div>
+    </div>
+
+    <!-- modal ends here --> 
+
+
             <!-- end: Content -->
        
     </main>
     <!-- end: Main -->
-
    
-    
-
-     
-        <!-- Merchandiser list assign modal ends here -->
-
-
-   
-
-       
-        
     
         <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script> -->
         <!-- start: JS -->
-        <script src="/asset/user/js/bootstrap.bundle.min.js"></script>
+    <script src="/asset/user/js/bootstrap.bundle.min.js"></script>
 
     <script src="/asset/user/js/jquery.min.js"></script>
 
@@ -188,23 +216,156 @@
 
     <script>
         $(document).ready(function () {
-        var dataTable = $('#door').DataTable({
-            ajax: {
-                url: '/payrollhead/efc-door-list/fetch-data',
-                dataSrc: 'data'
+
+            var selected_id = [];
+
+            var dataTable = $('#door').DataTable({
+                ajax: {
+                    url: '/payrollhead/efc-door-list/fetch-data',
+                    dataSrc: 'data'
+                },
+                columns: [
+                    { data: '#' },
+                    { data: 'checkbox', orderable: false},
+                    // { 
+                    //     data: 'checkbox',
+                    //     render: function (data, type, row, meta) {
+                    //         return '<input type="checkbox" class="checkbox" value="' + row.id + '">';
+                    //     }
+                    // },
+                    { data: 'id', visible: false },
+                    { data: 'account' },
+                    { data: 'region' },
+                    { data: 'store_name' }, 
+                    { data: 'actions', orderable: false }
+                ]
+            });
+        
+        $('#door tbody').on('click', 'input.transfer', function (e) {
+             // e.preventDefault();
+
+             
+
+            var checkbox = $(this);
+            var tr = checkbox.parents('tr');
+            var state = checkbox.prop('checked');
+             
+           
+            
+            var selectedRowData = dataTable.row($(this).closest('tr')).data();
+            var id = selectedRowData.id;
+
+            if(state){
+            selected_id.push(id);
+            }else{
+                var index = selected_id.indexOf(id);
+                selected_id.splice(index, 1);
+            }   
+
+              console.log("test" + selected_id);
+
+
+           
+
+            });
+
+
+            $("#saveChangesBtn").click(function(){
+                let user_id = $('#s_user').val();
+              
+               
+                if (user_id === ""){
+                    console.log("test null")
+                    return;
+                }
+                if (selected_id.length == 0){
+                    console.log("test null ids")
+                    return;
+                }
+
+                
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "Are you sure?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, save it!'
+                }
+                
+                ).then((result) => {
+                    if (result.isConfirmed) {   
+           
+            console.log(user_id);            
+            $.ajax({
+            url: '/payrollofficer/payrollofficerefc/list/transfer-payroll',
+            type: 'POST', 
+            dataType: 'JSON',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            columns: [
-                { data: '#' },
-                { data:  'id', visible: false },
-                { data: 'account' },
-                { data: 'region' },
-                { data: 'store_name' }, 
-                { data: 'actions', orderable: false }
-            ]
-        });
+            data: JSON.stringify({
+                ids: selected_id,
+                user_id: user_id    }),  
+            success: function(response){
+                // response = JSON.parse(response);
+                console.log(response);
+                // $('#v_account').text(response.door.account);
+                // $('#v_region').text(response.door.region);
+                // $('#v_area').text(response.door.area);
+                // $('#v_store_name').text(response.door.store_name);
+                // $('#v_type_of_deployment').text(response.door.type_of_deployment);
+                // $('#v_coordinator').text(response.door.get_name);
+                // $('#v_merchandiser_count').text(response.merchandiser_count);
+
+                // $('#viewDoorModal').modal('show');
+            
+            }
+     
+                     });
+
+                     Swal.fire(
+                            'Saved!',
+                            'Your changes have been saved.',
+                            'success'
+                        );    
+                        
+                        $("#myModal").modal('hide');
+                     }
+                });
+            });
+        });   
+            // new script code starts here for data transfer
+        
+       
+
+        // document.addEventListener("DOMContentLoaded", function () {
+        //     const saveChangesBtn = document.getElementById("saveChangesBtn");
+
+        //     saveChangesBtn.addEventListener("click", function () {
+        //         Swal.fire({
+        //             title: 'Are you sure?',
+        //             text: "Are you sure?",
+        //             icon: 'warning',
+        //             showCancelButton: true,
+        //             confirmButtonColor: '#3085d6',
+        //             cancelButtonColor: '#d33',
+        //             confirmButtonText: 'Yes, save it!'
+        //         }).then((result) => {
+        //             if (result.isConfirmed) {
+        //                 Swal.fire(
+        //                     'Saved!',
+        //                     'Your changes have been saved.',
+        //                     'success'
+        //                 );
+        //             }
+        //         });
+        //     });
+        // });
 
 
-    });
     </script>
 </body>
 

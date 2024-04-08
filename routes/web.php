@@ -28,8 +28,11 @@ use App\Http\Controllers\PayrollHead\PayrollHeadRfmListController;
 use App\Http\Controllers\PayrollHead\PayrollHeadMagisListController;
 
 
-
+// payrollofficer
 use App\Http\Controllers\PayrollOfficer\PayrollOfficerController;
+use App\Http\Controllers\PayrollOfficer\PayrollOfficerListController;
+use App\Http\Controllers\Payrollofficer\PayrollOfficerTransferListController;
+
 use App\Http\Controllers\Treasury\TreasuryController;
 
 // Super Admin Controllers
@@ -208,6 +211,8 @@ Route::middleware([PayrollHead::class])->group(function(){
     //new code added for payrollhead routes ends here 
 
     Route::get('/payrollhead/efc-door-list/fetch-data', [PayrollHeadEfcListController::class, 'fetchData']);
+    Route::post('/payrollofficer/payrollofficerefc/list/transfer-payroll', [PayrollHeadEfcListController::class, 'transferEfcPayroll']);
+
     Route::get('/payrollhead/mckenzie-door-list/fetch-data', [PayrollHeadMckenzieListController::class, 'fetchData']);
     Route::get('/payrollhead/rfm-door-list/fetch-data', [PayrollHeadRfmListController::class, 'fetchData']);
     Route::get('/payrollhead/magis-door-list/fetch-data', [PayrollHeadMagisListController::class, 'fetchData']);
@@ -217,8 +222,15 @@ Route::middleware([PayrollHead::class])->group(function(){
 
 });
     // Payroll officer routes
-    Route::middleware([PayrollOfficer::class])->group(function(){ 
+Route::middleware([PayrollOfficer::class])->group(function(){ 
     Route::get('/payrollofficer/dashboard', [PayrollOfficerController::class, 'view_dashboard'])->name('payrollofficer.view.dashboard');
+    Route::get('/payrollofficer/payrollofficerlist', [PayrollOfficerController::class, 'view_payrollofficerlist'])->name('payrollofficer.view.payrollofficerlist');
+    Route::get('/payrollofficer/payrolltransferlist', [PayrollOfficerController::class, 'view_payrolltransferlist'])->name('payrollofficer.view.payrolltransferlist');
+    //payrollofficer controller
+    Route::get('/payrollofficer/payrollofficerlist/list/fetch-data', [PayrollOfficerListController::class, 'fetchData']);
+    Route::get('/payrollofficer/payrollofficertransferlist/list/fetch-data', [PayrollOfficerTransferListController::class, 'fetchData']);
+ 
+
 
 });
 //* Account Supervisor
