@@ -43,4 +43,9 @@ class PayrollOfficerController extends Controller
         return view('payrollofficer.payrolltransferlist', compact('data'));
     }
 
+    public function view_payrollofficerinput(){
+
+        return view('payrollofficer.payrollofficerinput');
+    }
+
 }

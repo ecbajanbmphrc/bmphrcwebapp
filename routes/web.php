@@ -32,8 +32,11 @@ use App\Http\Controllers\PayrollHead\PayrollHeadMagisListController;
 use App\Http\Controllers\PayrollOfficer\PayrollOfficerController;
 use App\Http\Controllers\PayrollOfficer\PayrollOfficerListController;
 use App\Http\Controllers\Payrollofficer\PayrollOfficerTransferListController;
+use App\Http\Controllers\PayrollOfficer\PayrollOfficerInputListController;
 
+// treasury
 use App\Http\Controllers\Treasury\TreasuryController;
+use App\Http\Controllers\Treasury\TreasuryRateCardListController;
 
 // Super Admin Controllers
 use App\Http\Controllers\SuperAdmin\SuperAdminController;
@@ -226,6 +229,8 @@ Route::middleware([PayrollOfficer::class])->group(function(){
     Route::get('/payrollofficer/dashboard', [PayrollOfficerController::class, 'view_dashboard'])->name('payrollofficer.view.dashboard');
     Route::get('/payrollofficer/payrollofficerlist', [PayrollOfficerController::class, 'view_payrollofficerlist'])->name('payrollofficer.view.payrollofficerlist');
     Route::get('/payrollofficer/payrolltransferlist', [PayrollOfficerController::class, 'view_payrolltransferlist'])->name('payrollofficer.view.payrolltransferlist');
+    // payroll inputs 
+    Route::get('/payrollofficer/payrollofficerinput', [PayrollOfficerController::class, 'view_payrollofficerinput'])->name('payrollofficer.view.payrollofficerinput');
     //payrollofficer controller
     Route::get('/payrollofficer/payrollofficerlist/list/fetch-data', [PayrollOfficerListController::class, 'fetchData']);
     Route::get('/payrollofficer/payrollofficertransferlist/list/fetch-data', [PayrollOfficerTransferListController::class, 'fetchData']);
@@ -279,11 +284,20 @@ Route::middleware([AccountSupervisor::class])->group(function(){
     Route::get('/accountsupervisor/coordinator/list/retrieve-view/{id}', [AccountSupervisorCoordinatorListController::class, 'getViewData'])->name('accountsupervisor.coordinator-list.retrieve-view');
 
 
-});
+}); 
 
 Route::middleware([Treasury::class])->group(function(){
      Route::get('/treasury/dashboard', [TreasuryController::class, 'view_dashboard'])->name('treasury.view.dashboard');
      Route::get('/treasury/rate', [TreasuryController::class, 'view_rate'])->name('treasury.view.rate');
+    //Treasury fetch data starts here
+     Route::get('/treasury/rate-card-list/fetch-data', [TreasuryRateCardListController::class, 'fetchData']);
+     //for modal
+     Route::get('/treasury/rate-card/list/retrieve-view/{id}', [TreasuryRateCardListController::class, 'getViewData'])->name('treasury.rate-card-list.retrieve-update');
+     Route::get('/treasury/rate-card/list/retrieve-update/{id}', [TreasuryRateCardlistController::class, 'getUpdateData'])->name('treasury.rate-card-list.retrieve-view');
+     
+     Route::post('/treasury/rate-card/list/update-ratecard/', [TreasuryRateCardListController::class, 'updateRateCard'])->name('treasury.rate-card-list.update-ratecard');
+     Route::post('/treasury/rate-card/list/save-ratecard/', [TreasuryRateCardListController::class, 'saveRateCard'])->name('treasury.rate-card-list.save-ratecard');
+    
 });
 
 
