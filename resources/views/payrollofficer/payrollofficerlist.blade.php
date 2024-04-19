@@ -59,6 +59,10 @@
                     <i class="ri-pages-line sidebar-menu-item-icon"></i>Transfer Payroll
                 </a>
             </li>
+            <li class="sidebar-menu-item mt-2">
+                <a href="{{ route('payrollofficer.view.payrollofficerinput') }}">
+                    <i class="ri-pages-line sidebar-menu-item-icon"></i>Payroll Input
+                </a>
             <li class="sidebar-menu-item mt-auto">
                 <a href="{{ route('logout') }}" style="margin-top: 220px;">
                     <i class="ri-logout-box-line sidebar-menu-item-icon"></i>

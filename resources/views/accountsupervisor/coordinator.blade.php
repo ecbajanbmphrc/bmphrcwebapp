@@ -678,6 +678,8 @@
          });
         }
 
+
+        // modal clicking function starts here
         $('#coordinator tbody').on('click', 'img.button-image1', function (e) {
         e.preventDefault();
 
@@ -723,6 +725,7 @@
      
         })
      });
+    // modal clicking functions starts here
 
 
      $('#coordinator tbody').on('click', 'img.button-image2', function (e) {
