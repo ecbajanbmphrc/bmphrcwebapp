@@ -225,7 +225,7 @@
 
                             <div class="form-group col-md-4">
                                 <label for="" class="col-form-label">Rate Per Hour *</label>
-                                <input type="text" class="form-control" name="a_rate_per_hour" id="a_special_rates_rate_per_hour" value="{{ old('a_rate_per_hour') }}" readonly>
+                                <input type="text" class="form-control" name="a_rate_per_hour" id="a_rate_per_hour" value="{{ old('a_rate_per_hour') }}" readonly>
                             </div>
                         </div>
 
@@ -234,37 +234,37 @@
                         <div class="row">
                             <div class="form-group col-md-3">
                                 <label for="" class="col-form-label">Special Holiday *</label>
-                                <input type="text" class="form-control" name="a_special_holiday" id="a_special_rates_special_holiday" value="{{ old('a_special_holiday') }}" readonly>
+                                <input type="text" class="form-control" name="a_special_rates_special_holiday" id="a_special_rates_special_holiday" value="{{ old('a_special_rates_special_holiday') }}" readonly>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="" class="col-form-label">WDO *</label>
-                                <input type="text" class="form-control" name="a_wdo" id="a_special_rates_wdo" value="{{ old('a_wdo') }}" readonly>
+                                <input type="text" class="form-control" name="a_special_rates_wdo" id="a_special_rates_wdo" value="{{ old('a_special_rates_wdo') }}" readonly>
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label for="" class="col-form-label">Special Holiday Rest Day *</label>
-                                <input type="text" class="form-control" name="a_special_holiday_rest_day" id="a_special_rates_special_holiday_rest_day" value="{{ old('a_special_holiday_rest_day') }}" readonly>
+                                <input type="text" class="form-control" name="a_special_rates_special_holiday_rest_day" id="a_special_rates_special_holiday_rest_day" value="{{ old('a_special_rates_special_holiday_rest_day') }}" readonly>
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label for="" class="col-form-label">Legal Holiday *</label>
-                                <input type="text" class="form-control" name="a_legal_holiday" id="a_special_rates_legal_holiday" value="{{ old('a_legal_holiday') }}" readonly>
+                                <input type="text" class="form-control" name="a_special_rates_legal_holiday" id="a_special_rates_legal_holiday" value="{{ old('a_special_rates_legal_holiday') }}" readonly>
                             </div>
                         </div>
 
                         <div class="row mb-2">
                             <div class="form-group col-md-3">
                                 <label for="" class="col-form-label">Legal Holiday Rest Day *</label>
-                                <input type="text" class="form-control" name="a_legal_holiday_rest_day" id="a_special_rates_legal_holiday_rest_day" value="{{ old('a_legal_holiday_rest_day') }}" readonly>
+                                <input type="text" class="form-control" name="a_special_rates_legal_holiday_rest_day" id="a_special_rates_legal_holiday_rest_day" value="{{ old('a_special_rates_legal_holiday_rest_day') }}" readonly>
                             </div>  
                             <div class="form-group col-md-3">
                                 <label for="" class="col-form-label">Double Pay *</label>
-                                <input type="text" class="form-control" name="a_double_pay" id="a_special_rates_double_pay" value="{{ old('a_double_pay') }}" readonly>
+                                <input type="text" class="form-control" name="a_special_rates_double_pay" id="a_special_rates_double_pay" value="{{ old('a_special_rates_double_pay') }}" readonly>
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label for="" class="col-form-label">Double Pay Rest Day *</label>
-                                <input type="text" class="form-control" name="a_double_pay_rest_day" id="a_special_rates_double_pay_rest_day" value="{{ old('a_double_pay_rest_day') }}" readonly>
+                                <input type="text" class="form-control" name="a_special_rates_double_pay_rest_day" id="a_special_rates_double_pay_rest_day" value="{{ old('a_special_rates_double_pay_rest_day') }}" readonly>
                             </div>
                         </div>
 
@@ -273,37 +273,37 @@
                         <div class="row">
                             <div class="form-group col-md-3">
                                 <label for="" class="col-form-label">Special Holiday *</label>
-                                <input type="text" class="form-control" name="a_special_holiday" id="a_overtime_special_holiday" value="{{ old('a_special_holiday') }}" readonly>
+                                <input type="text" class="form-control" name="a_overtime_special_holiday" id="a_overtime_special_holiday" value="{{ old('a_overtime_special_holiday') }}" readonly>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="" class="col-form-label">WDO *</label>
-                                <input type="text" class="form-control" name="a_wdo" id="a_overtime_wdo" value="{{ old('a_wdo') }}" readonly>
+                                <input type="text" class="form-control" name="a_overtime_wdo" id="a_overtime_wdo" value="{{ old('a_overtime_wdo') }}" readonly>
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label for="" class="col-form-label">Special Holiday Rest Day *</label>
-                                <input type="text" class="form-control" name="a_special_holiday_rest_day" id="a_overtime_special_holiday_rest_day" value="{{ old('a_special_holiday_rest_day') }}" readonly>
+                                <input type="text" class="form-control" name="a_overtime_special_holiday_rest_day" id="a_overtime_special_holiday_rest_day" value="{{ old('a_overtime_special_holiday_rest_day') }}" readonly>
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label for="" class="col-form-label">Legal Holiday *</label>
-                                <input type="text" class="form-control" name="a_legal_holiday" id="a_overtime_legal_holiday" value="{{ old('a_legal_holiday') }}" readonly>
+                                <input type="text" class="form-control" name="a_overtime_legal_holiday" id="a_overtime_legal_holiday" value="{{ old('a_overtime_legal_holiday') }}" readonly>
                             </div>
                         </div>
 
                         <div class="row mb-2">
                             <div class="form-group col-md-3">
                                 <label for="" class="col-form-label">Legal Holiday Rest Day *</label>
-                                <input type="text" class="form-control" name="a_legal_holiday_rest_day" id="a_overtime_legal_holiday_rest_day" value="{{ old('a_legal_holiday_rest_day') }}" readonly>
+                                <input type="text" class="form-control" name="a_overtime_legal_holiday_rest_day" id="a_overtime_legal_holiday_rest_day" value="{{ old('a_overtime_legal_holiday_rest_day') }}" readonly>
                             </div>  
                             <div class="form-group col-md-3">
                                 <label for="" class="col-form-label">Double Pay *</label>
-                                <input type="text" class="form-control" name="a_double_pay" id="a_overtime_double_pay" value="{{ old('a_double_pay') }}" readonly>
+                                <input type="text" class="form-control" name="a_overtime_double_pay" id="a_overtime_double_pay" value="{{ old('a_overtime_double_pay') }}" readonly>
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label for="" class="col-form-label">Double Pay Rest Day *</label>
-                                <input type="text" class="form-control" name="a_double_pay_rest_day" id="a_overtime_double_pay_rest_day" value="{{ old('a_double_pay_rest_day') }}" readonly>
+                                <input type="text" class="form-control" name="a_overtime_double_pay_rest_day" id="a_overtime_double_pay_rest_day" value="{{ old('a_overtime_double_pay_rest_day') }}" readonly>
                             </div>
                         </div>
 
@@ -312,37 +312,37 @@
                         <div class="row">
                             <div class="form-group col-md-3">
                                 <label for="" class="col-form-label">Special Holiday *</label>
-                                <input type="text" class="form-control" name="a_special_holiday" id="a_night_differential_special_holiday" value="{{ old('a_special_holiday') }}" readonly>
+                                <input type="text" class="form-control" name="a_night_differential_special_holiday" id="a_night_differential_special_holiday" value="{{ old('a_night_differential_special_holiday') }}" readonly>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="" class="col-form-label">WDO *</label>
-                                <input type="text" class="form-control" name="a_wdo" id="a_night_differential_wdo" value="{{ old('a_wdo') }}" readonly>
+                                <input type="text" class="form-control" name="a_night_differential_wdo" id="a_night_differential_wdo" value="{{ old('a_night_differential_wdo') }}" readonly>
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label for="" class="col-form-label">Special Holiday Rest Day *</label>
-                                <input type="text" class="form-control" name="a_special_holiday_rest_day" id="a_night_differential_special_holiday_rest_day" value="{{ old('a_special_holiday_rest_day') }}" readonly>
+                                <input type="text" class="form-control" name="a_night_differential_special_holiday_rest_day" id="a_night_differential_special_holiday_rest_day" value="{{ old('a_night_differential_special_holiday_rest_day') }}" readonly>
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label for="" class="col-form-label">Legal Holiday *</label>
-                                <input type="text" class="form-control" name="a_legal_holiday" id="a_night_differential_legal_holiday" value="{{ old('a_legal_holiday') }}" readonly>
+                                <input type="text" class="form-control" name="a_night_differential_legal_holiday" id="a_night_differential_legal_holiday" value="{{ old('a_night_differential_legal_holiday') }}" readonly>
                             </div>
                         </div>
 
                         <div class="row mb-2">
                             <div class="form-group col-md-3">
                                 <label for="" class="col-form-label">Legal Holiday Rest Day *</label>
-                                <input type="text" class="form-control" name="a_legal_holiday_rest_day" id="a_night_differential_legal_holiday_rest_day" value="{{ old('a_legal_holiday_rest_day') }}" readonly>
+                                <input type="text" class="form-control" name="a_night_differential_legal_holiday_rest_day" id="a_night_differential_legal_holiday_rest_day" value="{{ old('a_night_differential_legal_holiday_rest_day') }}" readonly>
                             </div>  
                             <div class="form-group col-md-3">
                                 <label for="" class="col-form-label">Double Pay *</label>
-                                <input type="text" class="form-control" name="a_double_pay" id="a_night_differential_double_pay" value="{{ old('a_double_pay') }}" readonly>
+                                <input type="text" class="form-control" name="a_night_differential_double_pay" id="a_night_differential_double_pay" value="{{ old('a_night_differential_double_pay') }}" readonly>
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label for="" class="col-form-label">Double Pay Rest Day *</label>
-                                <input type="text" class="form-control" name="a_double_pay_rest_day" id="a_night_differential_double_pay_rest_day" value="{{ old('a_double_pay_rest_day') }}" readonly>
+                                <input type="text" class="form-control" name="a_night_differential_double_pay_rest_day" id="a_night_differential_double_pay_rest_day" value="{{ old('a_night_differential_double_pay_rest_day') }}" readonly>
                             </div>
                         </div>
 
@@ -351,37 +351,37 @@
                         <div class="row">
                             <div class="form-group col-md-3">
                                 <label for="" class="col-form-label">Special Holiday *</label>
-                                <input type="text" class="form-control" name="a_special_holiday" id="a_overtime_with_night_differential_special_holiday" value="{{ old('a_special_holiday') }}" readonly>
+                                <input type="text" class="form-control" name="a_overtime_with_night_differential_special_holiday" id="a_overtime_with_night_differential_special_holiday" value="{{ old('a_overtime_with_night_differential_special_holiday') }}" readonly>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="" class="col-form-label">WDO *</label>
-                                <input type="text" class="form-control" name="a_wdo" id="a_overtime_with_night_differential_wdo" value="{{ old('a_wdo') }}" readonly>
+                                <input type="text" class="form-control" name="a_overtime_with_night_differential_wdo" id="a_overtime_with_night_differential_wdo" value="{{ old('a_overtime_with_night_differential_wdo') }}" readonly>
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label for="" class="col-form-label">Special Holiday Rest Day *</label>
-                                <input type="text" class="form-control" name="a_special_holiday_rest_day" id="a_overtime_with_night_differential_special_holiday_rest_day" value="{{ old('a_special_holiday_rest_day') }}" readonly>
+                                <input type="text" class="form-control" name="a_overtime_with_night_differential_special_holiday_rest_day" id="a_overtime_with_night_differential_special_holiday_rest_day" value="{{ old('a_overtime_with_night_differential_special_holiday_rest_day') }}" readonly>
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label for="" class="col-form-label">Legal Holiday *</label>
-                                <input type="text" class="form-control" name="a_legal_holiday" id="a_overtime_with_night_differential_legal_holiday" value="{{ old('a_legal_holiday') }}" readonly>
+                                <input type="text" class="form-control" name="a_overtime_with_night_differential_legal_holiday" id="a_overtime_with_night_differential_legal_holiday" value="{{ old('a_overtime_with_night_differential_legal_holiday') }}" readonly>
                             </div>
                         </div>
 
                         <div class="row mb-2">
                             <div class="form-group col-md-3">
                                 <label for="" class="col-form-label">Legal Holiday Rest Day *</label>
-                                <input type="text" class="form-control" name="a_legal_holiday_rest_day" id="a_overtime_with_night_differential_legal_holiday_rest_day" value="{{ old('a_legal_holiday_rest_day') }}" readonly>
+                                <input type="text" class="form-control" name="a_overtime_with_night_differential_legal_holiday_rest_day" id="a_overtime_with_night_differential_legal_holiday_rest_day" value="{{ old('a_overtime_with_night_differential_legal_holiday_rest_day') }}" readonly>
                             </div>  
                             <div class="form-group col-md-3">
                                 <label for="" class="col-form-label">Double Pay *</label>
-                                <input type="text" class="form-control" name="a_double_pay" id="a_overtime_with_night_differential_double_pay" value="{{ old('a_double_pay') }}" readonly>
+                                <input type="text" class="form-control" name="a_overtime_with_night_differential_double_pay" id="a_overtime_with_night_differential_double_pay" value="{{ old('a_overtime_with_night_differential_double_pay') }}" readonly>
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label for="" class="col-form-label">Double Pay Rest Day *</label>
-                                <input type="text" class="form-control" name="a_double_pay_rest_day" id="a_overtime_with_night_differential_double_pay_rest_day" value="{{ old('a_double_pay_rest_day') }}" readonly>
+                                <input type="text" class="form-control" name="a_overtime_with_night_differential_double_pay_rest_day" id="a_overtime_with_night_differential_double_pay_rest_day" value="{{ old('a_overtime_with_night_differential_double_pay_rest_day') }}" readonly>
                             </div>
                         </div>
                         
@@ -423,7 +423,7 @@
                         @endif
                         <!-- rows starts here -->
                         <div class="row">
-                            <div class="form-group col-md-3">
+                            <div class="form-group col-md-4">
                                 <label for="" class="col-form-label">Region *</label>
                                 <select type="text" class="form-select" id="u_region" name = "u_region" value="{{ old('u_region') }}" required>
                                 <option  value="">---Select Region---</option>
@@ -458,22 +458,25 @@
                                 </select>
                             </div> -->
 
-                            <div class="form-group col-md-3">
+                            <div class="form-group col-md-4">
                                 <label for="" class="col-form-label">Rate Per Day *</label>
                                 <input type="text" class="form-control" name="u_rate_per_day" id="u_rate_per_day" value="{{ old('u_rate_per_day') }}" required>
                             </div>
 
-                            <div class="form-group col-md-3">
+                            <div class="form-group col-md-4">
                                 <label for="" class="col-form-label">Rate Per Hour *</label>
                                 <input type="text" class="form-control" name="u_rate_per_hour" id="u_rate_per_hour" value="{{ old('u_rate_per_hour') }}" required>
                             </div>
-                            <div class="form-group col-md-3">
-                                <label for="" class="col-form-label">Special Holiday *</label>
-                                <input type="text" class="form-control" name="u_special_holiday" id="u_special_holiday" value="{{ old('u_special_holiday') }}" required>
-                            </div>
                         </div>
 
+                        <!-- Special rate starts here -->
+                        <hr class="w-100">
+                        <h6>Special Rate :</h6>
                         <div class="row">
+                            <div class="form-group col-md-3">
+                                <label for="" class="col-form-label">Special Holiday *</label>
+                                <input type="text" class="form-control" name="u_special_rate_special_holiday" id="u_special_rate_special_holiday" value="{{ old('u_special_rate_special_holiday') }}" required>
+                            </div>
                             <div class="form-group col-md-3">
                                 <label for="" class="col-form-label">WDO *</label>
                                 <input type="text" class="form-control" name="u_wdo" id="u_wdo" value="{{ old('u_wdo') }}" required>
@@ -488,23 +491,140 @@
                                 <label for="" class="col-form-label">Legal Holiday *</label>
                                 <input type="text" class="form-control" name="u_legal_holiday" id="u_legal_holiday" value="{{ old('u_legal_holiday') }}" required>
                             </div>
+                        </div>
+
+                        <div class="row">
                             <div class="form-group col-md-3">
                                 <label for="" class="col-form-label">Legal Holiday Rest Day *</label>
                                 <input type="text" class="form-control" name="u_legal_holiday_rest_day" id="u_legal_holiday_rest_day" value="{{ old('u_legal_holiday_rest_day') }}" required>
                             </div>
-                        </div>
-
-                        <div class="row mb-2">
                             <div class="form-group col-md-3">
                                 <label for="" class="col-form-label">Double Pay *</label>
                                 <input type="text" class="form-control" name="u_double_pay" id="u_double_pay" value="{{ old('u_double_pay') }}" required>
                             </div>
-
                             <div class="form-group col-md-3">
                                 <label for="" class="col-form-label">Double Pay Rest Day *</label>
                                 <input type="text" class="form-control" name="u_double_pay_rest_day" id="u_double_pay_rest_day" value="{{ old('u_double_pay_rest_day') }}" required>
                             </div>
                         </div>
+
+                        <!-- overtime starts here -->
+                        <hr class="w-100">
+                        <h6>Overtime :</h6>
+                        <div class="row">
+                            <div class="form-group col-md-3">
+                                <label for="" class="col-form-label">Special Holiday *</label>
+                                <input type="text" class="form-control" name="u_special_holiday" id="u_special_holiday" value="{{ old('u_special_holiday') }}" required>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="" class="col-form-label">WDO *</label>
+                                <input type="text" class="form-control" name="u_wdo" id="u_wdo" value="{{ old('u_wdo') }}" required>
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                <label for="" class="col-form-label">Special Holiday Rest Day *</label>
+                                <input type="text" class="form-control" name="u_special_holiday_rest_day" id="u_special_holiday_rest_day" value="{{ old('u_special_holiday_rest_day') }}" required>
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                <label for="" class="col-form-label">Legal Holiday *</label>
+                                <input type="text" class="form-control" name="u_legal_holiday" id="u_legal_holiday" value="{{ old('u_legal_holiday') }}" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-3">
+                                <label for="" class="col-form-label">Legal Holiday Rest Day *</label>
+                                <input type="text" class="form-control" name="u_legal_holiday_rest_day" id="u_legal_holiday_rest_day" value="{{ old('u_legal_holiday_rest_day') }}" required>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="" class="col-form-label">Double Pay *</label>
+                                <input type="text" class="form-control" name="u_double_pay" id="u_double_pay" value="{{ old('u_double_pay') }}" required>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="" class="col-form-label">Double Pay Rest Day *</label>
+                                <input type="text" class="form-control" name="u_double_pay_rest_day" id="u_double_pay_rest_day" value="{{ old('u_double_pay_rest_day') }}" required>
+                            </div>
+                        </div>
+
+                        <!-- night differential starts here -->
+                        <hr class="w-100">
+                        <h6>Night Differential :</h6>
+                        <div class="row">
+                            <div class="form-group col-md-3">
+                                <label for="" class="col-form-label">Special Holiday *</label>
+                                <input type="text" class="form-control" name="u_special_holiday" id="u_special_holiday" value="{{ old('u_special_holiday') }}" required>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="" class="col-form-label">WDO *</label>
+                                <input type="text" class="form-control" name="u_wdo" id="u_wdo" value="{{ old('u_wdo') }}" required>
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                <label for="" class="col-form-label">Special Holiday Rest Day *</label>
+                                <input type="text" class="form-control" name="u_special_holiday_rest_day" id="u_special_holiday_rest_day" value="{{ old('u_special_holiday_rest_day') }}" required>
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                <label for="" class="col-form-label">Legal Holiday *</label>
+                                <input type="text" class="form-control" name="u_legal_holiday" id="u_legal_holiday" value="{{ old('u_legal_holiday') }}" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-3">
+                                <label for="" class="col-form-label">Legal Holiday Rest Day *</label>
+                                <input type="text" class="form-control" name="u_legal_holiday_rest_day" id="u_legal_holiday_rest_day" value="{{ old('u_legal_holiday_rest_day') }}" required>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="" class="col-form-label">Double Pay *</label>
+                                <input type="text" class="form-control" name="u_double_pay" id="u_double_pay" value="{{ old('u_double_pay') }}" required>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="" class="col-form-label">Double Pay Rest Day *</label>
+                                <input type="text" class="form-control" name="u_double_pay_rest_day" id="u_double_pay_rest_day" value="{{ old('u_double_pay_rest_day') }}" required>
+                            </div>
+                        </div>
+
+                        <!-- overtime with night differential starts here -->
+                        <hr class="w-100">
+                        <h6>Night Differential with :</h6>
+                        <div class="row">
+                            <div class="form-group col-md-3">
+                                <label for="" class="col-form-label">Special Holiday *</label>
+                                <input type="text" class="form-control" name="u_special_holiday" id="u_special_holiday" value="{{ old('u_special_holiday') }}" required>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="" class="col-form-label">WDO *</label>
+                                <input type="text" class="form-control" name="u_wdo" id="u_wdo" value="{{ old('u_wdo') }}" required>
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                <label for="" class="col-form-label">Special Holiday Rest Day *</label>
+                                <input type="text" class="form-control" name="u_special_holiday_rest_day" id="u_special_holiday_rest_day" value="{{ old('u_special_holiday_rest_day') }}" required>
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                <label for="" class="col-form-label">Legal Holiday *</label>
+                                <input type="text" class="form-control" name="u_legal_holiday" id="u_legal_holiday" value="{{ old('u_legal_holiday') }}" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-3">
+                                <label for="" class="col-form-label">Legal Holiday Rest Day *</label>
+                                <input type="text" class="form-control" name="u_legal_holiday_rest_day" id="u_legal_holiday_rest_day" value="{{ old('u_legal_holiday_rest_day') }}" required>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="" class="col-form-label">Double Pay *</label>
+                                <input type="text" class="form-control" name="u_double_pay" id="u_double_pay" value="{{ old('u_double_pay') }}" required>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="" class="col-form-label">Double Pay Rest Day *</label>
+                                <input type="text" class="form-control" name="u_double_pay_rest_day" id="u_double_pay_rest_day" value="{{ old('u_double_pay_rest_day') }}" required>
+                            </div>
+                        </div>
+
                         <!-- rows ends here -->
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="add">Close</button>
@@ -520,10 +640,10 @@
 
     <!-- new code view details starts here -->
     <div class="modal fade"  id="viewratecardModal" name = "viewratecardModal" tabindex="-1" role="dialog" aria-labelledby="viewratecardModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-dialog modal-lg" role="document" style="max-width: 40%;  margin: 1.75rem auto;">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-tittle" id="viewratecardModal">View Rate Card Details</h5>
+                    <h5 class="modal-tittle" id="viewratecardModalTitle">View Rate Card Details</h5>
                 </div>
                 <div class="modal-body">
                     
@@ -544,43 +664,157 @@
                             <label for="" class="col-form-label">Rate Per Hour:</label>
                             <p class="h6" name="v_rate_per_hour" id="v_rate_per_hour" name="v_rate_per_hour"></p>
                         </div>
-                        <div class="form-group col-md-3">
-                            <label for="" class="col-form-label">Special Holiday:</label>
-                            <p class="h6" name="v_special_holiday" id="v_special_holiday" name="v_special_holiday"></p>
-                        </div>
-                    </div>
-                    
-                    <hr class="w-100 mt-1 mb-1">
+                    </div>    
+
+                    <!-- special rate starts here -->
+                    <hr class="w-100 mt-3 mb-1">
+                    <h6>SpecialRate :</h6>
                     <div class="row">
                         <div class="form-group col-md-3">
+                            <label for="" class="col-form-label">Special Holiday:</label>
+                            <p class="h6" name="v_special_rates_special_holiday" id="v_special_rates_special_holiday" name="v_special_rates_special_holiday"></p>
+                        </div>
+                        <div class="form-group col-md-3">
                             <label for="" class="col-form-label">WDO:</label>
-                            <p class="h6" name="v_wdo" id="v_wdo" name="v_wdo"></p>
+                            <p class="h6" name="v_special_rates_wdo" id="v_special_rates_wdo" name="v_special_rates_wdo"></p>
                         </div>
                         <div class="form-group col-md-3">
                             <label for="" class="col-form-label">Special Holiday Rest Day:</label>
-                            <p class="h6" name="v_special_holiday_rest_day" id="v_special_holiday_rest_day" name="v_special_holiday_rest_day"></p>
+                            <p class="h6" name="v_special_rates_special_holiday_rest_day" id="v_special_rates_special_holiday_rest_day" name="v_special_rates_special_holiday_rest_day"></p>
                         </div>
                         <div class="form-group col-md-3">
                             <label for="" class="col-form-label">Legal Holiday:</label>
-                            <p class="h6" name="v_legal_holiday" id="v_legal_holiday" name="v_legal_holiday"></p>
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label for="" class="col-form-label">Legal Holiday Rest Day:</label>
-                            <p class="h6" name="v_legal_goliday_rest_day" id="v_legal_holiday_rest_day" name=""></p>
+                            <p class="h6" name="v_special_rates_legal_holiday" id="v_special_rates_legal_holiday" name="v_special_rates_legal_holiday"></p>
                         </div>
                     </div>
 
-                    <hr class="w-100 mt-1 mb-1">
                     <div class="row">
                         <div class="form-group col-md-3">
+                            <label for="" class="col-form-label">Legal Holiday Rest Day:</label>
+                            <p class="h6" name="v_special_rates_legal_holiday_rest_day" id="v_special_rates_legal_holiday_rest_day" name="v_special_rates_legal_rest_day"></p>
+                        </div>
+                        <div class="form-group col-md-3">
                             <label for="" class="col-form-label">Double Pay:</label>
-                            <p class="h6" name="v_double_pay" id="v_double_pay" name="v_double_pay"></p>
+                            <p class="h6" name="v_special_rates_double_pay" id="v_special_rates_double_pay" name="v_special_rates_double_pay"></p>
                         </div>
                         <div class="form-group col-md-3">
                             <label for="" class="col-form-label">Double Pay Rest Day:</label>
-                            <p class="h6" name="v_double_pay_rest_day" id="v_double_pay_rest_day" name="v_double_pay_rest_day"></p>
+                            <p class="h6" name="v_special_rates_double_pay_rest_day" id="v_special_rates_double_pay_rest_day" name="v_special_rates_double_pay_rest_day"></p>
+                        </div>
+                    </div>                          
+
+                    <!-- overtime starts here -->
+                    <hr class="w-100 mt-5 mb-1">
+                    <h6>Overtime :</h6>
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label for="" class="col-form-label">Special Holiday:</label>
+                            <p class="h6" name="v_overtime_special_holiday" id="v_overtime_special_holiday" name="v_overtime_special_holiday"></p>
+                        </div>
+                    
+                        <div class="form-group col-md-3">
+                            <label for="" class="col-form-label">WDO:</label>
+                            <p class="h6" name="v_overtime_wdo" id="v_overtime_wdo" name="v_overtime_wdo"></p>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="" class="col-form-label">Special Holiday Rest Day:</label>
+                            <p class="h6" name="v_overtime_special_holiday_rest_day" id="v_overtime_special_holiday_rest_day" name="v_overtime_special_holiday_rest_day"></p>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="" class="col-form-label">Legal Holiday:</label>
+                            <p class="h6" name="v_overtime_legal_holiday" id="v_overtime_legal_holiday" name="v_overtime_legal_holiday"></p>
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label for="" class="col-form-label">Legal Holiday Rest Day:</label>
+                            <p class="h6" name="v_overtime0_legal_holiday_rest_day" id="v_overtime_legal_holiday_rest_day" name="v_overtime_legal_holiday_rest_day"></p>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="" class="col-form-label">Double Pay:</label>
+                            <p class="h6" name="v_overtime_double_pay" id="v_overtime_double_pay" name="v_overtime_double_pay"></p>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="" class="col-form-label">Double Pay Rest Day:</label>
+                            <p class="h6" name="v_overtime_double_pay_rest_day" id="v_overtime_double_pay_rest_day" name="v_overtime_double_pay_rest_day"></p>
+                        </div>
+                    </div>
+                    
+                    <!-- night differential starts here -->                 
+                    <hr class="w-100 mt-5 mb-1">
+                    <h6>Night Differential :</h6>
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label for="" class="col-form-label">Special Holiday:</label>
+                            <p class="h6" name="v_night_differential_special_holiday" id="v_night_differential_special_holiday" name="v_night_differential_special_holiday"></p>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="" class="col-form-label">WDO:</label>
+                            <p class="h6" name="v_night_differential_wdo" id="v_night_differential_wdo" name="v_night_differential_wdo"></p>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="" class="col-form-label">Special Holiday Rest Day:</label>
+                            <p class="h6" name="v_night_differential_special_holiday_rest_day" id="v_night_differential_special_holiday_rest_day" name="v_night_differential_special_holiday_rest_day"></p>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="" class="col-form-label">Legal Holiday:</label>
+                            <p class="h6" name="v_night_differential_legal_holiday" id="v_night_differential_legal_holiday" name="v_night_differential_legal_holiday"></p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label for="" class="col-form-label">Legal Holiday Rest Day:</label>
+                            <p class="h6" name="v_night_differential_legal_holiday_rest_day" id="v_night_differential_legal_holiday_rest_day" name="v_night_differential_holiday_rest_day"></p>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="" class="col-form-label">Double Pay:</label>
+                            <p class="h6" name="v_night_differential_double_pay" id="v_night_differential_double_pay" name="v_night_differential_double_pay"></p>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="" class="col-form-label">Double Pay Rest Day:</label>
+                            <p class="h6" name="v_night_differential_double_pay_rest_day" id="v_night_differential_double_pay_rest_day" name="v_night_differential_double_pay_rest_day"></p>
+                        </div>
+                    </div>
+
+                    <!-- overtime with night diffential starts here -->
+                    <hr class="w-100 mt-5 mb-1">
+                    <h6>Overtime With Night Differential :</h6>
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label for="" class="col-form-label">Special Holiday:</label>
+                            <p class="h6" name="v_overtime_with_night_differential_special_holiday" id="v_overtime_with_night_differential_special_holiday" name="v_overtime_with_night_differential_special_holiday"></p>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="" class="col-form-label">WDO:</label>
+                            <p class="h6" name="v_overtime_with_night_differential_wdo" id="v_overtime_with_night_differential_wdo" name="v_overtime_with_night_differential_wdo"></p>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="" class="col-form-label">Special Holiday Rest Day:</label>
+                            <p class="h6" name="v_overtime_with_night_differential_special_holiday_rest_day" id="v_overtime_with_night_differential_special_holiday_rest_day" name="v_overtime_with_night_differential_special_holiday_rest_day"></p>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="" class="col-form-label">Legal Holiday:</label>
+                            <p class="h6" name="v_overtime_with_night_differential_legal_holiday" id="v_overtime_with_night_differential_legal_holiday" name="v_overtime_with_night_differential_legal_holiday"></p>
+                        </div>
+                    </div>    
+
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label for="" class="col-form-label">Legal Holiday Rest Day:</label>
+                            <p class="h6" name="v_overtime_with_night_differential_legal_holiday_rest_day" id="v_overtime_with_night_differential_legal_holiday_rest_day" name="v_overtime_with_night_differential_legal_holiday_rest_day"></p>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="" class="col-form-label">Double Pay:</label>
+                            <p class="h6" name="v_overtime_with_night_differential_double_pay" id="v_overtime_with_night_differential_double_pay" name="v_overtime_with_night_differential_double_pay"></p>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="" class="col-form-label">Double Pay Rest Day:</label>
+                            <p class="h6" name="v_overtime_with_night_differential_double_pay_rest_day" id="v_overtime_with_night_differential_double_pay_rest_day" name="v_overtime_with_night_differential_double_pay_rest_day"></p>
+                        </div>
+                    </div>
+
                 </div>
 
                 <div class="modal-footer">
@@ -652,6 +886,7 @@
         $("#addratecardModalButton").click(function(){
             console.log("yes");
             $("#addratecardModal").modal('show');
+        });    
         $('#ModalButton').click(function() {
             $('#addratecardModal').modal('hide');
         });
@@ -663,18 +898,18 @@
 
         // add rate card modal fetch functions ends here
         
-        // modal clicking funtion stars here
-        $('#tabletwo tbody').on('click', 'img.button-image1', function (e) {
-        e.preventDefault();
-        
-        $('#viewratecardModal').modal('show');
+        // modal clicking funtion stars here+
         $('#view').click(function() {
             $('#viewratecardModal').modal('hide');
         });
 
+        $('#tabletwo tbody').on('click', 'img.button-image1', function (e) {
+        e.preventDefault();
 
         console.log("test");
-
+        
+        $('#viewratecardModal').modal('show');
+      
             var selectedRowData = dataTable.row($(this).closest('tr')).data();
             var id = selectedRowData.id;
             $.ajax({
@@ -688,20 +923,67 @@
             // new code added starts here
             success: function(response){
                 //response = Json.parse(response);
-
+                
+                //special rate
                 $('#v_region').text(response.region);
                 // $('#v_rate_type').text(response.rate_type);
                 $('#v_rate_per_day').text(response.rate_per_day);
                 $('#v_rate_per_hour').text(response.rate_per_hour);
-                $('#v_special_holiday').text(response.special_holiday);
-                $('#v_wdo').text(response.wdo);
-                $('#v_special_holiday_rest_day').text(response.special_holiday_rest_day);
-                $('#v_legal_holiday').text(response.legal_holiday);
-                $('#v_legal_holiday_rest_day').text(response.legal_holiday_rest_day);
-                $('#v_double_pay').text(response.double_pay);
-                $('#v_double_pay_rest_day').text(response.double_pay_rest_day);
+                $('#v_special_rates_special_holiday').text(response.special_rate_special_holiday);
+                $('#v_special_rates_wdo').text(response.special_rate_wdo);
+                $('#v_special_rates_special_holiday_rest_day').text(response.special_rate_special_holiday_rest_day);
+                $('#v_special_rates_legal_holiday').text(response.special_rate_legal_holiday);
+                $('#v_special_rates_legal_holiday_rest_day').text(response.special_rate_legal_holiday_rest_day);
+                $('#v_special_rates_double_pay').text(response.special_rate_double_pay);
+                $('#v_special_rates_double_pay_rest_day').text(response.special_rate_double_pay_rest_day);
+
+
+                //overtime starts here
+
+                // $('#v_region').text(response.region);
+                // $('#v_rate_type').text(response.rate_type);
+                // $('#v_rate_per_day').text(response.rate_per_day);
+                // $('#v_rate_per_hour').text(response.rate_per_hour);
+                $('#v_overtime_special_holiday').text(response.overtime_special_holiday);
+                $('#v_overtime_wdo').text(response.overtime_wdo);
+                $('#v_overtime_special_holiday_rest_day').text(response.overtime_special_holiday_rest_day);
+                $('#v_overtime_legal_holiday').text(response.overtime_legal_holiday);
+                $('#v_overtime_legal_holiday_rest_day').text(response.overtime_legal_holiday_rest_day);
+                $('#v_overtime_double_pay').text(response.overtime_double_pay);
+                $('#v_overtime_double_pay_rest_day').text(response.overtime_double_pay_rest_day);
+
+
+                //night differential starts here 
+
+                // $('#v_region').text(response.region);
+                // $('#v_rate_type').text(response.rate_type);
+                // $('#v_rate_per_day').text(response.rate_per_day);
+                // $('#v_rate_per_hour').text(response.rate_per_hour);
+                $('#v_night_differential_special_holiday').text(response.night_differential_special_holiday);
+                $('#v_night_differential_wdo').text(response.night_differential_wdo);
+                $('#v_night_differential_special_holiday_rest_day').text(response.night_differential_special_holiday_rest_day);
+                $('#v_night_differential_legal_holiday').text(response.night_differential_legal_holiday);
+                $('#v_night_differential_legal_holiday_rest_day').text(response.night_differential_legal_holiday_rest_day);
+                $('#v_night_differential_double_pay').text(response.night_differential_double_pay);
+                $('#v_night_differential_double_pay_rest_day').text(response.night_differential_double_pay_rest_day);
+                
+
+                //overtime with night differential start here
+
+                // $('#v_region').text(response.region);
+                // $('#v_rate_type').text(response.rate_type);
+                // $('#v_rate_per_day').text(response.rate_per_day);
+                // $('#v_rate_per_hour').text(response.rate_per_hour);
+                $('#v_overtime_with_night_differential_special_holiday').text(response.overtime_with_night_differential_special_holiday);
+                $('#v_overtime_with_night_differential_wdo').text(response.overtime_with_night_differential_wdo);
+                $('#v_overtime_with_night_differential_special_holiday_rest_day').text(response.overtime_with_night_differential_special_holiday_rest_day);
+                $('#v_overtime_with_night_differential_legal_holiday').text(response.overtime_with_night_differential_legal_holiday);
+                $('#v_overtime_with_night_differential_legal_holiday_rest_day').text(response.overtime_with_night_differential_legal_holiday_rest_day);
+                $('#v_overtime_with_night_differential_double_pay').text(response.overtime_with_night_differential_double_pay);
+                $('#v_overtime_with_night_differential_double_pay_rest_day').text(response.overtime_with_night_differential_double_pay_rest_day);
 
                 
+
             }   
 
            
@@ -773,7 +1055,9 @@
             
             
             let ratePerDay = $(this).val();
+            console.log('test', ratePerDay);
             var ratePerHour = ratePerDay / 8;
+            console.log('rate per hr' , ratePerHour);
             
             // Special Rate
             var special_rate_specialHoliday = ( ratePerDay * 1.3 * 1.1 ) / 8;
@@ -811,62 +1095,9 @@
             var overTime_With_Night_Differential_doublePay = (( ratePerDay * 2 ) / 8 * 1.3 ) * .1 ;
             var overTime_With_Night_Differential_special_rate_ratePerHour = doublePayRestDay =  (( ratePerDay * 2.9)/ 8 * 1.3 ) * .1;
 
-            // switch (selectedRateType) {
-            //     case 'Special Rate':
-            //         ratePerDay = $(this).val();
-            //         ratePerHour = ratePerDay / 8;
-            //         specialHoliday =  ( ratePerDay * 1.3 * 1.1 ) /8; 
-            //         wDo =( ratePerDay * 1.3 ) /8;
-            //         specialHolidayRestDay = ( ratePerDay * 1.5 ) /8;
-            //         legalHoliday = ratePerDay / 8;
-            //         legalHolidayRestDay = ( ratePerDay * 1.6 ) / 8;
-            //         doublePay = ( ratePerDay * 2 ) / 8;
-            //         doublePayRestDay = ( ratePerDay * 2.9 ) /8;
-            //         console.log("test");
-            //         break;
-
-                // case 'OverTime':
-                //     ratePerDay = $(this).val();
-                //     ratePerHour = ( ratePerDay * 1.25 ) / 8;
-                //     specialHoliday = (( ratePerDay * 1.3 ) / 8 * 1.3); 
-                //     wDo = (( ratePerDay * 1.3 ) / 8 * 1.3);
-                //     specialHolidayRestDay = (( ratePerDay * 1.5 ) / 8 * 1.3);
-                //     legalHoliday = (( ratePerDay / 8 ) * 1.3 );
-                //     legalHolidayRestDay = (( ratePerDay * 1.6 ) / 8 * 1.3 );
-                //     doublePay = (( ratePerDay * 2 ) / 8 * 1.3 );
-                //     doublePayRestDay = (( ratePerDay * 2.9 ) / 8 * 1.3);
-                //     break;
-
-                // case 'Night Differential':
-                //     ratePerDay = $(this).val();
-                //     ratePerHour = ( ratePerDay / 8 ) * .1;
-                //     specialHoliday = ( ratePerDay * 1.3 ) / 8 * .1; 
-                //     wDo =( ratePerDay * 1.3 ) / 8 * .1 ;
-                //     specialHolidayRestDay = ( ratePerDay * 1.5 ) / 8 * .1;
-                //     legalHoliday = ( ratePerDay / 8 ) * .1;
-                //     legalHolidayRestDay = ( ratePerDay * 1.6 ) / 8 * .1;
-                //     doublePay = ( ratePerDay * 2 ) / 8 * .1; 
-                //     doublePayRestDay = ( ratePerDay * 2.9 ) / 8 * .1;
-                //     break;
-
-            //     case 'OverTime with Night Differential':
-            //         ratePerDay = $(this).val();
-            //         ratePerHour = ( ratePerDay * 1.25 ) / 8 * .1;
-            //         specialHoliday =  (( ratePerDay * 1.3 ) / 8 ) * 1.3 * .1 ; 
-            //         wDo = (( ratePerDay * 1.3 ) / 8) * 1.3 * .1;
-            //         specialHolidayRestDay = (( ratePerDay * 1.5 ) / 8) * 1.3 * .1 ;
-            //         legalHoliday = (( ratePerDay * 2  ) / 8) * 1.3 * .1;
-            //         legalHolidayRestDay = (( ratePerDay * 1.6 ) / 8 * 1.3 ) * .1 ;
-            //         doublePay = (( ratePerDay * 2 ) / 8 * 1.3 ) * .1 ;
-            //         special_rate_ratePerHour = doublePay = (( ratePerDay * 2 ) / 8 * 1.3 ) * .1 ;
-            //         break;
-            //     default:
-            //         ratePerDay = ''; 
-            // }
-
-          //  $('#a_rate_per_day').val(ratePerDay);          
+         
         
-            $('#a_special_rates_rate_per_hour').val(ratePerHour.toFixed(2));
+            $('#a_rate_per_hour').val(ratePerHour.toFixed(2));
             $('#a_special_rates_special_holiday').val(special_rate_specialHoliday.toFixed(2));
             $('#a_special_rates_wdo').val(special_rate_wDo.toFixed(2));      
             $('#a_special_rates_special_holiday_rest_day').val(special_rate_specialHolidayRestDay.toFixed(2));
@@ -910,7 +1141,7 @@
             // var ratePerHour = ratePerDay / 8;
             // $('#a_rate_per_hour').val(ratePerHour.toFixed(2)); 
                 })
-            });
+         
         // });
 
 

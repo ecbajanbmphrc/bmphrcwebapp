@@ -31,8 +31,8 @@ class TreasuryRateCardListController extends Controller
 
     public function saveRateCard(Request $request)
     {
-
-    //     // dd($request->all());
+        $test = $request->input('a_night_differential_wdo');
+    // dd($request->all());
     //    $rate_cards = new RateCard;
     //    $rate_cards->region = $request->input('a_region');
     //    $rate_cards->rate_type = $request->input('a_rate_type');
@@ -49,17 +49,46 @@ class TreasuryRateCardListController extends Controller
        
        $rate_cards = new RateCard;
        $rate_cards->region = $request->input('a_region');
-    //    $rate_cards->rate_type = $request->input('a_rate_type');
+    // $rate_cards->rate_type = $request->input('a_rate_type');
        $rate_cards->rate_per_day = $request->input('a_rate_per_day');
-       $rate_cards->rate_per_hour =  $request->input('a_rate_per_hour');
-       $rate_cards->special_holiday =  $request->input('a_special_holiday');
-       $rate_cards->wdo = $request->input('a_wdo');
-       $rate_cards->special_holiday_rest_day =   $request->input('a_special_holiday_rest_day') ;
-       $rate_cards->legal_holiday =   $request->input('a_legal_holiday') ;
-       $rate_cards->legal_holiday_rest_day =   $request->input('a_legal_holiday_rest_day') ;
-       $rate_cards->double_pay =   $request->input('a_double_pay') ;
-       $rate_cards->double_pay_rest_day =   $request->input('a_double_pay_rest_day') ;
-       $rate_cards->double_pay_rest_day =   $request->input('a_double_pay_rest_day') ;
+       $rate_cards->rate_per_hour = $request->input('a_rate_per_hour');
+
+       // special rates starts here
+       $rate_cards->special_rate_special_holiday = $request->input('a_special_rates_special_holiday');
+       $rate_cards->special_rate_wdo = $request->input('a_special_rates_wdo');
+       $rate_cards->special_rate_special_holiday_rest_day = $request->input('a_special_rates_special_holiday_rest_day') ;
+       $rate_cards->special_rate_legal_holiday = $request->input('a_special_rates_legal_holiday') ;
+       $rate_cards->special_rate_legal_holiday_rest_day = $request->input('a_special_rates_legal_holiday_rest_day') ;
+       $rate_cards->special_rate_double_pay =  $request->input('a_special_rates_double_pay') ;
+       $rate_cards->special_rate_double_pay_rest_day = $request->input('a_special_rates_double_pay_rest_day') ;
+       
+       // overtime starts here
+       $rate_cards->overtime_special_holiday = $request->input('a_overtime_special_holiday');
+       $rate_cards->overtime_wdo = $request->input('a_overtime_wdo');
+       $rate_cards->overtime_special_holiday_rest_day = $request->input('a_overtime_special_holiday_rest_day') ;
+       $rate_cards->overtime_legal_holiday = $request->input('a_overtime_legal_holiday') ;
+       $rate_cards->overtime_legal_holiday_rest_day = $request->input('a_overtime_legal_holiday_rest_day') ;
+       $rate_cards->overtime_double_pay = $request->input('a_overtime_double_pay') ;
+       $rate_cards->overtime_double_pay_rest_day = $request->input('a_overtime_double_pay_rest_day') ;
+
+
+       // night differential
+       $rate_cards->night_differential_special_holiday = $request->input('a_night_differential_special_holiday');
+       $rate_cards->night_differential_wdo = $request->input('a_night_differential_wdo');
+       $rate_cards->night_differential_special_holiday_rest_day = $request->input('a_night_differential_special_holiday_rest_day') ;
+       $rate_cards->night_differential_legal_holiday = $request->input('a_night_differential_legal_holiday') ;
+       $rate_cards->night_differential_legal_holiday_rest_day = $request->input('a_night_differential_legal_holiday_rest_day') ;
+       $rate_cards->night_differential_double_pay = $request->input('a_night_differential_double_pay') ;
+       $rate_cards->night_differential_double_pay_rest_day = $request->input('a_night_differential_double_pay_rest_day') ;
+
+       // overtime with night differential
+       $rate_cards->overtime_with_night_differential_special_holiday = $request->input('a_overtime_with_night_differential_special_holiday');
+       $rate_cards->overtime_with_night_differential_wdo = $request->input('a_overtime_with_night_differential_wdo');
+       $rate_cards->overtime_with_night_differential_special_holiday_rest_day = $request->input('a_overtime_with_night_differential_special_holiday_rest_day') ;
+       $rate_cards->overtime_with_night_differential_legal_holiday = $request->input('a_overtime_with_night_differential_legal_holiday') ;
+       $rate_cards->overtime_with_night_differential_legal_holiday_rest_day = $request->input('a_overtime_with_night_differential_legal_holiday_rest_day') ;
+       $rate_cards->overtime_with_night_differential_double_pay = $request->input('a_overtime_with_night_differential_double_pay') ;
+       $rate_cards->overtime_with_night_differential_double_pay_rest_day = $request->input('a_overtime_with_night_differential_double_pay_rest_day') ;
        $rate_cards->save();
 
        return redirect(('/treasury/rate'))->with('add-success', "Account registered successfully");
@@ -110,9 +139,19 @@ class TreasuryRateCardListController extends Controller
 
         
         $rate_cards = RateCard::where('id', '=', $request->id)
-        ->select('id' ,'region', 'rate_per_day', 'rate_per_hour', 'special_holiday', 'wdo'
-        , 'special_holiday_rest_day', 'legal_holiday', 'legal_holiday', 'legal_holiday_rest_day', 'double_pay'
-        , 'double_pay_rest_day')
+        ->select('id' ,'region', 'rate_per_day','rate_per_hour',
+         
+        'special_rate_special_holiday', 'special_rate_wdo', 'special_rate_special_holiday_rest_day',
+        'special_rate_legal_holiday', 'special_rate_legal_holiday_rest_day', 'special_rate_double_pay', 'special_rate_double_pay_rest_day',
+        
+        'overtime_special_holiday', 'overtime_wdo', 'overtime_special_holiday_rest_day',
+        'overtime_legal_holiday', 'overtime_legal_holiday_rest_day', 'overtime_double_pay', 'overtime_double_pay_rest_day',
+        
+        'night_differential_special_holiday', 'night_differential_wdo', 'night_differential_special_holiday_rest_day',
+        'night_differential_legal_holiday', 'night_differential_legal_holiday_rest_day', 'night_differential_double_pay', 'night_differential_double_pay_rest_day',
+        
+        'overtime_with_night_differential_special_holiday', 'overtime_with_night_differential_wdo', 'overtime_with_night_differential_special_holiday_rest_day',
+        'overtime_with_night_differential_legal_holiday', 'overtime_with_night_differential_legal_holiday_rest_day', 'overtime_with_night_differential_double_pay', 'overtime_with_night_differential_double_pay_rest_day',)
         ->first();
 
         if ($rate_cards) {
