@@ -234,6 +234,7 @@ Route::middleware([PayrollOfficer::class])->group(function(){
     //payrollofficer controller
     Route::get('/payrollofficer/payrollofficerlist/list/fetch-data', [PayrollOfficerListController::class, 'fetchData']);
     Route::get('/payrollofficer/payrollofficertransferlist/list/fetch-data', [PayrollOfficerTransferListController::class, 'fetchData']);
+    Route::get('/payrollofficer/payrollofficerinput/list/fetch-data', [PayrollOfficerinputListController::class, 'fetchData']);
  
 
 
