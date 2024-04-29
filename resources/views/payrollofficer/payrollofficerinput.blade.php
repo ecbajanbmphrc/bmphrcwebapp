@@ -40,7 +40,11 @@
         }
         .button-image3{
     cursor: pointer;
-        }
+        } 
+        .input_table{
+            border: none; 
+        outline: none;  
+    }    
     </style>
 
 </head>
@@ -139,20 +143,19 @@
                         <div class="row">
                             <div class="col">
                                 <h3 class="card-title">BMPOWER HUMAN RESOURCES CORP</h3>
-                                <h5>For the covered period of March 1-15, 2024</h5>
+                                <h5>For the covered period of Month/Days/Year</h5>
                                 <h5 class="mb-5">PUREGOlD ACCOUNT<hr class="w-100 mb-5"></h5>
                             </div>
                         </div>
-                        <table id="inputtable" class="table table-hover" style="width:100%">
+                    <div class="table-responsive">
+                        <table id="inputtable" class="table " style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>First_name</th>
                                     <th style="display:none">ID</th>
-                                    <th>Last_name</th>
-                                    <!-- <th>Account</th>
+                                    <th>Full Name</th>                                    
+                                    <th>Account</th>
                                     <th>HC</th>
-                                    <th>Coordinator</th>
-                                    <th>Employee Name</th>
+                                    <th>Coordinator</th>                                
                                     <th>Handled Store</th>
                                     <th>Region</th>
                                     <th>With Rate Increase</th>
@@ -164,24 +167,14 @@
                                     <th>WRI No. of Hours</th>
                                     <th>Sub Total Pay</th>
                                     <th>WRI Sub Total Pay</th>
-                                    <th>Total pay</th> -->
+                                    <th>Total pay</th>                                    
                                     <!-- <th>Actions</th> -->
                                 </tr>
                             </thead>
-                            <tbody>
-                                <!-- <tr>
-                                    <td><input type="text" placeholder="Actual Days Rendered"></td>
-                                    <td><input type="text" placeholder="WRI Actual Days Rendered"></td>
-                                    <td><input type="text" placeholder="Late mins"></td>
-                                    <td><input type="text" placeholder="WRI Late mins"></td>
-                                    <td><input type="text" placeholder="No. of Hours"></td>
-                                    <td><input type="text" placeholder="WRI No. of Hours"></td>
-                                    <td><input type="text" placeholder="Sub Total Pay"></td>
-                                    <td><input type="text" placeholder="WRI Sub Total Pay"></td>
-                                    <td><input type="text" placeholder="Total pay"></td>
-                                </tr> -->
+                            <tbody>     
                             </tbody>
                         </table>
+                     </div>
                     </div>
                 </div>
 
@@ -230,32 +223,63 @@
                     dataSrc: 'dataone'
                 },
                 columns: [
-                    { data: 'first_name' },
-
                     { data: 'id', visible: false },
-                    { data: 'last_name' },
-                    // { data: 'account'},
-                    // { data: 'hc'},
-                    // // leftjoin the coordinator concatinated full name
-                    // { data: 'coordinator'},
-                    // // leftjoin the merchandiser concatinated full name
-                    // { data: 'merchandiser'},
-                    // // leftjoin the doors
-                    // { data: 'store_name'},
-                    // // leftjoin the region
-                    // { data: 'region'},
-                    // { data: 'with_rate_increase'},
-                    // { data: 'actual_days_rendered'},
-                    // { data: 'wri_actual_days_rendered'},              
-                    // { data: 'late_min'},
-                    // { data: 'wri_late_min'},
-                    // { data: 'no_of_hour'},
-                    // { data: 'wri_no_of_hour'},
-                    // { data: 'sub_total_pay'},
-                    // { data: 'wri_sub_total_pay'},
-                    // { data: 'total_pay'},
+                    { data: 'full_name' },
+                    
+                    { data: 'account'},
+                    { data: 'hc'},
+                    // leftjoin the coordinator concatinated full name
+                    { data: 'coordinator'},
+                    // leftjoin the merchandiser concatinated full name
+                    // leftjoin the doors
+                    { data: 'store_name'},
+                    // leftjoin the region
+                    { data: 'region'},
+                    { data: 'input_with_rate_increase'},
+                    { data: 'input_actual_days_rendered'},
+                    { data: 'input_wri_actual_days_rendered'},              
+                    { data: 'input_late_min'},
+                    { data: 'input_wri_late_min'},
+                    { data: '_no_of_hour'},
+                    { data: 'input_wri_no_of_hour'},
+                    { data: 'input_sub_total_pay'},
+                    { data: 'input_wri_sub_total_pay'},
+                    { data: 'total_pay'},
+                    
                 ]
             });
+
+            var dailyRate = 'rate_per_day';
+            var hoursPerDay = 'rate_per_hour';
+        
+            // Calculate values
+            // new code added
+            var actualDaysRendered * 8 = noOfHour;
+            var noOfHour * ratePerDay = totalPay;
+            // new code ends here
+            var withRateIncrease = dailyRate * daysRendered;
+            var actualDaysRendered = daysRendered;
+            var wriActualDaysRendered = daysRendered;
+            var lateMins = 0; 
+            var wriLateMins = 0; 
+            var numberOfHours = daysRendered * hoursPerDay;
+            var wriNumberOfHours = daysRendered * hoursPerDay;
+            var subTotalPay = dailyRate * daysRendered;
+            var wriSubTotalPay = dailyRate * daysRendered;
+            var totalPay = subTotalPay; 
+
+            $("#no_of_hour").val(numberOfHour.toFixed(2));
+
+            $("#withRateIncrease").val(withRateIncrease);
+            $("#actualDaysRendered").val(actualDaysRendered);
+            $("#wriActualDaysRendered").val(wriActualDaysRendered);
+            $("#lateMins").val(lateMins);
+            $("#wriLateMins").val(wriLateMins);
+            $("#numberOfHours").val(numberOfHours);
+            $("#wriNumberOfHours").val(wriNumberOfHours);
+            $("#subTotalPay").val(subTotalPay);
+            $("#wriSubTotalPay").val(wriSubTotalPay);
+            $("#totalPay").val(totalPay);
         });
     </script>
 
