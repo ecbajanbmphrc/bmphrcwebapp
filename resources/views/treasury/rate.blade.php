@@ -1113,8 +1113,7 @@
 
        
         $('#u_rate_per_day').on("change keyup paste", function(){
-            
-            
+             
             let ratePerDay = $(this).val();
             console.log('test', ratePerDay);
             var ratePerHour = ratePerDay / 8;

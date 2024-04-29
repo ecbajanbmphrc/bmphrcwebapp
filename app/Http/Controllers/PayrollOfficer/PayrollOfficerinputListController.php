@@ -30,43 +30,6 @@ class PayrollOfficerInputListController extends Controller
         // }
         public function fetchData(Request $request)
             {
-                // $user_id = session('user')['current_user_id'];
-                // $data = collect(PayrollInput::select('company_door_id')
-                // ->get());
-
-                // $models = DB::table('manning_lists')
-                //     ->leftJoin('coordinators', 'manning_lists.coordinator_id', '=', 'coordinators.id')
-                //     ->leftJoin('merchandisers', 'manning_lists.merchandiser_id', '=', 'merchandisers.id')
-                //     ->leftJoin('company_doors as region_doors', 'manning_lists.region_id', '=', 'region_doors.id')
-                //     ->leftJoin('company_doors as store_doors', 'manning_lists.store_name_id', '=', 'store_doors.id')
-                //     ->select(
-                //         'manning_lists.*',
-                //         'coordinators.first_name as coordinator_first_name',
-                //         'coordinators.middle_name as coordinator_middle_name',
-                //         'coordinators.last_name as coordinator_last_name',
-                //         'merchandisers.first_name as merchandiser_first_name',
-                //         'merchandisers.middle_name as merchandiser_middle_name',
-                //         'merchandisers.last_name as merchandiser_last_name'
-                //     )
-                //     ->where('region_doors.door_id', $request->input('region_id')) 
-                //     ->where('coordinators.id', $request->input('coordinator_id'))   
-                //     ->where('region_doors.id', $request->input('region_id')) 
-                //     ->where('store_doors.id', $request->input('store_code_id')) 
-                //     ->get();
-                
-                // $models = $models->map(function ($item, $key){
-                //     $item = (array)$item;
-                //     $item['#'] = $key +1;
-                //     $item['account_name'] = $item['account_name'];
-                //     $item['fname'] = $item['fname'];
-                //     $item['mname'] = $item['mname'];
-                //     $item['lname'] = $item['lname'];
-                //     $item['store_name'] = $item['store_name'];
-                //     $item['company_name'] = $item['company_name'];
-                //     $item['actions'] = '<i class="ri-bank-card-line" id="gpower" alt="Button" style="height: 40px; width: 40px; color: red;"></i>';
-
-                //     return $item;
-                // });
 
                 $user_id = session('user')['current_user_id'];
 
@@ -88,11 +51,28 @@ class PayrollOfficerInputListController extends Controller
                 ->whereIn('id' , $payroll_list)
                 ->get();
                 
-            
+                $merchandiser_list =  $merchandiser_list->map(function($item){
+                    $item = (array) $item;
+                    $item['full_name'] = $item ['first_name'] . " " . $item['last_name'] ;
+                    
+                    // $item['actions'] = '<i class="bi bi-x-circle-fill" id="gpower" alt="Button" style="height: 40px; width: 40px; color: red;"></i>';
+                    $item['input_with_rate_increase'] = '<input type="text" class="input_table"/>';
+                    $item['input_actual_days_rendered'] = '<input type="text" class="input_table"/>';
+                    $item['input_wri_actual_days_rendered'] = '<input type="text" class="input_table"/>';
+                    $item['input_late_min'] = '<input type="text" class="input_table"/>';
+                    $item['input_wri_late_min'] = '<input type="text" class="input_table"/>';
+                    $item['no_of_hour'] = '<input type="text" class="input_table readonly"/>';
+                    $item['input_wri_no_of_hour'] = '<input type="text" class="input_table"/>';
+                    $item['input_sub_total_pay'] = '<input type="text" class="input_table"/>';
+                    $item['input_wri_sub_total_pay'] = '<input type="text"class="input_table"/>';                   
+                    $item['total_pay'] = '<input type="text" class="input_table> readonly';
+                    return $item;
+                });
 
                 return response()->json(['dataone' => $merchandiser_list]);
             }
-            
+
+        
 
             protected function getViewMerchandiserManning($id)
             {
@@ -109,7 +89,7 @@ class PayrollOfficerInputListController extends Controller
                     $item['fname'] = $item ['fname'];
                     $item['mname'] = $item ['mname'];
                     $item['lname'] = $item ['lname'];
-                    $item['actions'] = '<i class="bi bi-x-circle-fill" id="gpower" alt="Button" style="height: 40px; width: 40px; color: red;"></i>';
+                  
                     
                     
                     return $item;
@@ -117,4 +97,29 @@ class PayrollOfficerInputListController extends Controller
                 
                     return response()->json(['data' => $company_door]);;
             }
+
+
+            // new code added
+            // public function calculatePay()
+            // {
+            //     // Assuming the following values
+            //     $dailyRate = 610;
+            //     $daysRendered = 10;
+            //     $hoursPerDay = 8;
+
+            //     // Calculate values
+            //     $withRateIncrease = $dailyRate * $daysRendered;
+            //     $actualDaysRendered = $daysRendered;
+            //     $wriActualDaysRendered = $daysRendered;
+            //     $lateMins = 0; // Assuming no late minutes for now
+            //     $wriLateMins = 0; // Assuming no late minutes for now
+            //     $numberOfHours = $daysRendered * $hoursPerDay;
+            //     $wriNumberOfHours = $daysRendered * $hoursPerDay;
+            //     $subTotalPay = $dailyRate * $daysRendered;
+            //     $wriSubTotalPay = $dailyRate * $daysRendered;
+            //     $totalPay = $subTotalPay; // Assuming no difference in total pay for now
+
+            //     // Pass data to view
+            //     return view('payroll.index', compact('withRateIncrease', 'actualDaysRendered', 'wriActualDaysRendered', 'lateMins', 'wriLateMins', 'numberOfHours', 'wriNumberOfHours', 'subTotalPay', 'wriSubTotalPay', 'totalPay'));
+            // }
     }
