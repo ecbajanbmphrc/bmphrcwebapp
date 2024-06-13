@@ -167,7 +167,9 @@
                 <th style="display:none">ID</th>
                 <th>Account</th>
                 <th>Region</th>
+                <th>Area</th>
                 <th>Store Name</th>
+                <th>Type of Deployment</th>
                 <th>Status</th>
                 <th>Actions</th>
             </tr>
@@ -219,12 +221,12 @@
             <label for="c_account" class="col-form-label">Account:</label>
             <select class="form-select" id="c_account" name="c_account" >
             <option  value="" >---Select Account---</option>
-                <option  value="Ever" @if(old('c_account') == "Ever") {{'selected'}} @endif>Ever</option>
-                <option  value="Puregold" @if(old('c_account') == "Puregold") {{'selected'}} @endif>Puregold</option>
-                <option  value="Robinson" @if(old('c_account') == "Robinson") {{'selected'}} @endif>Robinson</option>
-                <option  value="Super 8" @if(old('c_account') == "Super 8") {{'selected'}} @endif>Super 8</option>
-                <option  value="Ultramega" @if(old('c_account') == "Ultramega") {{'selected'}} @endif>Ultramega</option>
-                <option  value="Waltermart" @if(old('c_account') == "Waltermart") {{'selected'}} @endif>Waltermart</option>
+            <option  value="EVER" @if(old('c_account') == "Ever") {{'selected'}} @endif>EVER</option>
+                <option  value="PUREGOLD" @if(old('c_account') == "Puregold") {{'selected'}} @endif>PUREGOLD</option>
+                <option  value="ROBINSON" @if(old('c_account') == "Robinson") {{'selected'}} @endif>ROBINSONS</option>
+                <option  value="SUPER 8" @if(old('c_account') == "Super 8") {{'selected'}} @endif>SUPER 8</option>
+                <option  value="ULTRAMEGA" @if(old('c_account') == "Ultramega") {{'selected'}} @endif>ULTRAMEGA</option>
+                <option  value="WALTERMART" @if(old('c_account') == "Waltermart") {{'selected'}} @endif>WALTERMART</option>
             </select>
           </div>    
        
@@ -233,23 +235,24 @@
             <label for="c_region" class="col-form-label">Region:</label>
             <select class="form-select" id="c_region" name="c_region">
             <option  value="">---Select Region---</option>
-                <option  value="Region 1" @if(old('c_region') == "Region 1") {{'selected'}} @endif>Region 1</option>
-                <option  value="Region 2" @if(old('c_region') == "Region 2") {{'selected'}} @endif>Region 2</option>
-                <option  value="Region 3" @if(old('c_region') == "Region 3") {{'selected'}} @endif>Region 3</option>
-                <option  value="Region 4" @if(old('c_region') == "Region 4") {{'selected'}} @endif>Region 4</option>
-                <option  value="Region 5" @if(old('c_region') == "Region 5") {{'selected'}} @endif>Region 5</option>
-                <option  value="Region 6" @if(old('c_region') == "Region 6") {{'selected'}} @endif>Region 6</option>
-                <option  value="Region 7" @if(old('c_region') == "Region 7") {{'selected'}} @endif>Region 7</option>
-                <option  value="Region 8" @if(old('c_region') == "Region 8") {{'selected'}} @endif>Region 8</option>
-                <option  value="Region 9" @if(old('c_region') == "Region 9") {{'selected'}} @endif>Region 9</option>
-                <option  value="Region 10" @if(old('c_region') == "Region 10") {{'selected'}} @endif>Region 10</option>
-                <option  value="Region 11" @if(old('c_region') == "Region 11") {{'selected'}} @endif>Region 11</option>
-                <option  value="Region 12" @if(old('c_region') == "Region 12") {{'selected'}} @endif>Region 12</option>
-                <option  value="Region 13" @if(old('c_region') == "Region 13") {{'selected'}} @endif>Region 13</option>
-                <option  value="NCR" @if(old('c_region') == "NCR") {{'selected'}} @endif>NCR</option>
-                <option  value="MIMAROPA" @if(old('c_region') == "MIMAROPA") {{'selected'}} @endif>MIMAROPA</option>
-                <option  value="CAR" @if(old('c_region') == "CAR") {{'selected'}} @endif>CAR</option>
-                <option  value="BARMM" @if(old('c_region') == "BARMM") {{'selected'}} @endif>BARMM</option>
+                <option  value="Region 1" @if(old('c_region') == "Region 1") {{'selected'}} @endif>Region 1 (ILOCOS REGION)</option>
+                <option  value="Region 2" @if(old('c_region') == "Region 2") {{'selected'}} @endif>Region 2 (CAGAYAN VALLEY)</option>
+                <option  value="Region 3" @if(old('c_region') == "Region 3") {{'selected'}} @endif>Region 3 (CENTRAL LUZON)</option> 
+                <option  value="Region 4A" @if(old('c_region') == "Region 4A") {{'selected'}} @endif>Region 4A (CALABARZON)</option>
+                <option  value="Region 4B" @if(old('c_region') == "Region 4B") {{'selected'}} @endif>Region 4B (MIMAROPA)</option>
+                <option  value="Region 5" @if(old('c_region') == "Region 5") {{'selected'}} @endif>Region 5 (BICOL REGION)</option>
+                <option  value="Region 6" @if(old('c_region') == "Region 6") {{'selected'}} @endif>Region 6 (WESTERN VISAYAS)</option>
+                <option  value="Region 7" @if(old('c_region') == "Region 7") {{'selected'}} @endif>Region 7 (CENTRAL VISAYAS)</option>
+                <option  value="Region 7B" @if(old('c_region') == "Region 7B") {{'selected'}} @endif>Region 7B (CENTRAL VISAYAS)</option>
+                <option  value="Region 8" @if(old('c_region') == "Region 8") {{'selected'}} @endif>Region 8 (EASTERN VISAYAS)</option>
+                <option  value="Region 9" @if(old('c_region') == "Region 9") {{'selected'}} @endif>Region 9 (ZAMBOANGA PENINSULA)</option>
+                <option  value="Region 10" @if(old('c_region') == "Region 10") {{'selected'}} @endif>Region 10 (NORTHERN MINDANAO)</option>
+                <option  value="Region 11" @if(old('c_region') == "Region 11") {{'selected'}} @endif>Region 11 (DAVAO REGION)</option>
+                <option  value="Region 12" @if(old('c_region') == "Region 12") {{'selected'}} @endif>Region 12 (SOCCSKSARGEN)</option>
+                <option  value="Region 13" @if(old('c_region') == "Region 13") {{'selected'}} @endif>Region 13 (CARAGA)</option>
+                <option  value="NCR" @if(old('c_region') == "NCR") {{'selected'}} @endif>NCR (NATIONAL CAPITAL REGION)</option>
+                <option  value="CAR" @if(old('c_region') == "CAR") {{'selected'}} @endif>CAR (CORDILLERA ADMIN REGION)</option>
+                <option  value="BARMM" @if(old('c_region') == "BARMM") {{'selected'}} @endif>BARMM (BANGSAMORO AUTONOMOUS REGION IN MUSLIM MINDANAO)</option>
             </select>
           </div>
           
@@ -358,23 +361,24 @@
             <label for="e_region" class="col-form-label">Region:</label>
             <select class="form-select" id="e_region" name="e_region">
             <option  value="">---Select Region---</option>
-                <option  value="Region 1" @if(old('e_region') == "Region 1") {{'selected'}} @endif>Region 1</option>
-                <option  value="Region 2" @if(old('e_region') == "Region 2") {{'selected'}} @endif>Region 2</option>
-                <option  value="Region 3" @if(old('e_region') == "Region 3") {{'selected'}} @endif>Region 3</option>
-                <option  value="Region 4" @if(old('e_region') == "Region 4") {{'selected'}} @endif>Region 4</option>
-                <option  value="Region 5" @if(old('e_region') == "Region 5") {{'selected'}} @endif>Region 5</option>
-                <option  value="Region 6" @if(old('e_region') == "Region 6") {{'selected'}} @endif>Region 6</option>
-                <option  value="Region 7" @if(old('e_region') == "Region 7") {{'selected'}} @endif>Region 7</option>
-                <option  value="Region 8" @if(old('e_region') == "Region 8") {{'selected'}} @endif>Region 8</option>
-                <option  value="Region 9" @if(old('e_region') == "Region 9") {{'selected'}} @endif>Region 9</option>
-                <option  value="Region 10" @if(old('e_region') == "Region 10") {{'selected'}} @endif>Region 10</option>
-                <option  value="Region 11" @if(old('e_region') == "Region 11") {{'selected'}} @endif>Region 11</option>
-                <option  value="Region 12" @if(old('e_region') == "Region 12") {{'selected'}} @endif>Region 12</option>
-                <option  value="Region 13" @if(old('e_region') == "Region 13") {{'selected'}} @endif>Region 13</option>
-                <option  value="NCR" @if(old('e_region') == "NCR") {{'selected'}} @endif>NCR</option>
-                <option  value="MIMAROPA" @if(old('e_region') == "MIMAROPA") {{'selected'}} @endif>MIMAROPA</option>
-                <option  value="CAR" @if(old('e_region') == "CAR") {{'selected'}} @endif>CAR</option>
-                <option  value="BARMM" @if(old('e_region') == "BARMM") {{'selected'}} @endif>BARMM</option>
+                <option  value="Region 1" @if(old('e_region') == "Region 1") {{'selected'}} @endif>Region 1 (ILOCOS REGION)</option>
+                <option  value="Region 2" @if(old('e_region') == "Region 2") {{'selected'}} @endif>Region 2 (CAGAYAN VALLEY)</option>
+                <option  value="Region 3" @if(old('e_region') == "Region 3") {{'selected'}} @endif>Region 3 (CENTRAL LUZON)</option> 
+                <option  value="Region 4A" @if(old('e_region') == "Region 4A") {{'selected'}} @endif>Region 4A (CALABARZON)</option>
+                <option  value="Region 4B" @if(old('e_region') == "Region 4B") {{'selected'}} @endif>Region 4B (MIMAROPA)</option>
+                <option  value="Region 5" @if(old('e_region') == "Region 5") {{'selected'}} @endif>Region 5 (BICOL REGION)</option>
+                <option  value="Region 6" @if(old('e_region') == "Region 6") {{'selected'}} @endif>Region 6 (WESTERN VISAYAS)</option>
+                <option  value="Region 7" @if(old('e_region') == "Region 7") {{'selected'}} @endif>Region 7 (CENTRAL VISAYAS)</option>
+                <option  value="Region 7B" @if(old('e_region') == "Region 7B") {{'selected'}} @endif>Region 7B (CENTRAL VISAYAS)</option>
+                <option  value="Region 8" @if(old('e_region') == "Region 8") {{'selected'}} @endif>Region 8 (EASTERN VISAYAS)</option>
+                <option  value="Region 9" @if(old('e_region') == "Region 9") {{'selected'}} @endif>Region 9 (ZAMBOANGA PENINSULA)</option>
+                <option  value="Region 10" @if(old('e_region') == "Region 10") {{'selected'}} @endif>Region 10 (NORTHERN MINDANAO)</option>
+                <option  value="Region 11" @if(old('e_region') == "Region 11") {{'selected'}} @endif>Region 11 (DAVAO REGION)</option>
+                <option  value="Region 12" @if(old('e_region') == "Region 12") {{'selected'}} @endif>Region 12 (SOCCSKSARGEN)</option>
+                <option  value="Region 13" @if(old('e_region') == "Region 13") {{'selected'}} @endif>Region 13 (CARAGA)</option>
+                <option  value="NCR" @if(old('e_region') == "NCR") {{'selected'}} @endif>NCR (NATIONAL CAPITAL REGION)</option>
+                <option  value="CAR" @if(old('e_region') == "CAR") {{'selected'}} @endif>CAR (CORDILLERA ADMIN REGION)</option>
+                <option  value="BARMM" @if(old('e_region') == "BARMM") {{'selected'}} @endif>BARMM (BANGSAMORO AUTONOMOUS REGION IN MUSLIM MINDANAO)</option>
             </select>
           </div>
           
@@ -545,7 +549,9 @@
                 { data: 'id', visible: false },
                 { data: 'account' },
                 { data: 'region' },
+                { data: 'area' },
                 { data: 'store_name' },
+                { data: 'type_of_deployment'},
                 { data: 'status', orderable: false },
                 { data: 'actions', orderable: false }
             ]

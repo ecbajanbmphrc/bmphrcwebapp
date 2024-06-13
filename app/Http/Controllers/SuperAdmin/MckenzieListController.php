@@ -49,7 +49,7 @@ class MckenzieListController extends Controller
     public function getViewData($id)
     {
 
-        $company_door = CompanyDoor::find($id , ['account' , 'region' , 'area' , 'account_branch' , 'status' , 'type_of_deployment']);
+        $company_door = CompanyDoor::find($id , ['account' , 'region' , 'area' , 'store_name' , 'status' , 'type_of_deployment']);
         if ($company_door) {
             // Data found for the given ID
              return response()->json($company_door);
@@ -129,7 +129,7 @@ class MckenzieListController extends Controller
                 $company_door->account = $request->input('c_account');
                 $company_door->region = $request->input('c_region');
                 $company_door->area = $request->input('c_area');
-                $company_door->account_branch = $request->input('c_account_branch');
+                $company_door->store_name = $request->input('c_account_branch');
                 $company_door->type_of_deployment = $request->input('c_type_of_deployment');
                 $company_door->company_id = $company;
                 $company_door->status = $status;
@@ -189,7 +189,7 @@ class MckenzieListController extends Controller
                 $company_door->account = $request->input('e_account');
                 $company_door->region = $request->input('e_region');
                 $company_door->area = $request->input('e_area');
-                $company_door->account_branch = $request->input('e_account_branch');
+                $company_door->store_name = $request->input('e_account_branch');
                 $company_door->type_of_deployment = $request->input('e_type_of_deployment');
                 $company_door->status = $request->input('e_status');
                 $company_door->company_id = $company;

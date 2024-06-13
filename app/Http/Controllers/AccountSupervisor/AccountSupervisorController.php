@@ -113,6 +113,13 @@ class AccountSupervisorController extends Controller
         ->pluck('display_name','id')
         ->toArray();
 
+        $merchandisers = Merchandiser::
+        select(DB::raw("CONCAT(first_name ,' ',  last_name) AS display_name"),'id')
+        ->get()
+        ->pluck('display_name','id')
+        ->toArray();
+
+
 
 
         $merchandiser_array += $merchandisers;

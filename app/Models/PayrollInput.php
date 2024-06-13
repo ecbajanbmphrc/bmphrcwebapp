@@ -11,5 +11,15 @@ class PayrollInput extends Model
 
     public $timestamps = false;
 
-    protected $table = "transaction_lists";
+    // protected $table = "transaction_lists"; 
+
+    // new code added starts here
+
+    protected $table = "transaction_list";
+
+    protected $fillable = [
+        'manning_lists'
+    ];
+
+    // new code added ends here
 }
