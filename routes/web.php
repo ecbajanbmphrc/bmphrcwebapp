@@ -11,7 +11,12 @@ use App\Http\Controllers\Auth\RegistrationController;
 use App\Http\Controllers\User\UserMenuController;
 use App\Http\Controllers\Merchandiser\MerchandiserMenuController;
 
+// Users Export
 use App\Http\Controllers\UserExportController;
+// Payroll Input
+use App\Http\Controllers\PayrollInputExportController;
+
+
 
 // Account Supervisor
 use App\Http\Controllers\AccountSupervisor\AccountSupervisorController;
@@ -84,7 +89,15 @@ use App\Http\Middleware\Treasury;
 
 //Route::get('/login', [LoginController::class, 'index']);
 
+// users export
 Route::get('users/export/', [UserExportController::class, 'export']);
+// payroll input export
+Route::get('payrollinput/export', [PayrollInputExportController::class, 'export']);
+
+
+
+
+
 
 Route::post('/login_user', [LoginController::class, 'login_user'])->name('login_user');
 
@@ -234,7 +247,9 @@ Route::middleware([PayrollOfficer::class])->group(function(){
     //payrollofficer controller
     Route::get('/payrollofficer/payrollofficerlist/list/fetch-data', [PayrollOfficerListController::class, 'fetchData']);
     Route::get('/payrollofficer/payrollofficertransferlist/list/fetch-data', [PayrollOfficerTransferListController::class, 'fetchData']);
-    Route::get('/payrollofficer/payrollofficerinput/list/fetch-data', [PayrollOfficerinputListController::class, 'fetchData']);
+    Route::get('/payrollofficer/payrollofficerinput/list/fetch-data', [PayrollOfficerInputListController::class, 'fetchData']);
+    // payroll officer input save data
+    Route::post('payrollofficer/payrollofficerinput/list/save-data', [PayrollOfficerInputListController::class, 'saveData'])->name('payrollofficer.payrollinput-list.save');
  
 
 
@@ -271,6 +286,7 @@ Route::middleware([AccountSupervisor::class])->group(function(){
     Route::get('/accountsupervisor/door-list/fetch-merchandiser-data', [AccountSupervisorDoorListController::class, 'fetchMerchandiserData']);
     //for circle-plus Button
     Route::post('/accountsupervisor/door-list/save-merchandiser-data', [AccountSupervisorDoorListController::class, 'saveMerchandiserData']);
+    
     //new code added
     // Route::get('accountsupervisor///door-list/save-merchandiser-data', [AccountSupervisorDoorListController::class, 'saveMerchandiserData']);
     //<!-- 11-03-2024 new code added starts here -->

@@ -77,7 +77,7 @@ class AccountSupervisorDoorListController extends Controller
 
     public function save(Request $request)
     {
-        // dd(request->all());
+        dd($request->all());
     
         $company = session('user')['user_id'];
         $status = 1;
@@ -240,29 +240,29 @@ class AccountSupervisorDoorListController extends Controller
     }
 
     public function saveMerchandiserData(Request $request){
-       //  dd($request->all());
-
-       $company = session('user')['company_id'];
-      
-
-        $manning = new Manning;
-        $manning ->door_id = $request->_store_id;
-        $manning ->coordinator_id = $request->_coordinator_id;
-        $manning ->merchandiser_id = $request->_merchandiser_id;
-        $manning ->company_id = $company;
-        $manning -> save();
-
-        // $manning->door_id = $data['door_id'];
-        // $manning->merchandiser_id = $data['merchandiser_id'];
-        // $manning->coordinator_id = $data['coordinator_id'];
-        // $manning->company_id = $data['company_id'];
-
-        // $manning ->save();
-
-       // return response()->json(['data'=>$id]);
-        //new code added ends here (still not working)
-
-       // return response()->json(['data' => $id])
-    }
-
+        //  dd($request->all());
+ 
+        $company = session('user')['company_id'];
+       
+ 
+         $manning = new Manning;
+         $manning ->door_id = $request->_store_id;
+         $manning ->coordinator_id = $request->_coordinator_id;
+         $manning ->merchandiser_id = $request->_merchandiser_id;
+         $manning ->company_id = $company;
+         $manning -> save();
+ 
+         // $manning->door_id = $data['door_id'];
+         // $manning->merchandiser_id = $data['merchandiser_id'];
+         // $manning->coordinator_id = $data['coordinator_id'];
+         // $manning->company_id = $data['company_id'];
+ 
+         // $manning ->save();
+ 
+        // return response()->json(['data'=>$id]);
+         //new code added ends here (still not working)
+ 
+        // return response()->json(['data' => $id])
+     }
+ 
 }
