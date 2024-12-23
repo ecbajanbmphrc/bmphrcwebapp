@@ -12,4 +12,6 @@ class RateCard extends Model
     public $timestamps = false;
 
     protected $table = "rate_cards";
+    // new code added start here
+    // protected $fillable = ['rate_card_per_day'];
 }

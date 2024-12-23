@@ -25,15 +25,12 @@
         </div>
         <ul class="sidebar-menu p-3 m-0 mb-0">
             <li class="sidebar-menu-item active">
-                <a href="#">
+                <a href="{{ route('superadmin.view.dashboard') }}">
                     <i class="ri-dashboard-line sidebar-menu-item-icon"></i>Dashboard
                 </a>
             </li>
-            <li class="sidebar-menu-item">
-                <a href="#">
-                    <i class="ri-dashboard-line sidebar-menu-item-icon"></i>Sample
-                </a>
-            </li>
+        </ul>
+        <ul class="sidebar-menu p-3 m-0 mb-0">
             <li class="sidebar-menu-item has-dropdown mt-2">
                 <a href="#">
                     <i class="ri-user-line sidebar-menu-item-icon"></i>Accounts
@@ -41,16 +38,16 @@
                 </a>
                 <ul class="sidebar-dropdown-menu">
                     <li class="sidebar-dropdown-menu-item">
-                    <a href="{{ route('superadmin.view.superadmin') }}">Admin</a>
+                        <a href="{{ route('superadmin.view.accountsupervisor') }}">Account Supervisor</a>
+                    </li>
+                    <li class="sidebar-dropdown-menu-item">
+                        <a href="{{ route('superadmin.view.superadmin') }}">Admin</a>
                     </li>
                     <li class="sidebar-dropdown-menu-item">
                         <a href="{{ route('superadmin.view.payrollhead') }}">Payroll Head</a>
                     </li>
                     <li class="sidebar-dropdown-menu-item">
                     <a href="{{ route('superadmin.view.payrollofficer') }}">Payroll Officer</a>
-                    </li>
-                    <li class="sidebar-dropdown-menu-item">
-                        <a href="{{ route('superadmin.view.accountsupervisor') }}">Account Supervisor</a>
                     </li>
                     <li class="sidebar-dropdown-menu-item">
                         <a href="{{ route('superadmin.view.treasury') }}">Treasury</a>
@@ -78,7 +75,7 @@
                     </li>
                 </ul>
             </li>
-            <li class="sidebar-menu-item">
+            <li class="sidebar-menu-item mt-2">
                 <a href="{{ route('logout') }}">
                     <i class="ri-logout-box-line sidebar-menu-item-icon"></i>
                     Logout

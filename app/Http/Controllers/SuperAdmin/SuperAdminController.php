@@ -47,6 +47,8 @@ class SuperAdminController extends Controller
         ->toArray();
 
 
+
+
        // $array += $companies;
     
       //  dd ($array);
@@ -72,21 +74,48 @@ class SuperAdminController extends Controller
 
     public function view_company_efc(){
 
-       
+        $account_supervisor = User::
+        select(DB::raw("CONCAT(first_name ,' ', last_name) AS display_name"),'id')
+        ->where([['user_type' , '=' , 'Account Supervisor'],
+        ['company_id' , '=' , '3']])
+        ->get()
+        ->pluck('display_name','id')
+        ->toArray();
 
-        return view('superadmin.efccompanylist');        
+        return view('superadmin.efccompanylist', compact('account_supervisor' ));
+         
     }
 
     public function view_company_mckenzie(){
-    
-        return view('superadmin.mckenziecompanylist');        
+
+        // new code added starts here 07/08/2024
+        $address_array = [0 => "None"];
+        // new code added starts here 07/08/2024
+
+        $account_supervisor = User::
+        select(DB::raw("CONCAT(first_name ,' ', last_name) AS display_name"),'id')
+        ->where([['user_type' , '=' , 'Account Supervisor'],
+        ['company_id' , '=' , '2']])
+        ->get()
+        ->pluck('display_name','id')
+        ->toArray();
+
+        return view('superadmin.mckenziecompanylist', compact('account_supervisor'));        
     }
 
-    public function view_company_ecossential(){
+    // public function view_company_ecossential(){
 
-        return view('superadmin.ecossentialcompanylist');
+    //     $account_supervisor = User::
+    //     select(DB::raw("CONCAT(first_name ,' ', last_name) AS display_name"),'id')
+    //     ->get()
+    //     ->pluck('display_name','id')
+    //     ->toArray();
+
+
+
+    //     return view('superadmin.ecossentialcompanylist' , compact('account_supervisor' ));
         
-    }
+    // }
 
     public function view_company_magis(){
 

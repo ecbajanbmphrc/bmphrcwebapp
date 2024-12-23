@@ -25,10 +25,6 @@ class PayrollOfficerListController extends Controller
         ->select('company_door_id')
         ->get());
 
-        
-        
-
-        
         // $company_door = DB::table('payroll_lists')
         // ->leftJoin('company_doors', 'company_doors.id', '=', 'payroll_lists.id')
         // //->select('company_doors.store_name',  "AS get_name"), 'company_doors.coordinator_id')
@@ -45,7 +41,9 @@ class PayrollOfficerListController extends Controller
         ->join('merchandisers', 'manning_lists.merchandiser_id', '=', 'merchandisers.id')
         ->join('company_doors', 'manning_lists.door_id', '=', 'company_doors.id')
         ->join('companies', 'manning_lists.company_id', '=', 'companies.id')
-        ->select('manning_lists.*' , 'merchandisers.first_name as fname' , 'merchandisers.middle_name as mname' , 'merchandisers.last_name as lname' , 'company_doors.store_name as store_name' , 'companies.name as company_name', 'company_doors.account as account_name'  )
+        ->select('manning_lists.*' , 
+        'merchandisers.first_name as fname' , 'merchandisers.middle_name as mname' , 'merchandisers.last_name as lname' , 
+        'company_doors.store_name as store_name' , 'companies.name as company_name', 'company_doors.account as account_name'  )
         ->whereIn('door_id', $data)
         ->get();
 
@@ -88,12 +86,8 @@ class PayrollOfficerListController extends Controller
         ->where('door_id', $id)
         ->get();
 
-
-
         $company_door = $company_door->map(function ($item) {
             $item = (array)$item; 
-        
-          
             $item['fname'] = $item['fname'];
             $item['mname'] = $item['mname'];
             $item['lname'] = $item['lname'];
@@ -110,9 +104,6 @@ class PayrollOfficerListController extends Controller
 
         return response()->json(['data' => $company_door]);
 
-
     }
-
-
 
 }

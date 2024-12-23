@@ -15,8 +15,17 @@
     <link rel="stylesheet" href="asset/css/footer.css">
     <link rel="stylesheet" href="asset/css/partners.css">
 
-
     <title>Document</title>  
+
+
+
+  <style>
+    .client-area{
+      background: #fff;
+    }
+
+  </style>
+
 </head>
 <body>
 
@@ -82,47 +91,17 @@
           <div class="slide"><img src="asset/img-partners/ecosential-logo.png" alt=""></div>
           <div class="slide"><img src="asset/img-partners/McKenzie-logo.png" alt=""></div>
           <div class="slide"><img src="asset/img-partners/MDI-logo.png" alt=""></div>
-          <div class="slide"><img src="asset/img-partners/RFM-logo.png" alt=""></div>
+          <!-- <div class="slide"><img src="asset/img-partners/RFM-logo.png" alt=""></div> -->
+          <div class="slide"><img src="asset/img-partners/Engkanto_Brewery_Primary_Logo.webp" alt=""></div>
           <div class="slide"><img src="asset/img-partners/asian-streak-brokerage-logo.png" alt=""></div>
           <div class="slide"><img src="asset/img-partners/ecosential-logo.png" alt=""></div>
           <div class="slide"><img src="asset/img-partners/McKenzie-logo.png" alt=""></div>
           <div class="slide"><img src="asset/img-partners/MDI-logo.png" alt=""></div>
-          <div class="slide"><img src="asset/img-partners/RFM-logo.png" alt=""></div>
+          <div class="slide"><img src="asset/img-partners/Engkanto_Brewery_Primary_Logo.webp" alt=""></div>
         </section>
       </div>
     </div>
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
-
-    <script>
-      $(document).ready(function(){
-        $('.logo-area').slick({
-          slidesToShow: 5,
-          slidesToScroll: 1,
-          autoplay: true,
-          autoplaySpeed: 700,
-          arrows: false,
-          dots: false,
-          pauseOnHover: false,
-          responsive: 
-          [
-            {
-              breakpoint: 768,
-                settings: {
-                slidesToShow: 4,
-                  }
-            },
-            { 
-              breakpoint: 520,
-                settings: {
-                slidesToShow: 3,
-                  }
-            }
-          ]
-        });
-      });
-    </script>
   <!--our partner section end-->
 
   <!-- Footer Start -->
@@ -192,3 +171,35 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     </body>
     </html>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
+
+    <script>
+      $(document).ready(function(){
+        $('.logo-area').slick({
+          slidesToShow: 5,
+          slidesToScroll: 1,
+          autoplay: true,
+          autoplaySpeed: 700,
+          arrows: false,
+          dots: false,
+          pauseOnHover: false,
+          responsive: 
+          [
+            {
+              breakpoint: 768,
+                settings: {
+                slidesToShow: 4,
+                  }
+            },
+            { 
+              breakpoint: 520,
+                settings: {
+                slidesToShow: 3,
+                  }
+            }
+          ]
+        });
+      });
+    </script>

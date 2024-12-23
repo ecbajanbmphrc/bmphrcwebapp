@@ -15,193 +15,131 @@ use DB;
 
 class MckenzieListController extends Controller
 {
-    // public function getUpdateData(Request $request)
-    // {
-    //     $id = $request->id;
-        
-    //     $company_door = CompanyDoor::where('id', '=', $id)
-    //     ->select('id' ,'account', 'region', 'area', 'account_branch' , 'type_of_deployment' , 'status' )
-    //     ->first();
-    //     if ($company_door) {
-    //         // Data found for the given ID
-    //         return response()->json($company_door);
-    //     } else {
-    //         // Data not found
-    //         return response()->json(['error' => 'Data not found'], 404);
-    //     }
-    // }
-
+    //get update
     public function getUpdateData($id)
     {
         
-        // $company_door = CompanyDoor::where('id', '=', $id)
-        $company_door = CompanyDoor::find($id , ['account' , 'region' , 'area' , 'account_branch' , 'status' , 'type_of_deployment']);
+        $company_door = CompanyDoor::find($id , ['account' , 'region' , 'area' , 
+        'store_name' , 'store_address', 'status' , ]);
+
         if ($company_door) {
-            // Data found for the given ID
              return response()->json($company_door);
-       
         } else {
-            // Data not found
             return response()->json(['error' => 'Data not found'], 404);
         }
-    }
+    }   
 
+    // getview
     public function getViewData($id)
     {
+        $company_door = CompanyDoor::find($id, ['account', 'region', 'area', 'store_name', 
+        'store_address', 'status']);
 
-        $company_door = CompanyDoor::find($id , ['account' , 'region' , 'area' , 'store_name' , 'status' , 'type_of_deployment']);
         if ($company_door) {
-            // Data found for the given ID
-             return response()->json($company_door);
-       
+            return response()->json($company_door);
         } else {
-            // Data not found
             return response()->json(['error' => 'Data not found'], 404);
         }
     }
 
     public function fetchData(Request $request)
     {
-     
-       // $company_id = $request->input('u', '3');
-
-
         $data = CompanyDoor::where('company_id', '2')->get();
-
-
         $data = $data->map(function ($item, $key) {
             $item['#'] = $key + 1;
-
-
-            // $item['active'] = '<a href="#" class="clickable" data-id="' . $item['id'] . '"><img src="' . ($item['is_active'] == 1 ? '/asset/img/button_img/active-48.png' : '/asset/img/button_img/inactive-48.png') . '" alt="' . ($item['is_active'] == 1 ? 'Active' : 'Inactive') . '"></a>';
-
-
-            $item['actions'] = '<img src= "/asset/img/button_img/eye-blue-32.png" alt="Button 1" class="button-image1" style="height: 25px; width: 25px;"> <img src="/asset/img/button_img/pen-green-32.png" alt="Button 2" class="button-image2" style="height: 25px; width: 25px;">';
-
-            
+            $item['actions'] = '<img src="/asset/img/button_img/eye-blue-32.png" alt="Button 1" class="button-image1" style="height: 25px; width: 25px;"> <img src="/asset/img/button_img/pen-green-32.png" alt="Button 2" class="button-image2" style="height: 25px; width: 25px;">';
+           
             return $item;
         });
 
         return response()->json(['data' => $data]);
     }
 
-    // public function getDataById(Request $request)
-    // {
-
-    // $id = $request->input('id');
-    // $data = User::find($id);
-
-    // return response()->json(['data' => $data]);
-    // }
-
-
-
     public function saveAccount(Request $request)
     {
-            //dd($request->all());
-            $company = 2;
-            $status = "active";
-            
+        $company = 2;
+        $status = "active";
 
-            $validator = Validator::make($request->all(), [
-                'c_account' => 'required',
-                'c_region' => 'required',
-                'c_area' => 'required', 
-            ],[
-                'c_account.required' => 'Select designated account.',
-                'c_region.required' => 'Select designated region.',
-                'c_area.required' => 'Select which area it belong.',
-            ]);
+        $validator = Validator::make($request->all(), [
+            'c_account' => 'required',
+            'c_region' => 'required',
+            'c_area' => 'required', 
+            'c_store_name' => 'required',
+            'c_store_address' => 'required',
+            'c_sup' => 'required',
+        ],[
+            'c_account.required' => 'Select designated account.',
+            'c_region.required' => 'Select designated region.',
+            'c_area.required' => 'Select which area it belong.',
+            'c_store_name.required' => 'Select which area it belong.',
+            'c_store_address.required' => 'Select which area it belong.',
+            'c_sup' => 'Select Supervisor.',
+        ]);
 
-       
-        
-            if ($validator->fails()) {
-               // Alert::error('Registration Failed');
-                return redirect('/superadmin/mckenzie')
-               
-                            ->withErrors($validator)
-                            ->withInput()
-                            ->with("create-failed", "Account failed to create");
-            }else{
-              
+        if ($validator->fails()) {
+            return redirect('/superadmin/mckenzie')
                 
-                $company_door = new CompanyDoor;
-                $company_door->account = $request->input('c_account');
-                $company_door->region = $request->input('c_region');
-                $company_door->area = $request->input('c_area');
-                $company_door->store_name = $request->input('c_account_branch');
-                $company_door->type_of_deployment = $request->input('c_type_of_deployment');
-                $company_door->company_id = $company;
-                $company_door->status = $status;
-                $company_door->save();
+                ->withErrors($validator)
+                ->withInput()
+                ->with("create-failed", "Account failed to create");
+        } else {
+            $company_door = new CompanyDoor;
+            $company_door->account = $request->input('c_account');
+            $company_door->region = $request->input('c_region');
+            $company_door->area = $request->input('c_area');
+            $company_door->store_name = $request->input('c_store_name');
+            $company_door->store_address = $request->input('c_store_address');
+            $company_door->supervisor_id = $request->input('c_sup');
+            $company_door->company_id = $company;
+            $company_door->status = $status;
+            $company_door->save();
             
-           
-                //return view('auth.login', compact('Auth.login'));
-                //return redirect('registration');
-                return redirect(('/superadmin/mckenzie'))->with('create-success', "Account registered successfully");
-                //return redirect(route('auth.registration'))->withToastSuccess('Task Created Successfully!');
-               
-            }
-          
-
-           
+            return redirect('/superadmin/mckenzie')->with('create-success', "Account registered successfully");
+        }
     }
-
 
     public function updateAccount(Request $request)
     {
-              //dd($request->all());
-        
+        $id = $request->input('selectedId');
+        $company = 2;
+        $validator = Validator::make($request->all(), [
+            'e_account' => 'required',
+            'e_region' => 'required',
+            'e_area' => 'required',
+            'e_store_name' => 'required',
+            'e_store_address' => 'required', 
+            'e_status' => 'required',
+        ],[
+            'e_account.required' => 'Select designated account.',
+            'e_region.required' => 'Select designated region.',
+            'e_area.required' => 'Select which area it belong.',
+            'e_store_name.required' => 'Select which area it belong.',
+            'e_store_address.required' => 'Select which area it belong.',
+            'e_status.required' => 'Select what is current status.',
+        ]);
 
-             $id = $request->input('selectedId');
-           
-            $company = 2;
-    
-            
+        if ($validator->fails()) {
+            return redirect('/superadmin/mckenzie')
+                ->withErrors($validator)
+                ->withInput()
+                ->with("update-failed", "Account update failed");
+        } else {
+            $company_door = CompanyDoor::find($id);
+            $company_door->supervisor_id = $request->input('e_sup');
+            $company_door->account = $request->input('e_account');
+            $company_door->region = $request->input('e_region');
+            $company_door->area = $request->input('e_area');
+            $company_door->store_name = $request->input('e_store_name');
+            $company_door->store_address = $request->input('e_store_address');
+            $company_door->status = $request->input('e_status');
+            $company_door->company_id = $company;
+            $company_door->update();
 
-            $validator = Validator::make($request->all(), [
-                'e_account' => 'required',
-                'e_region' => 'required',
-                'e_area' => 'required', 
-                'e_status' => 'required',
-            ],[
-                'e_account.required' => 'Select designated account.',
-                'e_region.required' => 'Select designated region.',
-                'e_area.required' => 'Select which area it belong.',
-                'e_status.required' => 'Select what is current status.',
-            ]);
-          
-        
-
-
-            if ($validator->fails()) {
-               // Alert::error('Registration Failed');
-                return redirect('/superadmin/mckenzie')
-               
-                            ->withErrors($validator)
-                            ->withInput()
-                            ->with("update-failed", "Account registered successfully");
-            }else{
-
-              
-                
-                $company_door = CompanyDoor::find($id);
-                $company_door->account = $request->input('e_account');
-                $company_door->region = $request->input('e_region');
-                $company_door->area = $request->input('e_area');
-                $company_door->store_name = $request->input('e_account_branch');
-                $company_door->type_of_deployment = $request->input('e_type_of_deployment');
-                $company_door->status = $request->input('e_status');
-                $company_door->company_id = $company;
-                $company_door->update();
-            
-        
-                return redirect(('/superadmin/mckenzie'))->with('update-success', "Account updated successfully");
-           
-               
-            }
-          
-
-           
+                return redirect('/superadmin/mckenzie')->with('update-success', "Account updated successfully");
+            } 
+            // else {
+            //     return redirect('/superadmin/mckenzie')->with('update-failed', "Account not found");
+            // }
+        // }
     }
 }

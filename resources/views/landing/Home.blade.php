@@ -24,18 +24,18 @@
 <body>
 
   <style>
-    row.gy-xxl-5 {
- display: flex;
- justify-content: center;
- align-items: center;
- flex-wrap: wrap; /* Allows the content to wrap to the next line if it doesn't fit in one line */
-}
+    .row.gy-xxl-5 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Allows the content to wrap to the next line if it doesn't fit in one line */
+    }
 
-.col-lg-8,
-.col-lg-4 {
- flex: 1; /* Make the columns take up equal width */
-}
-     
+    .col-lg-8,
+    .col-lg-4 {
+    flex: 1; /* Make the columns take up equal width */
+    }
+        
    </style> 
    <!-- Ensure Bootstrap CSS and JavaScript are included -->
 
@@ -76,6 +76,7 @@
               <li><a class="dropdown-item" href="{{ route('auth.payrollhead') }}"><i class="bi bi-wallet me-2"></i>Payroll Head</a></li>
               <li><a class="dropdown-item" href="{{ route('auth.payrollofficer') }}"><i class="bi bi-wallet me-2"></i>Payroll Officer</a></li>
               <li><a class="dropdown-item" href="{{ route('auth.accountsupervisor') }}"><i class="bi bi-wallet me-2"></i>Account supervisor</a></li>
+              <!-- <li><a class="dropdown-item" href="{{ route('auth.billingofficer') }}"><i class="bi bi-wallet me-2"></i>Billing Officer</a></li> -->
               <li><a class="dropdown-item" href="{{ route('auth.login') }}"><i class="bi bi-bootstrap me-2"></i>App</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i>Something else here</a></li>
@@ -188,7 +189,7 @@
         Employment Network Inc. Initially serviced Zagu Foods Corp. and Tridharma Marketing Corp.
         <br><br>October 2013 The birth of the new company, BMPower Human Resouces Corp. incorporated
         by two principal stockholders of Tri-Bay Network Inc.</p>
-        <a href="2-About.html" class="btn btn-dark">Read More</a>
+        <a href="{{ route('landing.about') }}" class="btn btn-dark">Read More</a>
     </div>
 
     <div class="row mt-5">
@@ -244,51 +245,21 @@
     <div class="container-sm mb-5">
       <h2 class="mb-4 text-muted lead text-center " style="font-size: 40px;">Our Partners</h2>
         <section class="logo-area slider">
+        <div class="slide"><img src="asset/img-partners/asian-streak-brokerage-logo.png" alt=""></div>
+          <div class="slide"><img src="asset/img-partners/ecosential-logo.png" alt=""></div>
+          <div class="slide"><img src="asset/img-partners/McKenzie-logo.png" alt=""></div>
+          <div class="slide"><img src="asset/img-partners/MDI-logo.png" alt=""></div>
+          <!-- <div class="slide"><img src="asset/img-partners/RFM-logo.png" alt=""></div> -->
+          <div class="slide"><img src="asset/img-partners/Engkanto_Brewery_Primary_Logo.webp" alt=""></div>
           <div class="slide"><img src="asset/img-partners/asian-streak-brokerage-logo.png" alt=""></div>
           <div class="slide"><img src="asset/img-partners/ecosential-logo.png" alt=""></div>
           <div class="slide"><img src="asset/img-partners/McKenzie-logo.png" alt=""></div>
           <div class="slide"><img src="asset/img-partners/MDI-logo.png" alt=""></div>
-          <div class="slide"><img src="asset/img-partners/RFM-logo.png" alt=""></div>
-          <div class="slide"><img src="asset/img-partners/asian-streak-brokerage-logo.png" alt=""></div>
-          <div class="slide"><img src="asset/img-partners/ecosential-logo.png" alt=""></div>
-          <div class="slide"><img src="asset/img-partners/McKenzie-logo.png" alt=""></div>
-          <div class="slide"><img src="asset/img-partners/MDI-logo.png" alt=""></div>
-          <div class="slide"><img src="asset/img-partners/RFM-logo.png" alt=""></div>
+          <div class="slide"><img src="asset/img-partners/Engkanto_Brewery_Primary_Logo.webp" alt=""></div>
         </section>
       </div>
     </div>
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
-
-    <script>
-      $(document).ready(function(){
-        $('.logo-area').slick({
-          slidesToShow: 5,
-          slidesToScroll: 1,
-          autoplay: true,
-          autoplaySpeed: 700,
-          arrows: false,
-          dots: false,
-          pauseOnHover: false,
-          responsive: 
-          [
-            {
-              breakpoint: 768,
-                settings: {
-                slidesToShow: 4,
-                  }
-            },
-            { 
-              breakpoint: 520,
-                settings: {
-                slidesToShow: 3,
-                  }
-            }
-          ]
-        });
-      });
-    </script>
+  
   <!--our partner section end-->
 
 
@@ -430,11 +401,43 @@
     <!--Bootstrap js-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
       
-      <!-- jQuery -->
-<script src="path/to/jquery/jquery.min.js"></script>
+    <!-- jQuery -->
+    <script src="path/to/jquery/jquery.min.js"></script>
 
-<!-- Bootstrap JS -->
-<script src="path/to/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="path/to/bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
+
+    <script>
+      $(document).ready(function(){
+        $('.logo-area').slick({
+          slidesToShow: 5,
+          slidesToScroll: 1,
+          autoplay: true,
+          autoplaySpeed: 700,
+          arrows: false,
+          dots: false,
+          pauseOnHover: false,
+          responsive: 
+          [
+            {
+              breakpoint: 768,
+                settings: {
+                slidesToShow: 4,
+                  }
+            },
+            { 
+              breakpoint: 520,
+                settings: {
+                slidesToShow: 3,
+                  }
+            }
+          ]
+        });
+      });
+    </script>
 
 @include('sweetalert::alert')
   </body>

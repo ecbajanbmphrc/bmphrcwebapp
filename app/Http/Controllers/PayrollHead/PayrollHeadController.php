@@ -53,7 +53,7 @@ class PayrollHeadController extends Controller
             ->select(DB::raw("CONCAT(first_name ,' ',  last_name) AS display_name"),'id')
             ->pluck('display_name','id')
             ->toArray();
-    
+            // dd($mckenziePayrollheadArray);
             // $mckenziePayrollheadArray += $mckenziepayrollhead;
 
             // $data = array();

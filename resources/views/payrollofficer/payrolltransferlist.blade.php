@@ -48,29 +48,64 @@
                 </a>
             </li>
         </ul>
+       
         <ul class="sidebar-menu p-3 m-0 mb-0">
-        <li class="sidebar-menu-item ">
+            <li class="sidebar-menu-item has-dropdown">
+                <a href="#">
+                    <i class="bi bi-bank sidebar-menu-item-icon"></i>Banks
+                    <i class="ri-arrow-down-s-line sidebar-menu-item-accordion ms-auto"></i>
+                </a>
+                <ul class="sidebar-dropdown-menu">
+                    <li class="sidebar-dropdown-menu-item">
+                        <a href="{{ route('payrollofficer.view.payrollbdo') }}">BDO</a>
+                    </li>
+                    <li class="sidebar-dropdown-menu-item">
+                        <a href="{{ route('payrollofficer.view.payrollbpi') }}">BPI</a>
+                    </li>
+                    <li class="sidebar-dropdown-menu-item">
+                        <a href="{{ route('payrollofficer.view.payrollcebuana') }}">Cebuana</a>
+                    </li>
+                    <li class="sidebar-dropdown-menu-item">
+                        <a href="{{ route('payrollofficer.view.payrolleastwest') }}">EastWest</a>
+                    </li>
+                    <li class="sidebar-dropdown-menu-item">
+                        <a href="{{ route('payrollofficer.view.payrollgcash') }}">Gcash</a>
+                    </li>
+                    <li class="sidebar-dropdown-menu-item">
+                        <a href="{{ route('payrollofficer.view.payrollrcbc') }}">RCBC</a>
+                    </li>
+                    <li class="sidebar-dropdown-menu-item">
+                        <a href="{{ route('payrollofficer.view.payrollrcbcwallet') }}">RCBC E-wallet</a>
+                    </li>
+                    <li class="sidebar-dropdown-menu-item">
+                        <a href="{{ route('payrollofficer.view.payrollbank') }}">Other</a>
+                    </li>
+                </ul>
+            </li>  
+            <li class="sidebar-menu-item mt-2">
+                <a href="{{ route('payrollofficer.view.payrollofficerinput') }}">
+                    <i class="bi bi-cash sidebar-menu-item-icon"></i>Payment
+                </a>
+            </li>  
+            <!-- <li class="sidebar-menu-item mt-2">
                 <a href="{{ route('payrollofficer.view.payrollofficerlist') }}">
                     <i class="ri-pages-line sidebar-menu-item-icon"></i>Payroll
                 </a>
-            </li>
-            <li class="sidebar-menu-item active mt-2">
+            </li> -->
+            <li class="sidebar-menu-item mt-2 active">
                 <a href="{{ route('payrollofficer.view.payrolltransferlist') }}">
-                    <i class="ri-pages-line sidebar-menu-item-icon"></i>Transfer Payroll
+                    <i class="bi bi-send sidebar-menu-item-icon"></i>Transfer Lists
                 </a>
             </li>
             <li class="sidebar-menu-item mt-2">
-                <a href="{{ route('payrollofficer.view.payrollofficerinput') }}">
-                    <i class="ri-pages-line sidebar-menu-item-icon"></i>Payroll Input
-                </a>
-            <li class="sidebar-menu-item mt-auto">
-                <a href="{{ route('logout') }}" style="margin-top: 220px;">
+                <a href="{{ route('logout') }}">
                     <i class="ri-logout-box-line sidebar-menu-item-icon"></i>
                     Logout
                 </a>
             </li>
         </ul>
     </div>
+
     <div class="sidebar-overlay"></div>
     <!-- end: Sidebar -->
 
@@ -80,7 +115,7 @@
             <!-- start: Navbar -->
             <nav class="px-3 py-2 bg-white rounded shadow-sm">
                 <i class="ri-menu-line sidebar-toggle me-3 d-block d-md-none"></i>
-                <h5 class="fw-bold mb-0 me-auto">Transfer Payroll</h5>
+                <h5 class="fw-bold mb-0 me-auto">Transfer Lists</h5>
                 <div class="dropdown me-3 d-none d-sm-block">
                     <div class="cursor-pointer dropdown-toggle navbar-link" data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -123,24 +158,50 @@
             <div style="height:2vh;"> </div>
 
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-header">
                         <div class="row">
-                            <div class="col">
-                                <h5 class="card-title">Transfered Payroll Table</h5>
+                            <div class="col-md-6">
+                                <h5 class="mt-2">Store Lists</h5>
+                            </div>
+                            <div class="col-md-6 text-end">
+                                <button type="button" id="select-all-btn" class="btn btn-primary mb-2">
+                                    <i class="bi bi-check-all"></i> Select All
+                                </button>
+                                <button type="button" id="deselect-all-btn" class="btn btn-danger mb-2">
+                                    <i class="bi bi-x-circle"></i> Deselect All
+                                </button>
+                                <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#myModal">
+                                    <i class="bi bi-send mr-2"></i> Transfer
+                                </button>
                             </div>
                         </div>
-                        <table id="doortable" class="table table-hover" style="width:100%">
+                    </div>
+                    <div class="card-body">
+                        <table id="doortable" class="table table-bordered" style="width:100%">
                             <thead>
                                 <tr>
-                                  <th>#</th>
-                                  <th style="display:none">ID</th>
-                                  <th>Account</th>
-                                  <th>First Name</th>
-                                  <th>Middle Name</th>
-                                  <th>Last Name</th>
-                                  <th>Client</th>
-                                  <th>Store Name</th>
-                                  <th>Actions</th>
+                                <th>Merchandiser</th>
+                                <th style="display: none;">Remarks</th>
+                                <th>Rate Type</th>  
+                                <th>Deployment</th>
+                                <th>Rate Per Day</th>
+                                <th>New Rate</th>
+                                <!-- <th style="display: none;">Rate Per Day</th>
+                                <th style="display: none;">New Rate</th> -->
+                                <th>Coordinator</th>
+                                <th>Account</th>
+                                <th>Region</th>
+                                <th>Handled Store</th>
+                                <th>BDO No.</th>
+                                <th>BPI No.</th>
+                                <th>Cebuana No.</th>
+                                <th>Eastwest No.</th>
+                                <th>Gcash No.</th>
+                                <th>RCBC No.</th>
+                                <th>RCBC E-Wallet No.</th>
+                                <th>Bank</th>
+                                <th>Number</th>
+                                <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -194,15 +255,32 @@
                         dataSrc: 'dataone'
                     },
                     columns: [
-                        { data: '#' },
-                        { data: 'id', visible: false },
-                        { data: 'account_name' },
-                        { data: 'fname' },
-                        { data: 'mname' },
-                        { data: 'lname'},
-                        { data: 'company_name' },
-                        { data: 'store_name' },
-                        { data: 'actions', orderable: false}
+                        { data: 'merchandiser_fullname' },
+                        { data: 'merchandiser_remarks', visible: false }, // remarks
+                        { data: 'rate_type' , visible: false},
+                        { data: 'employee_types' }, 
+                        { data: 'ratings', visible: false },
+                        { data: 'newratings', visible: false },
+                        { data: 'coordinator_fullname'},
+                        { data: 'account'},
+                        { data: 'region'},
+                        { data: 'handled_store'},
+
+                        { data: 'bdo', visible: false } ,
+                        { data: 'bpi', visible: false } ,
+                        { data: 'cebuana', visible: false },
+                        { data: 'eastwest', visible: false },
+                        { data: 'gcash', visible: false },  
+                        { data: 'rcbc', visible: false },
+                        { data: 'rcbcwallet', visible: false },
+                        { data: 'bank', visible: false },
+                        { data: 'number' , visible: false},
+
+                        // { data: '' },
+                        // { data: 'actions', orderable: false }     
+                        { data: 'actions' , visible: false},
+
+
                     ]
                 });
             });

@@ -36,71 +36,35 @@
             <a href="#" class="sidebar-logo text-uppercase fw-bold text-decoration-none text-light fs-4">Account Supervisor</a>
             <i class="sidebar-toggle ri-arrow-left-circle-line ms-auto fs-5 d-none d-md-block"></i>
         </div>
-        <ul class="sidebar-menu p-3 m-0 mb-0 flex-glow-1">
+        <ul class="sidebar-menu p-3 m-0 mb-0">
             <li class="sidebar-menu-item ">
                 <a href="{{ route('accountsupervisor.view.dashboard') }}">
                     <i class="ri-dashboard-line sidebar-menu-item-icon"></i>Dashboard
                 </a>
             </li>
-            <li class="sidebar-menu-item">
-                <a href="{{ route('accountsupervisor.view.door') }}">
-                    <i class="ri-store-line sidebar-menu-item-icon"></i>Store
-                </a>
-            </li>
-            <li class="sidebar-menu-item active">
+        </ul>    
+        <ul class="sidebar-menu p-3 m-0 mb-0">
+            <li class="sidebar-menu-item mt-2 active">
                 <a href="{{ route('accountsupervisor.view.coordinator') }}">
                     <i class="ri-account-pin-circle-line sidebar-menu-item-icon"></i>Coordinator
                 </a>
             </li>
-            <li class="sidebar-menu-item">
-                <a href="{{ route('accountsupervisor.view.merchandiser') }}">
-                    <i class="ri-account-pin-box-line sidebar-menu-item-icon"></i>Merchandiser
-                </a>
-            </li>
-            <li class="sidebar-menu-item">
+            <li class="sidebar-menu-item  mt-2">
                 <a href="{{ route('accountsupervisor.view.manning') }}">
                     <i class="ri-file-user-line sidebar-menu-item-icon"></i>Manning
                 </a>
             </li>
-            <li class="sidebar-menu-item has-dropdown">
-                <a href="#">
-                    <i class="ri-pages-line sidebar-menu-item-icon"></i>Reserve page
-                    <i class="ri-arrow-down-s-line sidebar-menu-item-accordion ms-auto"></i>
+            <li class="sidebar-menu-item  mt-2">
+                <a href="{{ route('accountsupervisor.view.merchandiser') }}">
+                    <i class="ri-account-pin-box-line sidebar-menu-item-icon"></i>Merchandiser
                 </a>
-                <ul class="sidebar-dropdown-menu">
-                    <li class="sidebar-dropdown-menu-item">
-                        <a href="#">User Profile</a>
-                    </li>
-                    <li class="sidebar-dropdown-menu-item has-dropdown">
-                        <a href="#">Blog<i class="ri-arrow-down-s-line sidebar-menu-item-accordion ms-auto"></i>
-                        </a>
-                        <ul class="sidebar-dropdown-menu">
-                            <li class="sidebar-dropdown-menu-item">
-                                <a href="#">Home</a>
-                            </li>
-                            <li class="sidebar-dropdown-menu-item">
-                                <a href="#">Post</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
             </li>
-            <li class="sidebar-menu-item has-dropdown">
-                <a href="#">
-                    <i class="bi bi-people me-3" style="font-size: 18px; margin-left: 3px;"></i>
-                    Accounts
-                    <i class="ri-arrow-down-s-line sidebar-menu-item-accordion ms-auto"></i>
+            <li class="sidebar-menu-item mt-2">
+                <a href="{{ route('accountsupervisor.view.door') }}">
+                    <i class="ri-store-line sidebar-menu-item-icon"></i>Store
                 </a>
-                <ul class="sidebar-dropdown-menu">
-                    <li class="sidebar-dropdown-menu-item">
-                        <a href="#">Payroll Officer</a>
-                    </li>
-                    <li class="sidebar-dropdown-menu-item">
-                        <a href="#">Account Sup</a>
-                    </li>
-                </ul>
             </li>
-            <li class="sidebar-menu-item mt-auto">
+            <li class="sidebar-menu-item  mt-2">
                 <a href="{{ route('logout') }}">
                     <i class="ri-logout-box-line sidebar-menu-item-icon"></i>
                     Logout
@@ -119,7 +83,7 @@
             <!-- start: Navbar -->
             <nav class="px-3 py-2 bg-white rounded shadow-sm">
                 <i class="ri-menu-line sidebar-toggle me-3 d-block d-md-none"></i>
-                <h5 class="fw-bold mb-0 me-auto">COORDINATOR</h5>
+                <h5 class="fw-bold mb-0 me-auto">Coordinator</h5>
                 <div class="dropdown me-3 d-none d-sm-block">
                     <div class="cursor-pointer dropdown-toggle navbar-link" data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -156,28 +120,29 @@
             </nav>
             <!-- end: Navbar -->
 
-
         <div style="height:2vh;"> </div>
 
-            <div class="card">
-             <div class="card-header">
 
-            <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#createCoordinatorModal" id="hitme" name="hitme">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
-                    <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0"/>
-                </svg>
-            ADD</button>
-               
-             </div>
-
-                
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-6 mt-2">
+                        <h5 class="">Coordinator Lists</h5>
+                    </div>
+                    <div class="col-md-6 text-end">
+                        <button  type="button" class="btn btn" data-toggle="modal" data-target="#createCoordinatorModal" id="hitme" name="hitme" style="background: #032b23; color: #fff;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-plus-square-fill mb-1" viewBox="0 0 16 16">
+                                <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0"/>
+                            </svg> ADD
+                        </button>
+                    </div>
+                </div>
+            </div>
             <div class="card-body">
-            <h5 class="card-title">Coordinator List</h5>
-            <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
-                <table id="coordinator" class="table table-hover" style="width:100%">
+                <table id="coordinator" class="table table-bordered" style="width:100%">
                     <thead>
                         <tr>
-                            <th>#</th>
+                            <th style="width: 15px">#</th>
                             <th style="display:none">ID</th>
                             <th>Full Name</th>
                             <th>Email</th>
@@ -188,7 +153,7 @@
                     </tbody>
                 </table>
             </div>
-         </div>
+        </div>
 
         
             </div>
@@ -337,7 +302,6 @@
 </div>
 </div>
 
-
  <!-- create coordinator modal -->
  <div class="modal fade" id="createCoordinatorModal" name = "createCoordinatorModal" tabindex="-1" role="dialog"  aria-labelledby="createCoordinatorModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
   <div class="modal-dialog modal-xl" role="document">
@@ -349,7 +313,9 @@
         </button> -->
       </div>
       <div class="modal-body">
-        <form action="{{route('accountsupervisor.coordinator-list.register')}}" method="POST">
+        <!-- <form action="{{route('accountsupervisor.coordinator-list.register')}}" method="POST"> -->
+        <form id="coordinatorForm">
+
     @csrf
     @if (session('create-failed'))
 
@@ -533,12 +499,17 @@
             <hr class="w-100 mt-1 mb-1">
             <div class="row">
 
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-4">
+                    <label for="v_contact" class="col-form-label">Contact:</label>
+                    <p class="h6" id="v_contact" name="v_contact"></p>
+                </div> 
+
+                <div class="form-group col-md-4">
                     <label for="v_address" class="col-form-label">Address:</label>
                     <p class="h6" id="v_address" name="v_address"></p>
                 </div>
 
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-4">
                     <label for="v_region" class="col-form-label">Region:</label>
                     <p class="h6" id="v_region" name="v_region"></p>
                 </div>
@@ -547,11 +518,6 @@
 
             <hr class="w-100 mt-1 mb-1">
             <div class="row">
-            
-            <div class="form-group col-md-4">
-                <label for="v_contact" class="col-form-label">Contact:</label>
-                <p class="h6" id="v_contact" name="v_contact"></p>
-            </div> 
 
             <div class="form-group col-md-4">
                 <label for="v_email" class="col-form-label">Email:</label>
@@ -780,6 +746,40 @@
      });
 
 
+        $(document).on('submit', '#coordinatorForm', function (e) {
+            e.preventDefault(); // Prevent the form from submitting the traditional way
+
+            $.ajax({
+                url: '/accountsupervisor/coordinator/list/register-account', // Laravel route
+                type: 'POST',
+                data: $(this).serialize(), // Serialize form data
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // CSRF Token
+                },
+                success: function (response) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: 'Coordinator added successfully!',
+                        confirmButtonText: 'OK'
+                    });
+
+                    $('#createCoordinatorModal').modal('hide'); // Close the modal
+                    $('#coordinatorForm')[0].reset();    // Reset the form fields
+                },
+                error: function (xhr) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Something went wrong!',
+                        confirmButtonText: 'OK'
+                    });
+                    console.log(xhr.responseText); // Log the error for debugging
+                }
+            });
+        });
+
+
     //  $('#createAccountModal').modal({
     // backdrop: 'static',
     // keyboard: false  // to prevent closing with Esc button (if you want this too)
@@ -871,7 +871,7 @@
           
             $('#createCoordinatorModal').modal('show');
         }
-    });
+    }); 
 
         </script>
 @endif

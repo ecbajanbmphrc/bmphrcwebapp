@@ -103,8 +103,7 @@ class AccountSupervisorCoordinatorListController extends Controller
         // });
 
         $data = Coordinator::
-                  where('coordinators.company_id', session('user')['company_id'] )
-              //  ->select('coordinators.*', 'company_doors.account_branch as branch')
+                  where('coordinators.supervisor_id', session('user')['current_user_id'] )
                 ->get();
 
 
@@ -135,6 +134,8 @@ class AccountSupervisorCoordinatorListController extends Controller
             $company = session('user')['company_id'];
             $status = 1;
 
+            $pogi = session('user')['current_user_id'];
+
             $date = $request->input('c_birthdate');
             $newDate = Carbon::createFromFormat('m/d/Y', $date)
                             ->format('Y-m-d');
@@ -162,6 +163,9 @@ class AccountSupervisorCoordinatorListController extends Controller
 
                            
                 $coordinator = new Coordinator;
+
+                $coordinator ->supervisor_id = $pogi;
+
                 $coordinator ->first_name = $request->input('c_first_name');
                 $coordinator ->last_name = $request->input('c_last_name');
                 $coordinator ->middle_name = $request->input('c_middle_name');
@@ -176,8 +180,8 @@ class AccountSupervisorCoordinatorListController extends Controller
                 $coordinator ->is_active = $status;
                 $coordinator ->save();
                  
-                return redirect(('/accountsupervisor/coordinator'))->with('create-success', "Coordinator registered successfully");
-        
+                // return redirect(('/accountsupervisor/coordinator'))->with('create-success', "Coordinator registered successfully");
+                return response()->json(['message' => 'Data saved successfully!']);
                
             }
           

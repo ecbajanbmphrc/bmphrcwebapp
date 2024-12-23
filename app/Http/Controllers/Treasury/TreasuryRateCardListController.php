@@ -30,7 +30,8 @@ class TreasuryRateCardListController extends Controller
 
     public function saveRateCard(Request $request)
     {
-        $test = $request->input('a_night_differential_wdo');
+
+        // $test = $request->input('a_night_differential_wdo');
     // dd($request->all());
     //    $rate_cards = new RateCard;
     //    $rate_cards->region = $request->input('a_region');
@@ -48,9 +49,9 @@ class TreasuryRateCardListController extends Controller
        
        $rate_cards = new RateCard;
        $rate_cards->region = $request->input('a_region');
-    // $rate_cards->rate_type = $request->input('a_rate_type');
        $rate_cards->rate_per_day = $request->input('a_rate_per_day');
        $rate_cards->new_rate_per_day = $request->input('a_new_rate_per_day');
+       $rate_cards->special = $request->input('a_area');
     //    $rate_cards->rate_per_hour = $request->input('a_rate_per_hour');
 
        // special rates starts here
@@ -92,47 +93,34 @@ class TreasuryRateCardListController extends Controller
     //    $rate_cards->overtime_with_night_differential_legal_holiday_rest_day = $request->input('a_overtime_with_night_differential_legal_holiday_rest_day') ;
     //    $rate_cards->overtime_with_night_differential_double_pay = $request->input('a_overtime_with_night_differential_double_pay') ;
     //    $rate_cards->overtime_with_night_differential_double_pay_rest_day = $request->input('a_overtime_with_night_differential_double_pay_rest_day') ;
-       $rate_cards->save();
+       
+        $rate_cards->save();
 
        return redirect(('/treasury/rate'))->with('add-success', "Account registered successfully");
     }
 
     public function updateRateCard(Request $request)
-    {
-        
-        $id = $request->input('u_selectedId');
+{
+    $id = $request->input('u_selectedId');
 
-        // $id = $request->input('id');
+    // Check if the record exists
+    $rate_cards = RateCard::find($id);
 
-        // $validator = Validator::make($request)->all(),
-        // [ 
-        //     'u_region' => 'required',
-        //     'u_rate_tpe' => 'required',
-        //     'u_rate_per_day' => 'required',
-        //     'u_rate-per_hour' => 'required',
-        //     'u_special_holiday' => 'required',
-        //     'u_wdo' => 'required',
-        //     'u_special_holiday_rest_day' => 'required',
-        //     'u_legal_holiday' => 'required',
-        //     'u_legal_holiday_rest_day' => 'required',
-        //     'u_double_pay' => 'required',
-        //     'u_double_pay_rest_day' => 'required',
-        // ]
-
-        // 
-        dd($request->all());
-        $test = "test";
-
-        $rate_cards = RateCard::find($id);
-        $rate_cards->region = $test;
-        // $rate_cards->rate_type = $request->input('u_rate_type');
-        $rate_cards->rate_per_day = $request->input('u_rate_per_day');
-        $rate_cards->new_rate_per_day = $request->input('u_new_rate_per_day');
-        
-        $rate_cards->update();
-
-        return redirect(('/treasury/rate'))->with('update-success,', "Ratecard updated succesfully");
+    if (!$rate_cards) {
+        // Handle the case where the record is not found
+        return redirect()->back()->withErrors('RateCard not found.');
     }
+
+    // Update the rate card
+    $rate_cards->rate_per_day = $request->input('u_rate_per_day');
+    $rate_cards->new_rate_per_day = $request->input('u_new_rate_per_day');
+    $rate_cards->special = $request->input('u_area');
+
+    $rate_cards->save();  // Use save() instead of update() as it's more explicit
+
+    return redirect('/treasury/rate')->with('update-success', 'Ratecard updated successfully.');
+}
+
 
     // public function getViewData(Request $request)
     // {

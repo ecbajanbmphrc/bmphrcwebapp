@@ -42,38 +42,40 @@
             <i class="sidebar-toggle ri-arrow-left-circle-line ms-auto fs-5 d-none d-md-block"></i>
         </div>
         <ul class="sidebar-menu p-3 m-0 mb-0">
-            <li class="sidebar-menu-item">
+            <li class="sidebar-menu-item ">
                 <a href="{{route('treasury.view.dashboard')}}">
                     <i class="ri-dashboard-line sidebar-menu-item-icon"></i>Dashboard
                 </a>
             </li>
-           
-            
-            
-           
+        </ul>
+        <ul class="sidebar-menu p-3 m-0 mb-0">
             <li class="sidebar-menu-item active">
                 <a href="{{route('treasury.view.rate')}}">
                     <i class="ri-bill-line sidebar-menu-item-icon"></i>
-                    Rate
+                    Rates
                 </a>
             </li>
-            <li class="sidebar-menu-item">
-                <a href="#">
-                    <i class="ri-calendar-line sidebar-menu-item-icon"></i>
-                    Calendar
-                </a>
-            </li>
-            <li class="sidebar-menu-item mt-auto">
-                <a href="{{ route('logout') }}" style="margin-top: 220px;">
+            <li class="sidebar-menu-item mt-2">
+                <a href="{{ route('logout') }}">
                     <i class="ri-logout-box-line sidebar-menu-item-icon"></i>
                     Logout
                 </a>
             </li>
         </ul>
     </div>
+
     <div class="sidebar-overlay"></div>
     <!-- end: Sidebar -->
+        <!-- In a world where permanence fades,
+        Galaxies drift, their end cascades.
+        No heaven or hell to guide our way,
+        In silence, we vanish, lost in the fray.
+        No afterlife beckons, no rebirth's embrace,
+        Memories dissolve, a fleeting trace.
+        All that we cherish, like whispers in air,
+        Ultimately fleeting, a moment laid bare.
 
+        Ephemeral Echoes -->
     <!-- start: Main -->
     <main class="bg-light">
         <div class="p-2">
@@ -124,24 +126,27 @@
             <div style="height:2vh;"> </div>
 
                 <div class="card">
-                    <div class="card-body ">
+                    <div class="card-header">
                         <div class="row">
                             <div class="col-md-6">
-                                <h5 class="card-title mb-2">Treasury table</h5>
+                                <h5 class="mt-2">Rate Card</h5>
                             </div>
-                            <div class="col-md-6 text-end mb-2">
-                                <button type="button" class="btn btn-secondary" id="addratecardModalButton">Add</button>
+                            <div class="col-md-6 text-end">
+                                <button  type="button" class=" btn btn-primary" id="addratecardModalButton">
+                                <i class="bi bi-plus-square-fill"></i> Add</button>
                             </div>
                         </div>
+                    </div>
+                    <div class="card-body">
                         <table id="tabletwo" class="table table-hover border" style="width:100%">
                             <thead>
                                 <tr>
-                                  <th>#</th>
+                                  <th style="width: 15px">#</th>
                                   <th style="display:none">ID</th>
                                   <th>Region</th>
                                   <!-- <th>Rate Type</th> -->
-                                  <th>Rate Per Day</th>
-                                  <th>New Rate Per Day</th>
+                                  <th>Old Rate</th>
+                                  <th>New Rate</th>
                                   <!-- <th>Rate Per Hour</th> -->
                                   <!-- <th>Special Holiday</th>
                                   <th>WDO</th>
@@ -172,59 +177,73 @@
                     </div>
                     <div class="modal-body">
                     <form action="{{ route('treasury.rate-card-list.save-ratecard') }}" method="POST">
-                        @csrf
-                        @if (session('create-failed'))
-                        <div style="background-color:rgba(255,255,255,0)" class="alert alert-danger">
-                            <ul>
-                                @foreach ($error->all() as $error)
-                                <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
+                    @csrf
+                    @if (session('create-failed'))
+                    <div style="background-color:rgba(255,255,255,0)" class="alert alert-danger">
+                        <ul>
+                            @foreach ($error->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
+                    <!-- rows starts here -->
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label for="" class="col-form-label">Region:</label>
+                            <select type="text" class="form-select" id="a_region" name = "a_region" value="{{ old('a_region') }}" required>
+                            <option  value="">---Select Region---</option>
+                                <option  value="Special Rates (Fix Rate)" @if(old('a_region') == "Special Rates (Fix Rate)") {{'selected'}} @endif>Special Rates (Fix Rate)</option>
+                                <option  value="Special Rates (LUZ)" @if(old('a_region') == "Special Rates (LUZ)") {{'selected'}} @endif>Special Rates (LUZ)</option>
+                                <option  value="Special Rates (VIS & MIN)" @if(old('a_region') == "Special Rates (VIS & MIN)") {{'selected'}} @endif>Special Rates (VIS & MIN)</option>    
+                                <option  value="Region 1" @if(old('a_region') == "Region 1") {{'selected'}} @endif>Region 1 (ILOCOS REGION)</option>
+                                <option  value="Region 2" @if(old('a_region') == "Region 2") {{'selected'}} @endif>Region 2 (CAGAYAN VALLEY)</option>
+                                <option  value="Region 3" @if(old('a_region') == "Region 3") {{'selected'}} @endif>Region 3 (CENTRAL LUZON)</option> 
+                                <option  value="Region 4A" @if(old('a_region') == "Region 4A") {{'selected'}} @endif>Region 4A (CALABARZON)</option>
+                                <option  value="Region 4B" @if(old('a_region') == "Region 4B") {{'selected'}} @endif>Region 4B (MIMAROPA)</option>
+                                <option  value="Region 5" @if(old('a_region') == "Region 5") {{'selected'}} @endif>Region 5 (BICOL REGION)</option>
+                                <option  value="Region 6" @if(old('a_region') == "Region 6") {{'selected'}} @endif>Region 6 (WESTERN VISAYAS)</option>
+                                <option  value="Region 7" @if(old('a_region') == "Region 7") {{'selected'}} @endif>Region 7 (CENTRAL VISAYAS)</option>
+                                <option  value="Region 7B" @if(old('a_region') == "Region 7B") {{'selected'}} @endif>Region 7B (CENTRAL VISAYAS)</option>
+                                <option  value="Region 8" @if(old('a_region') == "Region 8") {{'selected'}} @endif>Region 8 (EASTERN VISAYAS)</option>
+                                <option  value="Region 9" @if(old('a_region') == "Region 9") {{'selected'}} @endif>Region 9 (ZAMBOANGA PENINSULA)</option>
+                                <option  value="Region 10" @if(old('a_region') == "Region 10") {{'selected'}} @endif>Region 10 (NORTHERN MINDANAO)</option>
+                                <option  value="Region 11" @if(old('a_region') == "Region 11") {{'selected'}} @endif>Region 11 (DAVAO REGION)</option>
+                                <option  value="Region 12" @if(old('a_region') == "Region 12") {{'selected'}} @endif>Region 12 (SOCCSKSARGEN)</option>
+                                <option  value="Region 13" @if(old('a_region') == "Region 13") {{'selected'}} @endif>Region 13 (CARAGA)</option>
+                                <option  value="NCR" @if(old('a_region') == "NCR") {{'selected'}} @endif>NCR (NATIONAL CAPITAL REGION)</option>
+                                <option  value="CAR" @if(old('a_region') == "CAR") {{'selected'}} @endif>CAR (CORDILLERA ADMIN REGION)</option>
+                                <option  value="BARMM" @if(old('a_region') == "BARMM") {{'selected'}} @endif>BARMM (BANGSAMORO AUTONOMOUS REGION IN MUSLIM MINDANAO)</option>
+                                <option  value="BARMM B COTABATO" @if(old('a_region') == "BARMM") {{'selected'}} @endif>BARMM COTABATO (BANGSAMORO AUTONOMOUS REGION IN MUSLIM MINDANAO)</option>
+                            </select>
                         </div>
-                        @endif
-                        <!-- rows starts here -->
-                        <div class="row">
-                            <div class="form-group col-md-3">
-                                <label for="" class="col-form-label">Region:</label>
-                                <select type="text" class="form-select" id="a_region" name = "a_region" value="{{ old('a_region') }}" required>
-                                <option  value="">---Select Region---</option>
-                                    <option  value="Region 1" @if(old('a_region') == "Region 1") {{'selected'}} @endif>Region 1 (ILOCOS REGION)</option>
-                                    <option  value="Region 2" @if(old('a_region') == "Region 2") {{'selected'}} @endif>Region 2 (CAGAYAN VALLEY)</option>
-                                    <option  value="Region 3" @if(old('a_region') == "Region 3") {{'selected'}} @endif>Region 3 (CENTRAL LUZON)</option> 
-                                    <option  value="Region 4A" @if(old('a_region') == "Region 4A") {{'selected'}} @endif>Region 4A (CALABARZON)</option>
-                                    <option  value="Region 4B" @if(old('a_region') == "Region 4B") {{'selected'}} @endif>Region 4B (MIMAROPA)</option>
-                                    <option  value="Region 5" @if(old('a_region') == "Region 5") {{'selected'}} @endif>Region 5 (BICOL REGION)</option>
-                                    <option  value="Region 6" @if(old('a_region') == "Region 6") {{'selected'}} @endif>Region 6 (WESTERN VISAYAS)</option>
-                                    <option  value="Region 7" @if(old('a_region') == "Region 7") {{'selected'}} @endif>Region 7 (CENTRAL VISAYAS)</option>
-                                    <option  value="Region 7B" @if(old('a_region') == "Region 7B") {{'selected'}} @endif>Region 7B (CENTRAL VISAYAS)</option>
-                                    <option  value="Region 8" @if(old('a_region') == "Region 8") {{'selected'}} @endif>Region 8 (EASTERN VISAYAS)</option>
-                                    <option  value="Region 9" @if(old('a_region') == "Region 9") {{'selected'}} @endif>Region 9 (ZAMBOANGA PENINSULA)</option>
-                                    <option  value="Region 10" @if(old('a_region') == "Region 10") {{'selected'}} @endif>Region 10 (NORTHERN MINDANAO)</option>
-                                    <option  value="Region 11" @if(old('a_region') == "Region 11") {{'selected'}} @endif>Region 11 (DAVAO REGION)</option>
-                                    <option  value="Region 12" @if(old('a_region') == "Region 12") {{'selected'}} @endif>Region 12 (SOCCSKSARGEN)</option>
-                                    <option  value="Region 13" @if(old('a_region') == "Region 13") {{'selected'}} @endif>Region 13 (CARAGA)</option>
-                                    <option  value="NCR" @if(old('a_region') == "NCR") {{'selected'}} @endif>NCR (NATIONAL CAPITAL REGION)</option>
-                                    <option  value="CAR" @if(old('a_region') == "CAR") {{'selected'}} @endif>CAR (CORDILLERA ADMIN REGION)</option>
-                                    <option  value="BARMM" @if(old('a_region') == "BARMM") {{'selected'}} @endif>BARMM (BANGSAMORO AUTONOMOUS REGION IN MUSLIM MINDANAO)</option>
-                                    <option  value="BARMM B COTABATO" @if(old('a_region') == "BARMM") {{'selected'}} @endif>BARMM COTABATO (BANGSAMORO AUTONOMOUS REGION IN MUSLIM MINDANAO)</option>
-                                </select>
-                            </div>
 
-                            <div class="form-group col-md-3">
-                                <label for="" class="col-form-label">Rate Per Day:</label>
-                                <input type="text" class="form-control" name="a_rate_per_day" id="a_rate_per_day" value="{{ old('a_rate_per_day') }}"  required>
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label for="" class="col-form-label">New Rate Per Day:</label>
-                                <input type="text" class="form-control" name="a_new_rate_per_day" id="a_new_rate_per_day" value="{{ old('a_new_rate_per_day') }}"  required>
-                            </div>
+                        <div class="form-group col-md-3">
+                            <label for="" class="col-form-label">Rate Per Day:</label>
+                            <input type="text" class="form-control" name="a_rate_per_day" id="a_rate_per_day" value="{{ old('a_rate_per_day') }}"  required>
                         </div>
-                        
-                        <!-- rows ends here -->
-                        <div class="modal-footer mt-2">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="ModalButton">Close</button>
-                            <button type="submit" class="btn btn-primary">Save</button>
+
+                        <div class="form-group col-md-3">
+                            <label for="" class="col-form-label">New Rate Per Day:</label>
+                            <input type="text" class="form-control" name="a_new_rate_per_day" id="a_new_rate_per_day" value="{{ old('a_new_rate_per_day') }}"  required>
                         </div>
+
+                        <div class="form-group col-md-3">
+                            <label for="" class="col-form-label">Area</label>
+                            <select type="text" class="form-select" id="a_area" name = "a_area" value="{{ old('a_area') }}" required>
+                            <option  value="">---Select Area---</option>  
+                            <option  value="LUZ" @if(old('a_region') == "LUZ") {{'selected'}} @endif>LUZ</option>
+                            <option  value="VIS" @if(old('a_region') == "VIS") {{'selected'}} @endif>VIS</option>
+                            <option  value="MIN" @if(old('a_region') == "MIN") {{'selected'}} @endif>MIN</option>
+                            <option  value="NAH" @if(old('a_region') == "NAH") {{'selected'}} @endif>NAH</option>
+                        </select>
+                        </div>
+                    </div>
+                    <!-- rows ends here -->
+                    <div class="modal-footer mt-2">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="ModalButton">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
                     </form>
                 </div>
             </div>
@@ -239,7 +258,7 @@
 
     <!-- new code button starts here -->
     <div class="modal fade" id="ratecardModal" name ="ratecardModal" tabindex="-1" role="dialog"  aria-labelledby="ratecardModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
-        <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-tittle" id="ratecardModalLabel">Update Rate Card</h5>
@@ -258,21 +277,37 @@
                         @endif
                         <!-- rows starts here -->
                         <div class="row">
-                            <div class="form-group col-md-3">
+                            <div class="form-group col-md-6">
                                 <label for="" class="col-form-label">Region:</label>
                                 <input type="text" class="form-control" name="u_region" id="u_region"  readonly>
                             </div>
-                            <div class="form-group col-md-3">
+                            <div class="form-group col-md-6">
+                                <label for="" class="col-form-label">Area</label>
+                                <select type="text" class="form-select" id="u_area" name = "u_area" value="{{ old('u_area') }}" required>
+                                <option  value="">---Select Area---</option>  
+                                    <option  value="LUZ" @if(old('u_region') == "LUZ") {{'selected'}} @endif>LUZ</option>
+                                    <option  value="VIS" @if(old('u_region') == "VIS") {{'selected'}} @endif>VIS</option>
+                                    <option  value="MIN" @if(old('u_region') == "MIN") {{'selected'}} @endif>MIN</option>
+                                    <option  value="NAH" @if(old('u_region') == "NAH") {{'selected'}} @endif>NAH</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
                                 <label for="" class="col-form-label">Regular Rate Per Day:</label>
                                 <input type="text" class="form-control" name="u_rate_per_day" id="u_rate_per_day" value="{{ old('u_rate_per_day') }}" required>
                             </div>
-                            <div class="form-group col-md-3">
+                            <div class="form-group col-md-6">
+                                <label for="" class="col-form-label">New Rate Per Day:</label>
+                                <input type="text" class="form-control" name="u_new_rate_per_day" id="u_new_rate_per_day" value="{{ old('u_new_rate_per_day') }}" required>
+                            </div>
+                            <!-- <div class="form-group col-md-3">
                                 <label for="" class="col-form-label">Regular Rate Per Hour:</label>
                                 <input type="text" class="form-control" name="u_rate_per_hour" id="u_rate_per_hour" value="{{ old('u_rate_per_hour') }}" readonly>
-                            </div>
+                            </div> -->
                         </div>
 
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="form-group col-md-3">
                                 <label for="" class="col-form-label">New Rate Per Day:</label>
                                 <input type="text" class="form-control" name="u_new_rate_per_day" id="u_new_rate_per_day" value="{{ old('u_new_rate_per_day') }}" required>
@@ -282,10 +317,10 @@
                                 <label for="" class="col-form-label">New Rate Per Hour:</label>
                                 <input type="text" class="form-control" name="u_new_rate_per_hour" id="u_new_rate_per_hour" value="{{ old('u_new_rate_per_hour') }}" readonly>
                             </div>
-                        </div>
+                        </div> -->
 
                         <!-- Special rate starts here -->
-                        <hr class="w-100">
+                        <!-- <hr class="w-100">
                         <h6>Special Rate :</h6>
                         <div class="row">
                             <div class="form-group col-md-3">
@@ -321,10 +356,10 @@
                                 <label for="" class="col-form-label">Double Pay Rest Day:</label>
                                 <input type="text" class="form-control" name="u_special_rates_double_pay_rest_day" id="u_special_rates_double_pay_rest_day" value="{{ old('u_special_rates_double_pay_rest_day') }}" readonly>
                             </div>
-                        </div>
+                        </div> -->
 
                         <!-- overtime starts here -->
-                        <hr class="w-100">
+                        <!-- <hr class="w-100">
                         <h6>Overtime :</h6>
                         <div class="row">
                             <div class="form-group col-md-3">
@@ -363,10 +398,10 @@
                                 <label for="" class="col-form-label">Double Pay Rest Day:</label>
                                 <input type="text" class="form-control" name="u_overtime_double_pay_rest_day" id="u_overtime_double_pay_rest_day" value="{{ old('u_overtime_double_pay_rest_day') }}" readonly>
                             </div>
-                        </div>
+                        </div> -->
 
                         <!-- night differential starts here -->
-                        <hr class="w-100">
+                        <!-- <hr class="w-100">
                         <h6>Night Differential :</h6>
                         <div class="row">
                             <div class="form-group col-md-3">
@@ -405,10 +440,10 @@
                                 <label for="" class="col-form-label">Double Pay Rest Day:</label>
                                 <input type="text" class="form-control" name="u_night_differential_double_pay_rest_day" id="u_night_differential_double_pay_rest_day" value="{{ old('u_night_differential_double_pay_rest_day') }}" readonly>
                             </div>
-                        </div>
+                        </div> -->
 
                         <!-- overtime with night differential starts here -->
-                        <hr class="w-100">
+                        <!-- <hr class="w-100">
                         <h6>Night Differential with :</h6>
                         <div class="row">
                             <div class="form-group col-md-3">
@@ -447,12 +482,12 @@
                                 <label for="" class="col-form-label">Double Pay Rest Day:</label>
                                 <input type="text" class="form-control" name="u_overtime_with_night_differential_double_pay_rest_day" id="u_overtime_with_night_differential_double_pay_rest_day" value="{{ old('u_overtime_with_night_differential_double_pay_rest_day') }}" readonly>
                             </div>
-                        </div>
+                        </div>-->
 
-                        <!-- <input type="text" name="u_selectedId" id="u_selectedId"> -->
+                        <input type="hidden" name="u_selectedId" id="u_selectedId"> 
 
                         <!-- rows ends here -->
-                        <div class="modal-footer">
+                        <div class="modal-footer mt-2">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="add">Close</button>
                             <button type="submit" class="btn btn-primary">Save</button>
                         </div>
@@ -539,6 +574,12 @@
         // add rate card modal fetch functions ends here
         
         // modal clicking funtion stars here+
+
+
+        // "There are no permanent things in this world. Even the galaxies have an ending. 
+        // There's no heaven or hell. If you die, there will be no other world, no afterlife, 
+        // no other experiences, no reincarnation. 
+        // There are no permanent things; even your memories will vanish."
         $('#view').click(function() {
             $('#viewratecardModal').modal('hide');
         });
@@ -566,16 +607,15 @@
                 
                 //special rate
                 $('#v_region').text(response.region);
-                // $('#v_rate_type').text(response.rate_type);
                 $('#v_rate_per_day').text(response.rate_per_day);
                 $('#v_rate_per_hour').text(response.rate_per_hour);
-                $('#v_special_rates_special_holiday').text(response.special_rate_special_holiday);
-                $('#v_special_rates_wdo').text(response.special_rate_wdo);
-                $('#v_special_rates_special_holiday_rest_day').text(response.special_rate_special_holiday_rest_day);
-                $('#v_special_rates_legal_holiday').text(response.special_rate_legal_holiday);
-                $('#v_special_rates_legal_holiday_rest_day').text(response.special_rate_legal_holiday_rest_day);
-                $('#v_special_rates_double_pay').text(response.special_rate_double_pay);
-                $('#v_special_rates_double_pay_rest_day').text(response.special_rate_double_pay_rest_day);
+                // $('#v_special_rates_special_holiday').text(response.special_rate_special_holiday);
+                // $('#v_special_rates_wdo').text(response.special_rate_wdo);
+                // $('#v_special_rates_special_holiday_rest_day').text(response.special_rate_special_holiday_rest_day);
+                // $('#v_special_rates_legal_holiday').text(response.special_rate_legal_holiday);
+                // $('#v_special_rates_legal_holiday_rest_day').text(response.special_rate_legal_holiday_rest_day);
+                // $('#v_special_rates_double_pay').text(response.special_rate_double_pay);
+                // $('#v_special_rates_double_pay_rest_day').text(response.special_rate_double_pay_rest_day);
 
 
                 //overtime starts here
@@ -584,14 +624,14 @@
                 // $('#v_rate_type').text(response.rate_type);
                 // $('#v_rate_per_day').text(response.rate_per_day);
                 // $('#v_rate_per_hour').text(response.rate_per_hour);
-                $('#v_overtime_regular_day').text(response.overtime_regular_day);
-                $('#v_overtime_special_holiday').text(response.overtime_special_holiday);
-                $('#v_overtime_wdo').text(response.overtime_wdo);
-                $('#v_overtime_special_holiday_rest_day').text(response.overtime_special_holiday_rest_day);
-                $('#v_overtime_legal_holiday').text(response.overtime_legal_holiday);
-                $('#v_overtime_legal_holiday_rest_day').text(response.overtime_legal_holiday_rest_day);
-                $('#v_overtime_double_pay').text(response.overtime_double_pay);
-                $('#v_overtime_double_pay_rest_day').text(response.overtime_double_pay_rest_day);
+                // $('#v_overtime_regular_day').text(response.overtime_regular_day);
+                // $('#v_overtime_special_holiday').text(response.overtime_special_holiday);
+                // $('#v_overtime_wdo').text(response.overtime_wdo);
+                // $('#v_overtime_special_holiday_rest_day').text(response.overtime_special_holiday_rest_day);
+                // $('#v_overtime_legal_holiday').text(response.overtime_legal_holiday);
+                // $('#v_overtime_legal_holiday_rest_day').text(response.overtime_legal_holiday_rest_day);
+                // $('#v_overtime_double_pay').text(response.overtime_double_pay);
+                // $('#v_overtime_double_pay_rest_day').text(response.overtime_double_pay_rest_day);
 
 
                 //night differential starts here 
@@ -600,14 +640,14 @@
                 // $('#v_rate_type').text(response.rate_type);
                 // $('#v_rate_per_day').text(response.rate_per_day);
                 // $('#v_rate_per_hour').text(response.rate_per_hour);
-                $('#v_night_differential_regular_day').text(response.night_differential_regular_day);
-                $('#v_night_differential_special_holiday').text(response.night_differential_special_holiday);
-                $('#v_night_differential_wdo').text(response.night_differential_wdo);
-                $('#v_night_differential_special_holiday_rest_day').text(response.night_differential_special_holiday_rest_day);
-                $('#v_night_differential_legal_holiday').text(response.night_differential_legal_holiday);
-                $('#v_night_differential_legal_holiday_rest_day').text(response.night_differential_legal_holiday_rest_day);
-                $('#v_night_differential_double_pay').text(response.night_differential_double_pay);
-                $('#v_night_differential_double_pay_rest_day').text(response.night_differential_double_pay_rest_day);
+                // $('#v_night_differential_regular_day').text(response.night_differential_regular_day);
+                // $('#v_night_differential_special_holiday').text(response.night_differential_special_holiday);
+                // $('#v_night_differential_wdo').text(response.night_differential_wdo);
+                // $('#v_night_differential_special_holiday_rest_day').text(response.night_differential_special_holiday_rest_day);
+                // $('#v_night_differential_legal_holiday').text(response.night_differential_legal_holiday);
+                // $('#v_night_differential_legal_holiday_rest_day').text(response.night_differential_legal_holiday_rest_day);
+                // $('#v_night_differential_double_pay').text(response.night_differential_double_pay);
+                // $('#v_night_differential_double_pay_rest_day').text(response.night_differential_double_pay_rest_day);
                 
 
                 //overtime with night differential start here
@@ -616,14 +656,14 @@
                 // $('#v_rate_type').text(response.rate_type);
                 // $('#v_rate_per_day').text(response.rate_per_day);
                 // $('#v_rate_per_hour').text(response.rate_per_hour);
-                $('#v_overtime_with_night_differential_regular_day').text(response.overtime_with_night_differential_regular_day);
-                $('#v_overtime_with_night_differential_special_holiday').text(response.overtime_with_night_differential_special_holiday);
-                $('#v_overtime_with_night_differential_wdo').text(response.overtime_with_night_differential_wdo);
-                $('#v_overtime_with_night_differential_special_holiday_rest_day').text(response.overtime_with_night_differential_special_holiday_rest_day);
-                $('#v_overtime_with_night_differential_legal_holiday').text(response.overtime_with_night_differential_legal_holiday);
-                $('#v_overtime_with_night_differential_legal_holiday_rest_day').text(response.overtime_with_night_differential_legal_holiday_rest_day);
-                $('#v_overtime_with_night_differential_double_pay').text(response.overtime_with_night_differential_double_pay);
-                $('#v_overtime_with_night_differential_double_pay_rest_day').text(response.overtime_with_night_differential_double_pay_rest_day);
+                // $('#v_overtime_with_night_differential_regular_day').text(response.overtime_with_night_differential_regular_day);
+                // $('#v_overtime_with_night_differential_special_holiday').text(response.overtime_with_night_differential_special_holiday);
+                // $('#v_overtime_with_night_differential_wdo').text(response.overtime_with_night_differential_wdo);
+                // $('#v_overtime_with_night_differential_special_holiday_rest_day').text(response.overtime_with_night_differential_special_holiday_rest_day);
+                // $('#v_overtime_with_night_differential_legal_holiday').text(response.overtime_with_night_differential_legal_holiday);
+                // $('#v_overtime_with_night_differential_legal_holiday_rest_day').text(response.overtime_with_night_differential_legal_holiday_rest_day);
+                // $('#v_overtime_with_night_differential_double_pay').text(response.overtime_with_night_differential_double_pay);
+                // $('#v_overtime_with_night_differential_double_pay_rest_day').text(response.overtime_with_night_differential_double_pay_rest_day);
 
                 
 
@@ -674,46 +714,47 @@
                 // $('#u_rate_type').val(response.rate_type);
                 $('#u_rate_per_day').val(response.rate_per_day);
                 $('#u_new_rate_per_day').val(response.new_rate_per_day);
-                $('#u_rate_per_hour').val(response.rate_per_hour);
+                $('#u_area').val(response.special);
+                // $('#u_rate_per_hour').val(response.rate_per_hour);
                 
                 // special rate
-                $('#u_special_rates_special_holiday').val(response.special_rate_special_holiday);
-                $('#u_special_rates_wdo').val(response.special_rate_wdo);
-                $('#u_special_rates_special_holiday_rest_day').val(response.special_rate_special_holiday_rest_day);
-                $('#u_special_rates_legal_holiday').val(response.special_rate_legal_holiday);
-                $('#u_special_rates_legal_holiday_rest_day').val(response.special_rate_legal_holiday_rest_day);
-                $('#u_special_rates_double_pay').val(response.special_rate_double_pay);
-                $('#u_special_rates_double_pay_rest_day').val(response.special_rate_double_pay_rest_day);
+                // $('#u_special_rates_special_holiday').val(response.special_rate_special_holiday);
+                // $('#u_special_rates_wdo').val(response.special_rate_wdo);
+                // $('#u_special_rates_special_holiday_rest_day').val(response.special_rate_special_holiday_rest_day);
+                // $('#u_special_rates_legal_holiday').val(response.special_rate_legal_holiday);
+                // $('#u_special_rates_legal_holiday_rest_day').val(response.special_rate_legal_holiday_rest_day);
+                // $('#u_special_rates_double_pay').val(response.special_rate_double_pay);
+                // $('#u_special_rates_double_pay_rest_day').val(response.special_rate_double_pay_rest_day);
 
-                // overtime
-                $('#u_overtime_regular_day').val(response.overtime_regular_day);
-                $('#u_overtime_special_holiday').val(response.overtime_special_holiday);
-                $('#u_overtime_wdo').val(response.overtime_wdo);
-                $('#u_overtime_special_holiday_rest_day').val(response.overtime_special_holiday_rest_day);
-                $('#u_overtime_legal_holiday').val(response.overtime_legal_holiday);
-                $('#u_overtime_legal_holiday_rest_day').val(response.overtime_legal_holiday_rest_day);
-                $('#u_overtime_double_pay').val(response.overtime_double_pay);
-                $('#u_overtime_double_pay_rest_day').val(response.overtime_double_pay_rest_day);
+                // // overtime
+                // $('#u_overtime_regular_day').val(response.overtime_regular_day);
+                // $('#u_overtime_special_holiday').val(response.overtime_special_holiday);
+                // $('#u_overtime_wdo').val(response.overtime_wdo);
+                // $('#u_overtime_special_holiday_rest_day').val(response.overtime_special_holiday_rest_day);
+                // $('#u_overtime_legal_holiday').val(response.overtime_legal_holiday);
+                // $('#u_overtime_legal_holiday_rest_day').val(response.overtime_legal_holiday_rest_day);
+                // $('#u_overtime_double_pay').val(response.overtime_double_pay);
+                // $('#u_overtime_double_pay_rest_day').val(response.overtime_double_pay_rest_day);
 
-                // night differential
-                $('#u_night_differential_regular_day').val(response.night_differential_regular_day);
-                $('#u_night_differential_special_holiday').val(response.night_differential_special_holiday);
-                $('#u_night_differential_wdo').val(response.night_differential_wdo);
-                $('#u_night_differential_special_holiday_rest_day').val(response.night_differential_special_holiday_rest_day);
-                $('#u_night_differential_legal_holiday').val(response.night_differential_legal_holiday);
-                $('#u_night_differential_legal_holiday_rest_day').val(response.night_differential_legal_holiday_rest_day);
-                $('#u_night_differential_double_pay').val(response.night_differential_double_pay);
-                $('#u_night_differential_double_pay_rest_day').val(response.night_differential_double_pay_rest_day);
+                // // night differential
+                // $('#u_night_differential_regular_day').val(response.night_differential_regular_day);
+                // $('#u_night_differential_special_holiday').val(response.night_differential_special_holiday);
+                // $('#u_night_differential_wdo').val(response.night_differential_wdo);
+                // $('#u_night_differential_special_holiday_rest_day').val(response.night_differential_special_holiday_rest_day);
+                // $('#u_night_differential_legal_holiday').val(response.night_differential_legal_holiday);
+                // $('#u_night_differential_legal_holiday_rest_day').val(response.night_differential_legal_holiday_rest_day);
+                // $('#u_night_differential_double_pay').val(response.night_differential_double_pay);
+                // $('#u_night_differential_double_pay_rest_day').val(response.night_differential_double_pay_rest_day);
 
-                // overtime with night differential
-                $('#u_overtime_with_night_differential_regular_day').val(response.overtime_with_night_differential_regular_day);
-                $('#u_overtime_with_night_differential_special_holiday').val(response.overtime_with_night_differential_special_holiday);
-                $('#u_overtime_with_night_differential_wdo').val(response.overtime_with_night_differential_wdo);
-                $('#u_overtime_with_night_differential_special_holiday_rest_day').val(response.overtime_with_night_differential_special_holiday_rest_day);
-                $('#u_overtime_with_night_differential_legal_holiday').val(response.overtime_with_night_differential_legal_holiday);
-                $('#u_overtime_with_night_differential_legal_holiday_rest_day').val(response.overtime_with_night_differential_legal_holiday_rest_day);
-                $('#u_overtime_with_night_differential_double_pay').val(response.overtime_with_night_differential_double_pay);
-                $('#u_overtime_with_night_differential_double_pay_rest_day').val(response.overtime_with_night_differential_double_pay_rest_day);
+                // // overtime with night differential
+                // $('#u_overtime_with_night_differential_regular_day').val(response.overtime_with_night_differential_regular_day);
+                // $('#u_overtime_with_night_differential_special_holiday').val(response.overtime_with_night_differential_special_holiday);
+                // $('#u_overtime_with_night_differential_wdo').val(response.overtime_with_night_differential_wdo);
+                // $('#u_overtime_with_night_differential_special_holiday_rest_day').val(response.overtime_with_night_differential_special_holiday_rest_day);
+                // $('#u_overtime_with_night_differential_legal_holiday').val(response.overtime_with_night_differential_legal_holiday);
+                // $('#u_overtime_with_night_differential_legal_holiday_rest_day').val(response.overtime_with_night_differential_legal_holiday_rest_day);
+                // $('#u_overtime_with_night_differential_double_pay').val(response.overtime_with_night_differential_double_pay);
+                // $('#u_overtime_with_night_differential_double_pay_rest_day').val(response.overtime_with_night_differential_double_pay_rest_day);
 
 
             }
@@ -727,15 +768,15 @@
         $('#u_rate_per_day').on("change keyup paste", function(){
              
             let ratePerDay = $(this).val();
-            console.log('test', ratePerDay);
+            // console.log('test', ratePerDay);
             var ratePerHour = ratePerDay / 8;
-            console.log('rate per hr' , ratePerHour);
+            // console.log('rate per hr' , ratePerHour);
             
             // Special Rate
-            var special_rate_specialHoliday = ( ratePerDay * 1.3 * 1.1 ) / 8;
-            var special_rate_wDo = ( ratePerDay * 1.3 ) /8;
+            var special_rate_specialHoliday = ( ratePerDay * 1.3 * 1.1 ) / 8 ;
+            var special_rate_wDo = ( ratePerDay * 1.3 ) /8 ;
             var special_rate_specialHolidayRestDay = ( ratePerDay * 1.5 ) / 8;
-            var special_rate_legalHoliday = ratePerDay / 8;
+            var special_rate_legalHoliday = (ratePerDay / 8);
             var special_rate_legalHolidayRestDay = ( ratePerDay * 1.6 ) / 8;
             var special_rate_doublePay = ( ratePerDay * 2 ) / 8;
             var special_rate_doublePayRestDay = ( ratePerDay * 2.9 ) / 8;
@@ -751,9 +792,9 @@
             var overtime_doublePayRestDay = (( ratePerDay * 2.9 ) / 8 * 1.3);
             // Night Differential
             var night_Differential_ratePerHour = ( ratePerDay / 8 ) * .1;
-            var night_Differential_regularDay = (ratePerDay / 8 ) * .1 ;
-            var night_Differential_specialHoliday = (( ratePerDay * 1.3 ) / 8 * .1);
-            var night_Differential_wDo = ( ratePerDay * 1.3 ) / 8 * .1 ; 
+            var night_Differential_regularDay = (ratePerDay / 8 ) * .1;
+            var night_Differential_specialHoliday = ( ratePerDay * 1.3 ) / 8 * .1;
+            var night_Differential_wDo = ( ratePerDay * 1.3 ) / 8 * .1; 
             var night_Differential_rate_specialHolidayRestDay = ( ratePerDay * 1.5 ) / 8 * .1;
             var night_Differential_legalHoliday = ( ratePerDay / 8 ) * .1;
             var night_Differential_legalHolidayRestDay = ( ratePerDay * 1.6 ) / 8 * .1;
@@ -762,12 +803,12 @@
             // Over Time with Night Differential
             var overTime_With_Night_Differential_ratePerHour = ( ratePerDay * 1.25 ) / 8 * .1;
             var overTime_With_Night_Differential_regularDay = (ratePerDay * 1.25 ) / 8 * .1;
-            var overTime_With_Night_Differential_specialHoliday =  (( ratePerDay * 1.3 ) / 8 ) * 1.3 * .1 ;
+            var overTime_With_Night_Differential_specialHoliday =  (( ratePerDay * 1.3 ) / 8 ) * 1.3 * .1;
             var overTime_With_Night_Differential_wDo = (( ratePerDay * 1.3 ) / 8) * 1.3 * .1; 
-            var overTime_With_Night_Differential_specialHolidayRestDay = (( ratePerDay * 1.5 ) / 8) * 1.3 * .1 ;
+            var overTime_With_Night_Differential_specialHolidayRestDay = (( ratePerDay * 1.5 ) / 8) * 1.3 * .1;
             var overTime_With_Night_Differential_legalHoliday = (( ratePerDay / 8) * 1.3 ) * .1;
-            var overTime_With_Night_Differential_legalHolidayRestDay = (( ratePerDay * 1.6 ) / 8 * 1.3 ) * .1 ;
-            var overTime_With_Night_Differential_doublePay = (( ratePerDay * 2 ) / 8 * 1.3 ) * .1 ;
+            var overTime_With_Night_Differential_legalHolidayRestDay = (( ratePerDay * 1.6 ) / 8 * 1.3 ) * .1;
+            var overTime_With_Night_Differential_doublePay = (( ratePerDay * 2 ) / 8 * 1.3 ) * .1;
             var overTime_With_Night_Differential_special_rate_ratePerHour = doublePayRestDay =  (( ratePerDay * 2.9)/ 8 * 1.3 ) * .1;
 
             // special rate
@@ -826,15 +867,15 @@
             
             
             let ratePerDay = $(this).val();
-            console.log('test', ratePerDay);
+            // console.log('test', ratePerDay);
             var ratePerHour = ratePerDay / 8;
-            console.log('rate per hr' , ratePerHour);
+            // console.log('rate per hr' , ratePerHour);
             
             // Special Rate
             var special_rate_specialHoliday = ( ratePerDay * 1.3 * 1.1 ) / 8;
-            var special_rate_wDo = ( ratePerDay * 1.3 ) /8;
+            var special_rate_wDo = ( ratePerDay * 1.3 ) / 8;
             var special_rate_specialHolidayRestDay = ( ratePerDay * 1.5 ) / 8;
-            var special_rate_legalHoliday = ratePerDay / 8;
+            var special_rate_legalHoliday = (ratePerDay / 8);
             var special_rate_legalHolidayRestDay = ( ratePerDay * 1.6 ) / 8;
             var special_rate_doublePay = ( ratePerDay * 2 ) / 8;
             var special_rate_doublePayRestDay = ( ratePerDay * 2.9 ) / 8;
@@ -850,9 +891,9 @@
             var overtime_doublePayRestDay = (( ratePerDay * 2.9 ) / 8 * 1.3);
             // Night Differential
             var night_Differential_ratePerHour = ( ratePerDay / 8 ) * .1;
-            var night_Differential_regularDay = (ratePerDay / 8 ) * .1 ;
+            var night_Differential_regularDay = (ratePerDay / 8 ) * .1;
             var night_Differential_specialHoliday = (( ratePerDay * 1.3 ) / 8 * .1);
-            var night_Differential_wDo = ( ratePerDay * 1.3 ) / 8 * .1 ; 
+            var night_Differential_wDo = ( ratePerDay * 1.3 ) / 8 * .1; 
             var night_Differential_rate_specialHolidayRestDay = ( ratePerDay * 1.5 ) / 8 * .1;
             var night_Differential_legalHoliday = ( ratePerDay / 8 ) * .1;
             var night_Differential_legalHolidayRestDay = ( ratePerDay * 1.6 ) / 8 * .1;
@@ -861,12 +902,12 @@
             // Over Time with Night Differential
             var overTime_With_Night_Differential_ratePerHour = ( ratePerDay * 1.25 ) / 8 * .1;
             var overTime_With_Night_Differential_regularDay = (ratePerDay * 1.25 ) / 8 * .1;
-            var overTime_With_Night_Differential_specialHoliday =  (( ratePerDay * 1.3 ) / 8 ) * 1.3 * .1 ;
+            var overTime_With_Night_Differential_specialHoliday =  (( ratePerDay * 1.3 ) / 8 ) * 1.3 * .1;
             var overTime_With_Night_Differential_wDo = (( ratePerDay * 1.3 ) / 8) * 1.3 * .1; 
-            var overTime_With_Night_Differential_specialHolidayRestDay = (( ratePerDay * 1.5 ) / 8) * 1.3 * .1 ;
+            var overTime_With_Night_Differential_specialHolidayRestDay = (( ratePerDay * 1.5 ) / 8) * 1.3 * .1;
             var overTime_With_Night_Differential_legalHoliday = (( ratePerDay / 8) * 1.3 ) * .1;
-            var overTime_With_Night_Differential_legalHolidayRestDay = (( ratePerDay * 1.6 ) / 8 * 1.3 ) * .1 ;
-            var overTime_With_Night_Differential_doublePay = (( ratePerDay * 2 ) / 8 * 1.3 ) * .1 ;
+            var overTime_With_Night_Differential_legalHolidayRestDay = (( ratePerDay * 1.6 ) / 8 * 1.3 ) * .1;
+            var overTime_With_Night_Differential_doublePay = (( ratePerDay * 2 ) / 8 * 1.3 ) * .1;
             var overTime_With_Night_Differential_special_rate_ratePerHour = doublePayRestDay =  (( ratePerDay * 2.9)/ 8 * 1.3 ) * .1;
 
             
