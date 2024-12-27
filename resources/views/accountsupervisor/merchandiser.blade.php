@@ -1213,8 +1213,6 @@
                     default :
                         remain = "-";
                     break;  
-
-
                     }
                   
                     dataTable.row.add(
@@ -1242,11 +1240,10 @@
                     });
                     console.log(xhr.responseText); // Log the error for debugging
                 }
-            });
+            });     
         });
 
-
-        //  $('#createAccountModal').modal({
+        // $('#createAccountModal').modal({
         // backdrop: 'static',
         // keyboard: false  // to prevent closing with Esc button (if you want this too)
         // });

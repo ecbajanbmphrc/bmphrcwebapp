@@ -578,23 +578,15 @@
         $("#c_birthdate").change(function(){
 
         var birthDate = $('#c_birthdate').val();    
-   
         var bday = new Date(birthDate).getTime();
-
         var today = new Date().getTime();
-
-
         var age = Math.floor((today-bday) / (365.25 * 24 * 60 * 60 * 1000));
-
     
-
         $('#c_age').val(age);
-
-       // console.log(age);
-
-
+        // console.log(age);
         });
 
+        
 
         $('#e_birthdate').datepicker({
             format: "mm/dd/yyyy",
@@ -603,17 +595,11 @@
         });
 
         $("#e_birthdate").change(function(){
-
         var birthDate = $('#e_birthdate').val();    
-   
         var bday = new Date(birthDate).getTime();
-
         var today = new Date().getTime();
 
-
         var age = Math.floor((today-bday) / (365.25 * 24 * 60 * 60 * 1000));
-
-    
 
         $('#e_age').val(age);
 
@@ -646,10 +632,9 @@
          });
         }
 
-
         // modal clicking function starts here
         $('#coordinator tbody').on('click', 'img.button-image1', function (e) {
-        e.preventDefault();
+            e.preventDefault();
 
             var selectedRowData = dataTable.row($(this).closest('tr')).data();
             var id = selectedRowData.id;
@@ -660,19 +645,14 @@
             headers: {
                 'Content-Type': 'application/json',
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },   
+            },
             success: function(response){
-               
-              //  var date = new Date(response.birthdate).toLocaleDateString()
+                //  var date = new Date(response.birthdate).toLocaleDateString()
                 // response = JSON.parse(response);
                 var newDate = new Date(response.birthdate).toLocaleDateString()
-                
-
                 if(response.middle_name !== null){
                     $('#v_middle_name').text(response.middle_name).css({"font-style" : "regular" , "color" : "black"});
-                   
                 }else{
-                    
                     $('#v_middle_name').text("NULL").css({"font-style" : "italic" , "color" : "gray"});
                 }
                 $('#v_first_name').text(response.first_name);
@@ -688,14 +668,11 @@
                 $('#v_type_of_deployment').text(response.type_of_deployment);
 
                 $('#viewCoordinatorModal').modal('show');
-            
             }
-     
         })
      });
+
     // modal clicking functions starts here
-
-
      $('#coordinator tbody').on('click', 'img.button-image2', function (e) {
         e.preventDefault();
 
