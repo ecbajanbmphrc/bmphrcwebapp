@@ -29,6 +29,26 @@
         .button-image3{
     cursor: pointer;
         }
+        .rk{
+    width: 15px;
+        }
+        .rkk{
+    width: 25px;
+        }
+        .sidebar{
+            background: #f7f7f0;
+        }
+
+    #select-all-btn, #deselect-all-btn {
+        margin-right: 5px;
+        cursor: pointer;
+    }
+
+    input[type="checkbox"] {
+            zoom: 1.8;
+            /* justify-content: center; */
+        }
+
     </style>
 
 </head>
@@ -36,7 +56,7 @@
 <body>
 
     <!-- start: Sidebar -->
-    <div class="sidebar position-fixed top-0 bottom-0 bg-white border-end">
+    <div class="sidebar position-fixed top-0 bottom-0 border-end">
         <div class="d-flex align-items-center p-3">
             <a href="#" class="sidebar-logo text-uppercase fw-bold text-decoration-none text-indigo fs-4">Payroll Head</a>
             <i class="sidebar-toggle ri-arrow-left-circle-line ms-auto fs-5 d-none d-md-block"></i>
@@ -47,18 +67,20 @@
                     <i class="ri-dashboard-line sidebar-menu-item-icon"></i>Dashboard
                 </a>
             </li>
-            <li class="sidebar-menu-divider mt-3 mb-1 text-uppercase">Clients</li>
-            <li class="sidebar-menu-item ">
+        </ul>
+        <ul class="sidebar-menu p-3 m-0 mb-0">
+            <li class="sidebar-menu-divider mb-1 text-uppercase">Clients</li>
+            <li class="sidebar-menu-item mt-2">
                 <a href="{{ route('payrollhead.view.efcpayrollhead') }}">
                     <i class="bi bi-dash-square sidebar-menu-item-icon"></i>EFC
                 </a>
             </li>
-            <li class="sidebar-menu-item active">
+            <li class="sidebar-menu-item mt-2 active">
                 <a href="{{ route('payrollhead.view.mckenziepayrollhead') }}">
                     <i class="bi bi-dash-square sidebar-menu-item-icon"></i>McKenzie
                 </a>
             </li>
-            <li class="sidebar-menu-item ">
+            <!-- <li class="sidebar-menu-item ">
                 <a href="{{ route('payrollhead.view.rfmpayrollhead') }}">
                     <i class="bi bi-dash-square sidebar-menu-item-icon"></i>RFM
                 </a>
@@ -67,15 +89,16 @@
                 <a href="{{ route('payrollhead.view.magispayrollhead') }}">
                     <i class="bi bi-dash-square sidebar-menu-item-icon"></i>Magis
                 </a>
-            </li>          
-            <li class="sidebar-menu-item mt-auto">
-                <a href="{{ route('logout') }}" style="margin-top: 220px;">
+            </li>           -->
+            <li class="sidebar-menu-item mt-2">
+                <a href="{{ route('logout') }}">
                     <i class="ri-logout-box-line sidebar-menu-item-icon"></i>
                     Logout
                 </a>
             </li>
         </ul>
     </div>
+
     <div class="sidebar-overlay"></div>
     
     <!-- end: Sidebar -->
@@ -127,28 +150,44 @@
         <div style="height:2vh;"> </div>
 
         <div class="card">
-            <div class="card-body">
+            <div class="card-header">
                 <div class="row">
-                    <div class="col">
-                        <h5 class="card-title">Door List</h5>
+                    <div class="col-md-6">
+                        <h5 class="mt-2">Store Lists</h5>
                     </div>
-                    <div class="col text-end">
-                        <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#myModal">Move</button>
+                    <div class="col-md-6 text-end">
+                        <button type="button" id="select-all-btn" class="btn btn-primary mb-2">
+                            <i class="bi bi-check-all"></i> Select All
+                        </button>
+                        <button type="button" id="deselect-all-btn" class="btn btn-danger mb-2">
+                            <i class="bi bi-x-circle"></i> Deselect All
+                        </button>
+                        <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#myModal">
+                            <i class="bi bi-people mr-2"></i> Assign Officer
+                        </button>
                     </div>
                 </div>
-                <table id="door" class="table table-hover" style="width:100%">
+            </div>
+            <div class="card-body">
+                <table id="door" class="table table-bordered" style="width:100%">
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>checkbox</th>
+                            <th style="width: 15px;">#</th>
+                            <th style="width: 30px;"><i class="bi bi-check"></i></th>
                             <th style="display:none">ID</th>
                             <th>Account</th>
                             <th>Region</th>
                             <th>Store</th>
-                            <th>Actions</th>
+                            <th>Payroll Officer</th>
+                            <!-- <th>Actions</th> -->
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="transfer-table">
+                        <tr>
+                            <td class="check">
+                                <input type="checkbox" class="row-checkbox" />
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -166,7 +205,7 @@
                     <form>
                         <div class="mb-3">
                             <label for="e_user" class="form-label">Select Payroll Officer:</label>
-                            <select class="form-select" id="e_fname" name="e_fname">
+                            <select class="form-select" id="s_user" name="s_user">
                                 <option value="">---Select Payroll Officer---</option>
                                 @foreach ($mckenziePayrollheadArray as $id => $value)
                                 <option value="{{ $id }}">{{ $value }}</option>
@@ -196,7 +235,7 @@
 
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script> -->
         <!-- start: JS -->
-        <script src="/asset/user/js/bootstrap.bundle.min.js"></script>
+    <script src="/asset/user/js/bootstrap.bundle.min.js"></script>
 
     <script src="/asset/user/js/jquery.min.js"></script>
 
@@ -211,6 +250,9 @@
 
     <script>
         $(document).ready(function () {
+
+            var selected_id = [];
+
             var dataTable = $('#door').DataTable({
                 ajax: {
                     url: '/payrollhead/mckenzie-door-list/fetch-data',
@@ -218,44 +260,173 @@
                 },
                 columns: [
                     { data: '#' },
-                    { 
-                        data: 'checkbox',
-                        render: function (data, type, row, meta) {
-                            return '<input type="checkbox" class="checkbox" value="' + row.id + '">';
-                        }
-                    },
+                    { data: 'checkbox', orderable: false},
+                    // { 
+                    //     data: 'checkbox',
+                    //     render: function (data, type, row, meta) {
+                    //         return '<input type="checkbox" class="checkbox" value="' + row.id + '">';
+                    //     }
+                    // },
                     { data: 'id', visible: false },
                     { data: 'account' },
                     { data: 'region' },
                     { data: 'store_name' }, 
-                    { data: 'actions', orderable: false }
+                    { data: 'user_fullname' },
+                    // { data: 'actions', orderable: false }
                 ]
             });
-        });
 
-        document.addEventListener("DOMContentLoaded", function () {
-            const saveChangesBtn = document.getElementById("saveChangesBtn");
+            $(document).ready(function () {
+                var selected_id = []; // Array to store selected IDs
 
-            saveChangesBtn.addEventListener("click", function () {
-                Swal.fire({
-                    title: 'Are you sure?',
-                    text: "Are you sure?",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, save it!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        Swal.fire(
-                            'Saved!',
-                            'Your changes have been saved.',
-                            'success'
-                        );
+                // Handle individual checkbox click
+                $('#door tbody').on('click', 'input.transfer', function () {
+                    var checkbox = $(this);
+                    var tr = checkbox.closest('tr');
+                    var state = checkbox.prop('checked');
+
+                    var selectedRowData = dataTable.row(tr).data();
+                    var id = selectedRowData.id;
+
+                    if (state) {
+                        // Add to selected_id if checked
+                        if (!selected_id.includes(id)) {
+                            selected_id.push(id);
+                        }
+                    } else {
+                        // Remove from selected_id if unchecked
+                        var index = selected_id.indexOf(id);
+                        if (index > -1) {
+                            selected_id.splice(index, 1);
+                        }
                     }
+
+                    console.log("Selected IDs: ", selected_id);
+                });
+
+                // Select All Button
+                document.getElementById('select-all-btn').addEventListener('click', function () {
+                    // Select all checkboxes
+                    const checkboxes = document.querySelectorAll('input.transfer'); // Select only relevant checkboxes
+                    checkboxes.forEach((checkbox) => {
+                        checkbox.checked = true; // Check all
+                    });
+
+                    // Update selected_id with all IDs from the table
+                    selected_id = [];
+                    $('#door tbody tr').each(function () {
+                        var rowData = dataTable.row(this).data();
+                        if (rowData) {
+                            selected_id.push(rowData.id);
+                        }
+                    });
+
+                    console.log("All Selected IDs: ", selected_id);
+                });
+
+                // Deselect All Button
+                document.getElementById('deselect-all-btn').addEventListener('click', function () {
+                    // Deselect all checkboxes
+                    const checkboxes = document.querySelectorAll('input.transfer'); // Select only relevant checkboxes
+                    checkboxes.forEach((checkbox) => {
+                        checkbox.checked = false; // Uncheck all
+                    });
+
+                    // Clear selected_id array
+                    selected_id = [];
+                    console.log("Deselected All IDs: ", selected_id);
+                });
+
+                // Save Changes Button
+                $("#saveChangesBtn").click(function () {
+                    let user_id = $('#s_user').val();
+
+                    if (user_id === "" || selected_id.length === 0) {
+                        Swal.fire('Warning', 'Please select a Payroll Officer and at least one Store.', 'warning');
+                        return;
+                    }
+
+                    Swal.fire({
+                        title: 'Are you sure?',
+                        text: "Are you sure you want to save these changes?",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, save it!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            console.log("Selected IDs: ", selected_id);
+                            console.log("Selected User ID: ", user_id);
+
+                            $.ajax({
+                                url: '/payrollofficer/payrollofficerefc/list/transfer-payroll',
+                                type: 'POST',
+                                dataType: 'JSON',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                },
+                                data: JSON.stringify({
+                                    ids: selected_id,
+                                    user_id: user_id
+                                }),
+                                success: function (response) {
+                                    console.log(response);
+                                    Swal.fire(
+                                        'Saved!',
+                                        'Your changes have been saved.',
+                                        'success'
+                                    );
+                                    $("#myModal").modal('hide');
+                                },
+                                error: function (data) {
+                                    var errors = data.responseJSON;
+                                    console.log(errors);
+                                    Swal.fire(
+                                        'Error!',
+                                        'There was an issue saving your changes.',
+                                        'error'
+                                    );
+                                }
+                            });
+                        }
+                    });
                 });
             });
+
+        
+       
         });
+
+            // new script code starts here for data transfer
+        
+       
+
+        // document.addEventListener("DOMContentLoaded", function () {
+        //     const saveChangesBtn = document.getElementById("saveChangesBtn");
+
+        //     saveChangesBtn.addEventListener("click", function () {
+        //         Swal.fire({
+        //             title: 'Are you sure?',
+        //             text: "Are you sure?",
+        //             icon: 'warning',
+        //             showCancelButton: true,
+        //             confirmButtonColor: '#3085d6',
+        //             cancelButtonColor: '#d33',
+        //             confirmButtonText: 'Yes, save it!'
+        //         }).then((result) => {
+        //             if (result.isConfirmed) {
+        //                 Swal.fire(
+        //                     'Saved!',
+        //                     'Your changes have been saved.',
+        //                     'success'
+        //                 );
+        //             }
+        //         });
+        //     });
+        // });
+
 
     </script>
 </body>

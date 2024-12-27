@@ -13,8 +13,29 @@ use App\Http\Controllers\Merchandiser\MerchandiserMenuController;
 
 // Users Export
 use App\Http\Controllers\UserExportController;
-// Payroll Input
+// manning export
+use App\Http\Controllers\ManningExportController;
+// Payroll Input Export
 use App\Http\Controllers\PayrollInputExportController;
+// Billing Export
+use App\Http\Controllers\BillingExportController;
+// Data Export
+use App\Http\Controllers\DataExportController;
+// Reimbursement Report
+use App\Http\Controllers\ReimbursementController;
+// gov dues
+use App\Http\Controllers\GovduesExportController;
+// Payslip PDF export
+use App\Http\Controllers\PayslipController;
+// new pdf export
+use App\Http\Controllers\NewPdfController;
+
+// Disbursement
+use App\Http\Controllers\GcashExportController;
+use App\Http\Controllers\EastwestExportController;
+use App\Http\Controllers\RcbcRcbcListController;
+use App\Http\Controllers\RcbcwalletExportController;
+use App\Http\Controllers\CebuanaExportController;
 
 
 
@@ -38,6 +59,18 @@ use App\Http\Controllers\PayrollOfficer\PayrollOfficerController;
 use App\Http\Controllers\PayrollOfficer\PayrollOfficerListController;
 use App\Http\Controllers\Payrollofficer\PayrollOfficerTransferListController;
 use App\Http\Controllers\PayrollOfficer\PayrollOfficerInputListController;
+
+use App\Http\Controllers\PayrollOfficer\GcashListController;
+use App\Http\Controllers\PayrollOfficer\BdoListController;
+use App\Http\Controllers\PayrollOfficer\BpiListController;
+use App\Http\Controllers\PayrollOfficer\CebuanaListController;
+use App\Http\Controllers\PayrollOfficer\EastwestListController;
+use App\Http\Controllers\PayrollOfficer\RcbcListController;
+use App\Http\Controllers\PayrollOfficer\RcbcwalletListController;
+use App\Http\Controllers\PayrollOfficer\BankListController;
+
+// use App\Http\Controllers\PayrollOfficer\Disbursement;
+
 
 // treasury
 use App\Http\Controllers\Treasury\TreasuryController;
@@ -64,6 +97,8 @@ use App\Http\Middleware\PayrollHead;
 use App\Http\Middleware\PayrollOfficer;
 use App\Http\Middleware\Treasury;
 
+use App\Http\Controllers\PdfViewerController;
+
 
 
 
@@ -89,10 +124,49 @@ use App\Http\Middleware\Treasury;
 
 //Route::get('/login', [LoginController::class, 'index']);
 
+Route::get('/view-pdf-payslip', [PdfViewerController::class, 'viewGeneratePDF'])->name('pdf.payslip');
+// new payslip
+Route::get('/view-new-pdf-payslip', [NewPdfController::class, 'viewNewGeneratePDF'])->name('pdf.newpayslip');
+
+
 // users export
 Route::get('users/export/', [UserExportController::class, 'export']);
+
+
+// Report Generation starts here
+// 
+// acount supervisor manning report
+Route::get('manning/export', [ManningExportController::class, 'export']);
+
 // payroll input export
 Route::get('payrollinput/export', [PayrollInputExportController::class, 'export']);
+// BIlling Export
+Route::get('billing/export', [BillingExportController::class, 'export']);
+// Data Export
+Route::get('data/export', [DataExportController::class, 'export']);
+
+Route::get('govdues/export', [GovduesExportController::class, 'export']);
+
+// Reimbursement PDF
+
+// disbursement reports
+Route::get('gcash/export', [GcashExportController::class, 'export']);
+Route::get('eastwest/export', [EastwestExportController::class, 'export']);
+Route::get('rcbc/export', [RcbcRcbcListController::class, 'export']);
+Route::get('rcbcwallet/export', [RcbcwalletExportController::class, 'export']);
+Route::get('cebuana/export', [CebuanaExportController::class, 'export']);
+
+
+
+
+Route::get('reimbursement/export', [ReimbursementController::class, 'export']); 
+
+// For Generating Payslip Report (PDF)
+// Route::get('payslip/export', [PayslipController::class, 'generatePDF'])->name('payslip.export');
+
+// new payslip pdf
+Route::get('newpayslip/export', [NewPdfController::class, 'viewNewGeneratePDF'])->name('newpayslip.export');
+
 
 
 
@@ -120,6 +194,7 @@ Route::middleware([Guest::class])->group(function(){
     Route::get('/login/payrollhead', [LandingController::class, 'payrollhead_login'])->name('auth.payrollhead');
     Route::get('/login/payrollofficer', [LandingController::class, 'payrollofficer_login'])->name('auth.payrollofficer');
     Route::get('/login/accountsupervisor', [LandingController::class, 'accountsupervisor_login'])->name('auth.accountsupervisor');
+    Route::get('/login/billingofficer', [LandingController::class, 'billingofficer_login'])->name('auth.billingofficer');
     Route::get('/login/treasury', [LandingController::class, 'treasury_login'])->name('auth.treasury');
     Route::get('/login', [LandingController::class, 'login'])->name('auth.login'); 
     Route::get('/registration', [LoginController::class, 'registration'])->name('auth.registration');
@@ -128,6 +203,26 @@ Route::middleware([Guest::class])->group(function(){
     Route::get('/our-partners', [LandingController::class, 'ourpartners'])->name('landing.our-partners');
     Route::get('/contact', [LandingController::class, 'contact'])->name('landing.contact');
 });
+
+// In the cosmos vast, no love can compare,
+// Your warmth, a beacon, a treasure so rare.
+// I ask for nothing, your love’s my delight,
+// A flame that could burn through the endless night.
+
+// Yet in your embrace, I sense a deep bind,
+// To tether your spirit would surely be unkind.
+// I wish to set you free, let your essence soar,
+// For eternity with me would be a heavy door.
+
+// As you walk through the void, it pains my soul,
+// To see you bound where love takes its toll.
+// Thank you for moments, for whispers, for grace,
+// But now I must leave, let time shift its face.
+
+// You’ll dwell in my heart, a soft, sacred trace,
+// Forever my Mikasa, my love, my embrace.
+    // My Mikasa
+
 
 Route::middleware([SuperAdmin::class])->group(function(){
     Route::get('/superadmin/dashboard', [SuperAdminController::class, 'view_dashboard'])->name('superadmin.view.dashboard');
@@ -140,6 +235,8 @@ Route::middleware([SuperAdmin::class])->group(function(){
     Route::get('/superadmin/rfm', [SuperAdminController::class, 'view_company_rfm'])->name('superadmin.view.rfm');
     Route::get('/superadmin/payrollhead', [SuperAdminController::class, 'view_payrollhead'])->name('superadmin.view.payrollhead');
     Route::get('/superadmin/treasury', [SuperAdminController::class, 'view_treasury'])->name('superadmin.view.treasury');
+
+});
 
 
     //Account Supervisor Functions
@@ -210,11 +307,9 @@ Route::middleware([SuperAdmin::class])->group(function(){
      Route::post('/superadmin/rfm/list/update-account', [RfmListController::class, 'updateAccount'])->name('superadmin.rfm-list.update-account');
      Route::get('/superadmin/rfm/list/retrieve-update/{id}', [RfmListController::class, 'getUpdateData'])->name('superadmin.rfm-list.retrieve-update');
      Route::get('/superadmin/rfm/list/retrieve-view/{id}', [RfmListController::class, 'getViewData'])->name('superadmin.rfm-list.retrieve-view');
-
   
 
-  
-});
+
 
 // Payrollhead routes
 Route::middleware([PayrollHead::class])->group(function(){
@@ -225,16 +320,29 @@ Route::middleware([PayrollHead::class])->group(function(){
     Route::get('/payrollhead/rfmpayrollhead', [PayrollHeadController::class, 'view_rfm_payrollhead'])->name('payrollhead.view.rfmpayrollhead');
     Route::get('/payrollhead/magispayrollhead', [PayrollHeadController::class, 'view_magis_payrollhead'])->name('payrollhead.view.magispayrollhead');
     //new code added for payrollhead routes ends here 
-
+    // efc fetch and data transfer
     Route::get('/payrollhead/efc-door-list/fetch-data', [PayrollHeadEfcListController::class, 'fetchData']);
     Route::post('/payrollofficer/payrollofficerefc/list/transfer-payroll', [PayrollHeadEfcListController::class, 'transferEfcPayroll']);
-
+    // mckenzie fetch and data transfer
     Route::get('/payrollhead/mckenzie-door-list/fetch-data', [PayrollHeadMckenzieListController::class, 'fetchData']);
+    Route::post('/payrollofficer/payrollofficermckenzie/list/transfer-payroll', [PayrollHeadMckenzieListController::class, 'transferMckenziePayroll']);
+    //
     Route::get('/payrollhead/rfm-door-list/fetch-data', [PayrollHeadRfmListController::class, 'fetchData']);
     Route::get('/payrollhead/magis-door-list/fetch-data', [PayrollHeadMagisListController::class, 'fetchData']);
 
-
-
+    // Your beauty, a rare gem that transcends the modern gaze, 
+    // shines with a uniqueness that dances in the light of day, 
+    // while your essence, like fresh milk, wafts soft and sweet, 
+    // drawing me ever closer, where our spirits might intertwine. 
+    // Within you lies a treasure, a spirit so bright that a girl like you deserves the entire galaxy’s light. 
+    // Yet, to be with me may weave a burdensome fate; I long for your joy, 
+    // yet I dread the thought of you in another’s embrace. Without me, 
+    // your galaxy fades into despair, 
+    // and being with me offers no gentle care. You tread a perilous path, 
+    // taking a leap into the unknown as it’s me against the cosmos. 
+    // But all I desire is to set your spirit free, to let you dwell in a universe meant for you, 
+    // unchained from shadows, 
+    // where your heart can dance in its own starry expanse, living a life without curses.
 
 });
     // Payroll officer routes
@@ -242,18 +350,49 @@ Route::middleware([PayrollOfficer::class])->group(function(){
     Route::get('/payrollofficer/dashboard', [PayrollOfficerController::class, 'view_dashboard'])->name('payrollofficer.view.dashboard');
     Route::get('/payrollofficer/payrollofficerlist', [PayrollOfficerController::class, 'view_payrollofficerlist'])->name('payrollofficer.view.payrollofficerlist');
     Route::get('/payrollofficer/payrolltransferlist', [PayrollOfficerController::class, 'view_payrolltransferlist'])->name('payrollofficer.view.payrolltransferlist');
-    // payroll inputs 
     Route::get('/payrollofficer/payrollofficerinput', [PayrollOfficerController::class, 'view_payrollofficerinput'])->name('payrollofficer.view.payrollofficerinput');
+    // Disbursements
+    Route::get('/payrollofficer/payrollgcash', [PayrollOfficerController::class, 'view_payrollgcash'])->name('payrollofficer.view.payrollgcash');
+    Route::get('/payrollofficer/payrollrcbc', [PayrollOfficerController::class, 'view_payrollrcbc'])->name('payrollofficer.view.payrollrcbc');
+    Route::get('/payrollofficer/payrollrcbcwallet', [PayrollOfficerController::class, 'view_payrollrcbcwallet'])->name('payrollofficer.view.payrollrcbcwallet');
+    Route::get('/payrollofficer/payrollcebuana', [PayrollOfficerController::class, 'view_payrollcebuana'])->name('payrollofficer.view.payrollcebuana');
+    Route::get('/payrollofficer/payrolleastwest', [PayrollOfficerController::class, 'view_payrolleastwest'])->name('payrollofficer.view.payrolleastwest');
+    Route::get('/payrollofficer/payrollbpi', [PayrollOfficerController::class, 'view_payrollbpi'])->name('payrollofficer.view.payrollbpi');
+    Route::get('/payrollofficer/payrollbdo', [PayrollOfficerController::class, 'view_payrollbdo'])->name('payrollofficer.view.payrollbdo');
+    Route::get('/payrollofficer/payrollbank', [PayrollOfficerController::class, 'view_payrollbank'])->name('payrollofficer.view.payrollbank');
+
+
     //payrollofficer controller
     Route::get('/payrollofficer/payrollofficerlist/list/fetch-data', [PayrollOfficerListController::class, 'fetchData']);
     Route::get('/payrollofficer/payrollofficertransferlist/list/fetch-data', [PayrollOfficerTransferListController::class, 'fetchData']);
     Route::get('/payrollofficer/payrollofficerinput/list/fetch-data', [PayrollOfficerInputListController::class, 'fetchData']);
+
     // payroll officer input save data
     Route::post('payrollofficer/payrollofficerinput/list/save-data', [PayrollOfficerInputListController::class, 'saveData'])->name('payrollofficer.payrollinput-list.save');
- 
+
+    // Disbursement Fetch Data
+    Route::get('/payrollofficer/payrollgcash/list/fetch-data', [GcashListController::class, 'fetchData']);
+    Route::get('/payrollofficer/payrollbpi/list/fetch-data', [BpiListController::class, 'fetchData']);
+    Route::get('/payrollofficer/payrollbdo/list/fetch-data', [BdoListController::class, 'fetchData']);
+    Route::get('/payrollofficer/payrollcebuana/list/fetch-data', [CebuanaListController::class, 'fetchData']);
+    Route::get('/payrollofficer/payrolleastwest/list/fetch-data', [EastWestListController::class, 'fetchData']);
+    Route::get('/payrollofficer/payrollrcbc/list/fetch-data', [RcbcListController::class, 'fetchData']);
+    Route::get('/payrollofficer/payrollrcbcwallet/list/fetch-data', [RcbcwalletListController::class, 'fetchData']);
+    Route::get('/payrollofficer/payrollbank/list/fetch-data', [BankListController::class, 'fetchData']);
+
+    // Disbursement Update Data
+    Route::post('/payrollofficer/payrollgcash/list/update-account', [GcashListController::class, 'getUpdateData'])->name('payrollofficer.gcash-list.update-account');
+    Route::post('/payrollofficer/payrollbpi/list/update-account', [BpiListController::class, 'getUpdateData'])->name('payrollofficer.bpi-list.update-account');
+    Route::post('/payrollofficer/payrollbdo/list/update-account', [BdoListController::class, 'getUpdateData'])->name('payrollofficer.bdo-list.update-account');
+    Route::post('/payrollofficer/payrollcebuana/list/update-account', [CebuanaListController::class, 'getUpdateData'])->name('payrollofficer.cebuana-list.update-account');
+    Route::post('/payrollofficer/payrolleastwest/list/update-account', [EastwestListController::class, 'getUpdateData'])->name('payrollofficer.eastwest-list.update-account');
+    Route::post('/payrollofficer/payrollrcbc/list/update-account', [RcbcListController::class, 'getUpdateData'])->name('payrollofficer.rcbc-list.update-account');
+    Route::post('/payrollofficer/payrollrcbcwallet/list/update-account', [RcbcwalletListController::class, 'getUpdateData'])->name('payrollofficer.rcbcwallet-list.update-account');
+    Route::post('/payrollofficer/payrollbank/list/update-account', [BankListController::class, 'getUpdateData'])->name('payrollofficer.bank-list.update-account');
 
 
 });
+
 //* Account Supervisor
 Route::middleware([AccountSupervisor::class])->group(function(){
     Route::get('/accountsupervisor/dashboard', [AccountSupervisorController::class, 'view_dashboard'])->name('accountsupervisor.view.dashboard');
@@ -268,6 +407,9 @@ Route::middleware([AccountSupervisor::class])->group(function(){
     Route::post('/accountsupervisor/manning/list/update-account', [AccountSupervisorManningListController::class, 'updateAccount'])->name('accountsupervisor.manning-list.update-account');
     Route::get('/accountsupervisor/manning/list/retrieve-update/{id}', [AccountSupervisorManningListController::class, 'getUpdateData'])->name('accountsupervisor.manning-list.retrieve-update');
     Route::get('/accountsupervisor/maning/list/retrieve-view/{id}', [AccountSupervisorManningListController::class, 'getViewData'])->name('accountsupervisor.manning-list.retrieve-view');
+    // this is for date picker
+    Route::get('/records', [RecordController::class, 'index'])->name('records.index');
+    // this is for date picker
 
     //Merchandiser fuctions
     Route::get('/accountsupervisor/merchandiser-list/fetch-data', [AccountSupervisorMerchandiserListController::class, 'fetchData']);
@@ -285,7 +427,8 @@ Route::middleware([AccountSupervisor::class])->group(function(){
     Route::get('/accountsupervisor/door/list/retrieve-merhandiser-door/{id}', [AccountSupervisorDoorListController::class, 'getViewMerchandiserManning'])->name('accountsupervisor.merchandiser-door-list');
     Route::get('/accountsupervisor/door-list/fetch-merchandiser-data', [AccountSupervisorDoorListController::class, 'fetchMerchandiserData']);
     //for circle-plus Button
-    Route::post('/accountsupervisor/door-list/save-merchandiser-data', [AccountSupervisorDoorListController::class, 'saveMerchandiserData']);
+    // Route::post('/accountsupervisor/door-list/save-merchandiser-data', [AccountSupervisorDoorListController::class, 'saveMerchandiserData']);
+   
     
     //new code added
     // Route::get('accountsupervisor///door-list/save-merchandiser-data', [AccountSupervisorDoorListController::class, 'saveMerchandiserData']);
@@ -302,6 +445,8 @@ Route::middleware([AccountSupervisor::class])->group(function(){
 
 
 }); 
+//test route
+Route::post('/accountsupervisor/door-list/save-merchandiser-data', [AccountSupervisorDoorListController::class, 'saveMerchandisersData']);
 
 Route::middleware([Treasury::class])->group(function(){
      Route::get('/treasury/dashboard', [TreasuryController::class, 'view_dashboard'])->name('treasury.view.dashboard');
@@ -316,6 +461,11 @@ Route::middleware([Treasury::class])->group(function(){
      Route::post('/treasury/rate-card/list/save-ratecard/', [TreasuryRateCardListController::class, 'saveRateCard'])->name('treasury.rate-card-list.save-ratecard');
     
 });
+
+// In a body of twenty-three, I dwell, burdened by the woes of thirty, 
+// yearning for the vibrant simplicity of seventeen. My spirit, still a carefree fourteen, 
+// longs to recapture the laughter and innocence of youth, 
+// seeking to turn back the clock and bask once more in the golden glow of those cherished days.
 
 
 Route::middleware([Merchandiser::class])->group(function(){

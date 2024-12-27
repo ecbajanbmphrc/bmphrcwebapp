@@ -24,6 +24,16 @@
             .button-image2{
         cursor: pointer;
             }
+
+            /* .btn{
+                background-color: #032b23;
+                color: #fff;
+                
+            } */
+            /* .btn-hover{
+                background-color: #fff;
+                color: #032b23;
+            } */
         </style>
 
     </head>
@@ -36,72 +46,36 @@
                 <a href="#" class="sidebar-logo text-uppercase fw-bold text-decoration-none text-light fs-4">Account Supervisor</a>
                 <i class="sidebar-toggle ri-arrow-left-circle-line ms-auto fs-5 d-none d-md-block"></i>
             </div>
-            <ul class="sidebar-menu p-3 m-0 mb-0 flex-glow-1">
+            <ul class="sidebar-menu p-3 m-0 mb-0">
                 <li class="sidebar-menu-item ">
                     <a href="{{ route('accountsupervisor.view.dashboard') }}">
                         <i class="ri-dashboard-line sidebar-menu-item-icon"></i>Dashboard
                     </a>
                 </li>
-                <li class="sidebar-menu-item">
-                    <a href="{{ route('accountsupervisor.view.door') }}">
-                        <i class="ri-store-line sidebar-menu-item-icon"></i>Store
-                    </a>
-                </li>
-                <li class="sidebar-menu-item ">
+            </ul>    
+            <ul class="sidebar-menu p-3 m-0 mb-0">
+                <li class="sidebar-menu-item mt-2">
                     <a href="{{ route('accountsupervisor.view.coordinator') }}">
                         <i class="ri-account-pin-circle-line sidebar-menu-item-icon"></i>Coordinator
                     </a>
                 </li>
-                <li class="sidebar-menu-item active">
-                    <a href="{{ route('accountsupervisor.view.merchandiser') }}">
-                        <i class="ri-account-pin-box-line sidebar-menu-item-icon"></i>Merchandiser
-                    </a>
-                </li>
-                <li class="sidebar-menu-item">
+                <li class="sidebar-menu-item  mt-2">
                     <a href="{{ route('accountsupervisor.view.manning') }}">
                         <i class="ri-file-user-line sidebar-menu-item-icon"></i>Manning
                     </a>
                 </li>
-                <li class="sidebar-menu-item has-dropdown">
-                    <a href="#">
-                        <i class="ri-pages-line sidebar-menu-item-icon"></i>Reserve Page
-                        <i class="ri-arrow-down-s-line sidebar-menu-item-accordion ms-auto"></i>
+                <li class="sidebar-menu-item mt-2 active">
+                    <a href="{{ route('accountsupervisor.view.merchandiser') }}">
+                        <i class="ri-account-pin-box-line sidebar-menu-item-icon"></i>Merchandiser
                     </a>
-                    <ul class="sidebar-dropdown-menu">
-                        <li class="sidebar-dropdown-menu-item">
-                            <a href="#">User Profile</a>
-                        </li>
-                        <li class="sidebar-dropdown-menu-item has-dropdown">
-                            <a href="#">Blog<i class="ri-arrow-down-s-line sidebar-menu-item-accordion ms-auto"></i>
-                            </a>
-                            <ul class="sidebar-dropdown-menu">
-                                <li class="sidebar-dropdown-menu-item">
-                                    <a href="#">Home</a>
-                                </li>
-                                <li class="sidebar-dropdown-menu-item">
-                                    <a href="#">Post</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
                 </li>
-                <li class="sidebar-menu-item has-dropdown">
-                    <a href="#">
-                        <i class="bi bi-people me-3" style="font-size: 18px; margin-left: 3px;"></i>
-                        Accounts
-                        <i class="ri-arrow-down-s-line sidebar-menu-item-accordion ms-auto"></i>
+                <li class="sidebar-menu-item mt-2">
+                    <a href="{{ route('accountsupervisor.view.door') }}">
+                        <i class="ri-store-line sidebar-menu-item-icon"></i>Store
                     </a>
-                    <ul class="sidebar-dropdown-menu">
-                        <li class="sidebar-dropdown-menu-item">
-                            <a href="#">Payroll Officer</a>
-                        </li>
-                        <li class="sidebar-dropdown-menu-item">
-                            <a href="#">Account Sup</a>
-                        </li>
-                    </ul>
                 </li>
-                <li class="sidebar-menu-item mt-auto">
-                    <a href="{{ route('logout') }}" style="margin-top: 220px;">
+                <li class="sidebar-menu-item  mt-2">
+                    <a href="{{ route('logout') }}">
                         <i class="ri-logout-box-line sidebar-menu-item-icon"></i>
                         Logout
                     </a>
@@ -119,7 +93,7 @@
                 <!-- start: Navbar -->
                 <nav class="px-3 py-2 bg-white rounded shadow-sm">
                     <i class="ri-menu-line sidebar-toggle me-3 d-block d-md-none"></i>
-                    <h5 class="fw-bold mb-0 me-auto">MERCHANDISER</h5>
+                    <h5 class="fw-bold mb-0 me-auto">Merchandiser</h5>
                     <div class="dropdown me-3 d-none d-sm-block">
                         <div class="cursor-pointer dropdown-toggle navbar-link" data-bs-toggle="dropdown"
                             aria-expanded="false">
@@ -159,28 +133,36 @@
 
             <div style="height:2vh;"> </div>
 
-                <div class="card">
-                <div class="card-header">
 
-                <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#createMerchandiserModal" id="hitme" name="hitme">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
-                        <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0"/>
-                    </svg>
-                ADD</button>
-                
+            <div class="card">
+                <div class="card-header" >
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5 class="mt-2">Merchandiser Lists</h5>
+                        </div>
+                        <div class="col-md-6 text-end">
+                            <button  type="button" class="btn btn" data-toggle="modal" data-target="#createMerchandiserModal" id="hitme" name="hitme" style="background: #032b23; color: #fff;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-plus-square-fill mb-1" viewBox="0 0 16 16">
+                                    <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0"/>
+                                </svg> ADD
+                            </button>
+                        </div>
+                    </div>
                 </div>
-
-                    
                 <div class="card-body">
-                <h5 class="card-title">Merchandiser List</h5>
-                <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
-                    <table id="merchandiser" class="table table-hover" style="width:100%">
+                    <table id="merchandiser" class="table table-bordered" style="width:100%">
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th style="display:none">ID</th>
+                                <th style="width: 15px;">#</th>
+                                <th>ID</th>
                                 <th>Full Name</th>
-                                <th>Email</th>
+                                <!-- <th>Email</th>
+                                <th>Contact No.</th> -->
+                                <th>Region</th>
+                                <th>Rate Type</th>
+                                <th>Type of Deployment</th>
+                                <th>Employee Status</th>
+                                <th>Remaining Days</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -199,176 +181,195 @@
 
         <!-- edit merchandiser modal -->
     <div class="modal fade" id="editMerchandiserModal" name ="editMerchandiserModal" tabindex="-1" role="dialog"  aria-labelledby="editMerchandiserModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
-    <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="editMerchandiserModalLabel">Edit Merchandiser Details</h5>
-            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button> -->
-        </div>
-        <div class="modal-body">
-            <form action="{{route('accountsupervisor.merchandiser-list.update-account')}}" method="POST">
-        @csrf
-        @if (session('update-failed'))
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editMerchandiserModalLabel">Edit Merchandiser Details</h5>
+                    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button> -->
+                </div>
+                <div class="modal-body">
+                    <form action="{{route('accountsupervisor.merchandiser-list.update-account')}}" method="POST">
+                @csrf
+                @if (session('update-failed'))
 
-        <div style="background-color:rgba(255,255,255,0)" class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @endforeach
-            </ul>
-        </div>
-
-        @endif
+                <div style="background-color:rgba(255,255,255,0)" class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                    </ul>
+                </div>
+                @endif
 
         <div class="row">
-            
             <div class="form-group col-md-4">
-                <label for="e_first_name" class="col-form-label">First Name: *</label>
+                <label for="e_first_name" class="col-form-label">First Name:</label>
                 <input type="text" class="form-control" id="e_first_name" name="e_first_name" value="{{ old('e_first_name') }}" required>
             </div>    
-            
             <div class="form-group col-md-4">
                 <label for="e_middle_name" class="col-form-label">Middle Name:</label>
                 <input type="text" class="form-control" id="e_middle_name" name="e_middle_name" value="{{ old('e_middle_name') }}">
             </div>
-
             <div class="form-group col-md-4">
-                <label for="e_last_name" class="col-form-label">Last Name: *</label>
+                <label for="e_last_name" class="col-form-label">Last Name:</label>
                 <input type="text" class="form-control" id="e_last_name" name="e_last_name" value="{{ old('e_last_name') }}" required>
             </div>
-
         </div> 
 
         <div class="row">
-
             <div class="form-group col-md-4">
-                <label for="e_birthdate" class="col-form-label">Birthdate: *</label>
-                <input id="e_birthdate" name="e_birthdate" class="form-control" />
+                <label for="e_birthdate" class="col-form-label">Birthdate:</label>
+                <input id="e_birthdate" name="e_birthdate" class="form-control" value="{{ old('e_birthday') }}"/> 
             </div>
-
             <div class="form-group col-md-4">
-                <label for="e_first_name" class="col-form-label">Age: *</label>
-                <input type="text" class="form-control" id="e_age" name="e_age" readonly>
+                <label for="e_first_name" class="col-form-label">Age:</label>
+                <input type="text" class="form-control" id="e_age" name="e_age" value="{{ old('e_age') }}" readonly>
             </div>
-
             <div class="form-group col-md-4">
-            
-                <label for="e_gender" class="col-form-label">Gender: *</label>
-                    <!-- <div style="height:10px;"></div> -->
-                    <br>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="e_gender" id="e_male" value="Male">
-                        <label class="form-check-label" for="e_male">Male</label>
-                    </div>
-        
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="e_gender" id="e_female" value="Female">
-                        <label class="form-check-label" for="e_female">Female</label>
-                    </div>
-
+                <label for="e_gender" class="col-form-label">Gender:</label>
+                <br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="e_gender" id="e_male" value="Male">
+                    <label class="form-check-label" for="e_male">Male</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="e_gender" id="e_female" value="Female">
+                    <label class="form-check-label" for="e_female">Female</label>
+                </div>
             </div>
-
         </div>
-        
-        <div class="row">
 
+        <div class="row">
             <div class="form-group col-md-4">
-                <label for="e_address" class="col-form-label">Address: *</label>
+                <label for="e_address" class="col-form-label">Address:</label>
                 <input type="text" class="form-control" id="e_address" name="e_address" value="{{ old('e_address') }}" required>
             </div>
-
             <div class="form-group col-md-4">
-                <label for="e_region" class="col-form-label">Region: *</label>
+                <label for="e_region" class="col-form-label">Region:</label>
                 <select type="text" class="form-select" id="e_region" name = "e_region" value="{{ old('e_region') }}" required>
                 <option  value="">---Select Region---</option>
-                    <option  value="Region 1" @if(old('c_region') == "Region 1") {{'selected'}} @endif>Region 1 (ILOCOS REGION)</option>
-                    <option  value="Region 2" @if(old('c_region') == "Region 2") {{'selected'}} @endif>Region 2 (CAGAYAN VALLEY)</option>
-                    <option  value="Region 3" @if(old('c_region') == "Region 3") {{'selected'}} @endif>Region 3 (CENTRAL LUZON)</option> 
-                    <option  value="Region 4A" @if(old('c_region') == "Region 4A") {{'selected'}} @endif>Region 4A (CALABARZON)</option>
-                    <option  value="Region 4B" @if(old('c_region') == "Region 4B") {{'selected'}} @endif>Region 4B (MIMAROPA)</option>
-                    <option  value="Region 5" @if(old('c_region') == "Region 5") {{'selected'}} @endif>Region 5 (BICOL REGION)</option>
-                    <option  value="Region 6" @if(old('c_region') == "Region 6") {{'selected'}} @endif>Region 6 (WESTERN VISAYAS)</option>
-                    <option  value="Region 7" @if(old('c_region') == "Region 7") {{'selected'}} @endif>Region 7 (CENTRAL VISAYAS)</option>
-                    <option  value="Region 7B" @if(old('c_region') == "Region 7B") {{'selected'}} @endif>Region 7B (CENTRAL VISAYAS)</option>
-                    <option  value="Region 8" @if(old('c_region') == "Region 8") {{'selected'}} @endif>Region 8 (EASTERN VISAYAS)</option>
-                    <option  value="Region 9" @if(old('c_region') == "Region 9") {{'selected'}} @endif>Region 9 (ZAMBOANGA PENINSULA)</option>
-                    <option  value="Region 10" @if(old('c_region') == "Region 10") {{'selected'}} @endif>Region 10 (NORTHERN MINDANAO)</option>
-                    <option  value="Region 11" @if(old('c_region') == "Region 11") {{'selected'}} @endif>Region 11 (DAVAO REGION)</option>
-                    <option  value="Region 12" @if(old('c_region') == "Region 12") {{'selected'}} @endif>Region 12 (SOCCSKSARGEN)</option>
-                    <option  value="Region 13" @if(old('c_region') == "Region 13") {{'selected'}} @endif>Region 13 (CARAGA)</option>
-                    <option  value="NCR" @if(old('c_region') == "NCR") {{'selected'}} @endif>NCR (NATIONAL CAPITAL REGION)</option>
-                    <option  value="CAR" @if(old('c_region') == "CAR") {{'selected'}} @endif>CAR (CORDILLERA ADMIN REGION)</option>
-                    <option  value="BARMM" @if(old('c_region') == "BARMM") {{'selected'}} @endif>BARMM (BANGSAMORO AUTONOMOUS REGION IN MUSLIM MINDANAO)</option>
+                    <option  value="Region 1" @if(old('e_region') == "Region 1") {{'selected'}} @endif>Region 1 (ILOCOS REGION)</option>
+                    <option  value="Region 2" @if(old('e_region') == "Region 2") {{'selected'}} @endif>Region 2 (CAGAYAN VALLEY)</option>
+                    <option  value="Region 3" @if(old('e_region') == "Region 3") {{'selected'}} @endif>Region 3 (CENTRAL LUZON)</option> 
+                    <option  value="Region 4A" @if(old('e_region') == "Region 4A") {{'selected'}} @endif>Region 4A (CALABARZON)</option>
+                    <option  value="Region 4B" @if(old('e_region') == "Region 4B") {{'selected'}} @endif>Region 4B (MIMAROPA)</option>
+                    <option  value="Region 5" @if(old('e_region') == "Region 5") {{'selected'}} @endif>Region 5 (BICOL REGION)</option>
+                    <option  value="Region 6" @if(old('e_region') == "Region 6") {{'selected'}} @endif>Region 6 (WESTERN VISAYAS)</option>
+                    <option  value="Region 7" @if(old('e_region') == "Region 7") {{'selected'}} @endif>Region 7 (CENTRAL VISAYAS)</option>
+                    <option  value="Region 7B" @if(old('e_region') == "Region 7B") {{'selected'}} @endif>Region 7B (CENTRAL VISAYAS)</option>
+                    <option  value="Region 8" @if(old('e_region') == "Region 8") {{'selected'}} @endif>Region 8 (EASTERN VISAYAS)</option>
+                    <option  value="Region 9" @if(old('e_region') == "Region 9") {{'selected'}} @endif>Region 9 (ZAMBOANGA PENINSULA)</option>
+                    <option  value="Region 10" @if(old('e_region') == "Region 10") {{'selected'}} @endif>Region 10 (NORTHERN MINDANAO)</option>
+                    <option  value="Region 11" @if(old('e_region') == "Region 11") {{'selected'}} @endif>Region 11 (DAVAO REGION)</option>
+                    <option  value="Region 12" @if(old('e_region') == "Region 12") {{'selected'}} @endif>Region 12 (SOCCSKSARGEN)</option>
+                    <option  value="Region 13" @if(old('e_region') == "Region 13") {{'selected'}} @endif>Region 13 (CARAGA)</option>
+                    <option  value="NCR" @if(old('e_region') == "NCR") {{'selected'}} @endif>NCR (NATIONAL CAPITAL REGION)</option>
+                    <option  value="CAR" @if(old('e_region') == "CAR") {{'selected'}} @endif>CAR (CORDILLERA ADMIN REGION)</option>
+                    <option  value="BARMM" @if(old('e_region') == "BARMM") {{'selected'}} @endif>BARMM (BANGSAMORO AUTONOMOUS REGION IN MUSLIM MINDANAO)</option>
                 </select>
             </div>
-
             <div class="form-group col-md-4">
-                <label for="e_number" class="col-form-label">Contact Number: *</label>
+                <label for="e_number" class="col-form-label">Contact Number:</label>
                 <input type="text" class="form-control" id="e_number" name="e_number" value="{{ old('e_number') }}"  oninput='setCustomValidity(value.length < 11 ? "Number must be at least 11 digits long." : "")' onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="11" value="{{ old('number') }}" required>
             </div>
-
         </div>
 
         <div class="row"> 
-
             <div class="form-group col-md-4">
-                <label for="e_email" class="col-form-label">Email Address: *</label>
+                <label for="e_email" class="col-form-label">Email Address:</label>
                 <input type="email" class="form-control" id="e_email" name = "e_email" value="{{ old('e_email') }}" required>
             </div>
-        
             <div class="form-group col-md-4">
-                <label for="e_date_started" class="col-form-label">Date Started: *</label>
+                <label for="e_date_started" class="col-form-label">Date Started:</label>
                 <input id="e_date_started" name="e_date_started" class="form-control" />
             </div>
-
             <div class="form-group col-md-4">
-                <label for="e_end_of_contract" class="col-form-label">End of Contract: *</label>
+                <label for="e_end_of_contract" class="col-form-label">End of Contract:</label>
                 <input id="e_end_of_contract" name="e_end_of_contract" class="form-control" />
             </div>
-
         </div>
 
-
         <div class="row">
-
-            <div class="form-group col-md-3">
+            <div class="form-group col-md-4">
                 <label for="e_total_days" class="col-form-label">Total Days: </label>
                 <input type="text" class="form-control" id="e_total_days" name="e_total_days" readonly>
             </div>
-
-            <div class="form-group col-md-3">
+            <div class="form-group col-md-4">
                 <label for="e_remaining_days" class="col-form-label">Remaining Days: </label>
                 <input type="text" class="form-control" id="e_remaining_days" name="e_remaining_days" readonly>
             </div>
-
-            <div class="form-group col-md-3">
-                <label for="e_remarks" class="col-form-label">Type of Contract: *</label>
-                <select type="text" class="form-select" id="e_remarks" name = "e_remarks" value="{{ old('e_remarks') }}" required>
-                <option  value="">---Select Remarks---</option>
-                    <option  value="Fix-term" @if(old('c_remarks') == "fix-term") {{'selected'}} @endif>Fix-term</option>
-                    <option  value="Probasionary" @if(old('c_remarks') == "Probasionary") {{'selected'}} @endif>Probationary</option>
+            <div class="form-group col-md-4">
+                <label for="e_remarks" class="col-form-label">Type of Contract:</label>
+                <select class="form-select" id="e_remarks" name="e_remarks" required>
+                    <option value="">---Select Remarks---</option>
+                    <option  value="New Diser" @if(old('c_remarks') == "new diser") {{'selected'}} @endif>New Diser</option>
+                    <option  value="Probationary" @if(old('c_remarks') == "Probationary") {{'selected'}} @endif>Probationary</option>
                     <option  value="Regular" @if(old('c_remarks') == "Regular") {{'selected'}} @endif>Regular</option>
+                    <option  value="Reliever" @if(old('c_remarks') == "Reliever") {{'selected'}} @endif>Reliever</option>
                 </select>
             </div>
+        </div>
 
-            <div class="form-group col-md-3">
-                <label for="e_status" class="col-form-label">Status: *</label>
-                <select class="form-select" id="e_status" name="e_status">
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label for="e_rate_type" class="col-form-label">Rate Type:</label>
+                <select class="form-select" id="e_rate_type" name="e_rate_type" onchange="getERate(this)" required>
+                        <option  value="" >---Select Rate---</option>
+                        @foreach ($rates as $region => $value)
+                        <option value="{{ $value }}">{{ $value }}</option>
+                            @endforeach
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label for="e_total_days" class="col-form-label">Rate (old rate): </label>
+                <input type="text" class="form-control" id="e_old_rate" name="e_old_rate" readonly>
+            </div>
+            <div class="col-md-2">
+                <label for="e_total_days" class="col-form-label">Rate (new rate): </label>
+                <input type="text" class="form-control" id="e_new_rate" name="e_new_rate" readonly>
+            </div>
+            <div class="form-group col-md-4" required>
+                <label for="e_type_of_deployment" class="col-form-label">Type of Deployment:</label>
+                <br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="e_type_of_deployment" id="e_type_stationary" 
+                        value="Stationary" @if(old('e_type_of_deployment') == "Stationary") checked @endif>
+                    <label class="form-check-label" for="e_type_stationary">Stationary</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="e_type_of_deployment" id="e_type_roving" 
+                        value="Roving" @if(old('e_type_of_deployment') == "Roving") checked @endif>
+                    <label class="form-check-label" for="e_type_roving">Roving</label>
+                </div> 
+            </div>
+            
+            <div class="form-group col-md-4">
+                <label for="e_status" class="col-form-label">Status:</label>
+                <select class="form-select" id="e_status" name="e_status" value="{{ old('e_status') }}">
                 <option  value="">---Select Status---</option>
                     <option value="1" @if(old('e_status') == "active") {{'selected'}} @endif>Active</option>
                     <option value="0" @if(old('e_status') == "inactive") {{'selected'}} @endif>Inactive</option>
                 </select>
             </div> 
-
         </div>
-            
 
-            
+        <!-- Update on Manning and Payroll Issues
+
+        Hello Ma'am,
+        Good day!
+
+        Today, I managed to filter the Manning data to identify who is active during each period. 
+        Regarding the issue of disappearing data in the payroll list after editing in the account supervisor section, 
+        I am still working to resolve this issue.
+
+        Best regards,
+        Eugene -->
 
         </div>
         <input type="hidden" id="selectedId" name="selectedId" >
+
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="ehide-modal">Close</button>
             <button type="submit" class="btn btn-primary">Update</button>
@@ -379,9 +380,9 @@
     </div>
     </div>
 
-
     <!-- create merchandiser modal -->
-    <div class="modal fade" id="createMerchandiserModal" name = "createMerchandiserModal" tabindex="-1" role="dialog"  aria-labelledby="createMerchandiserModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal fade" id="createMerchandiserModal" name = "createMerchandiserModal" tabindex="-1" role="dialog"  
+    aria-labelledby="createMerchandiserModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
         <div class="modal-header">
@@ -391,7 +392,8 @@
             </button> -->
         </div>
         <div class="modal-body">
-            <form action="{{route('accountsupervisor.merchandiser-list.register')}}" method="POST">
+            <!-- <form action="{{route('accountsupervisor.merchandiser-list.register')}}" method="POST"> -->
+                <form id="merchandiserForm">
         @csrf
         @if (session('create-failed'))
 
@@ -408,7 +410,7 @@
         <div class="row">
             
             <div class="form-group col-md-4">
-                <label for="c_first_name" class="col-form-label">First Name: *</label>
+                <label for="c_first_name" class="col-form-label">First Name: </label>
                 <input type="text" class="form-control" id="c_first_name" name="c_first_name" value="{{ old('c_first_name') }}" required>
             </div>        
             
@@ -418,7 +420,7 @@
             </div>
 
             <div class="form-group col-md-4">
-                <label for="c_last_name" class="col-form-label">Last Name: *</label>
+                <label for="c_last_name" class="col-form-label">Last Name: </label>
                 <input type="text" class="form-control" id="c_last_name" name="c_last_name" value="{{ old('c_last_name') }}" required>
             </div>
 
@@ -427,18 +429,18 @@
         <div class="row">
 
             <div class="form-group col-md-4">
-                <label for="c_birthdate" class="col-form-label">Birthdate: *</label>
+                <label for="c_birthdate" class="col-form-label">Birthdate: </label>
                 <input id="c_birthdate" name="c_birthdate" class="form-control" />
             </div>
 
             <div class="form-group col-md-4">
-                <label for="c_first_name" class="col-form-label">Age: *</label>
+                <label for="c_first_name" class="col-form-label">Age: </label>
                 <input type="text" class="form-control" id="c_age" name="c_age" readonly>
             </div>
 
             <div class="form-group col-md-4">
             
-                <label for="c_gender" class="col-form-label">Gender: *</label>
+                <label for="c_gender" class="col-form-label">Gender: </label>
                     <!-- <div style="height:10px;"></div> -->
                     <br>
                     <div class="form-check form-check-inline">
@@ -456,14 +458,13 @@
         </div>
 
         <div class="row">
-
             <div class="form-group col-md-4">
-                <label for="c_address" class="col-form-label">Address: *</label>
+                <label for="c_address" class="col-form-label">Address: </label>
                 <input type="text" class="form-control" id="c_address" name="c_address" value="{{ old('c_address') }}" required>
             </div> 
 
             <div class="form-group col-md-4">
-                <label for="c_region" class="col-form-label">Region: *</label>
+                <label for="c_region" class="col-form-label">Region: </label>
                 <select type="text" class="form-select" id="c_region" name = "c_region" value="{{ old('c_region') }}" required>
                 <option  value="">---Select Region---</option>
                     <option  value="Region 1" @if(old('c_region') == "Region 1") {{'selected'}} @endif>Region 1 (ILOCOS REGION)</option>
@@ -488,59 +489,110 @@
             </div>  
 
             <div class="form-group col-md-4">
-                <label for="c_number" class="col-form-label">Contact Number: *</label>
+                <label for="c_number" class="col-form-label">Contact Number: </label>
                 <input type="text" class="form-control" id="c_number" name="c_number" value="{{ old('c_number') }}"  oninput='setCustomValidity(value.length < 11 ? "Number must be at least 11 digits long." : "")' onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="11" value="{{ old('number') }}" required>
             </div>
-        
         </div>
         
         <div class="row">
-
             <div class="form-group col-md-4">
-                <label for="c_email" class="col-form-label">Email Address: *</label>
+                <label for="c_email" class="col-form-label">Email Address: </label>
                 <input type="email" class="form-control" id="c_email" name = "c_email" value="{{ old('c_email') }}" required>
             </div>
 
             <div class="form-group col-md-4">
-                <label for="c_date_started" class="col-form-label">Date Started: *</label>
+                <label for="c_date_started" class="col-form-label">Date Started: </label>
                 <input id="c_date_started" name="c_date_started" class="form-control"/>
             </div>
 
             <div class="form-group col-md-4">
-                <label for="c_end_of_contract" class="col-form-label">End of Contract: *</label>
+                <label for="c_end_of_contract" class="col-form-label">End of Contract: </label>
                 <input id="c_end_of_contract" name="c_end_of_contract" class="form-control"/>
             </div>
-
         </div>
 
-        <div class="row">
-            
+        <div class="row">          
             <div class="form-group col-md-4">   
                 <label for="c_total_days" class="col-form-label">Total Days: </label>
                 <input type="text" class="form-control" id="c_total_days" name="c_total_days" readonly>
             </div>
-
             <div class="form-group col-md-4">
                 <label for="c_remaining_days" class="col-form-label">Remaining days: </label>
                 <input type="text" class="form-control" id="c_remaining_days" name="c_remaining_days" readonly>
+            </div>    
+            <div class="form-group col-md-4">
+                <label for="c_type_of_deployment" class="col-form-label" value="">Type of Deployment:</label>
+                <br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="c_type_of_deployment" id="c_type_stationary" value="Stationary" checked>
+                    <label class="form-check-label" for="c_type_stationary">Stationary</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="c_type_of_deployment" id="c_type_roving" value="Roving">
+                    <label class="form-check-label" for="c_type_roving">Roving</label>
+                </div> 
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label for="" class="col-form-label">Rate Type:</label>
+                <!-- <select type="text" class="form-select" id="c_rate_type" name="c_rate_type" value="" required>
+                <option  value="c_rate_type">---Select Rate Type---</option>
+                    <option  value="Special Rates (Fix Rate)" @if(old('c_rate_type') == "Special Rates (Fix Rate)") {{'selected'}} @endif>Special Rates (Fix Rate)</option>
+                    <option  value="Special Rates (LUZ)" @if(old('c_rate_type') == "Special Rates (LUZ)") {{'selected'}} @endif>Special Rates (LUZ)</option>
+                    <option  value="Special Rates (VIS & MIN)" @if(old('c_rate_type') == "Special Rates (VIS & MIN)") {{'selected'}} @endif>Special Rates (VIS & MIN)</option>    
+                    <option  value="Region 1 (ILOCOS REGION)" @if(old('c_rate_type') == "Region 1") {{'selected'}} @endif>Region 1 (ILOCOS REGION)</option>
+                    <option  value="Region 2 (CAGAYAN VALLEY)" @if(old('c_rate_type') == "Region 2") {{'selected'}} @endif>Region 2 (CAGAYAN VALLEY)</option>
+                    <option  value="Region 3 (CENTRAL LUZON)" @if(old('c_rate_type') == "Region 3") {{'selected'}} @endif>Region 3 (CENTRAL LUZON)</option> 
+                    <option  value="Region 4A (CALABARZON)" @if(old('c_rate_type') == "Region 4A") {{'selected'}} @endif>Region 4A (CALABARZON)</option>
+                    <option  value="Region 4B (MIMAROPA)" @if(old('c_rate_type') == "Region 4B") {{'selected'}} @endif>Region 4B (MIMAROPA)</option>
+                    <option  value="Region 5 (BICOL REGION)" @if(old('c_rate_type') == "Region 5") {{'selected'}} @endif>Region 5 (BICOL REGION)</option>
+                    <option  value="Region 6 (WESTERN VISAYAS)" @if(old('c_rate_type') == "Region 6") {{'selected'}} @endif>Region 6 (WESTERN VISAYAS)</option>
+                    <option  value="Region 7 (CENTRAL VISAYAS)" @if(old('c_rate_type') == "Region 7") {{'selected'}} @endif>Region 7 (CENTRAL VISAYAS)</option>
+                    <option  value="Region 7B (CENTRAL VISAYAS)" @if(old('c_rate_type') == "Region 7B") {{'selected'}} @endif>Region 7B (CENTRAL VISAYAS)</option>
+                    <option  value="Region 8 (EASTERN VISAYAS)" @if(old('c_rate_type') == "Region 8") {{'selected'}} @endif>Region 8 (EASTERN VISAYAS)</option>
+                    <option  value="Region 9 (ZAMBOANGA PENINSULA)" @if(old('c_rate_type') == "Region 9") {{'selected'}} @endif>Region 9 (ZAMBOANGA PENINSULA)</option>
+                    <option  value="Region 10 (NORTHERN MINDANAO)" @if(old('c_rate_type') == "Region 10") {{'selected'}} @endif>Region 10 (NORTHERN MINDANAO)</option>
+                    <option  value="Region 11 (DAVAO REGION)" @if(old('c_rate_type') == "Region 11") {{'selected'}} @endif>Region 11 (DAVAO REGION)</option>
+                    <option  value="Region 12 (SOCCSKSARGEN)" @if(old('c_rate_type') == "Region 12") {{'selected'}} @endif>Region 12 (SOCCSKSARGEN)</option>
+                    <option  value="Region 13 (CARAGA)" @if(old('c_rate_type') == "Region 13") {{'selected'}} @endif>Region 13 (CARAGA)</option>
+                    <option  value="NCR (NATIONAL CAPITAL REGION)" @if(old('c_rate_type') == "NCR") {{'selected'}} @endif>NCR (NATIONAL CAPITAL REGION)</option>
+                    <option  value="CAR (CORDILLERA ADMIN REGION)" @if(old('c_rate_type') == "CAR") {{'selected'}} @endif>CAR (CORDILLERA ADMIN REGION)</option>
+                    <option  value="BARMM A (BANGSAMORO AUTONOMOUS REGION IN MUSLIM MINDANAO)" @if(old('c_rate_type') == "BARMM") {{'selected'}} @endif>BARMM A (BANGSAMORO AUTONOMOUS REGION IN MUSLIM MINDANAO)</option>
+                    <option  value="BARMM B COTABATO (BANGSAMORO AUTONOMOUS REGION IN MUSLIM MINDANAO)" @if(old('c_rate_type') == "BARMM") {{'selected'}} @endif>BARMM B COTABATO (BANGSAMORO AUTONOMOUS REGION IN MUSLIM MINDANAO)</option>
+                </select> -->
+                <select class="form-select" id="c_rate_type" name="c_rate_type" value="" onchange="getCRate(this)" required>
+                    <option  value="" >---Select Rate---</option>
+                    @foreach ($rates as $region => $value)
+                    <option value="{{ $value }}">{{ $value }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="col-md-2">
+                <label for="c_total_days" class="col-form-label">Rate (old rate): </label>
+                <input type="text" class="form-control" id="c_old_rate" name="c_old_rate" readonly>
+            </div>
+            <div class="col-md-2">
+                <label for="c_total_days" class="col-form-label">Rate (new rate): </label>
+                <input type="text" class="form-control" id="c_new_rate" name="c_new_rate" readonly>
             </div>
 
             <div class="form-group col-md-4">
-                <label for="c_remarks" class="col-form-label">Type of Contract: *</label>
+                <label for="c_remarks" class="col-form-label">Type of Contract: </label>
                 <select type="text" class="form-select" id="c_remarks" name = "c_remarks" value="{{ old('c_remarks') }}" required>
                 <option  value="">---Select Remarks---</option>
-                    <option  value="Fix-term" @if(old('c_remarks') == "fix-term") {{'selected'}} @endif>Fix-term</option>
-                    <option  value="Probasionary" @if(old('c_remarks') == "Probasionary") {{'selected'}} @endif>Probationary</option>
+                    <option  value="New Diser" @if(old('c_remarks') == "new diser") {{'selected'}} @endif>New Diser</option>
+                    <option  value="Probationary" @if(old('c_remarks') == "Probationary") {{'selected'}} @endif>Probationary</option>
                     <option  value="Regular" @if(old('c_remarks') == "Regular") {{'selected'}} @endif>Regular</option>
+                    <option  value="Reliever" @if(old('c_remarks') == "Reliever") {{'selected'}} @endif>Reliever</option>
                 </select>
             </div>  
+        </div>
 
         </div>
-            
 
-            
-
-        </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="hide-modal">Close</button>
             <button type="submit" class="btn btn-primary">Save</button>
@@ -561,10 +613,6 @@
         <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title" id="viewAccountModalLabel">View Details</h5>
-            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button> -->
-
         </div>
         <div class="modal-body">
 
@@ -615,8 +663,7 @@
             </div>
 
             <div class="form-group col-md-4">
-                <label for="v_region" class="col-form-label
-                ">Region:</label>
+                <label for="v_region" class="col-form-label">Region:</label>
                 <p class="h6" id="v_region" name="v_region"></p>
             </div>
 
@@ -650,32 +697,41 @@
             <hr class="w-100 mt-1 mb-1">
             <div class="row">
 
-            <div class="form-group col-md-3">
+            <div class="form-group col-md-4">
                 <label for="v_total_days" class="col-form-label">Total Days:</label>
                 <p class="h6" id="v_total_days" name="v_total_days"></p>
             </div>
 
-            <div class="form-group col-md-3">
+            <div class="form-group col-md-4">
                 <label for="v_remaining_days" class="col-form-label">Remaining Days:</label>
                 <p class="h6" id="v_remaining_days" name="v_remaining_days"></p>
             </div>
             
-            <div class="form-group col-md-3">
+            <div class="form-group col-md-4">
                 <label for="v_remarks" class="col-form-label">Type of Contract:</label>
                 <p class="h6" id="v_remarks" name="v_remarks"></p>
             </div>
 
-            <div class="form-group col-md-3">
-                <label for="v_status" class="col-form-label">Status:</label>
-                <p class="h6" id="v_status" name="v_status"></p>     
             </div>
 
+            <hr class="w-100 mt-1 mb-1">
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="v_status" class="col-form-label">Rate Type:</label>
+                    <p class="h6" id="v_rate_type" name="v_rate_type"></p>     
+                </div>
+              
+                <div class="form-group col-md-4">
+                    <label for="v_type_of_deployment" class="col-form-label">Type of Deployment:</label>
+                    <p class="h6" id="v_type_of_deployment"></p>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label for="v_status" class="col-form-label">Status:</label>
+                    <p class="h6" id="v_status" name="v_status"></p>     
+                </div>
             </div>
                 
-        
-        
-
-        
 
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="vhide-modal">Close</button>
@@ -708,7 +764,43 @@
         @include('sweetalert::alert')
 
         <script>
+        
+            function getCRate(selectObject) {
+                const value = selectObject.value;  
+                console.log(value);
+                const app = <?php echo json_encode($ratess); ?>;
+
+                let obj = app.find(o => o.region === value);
+                
+
+                console.log(obj.rate_per_day)
+
+                console.log("aw", app);
+
+                $('#c_old_rate').val(obj.rate_per_day);
+                $('#c_new_rate').val(obj.new_rate_per_day);
+            }
+
+            function getERate(selectObject) {
+                const value = selectObject.value;  
+                console.log(value);
+                const app = <?php echo json_encode($ratess); ?>;
+
+                let obj = app.find(o => o.region === value);
+                
+
+                console.log(obj.rate_per_day)
+
+                console.log("aw", app);
+
+                $('#e_old_rate').val(obj.rate_per_day);
+                $('#e_new_rate').val(obj.new_rate_per_day);
+            }
+
+
             $(document).ready(function () {
+
+              
 
             $('#c_birthdate').datepicker({
                 format: "mm/dd/yyyy",
@@ -864,16 +956,38 @@
             var dataTable = $('#merchandiser').DataTable({
                 ajax: {
                     url: '/accountsupervisor/merchandiser-list/fetch-data',
-                    dataSrc: 'data'
+                    dataSrc: 'data',
+                    // console.log()   
                 },
+               
                 columns: [
-                    { data: '#' },
-                    { data:  'id', visible: false },
+                    { data: '#' ,visible: false},
+                    { data: 'id', visible: false},
                     { data: 'fullname' },
-                    { data: 'email_address' }, 
+                    { data: 'region' },
+                    { data: 'rate_type' },
+                    { data: 'type_of_deployment' },
+                    { data: 'remarks' },
+                    { data: 'remain'},
                     { data: 'actions', orderable: false }
                 ]
             });
+
+            // Remaining days calculations starts here
+            function calculateRemainingDays(endDate) {
+                const today = new Date();
+                const end = new Date(endDate);
+
+                // Calculate remaining days from today until end_of_contract
+                const timeDiff = end - today;
+                const remainingDays = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+
+                return remainingDays >= 0 ? remainingDays : 0;
+            }
+            // Remaining days calculations ends here
+
+            
+
 
             function mddyyyy_to_mmmdyyyy(s) {
             var s = s.split(/\D/),
@@ -934,12 +1048,14 @@
                     $('#v_region').text(response.region);
                     $('#v_contact').text(response.contact_number);
                     $('#v_email').text(response.email_address);
-                    $('#v_date_started').text(mddyyyy_to_mmmdyyyy(newDate));
-                    $('#v_end_of_contract').text(mddyyyy_to_mmmdyyyy(newDate));
+                    $('#v_date_started').text(mddyyyy_to_mmmdyyyy(newDateDs));
+                    $('#v_end_of_contract').text(mddyyyy_to_mmmdyyyy(newDateDe));
                     $('#v_remarks').text(response.remarks);
                     $('#v_total_days').text(total_days);
                     $('#v_remaining_days').text(remaining_days);
                     $('#v_store_name').text(response.store_name);
+                    $('#v_rate_type').text(response.rate_type);
+                    $('#v_type_of_deployment').text(response.type_of_deployment);
                     $('#v_status').text(response.is_active);
 
                     $('#viewMerchandiserModal').modal('show');
@@ -959,6 +1075,18 @@
             })
         });
 
+        // remainig days starts here
+        // const CONTRACT_START_DATE = new Date('2024-01-01'); // Example static start date
+        // const CONTRACT_END_DATE = new Date('2024-12-31');   // Example static end date
+
+        // function calculateRemainingDays() {
+        //     const today = new Date();
+        //     const timeDiff = CONTRACT_END_DATE - today;
+        //     return Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+        // }
+
+        // remaining days ends here
+
 
         $('#merchandiser tbody').on('click', 'img.button-image2', function (e) {
             e.preventDefault();
@@ -974,6 +1102,8 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },   
                 success: function(response){
+
+                   
                 
                 //  var date = new Date(response.birthdate).toLocaleDateString()
                     // response = JSON.parse(response);
@@ -993,13 +1123,9 @@
                     if (remaining_days < 0){
                         remaining_days = 0;
                     }
-                
                     
                     $('#selectedId').val(id);
-            
                     $('#e_middle_name').val(response.middle_name);
-                
-            
                     $('#e_first_name').val(response.first_name);
                     $('#e_last_name').val(response.last_name);
                     $('#e_birthdate').val(newDate);
@@ -1015,6 +1141,8 @@
                     $('#e_remarks').val(response.remarks);
                     $('#e_total_days').val(total_days);
                     $('#e_remaining_days').val(remaining_days);
+                    $('#e_rate_type').val(response.rate_type);
+                    $('#e_type_of_deployment').val(response.type_of_deployment);
                     $('#e_status').val(response.is_active);
 
                 if(response.gender === "Male"){
@@ -1023,17 +1151,99 @@
                 }else{
                     $('#e_female').prop("checked" , true);
                 }
-
                     $('#editMerchandiserModal').modal('show');
                 
                     
+                if(response.type_of_deployment === "Stationary"){
+                    $('#e_type_stationary').prop("checked" , true);
+                
+                }else{
+                    $('#e_type_roving').prop("checked" , true);
+                }
                 }
         
             })
         });
 
 
-        //  $('#createAccountModal').modal({
+        $(document).on('submit', '#merchandiserForm', function (e) {
+            e.preventDefault(); // Prevent the form from submitting the traditional way
+
+            $.ajax({
+                url: '/accountsupervisor/merchandiser/list/register-account', // Laravel route
+                type: 'POST',
+                data: $(this).serialize(), // Serialize form data
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // CSRF Token
+                },
+                success: function (response) {
+                    console.log(response.data);
+                    const ttable = $('#merchandiser').DataTable();
+                    let counter = 1;
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: 'Merchandiser added successfully!',
+                        confirmButtonText: 'OK'
+                    });
+
+                    const mname = response.data.middle_name ? response.data.middle_name : "";
+                    const fname = response.data.first_name + " " + mname + " " + response.data.last_name;
+                    let remain;
+
+                    console.log(fname);
+                    console.log(mname);
+
+                    switch(response.data.remarks){
+                        case 'New Diser':
+                    remain = "New Diser";
+                    break;
+                    case 'Probationary':
+                        remain = calculateRemainingDays(response.data.end_of_contract)
+                    break;   
+                    
+                    case 'Regular':
+                        remain = "(∞)";
+                    break;  
+
+                    case 'Reliever':
+                        remain = "-";
+                    break;  
+
+                    default :
+                        remain = "-";
+                    break;  
+                    }
+                  
+                    dataTable.row.add(
+                    {
+                        '#' : '20202',
+                        'id' : response.data.id,
+                        'fullname' : fname,
+                        'region' : response.data.region,
+                        'rate_type' : response.data.rate_type,
+                        'type_of_deployment' : response.data.type_of_deployment,
+                        'remarks' : response.data.remarks,
+                        'remain' : remain,
+                        'actions' : '<img src= "/asset/img/button_img/eye-blue-32.png" alt="Button 1" class="button-image1" style="height: 25px; width: 25px;"> <img src="/asset/img/button_img/pen-green-32.png" alt="Button 2" class="button-image2" style="height: 25px; width: 25px;">'
+                    }
+                    ).draw(false);
+                    $('#createMerchandiserModal').modal('hide'); // Close the modal
+                    $('#merchandiserForm')[0].reset();    // Reset the form fields
+                },
+                error: function (xhr) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Something went wrong!',
+                        confirmButtonText: 'OK'
+                    });
+                    console.log(xhr.responseText); // Log the error for debugging
+                }
+            });     
+        });
+
+        // $('#createAccountModal').modal({
         // backdrop: 'static',
         // keyboard: false  // to prevent closing with Esc button (if you want this too)
         // });
@@ -1122,9 +1332,11 @@
                 }).then((result) => {
             if (result.isConfirmed) {
             
-                $('#createMerchandiserModal').modal('show');
+                $('#createMerchandiserModal').modal('show'); 
             }
         });
+
+        
 
             </script>
     @endif
@@ -1136,3 +1348,4 @@
     </body>
 
     </html>
+

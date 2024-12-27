@@ -103,27 +103,16 @@ class AccountSupervisorCoordinatorListController extends Controller
         // });
 
         $data = Coordinator::
-                  where('coordinators.company_id', session('user')['company_id'] )
-              //  ->select('coordinators.*', 'company_doors.account_branch as branch')
-                ->get();
-
+            where('coordinators.supervisor_id', session('user')['current_user_id'] )
+            ->get();
 
         $data = $data->map(function ($item, $key) {
             $item['#'] = $key + 1;
-
             $item['fullname'] = $item['first_name'] . " " . $item['last_name'];
-
-
             $item['actions'] = '<img src= "/asset/img/button_img/eye-blue-32.png" alt="Button 1" class="button-image1" style="height: 25px; width: 25px;"> <img src="/asset/img/button_img/pen-green-32.png" alt="Button 2" class="button-image2" style="height: 25px; width: 25px;">';
-
             
             return $item;
         });
-
-        
-
-
-        
 
         return response()->json(['data' => $data]);
     }
@@ -131,119 +120,103 @@ class AccountSupervisorCoordinatorListController extends Controller
 
     public function saveAccount(Request $request)
     {
-           // dd($request->all());
-            $company = session('user')['company_id'];
-            $status = 1;
+        // dd($request->all());
+        $company = session('user')['company_id'];
+        $status = 1;
 
-            $date = $request->input('c_birthdate');
-            $newDate = Carbon::createFromFormat('m/d/Y', $date)
-                            ->format('Y-m-d');
+        $pogi = session('user')['current_user_id'];
+
+        $date = $request->input('c_birthdate');
+        $newDate = Carbon::createFromFormat('m/d/Y', $date)
+                        ->format('Y-m-d');
+        
+
+        $validator = Validator::make($request->all(), [
+            'c_email' => 'required|unique:coordinators,email_address',
+            'c_gender' => 'required',
+        ],[
+            'c_email.unique' => 'Email is already use.',
+            'c_gender' => 'Select your gender.',
             
+        ]);
 
-            $validator = Validator::make($request->all(), [
-                'c_email' => 'required|unique:coordinators,email_address',
-                'c_gender' => 'required',
-            ],[
-                'c_email.unique' => 'Email is already use.',
-                'c_gender' => 'Select your gender.',
+    
+    
+        if ($validator->fails()) {
+            // Alert::error('Registration Failed');
+            return redirect('/accountsupervisor/coordinator')
+            
+                        ->withErrors($validator)
+                        ->withInput()
+                        ->with("create-failed", "Coordinator failed to create");
+        }else{
+            $coordinator = new Coordinator;
+            $coordinator ->supervisor_id = $pogi;
+            $coordinator ->first_name = $request->input('c_first_name');
+            $coordinator ->last_name = $request->input('c_last_name');
+            $coordinator ->middle_name = $request->input('c_middle_name');
+            $coordinator ->birthdate = $newDate;
+            $coordinator ->age = $request->input('c_age');
+            $coordinator ->gender = $request->input('c_gender');
+            $coordinator ->address = $request->input('c_address');
+            $coordinator ->region = $request->input('c_region');
+            $coordinator ->contact_number = $request->input('c_number');
+            $coordinator ->email_address = $request->input('c_email');
+            $coordinator ->company_id = $company;
+            $coordinator ->is_active = $status;
+            $coordinator ->save();
                 
-            ]);
-
-       
-        
-            if ($validator->fails()) {
-               // Alert::error('Registration Failed');
-                return redirect('/accountsupervisor/coordinator')
-               
-                            ->withErrors($validator)
-                            ->withInput()
-                            ->with("create-failed", "Coordinator failed to create");
-            }else{
-
-                           
-                $coordinator = new Coordinator;
-                $coordinator ->first_name = $request->input('c_first_name');
-                $coordinator ->last_name = $request->input('c_last_name');
-                $coordinator ->middle_name = $request->input('c_middle_name');
-                $coordinator ->birthdate = $newDate;
-                $coordinator ->age = $request->input('c_age');
-                $coordinator ->gender = $request->input('c_gender');
-                $coordinator ->address = $request->input('c_address');
-                $coordinator ->region = $request->input('c_region');
-                $coordinator ->contact_number = $request->input('c_number');
-                $coordinator ->email_address = $request->input('c_email');
-                $coordinator ->company_id = $company;
-                $coordinator ->is_active = $status;
-                $coordinator ->save();
-                 
-                return redirect(('/accountsupervisor/coordinator'))->with('create-success', "Coordinator registered successfully");
-        
-               
-            }
-          
-
-           
+            // return redirect(('/accountsupervisor/coordinator'))->with('create-success', "Coordinator registered successfully");
+            return response()->json(['message' => 'Data saved successfully!']);
+            
+        }
     }
 
 
     public function updateAccount(Request $request)
     {
-              //dd($request->all());
+        //dd($request->all());
+        $id = $request->input('selectedId');
+        $company = session('user')['company_id'];
+        $status = 1;
+        $date = $request->input('e_birthdate');
+        $newDate = Carbon::createFromFormat('m/d/Y', $date)
+        ->format('Y-m-d');
 
-              $id = $request->input('selectedId');
-        
-              $company = session('user')['company_id'];
-              $status = 1;
-  
-             $date = $request->input('e_birthdate');
-             $newDate = Carbon::createFromFormat('m/d/Y', $date)
-                             ->format('Y-m-d');
-              
-  
-              $validator = Validator::make($request->all(), [
-                  'e_email' =>  'max:255|required|email|unique:users,email,'.$id,
-                  'e_gender' => 'required',
-              ],[
-                  'e_email.unique' => 'Email is already use.',
-                  'e_gender' => 'Select your gender.',
-                  
-              ]);
-  
-         
-          
-              if ($validator->fails()) {
-                 // Alert::error('Registration Failed');
-                  return redirect('/accountsupervisor/coordinator')
-                 
-                              ->withErrors($validator)
-                              ->withInput()
-                              ->with("update-failed", "Coordinator failed to update");
-              }else{
-  
-                             
-                
-                  $coordinator = Coordinator::find($id);
-                  $coordinator ->first_name = $request->input('e_first_name');
-                  $coordinator ->last_name = $request->input('e_last_name');
-                  $coordinator ->middle_name = $request->input('e_middle_name');
-                  $coordinator ->birthdate = $newDate;
-                  $coordinator ->age = $request->input('e_age');
-                  $coordinator ->gender = $request->input('e_gender');
-                  $coordinator ->address = $request->input('e_address');
-                  $coordinator ->region = $request->input('e_region');
-                  $coordinator ->contact_number = $request->input('e_number');
-                  $coordinator ->email_address = $request->input('e_email');
-                  $coordinator ->company_id = $company;
-                  $coordinator ->is_active = $status;
-                  $coordinator ->update();
-                   
-                  return redirect(('/accountsupervisor/coordinator'))->with('update-success', "Coordinator update successfully");
-          
-                 
-              }
+        $validator = Validator::make($request->all(), [
+            'e_email' =>  'max:255|required|email|unique:users,email,'.$id,
+            'e_gender' => 'required',
+        ],[
+            'e_email.unique' => 'Email is already use.',
+            'e_gender' => 'Select your gender.',
+        ]);
+
+        if ($validator->fails()) {
+            // Alert::error('Registration Failed');
+            return redirect('/accountsupervisor/coordinator')
             
-  
-
+            ->withErrors($validator)
+            ->withInput()
+            ->with("update-failed", "Coordinator failed to update");
+        }else{
+            $coordinator = Coordinator::find($id);
+            $coordinator ->first_name = $request->input('e_first_name');
+            $coordinator ->last_name = $request->input('e_last_name');
+            $coordinator ->middle_name = $request->input('e_middle_name');
+            $coordinator ->birthdate = $newDate;
+            $coordinator ->age = $request->input('e_age');
+            $coordinator ->gender = $request->input('e_gender');
+            $coordinator ->address = $request->input('e_address');
+            $coordinator ->region = $request->input('e_region');
+            $coordinator ->contact_number = $request->input('e_number');
+            $coordinator ->email_address = $request->input('e_email');
+            $coordinator ->company_id = $company;
+            $coordinator ->is_active = $status;
+            $coordinator ->update();
+            
+            return redirect(('/accountsupervisor/coordinator'))->with('update-success', "Coordinator update successfully");
+    
+        }
            
     }
 }

@@ -15,56 +15,39 @@ use DB;
 
 class EfcListController extends Controller
 {
-
+    //getupdate
     public function getUpdateData($id)
     {
-        
-        $company_door = CompanyDoor::find($id , ['account' , 'region' , 'area' , 'store_name' , 'status' , 'type_of_deployment']);
+        $company_door = CompanyDoor::find($id , ['account' , 'region' , 'area' , 
+        'store_name' , 'store_address', 'status' ,]);
+
         if ($company_door) {
-            // Data found for the given ID
              return response()->json($company_door);
-       
         } else {
-            // Data not found
             return response()->json(['error' => 'Data not found'], 404);
         }
     }
 
+    // getview
     public function getViewData($id)
     {
-
-       // $company_door = CompanyDoor::find($id , ['account' , 'region' , 'area' , 'store_name' , 'status' , 'type_of_deployment']);
-
-        $company_door = CompanyDoor::join('coordinators' , 'company_doors.company_door_id' , '=' , 'coordinators.id')
-                ->where('coordinators.company_id', session('user')['company_id'] )
-                ->select('coordinators.*', 'company_doors.account_branch as branch')
-                ->get();
-
+   
+        $company_door = CompanyDoor::find($id , ['account' , 'region' , 'area' , 'store_name' , 
+        'store_address' , 'supervisor_id', 'status' ,]);
 
         if ($company_door) {
-            // Data found for the given ID
              return response()->json($company_door);
-       
         } else {
-            // Data not found
             return response()->json(['error' => 'Data not found'], 404);
         }
     }
 
     public function fetchData(Request $request)
     {
-     
-
-
         $data = CompanyDoor::where('company_id', '3')->get();
-
-
         $data = $data->map(function ($item, $key) {
             $item['#'] = $key + 1;
-
-
             $item['actions'] = '<img src= "/asset/img/button_img/eye-blue-32.png" alt="Button 1" class="button-image1" style="height: 25px; width: 25px;"> <img src="/asset/img/button_img/pen-green-32.png" alt="Button 2" class="button-image2" style="height: 25px; width: 25px;">';
-
             
             return $item;
         });
@@ -75,107 +58,94 @@ class EfcListController extends Controller
 
     public function saveAccount(Request $request)
     {
-            //dd($request->all());
-            $company = 3;
-            $status = "active";
+        //dd($request->all());
+        $company = 3;
+        $status = "active";
+        
+
+        $validator = Validator::make($request->all(), [
+            'c_account' => 'required',
+            'c_region' => 'required',
+            'c_area' => 'required', 
+            'c_store_name' => 'required',
+            'c_store_address' => 'required',
+            'c_sup' => 'required',
             
+        ],[
+            'c_account.required' => 'Select designated account.',
+            'c_region.required' => 'Select designated region.',
+            'c_area.required' => 'Select which area it belong.',
+            'c_store_name.required' => 'Define store name.',
+            'c_store_address.required' => 'Select Address.',
+            'c_sup' => 'Select Supervisor.',
+        ]);
 
-            $validator = Validator::make($request->all(), [
-                'c_account' => 'required',
-                'c_region' => 'required',
-                'c_area' => 'required', 
-            ],[
-                'c_account.required' => 'Select designated account.',
-                'c_region.required' => 'Select designated region.',
-                'c_area.required' => 'Select which area it belong.',
-            ]);
+    
+    
+        if ($validator->fails()) {
+            // Alert::error('Registration Failed');
+            return redirect('/superadmin/efc')
+            
+                ->withErrors($validator)
+                ->withInput()
+                ->with("create-failed", "Account failed to create");
+        }else{     
+            $company_door = new CompanyDoor;
 
-       
-        
-            if ($validator->fails()) {
-               // Alert::error('Registration Failed');
-                return redirect('/superadmin/efc')
-               
-                            ->withErrors($validator)
-                            ->withInput()
-                            ->with("create-failed", "Account failed to create");
-            }else{
+            // $company_door->supervisor_id = 
 
-                           
-                $company_door = new CompanyDoor;
-                $company_door->account = $request->input('c_account');
-                $company_door->region = $request->input('c_region');
-                $company_door->area = $request->input('c_area');
-                $company_door->store_name = $request->input('c_store_name');
-                $company_door->type_of_deployment = $request->input('c_type_of_deployment');
-                $company_door->company_id = $company;
-                $company_door->status = $status;
-                $company_door->save();
-                 
-                return redirect(('/superadmin/efc'))->with('create-success', "Account registered successfully");
-        
-               
-            }
-          
-
-           
+            $company_door->account = $request->input('c_account');
+            $company_door->region = $request->input('c_region');
+            $company_door->area = $request->input('c_area');
+            $company_door->store_name = $request->input('c_store_name');
+            $company_door->store_address = $request->input('c_store_address');
+            $company_door->supervisor_id = $request->input('c_sup');
+            $company_door->company_id = $company;
+            $company_door->status = $status;
+            $company_door->save();
+                
+            return redirect(('/superadmin/efc'))->with('create-success', "Account registered successfully"); 
+        }      
     }
 
 
     public function updateAccount(Request $request)
     {
-              //dd($request->all());
+        //dd($request->all());
+        $id = $request->input('selectedId');
+        $company = 3;
+        $validator = Validator::make($request->all(), [
+            'e_account' => 'required',
+            'e_region' => 'required',
+            'e_area' => 'required', 
+            'e_status' => 'required',
+        ],[
+            'e_account.required' => 'Select designated account.',
+            'e_region.required' => 'Select designated region.',
+            'e_area.required' => 'Select which area it belong.',
+            'e_status.required' => 'Select what is current status.',
+        ]);
         
-
-             $id = $request->input('selectedId');
-           
-            $company = 3;
-    
+        if ($validator->fails()) {
+            // Alert::error('Registration Failed');
+            return redirect('/superadmin/efc')
             
-
-            $validator = Validator::make($request->all(), [
-                'e_account' => 'required',
-                'e_region' => 'required',
-                'e_area' => 'required', 
-                'e_status' => 'required',
-            ],[
-                'e_account.required' => 'Select designated account.',
-                'e_region.required' => 'Select designated region.',
-                'e_area.required' => 'Select which area it belong.',
-                'e_status.required' => 'Select what is current status.',
-            ]);
-          
+            ->withErrors($validator)
+            ->withInput()
+            ->with("update-failed", "Account registered successfully");
+        }else{
+            $company_door = CompanyDoor::find($id);
+            $company_door->supervisor_id = $request->input('e_sup');
+            $company_door->account = $request->input('e_account');
+            $company_door->region = $request->input('e_region');
+            $company_door->area = $request->input('e_area');
+            $company_door->store_name = $request->input('e_store_name');
+            $company_door->store_address = $request->input('e_store_address');
+            $company_door->status = $request->input('e_status');
+            $company_door->company_id = $company;
+            $company_door->update();
         
-
-
-            if ($validator->fails()) {
-               // Alert::error('Registration Failed');
-                return redirect('/superadmin/efc')
-               
-                            ->withErrors($validator)
-                            ->withInput()
-                            ->with("update-failed", "Account registered successfully");
-            }else{
-
-              
-                
-                $company_door = CompanyDoor::find($id);
-                $company_door->account = $request->input('e_account');
-                $company_door->region = $request->input('e_region');
-                $company_door->area = $request->input('e_area');
-                $company_door->store_name = $request->input('e_store_name');
-                $company_door->type_of_deployment = $request->input('e_type_of_deployment');
-                $company_door->status = $request->input('e_status');
-                $company_door->company_id = $company;
-                $company_door->update();
-            
-        
-                return redirect(('/superadmin/efc'))->with('update-success', "Account updated successfully");
-           
-               
-            }
-          
-
-           
+            return redirect(('/superadmin/efc'))->with('update-success', "Account updated successfully");     
+        }     
     }
 }

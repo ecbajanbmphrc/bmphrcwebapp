@@ -36,6 +36,7 @@
 <body>
 
     <!-- start: Sidebar -->
+    
     <div class="sidebar position-fixed top-0 bottom-0 border-end">
         <div class="d-flex align-items-center p-3">
             <a href="#" class="sidebar-logo text-uppercase fw-bold text-decoration-none text-light fs-4">Payroll Officer</a>
@@ -48,29 +49,64 @@
                 </a>
             </li>
         </ul>
+       
         <ul class="sidebar-menu p-3 m-0 mb-0">
-        <li class="sidebar-menu-item active">
+            <li class="sidebar-menu-item has-dropdown">
+                <a href="#">
+                    <i class="bi bi-bank sidebar-menu-item-icon"></i>Banks
+                    <i class="ri-arrow-down-s-line sidebar-menu-item-accordion ms-auto"></i>
+                </a>
+                <ul class="sidebar-dropdown-menu">
+                    <li class="sidebar-dropdown-menu-item">
+                        <a href="{{ route('payrollofficer.view.payrollbdo') }}">BDO</a>
+                    </li>
+                    <li class="sidebar-dropdown-menu-item">
+                        <a href="{{ route('payrollofficer.view.payrollbpi') }}">BPI</a>
+                    </li>
+                    <li class="sidebar-dropdown-menu-item">
+                        <a href="{{ route('payrollofficer.view.payrollcebuana') }}">Cebuana</a>
+                    </li>
+                    <li class="sidebar-dropdown-menu-item">
+                        <a href="{{ route('payrollofficer.view.payrolleastwest') }}">EastWest</a>
+                    </li>
+                    <li class="sidebar-dropdown-menu-item">
+                        <a href="{{ route('payrollofficer.view.payrollgcash') }}">Gcash</a>
+                    </li>
+                    <li class="sidebar-dropdown-menu-item">
+                        <a href="{{ route('payrollofficer.view.payrollrcbc') }}">RCBC</a>
+                    </li>
+                    <li class="sidebar-dropdown-menu-item">
+                        <a href="{{ route('payrollofficer.view.payrollrcbcwallet') }}">RCBC E-wallet</a>
+                    </li>
+                    <li class="sidebar-dropdown-menu-item">
+                        <a href="{{ route('payrollofficer.view.payrollbank') }}">Other</a>
+                    </li>
+                </ul>
+            </li>  
+            <li class="sidebar-menu-item mt-2">
+                <a href="{{ route('payrollofficer.view.payrollofficerinput') }}">
+                    <i class="bi bi-cash sidebar-menu-item-icon"></i>Payment
+                </a>
+            </li>  
+            <!-- <li class="sidebar-menu-item mt-2">
                 <a href="{{ route('payrollofficer.view.payrollofficerlist') }}">
                     <i class="ri-pages-line sidebar-menu-item-icon"></i>Payroll
                 </a>
-            </li>
-            <li class="sidebar-menu-item  mt-2">
+            </li> -->
+            <li class="sidebar-menu-item mt-2">
                 <a href="{{ route('payrollofficer.view.payrolltransferlist') }}">
-                    <i class="ri-pages-line sidebar-menu-item-icon"></i>Transfer Payroll
+                    <i class="bi bi-send sidebar-menu-item-icon"></i>Transfer list
                 </a>
             </li>
             <li class="sidebar-menu-item mt-2">
-                <a href="{{ route('payrollofficer.view.payrollofficerinput') }}">
-                    <i class="ri-pages-line sidebar-menu-item-icon"></i>Payroll Input
-                </a>
-            <li class="sidebar-menu-item mt-auto">
-                <a href="{{ route('logout') }}" style="margin-top: 220px;">
+                <a href="{{ route('logout') }}">
                     <i class="ri-logout-box-line sidebar-menu-item-icon"></i>
                     Logout
                 </a>
             </li>
         </ul>
     </div>
+
     <div class="sidebar-overlay"></div>
     <!-- end: Sidebar -->
 
@@ -124,12 +160,7 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col">
-                                <h5 class="card-title">Payroll Table</h5>
-                            </div>
-                        </div>
-                        <table id="doortable" class="table table-hover" style="width:100%">
+                        <table id="doortable" class="table table-bordered" style="width:100%">
                             <thead>
                                 <tr>
                                     <th>#</th>

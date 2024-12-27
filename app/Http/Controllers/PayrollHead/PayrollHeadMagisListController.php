@@ -16,8 +16,6 @@ class PayrollHeadMagisListController extends Controller
     public function fetchData(Request $request)
     {     
        
-    
-
         $data = CompanyDoor::where([
             ['company_id', '=' , 4],
             ['status', '=' , 'active'] , 

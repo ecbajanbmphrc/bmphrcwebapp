@@ -24,18 +24,6 @@ class AccountSupervisorManningListController extends Controller
     public function getUpdateData($id)
     {
         
-        $manning = Manning::
-        find($id , [ 'store_name' , 'first_name' , 'middle_name' , 'last_name' , 'birthdate' , 'age' , 'address' , 'region' , 'contact_number' , 'email_address' , 'gender'])
-        //find($id)
-        ->toArray();
-        if ($manning) {
-            
-             return response()->json($manning);
-       
-        } else {
-          
-            return response()->json(['error' => 'Data not found'], 404);
-        }
     }
 
     public function getViewData($id)
@@ -63,22 +51,29 @@ class AccountSupervisorManningListController extends Controller
         try {
             $userCompanyId = session('user')['company_id'];
 
+            $user_id = session('user')['current_user_id'];
+
             $data = DB::table('manning_lists')
                 ->join('company_doors', 'company_doors.id', '=', 'manning_lists.door_id')
-                // ->join('merchsandisers', 'merchandisers.id', '=', 'manning_lists.merchandiser_id')
-                // ->join('coordinators', 'coordinators.id', '=', 'company_doors.coordinator_id')
+                ->join('merchandisers', 'merchandisers.id', '=', 'manning_lists.merchandiser_id')
+                ->join('coordinators', 'coordinators.id', '=', 'company_doors.coordinator_id')
                 // ->join('rate_cards', 'rate_cards.region', '=', 'company_doors.region')
-                // ->select('merchandisers.first_name as merchandiser_fname',
-                //     'merchandisers.middle_name as merchandiser_mname',
-                //     'merchandisers.last_name as merchandiser_lname',
-                //     'coordinators.first_name as coordinator_fname',
-                //     'coordinators.middle_name as coordinator_mname',
-                //     'coordinators.last_name as coordinator_lname',
-                //     'company_doors.account',
-                //     'company_doors.store_name',
-                //     'company_doors.region as region',
-                //     'rate_cards.rate_per_day as ratings')
-                ->where('company_doors.company_id', '=', $userCompanyId)    
+                ->select('merchandisers.first_name as merchandiser_fname',
+                    'merchandisers.middle_name as merchandiser_mname',
+                    'merchandisers.last_name as merchandiser_lname',
+                    'merchandisers.rate_type as ratetype', 
+                    'coordinators.first_name as coordinator_fname',
+                    'coordinators.middle_name as coordinator_mname',
+                    'coordinators.last_name as coordinator_lname',
+                    'company_doors.account',
+                    'company_doors.store_name',
+                    'company_doors.store_address',
+                    'company_doors.region as region',
+                    'company_doors.area as area'
+                    )
+                ->where('company_doors.company_id', '=', $userCompanyId) 
+                ->where('merchandisers.is_active', '=', '1') 
+                ->where('manning_lists.user_id', '=', $user_id)
                 ->get();
 
                 // dd($data);
@@ -89,7 +84,13 @@ class AccountSupervisorManningListController extends Controller
                 $item['coordinator_fullname'] = trim($item['coordinator_fname'] . " " . $item['coordinator_mname'] . " " . $item['coordinator_lname']);
                 $item['merchandiser_fullname'] = trim($item['merchandiser_fname'] . " " . $item['merchandiser_mname'] . " " . $item['merchandiser_lname']);
                 $item['region'] = $item['region'];
-                $item['actions'] = '<img src="/asset/img/button_img/eye-blue-32.png" alt="Button 1" class="button-image1" style="height: 25px; width: 25px;"> <img src="/asset/img/button_img/pen-green-32.png" alt="Button 2" class="button-image2" style="height: 25px; width: 25px;">';
+                $item['account'] = $item['account'];
+                $item['area'] = $item['area'];
+                $item['store_name'] = $item['store_name'];
+                $item['store_address'] = $item['store_address'];
+                // $item['actions'] = '<i class="bi bi-x-circle-fill"></i>';
+                // <img src="/asset/img/button_img/pen-green-32.png" alt="Button 2" class="button-image2" style="height: 25px; width: 25px;">;
+                // <img src="/asset/img/button_img/eye-blue-32.png" alt="Button 1" class="button-image1" style="height: 25px; width: 25px;">
                 return $item;
             });
 
@@ -100,62 +101,37 @@ class AccountSupervisorManningListController extends Controller
     }
 
 
-
     public function saveAccount(Request $request)
     {
-           // dd($request->all());
-            $company = session('user')['company_id'];
-            $status = 1;
+        // dd($request->all());
+        $company = session('user')['company_id'];
+        $status = 1;
 
-           
+        // Validate the request data
+        $validator = Validator::make($request->all(), [
+            'c_store_name' => 'required',
+            'c_coordinator' => 'required',
+            // 'c_store_address' => 'required',
+            // 'c_region' => 'required', 
+            // 'c_region.required' => 'Select your region.', 
+        ]);
 
-        //     $date = $request->input('c_birthdate');
-        // $newDate = Carbon::createFromFormat('m/d/Y', $date)
-        //                     ->format('Y-m-d');
-            
-            dd($request->all());
-
-            $validator = Validator::make($request->all(), [
-                'c_store_name' => 'required',
-                'c_coordinator' => 'required',
-                'c_store_address' => 'required',
-           ],[
-                //'c_email.unique' => 'Email is already use.',
-                'c_region' => 'Select your region.',
-                
-            ]);
-
-       
-        
-            if ($validator->fails()) {
-               // Alert::error('Registration Failed');
-                return redirect('/accountsupervisor/manning')           
-                    ->withErrors($validator)
-                    ->withInput()
-                    ->with("create-failed", "Manning failed to create");
-            }else{
-
-                    
-                $manning = new Manning;
-                $manning ->door_id = $request->input('c_store_name');
-                $manning ->coordinator_id = $request->input('c_coordinator');
-                // $manning ->merchandiser_id =$request->input()
-                $manning ->door_id = $request->input('c_store_address');
-                $manning ->region_id = $request->input('c_region');
-                // $maning ->account_id = $request->input('c_account');
-
-                $manning ->is_active = $status;
-                $manning ->save();
-                 
-                //return redirect(('/accountsupervisor/coordinator'))->with('create-success', "Coordinator registered successfully");
-        
-               
-            }
-          
-
-           
+        // Check if validation fails
+        if ($validator->fails()) {
+            return redirect('/accountsupervisor/manning')
+                ->withErrors($validator)
+                ->withInput()
+                ->with("create-failed", "Manning failed to create");
+        } else {
+            $manning = new Manning;
+            $manning->door_id = $request->input('c_store_name');
+            // $manning->coordinator_id = $request->input('c_coordinator');
+            // $manning->door_id = $request->input('c_store_address');
+            // $manning->region_id = $request->input('c_region'); 
+            // $manning->is_active = $status;
+            $manning->save();
+        }
     }
-
 
     public function updateAccount(Request $request)
     {
@@ -190,21 +166,31 @@ class AccountSupervisorManningListController extends Controller
                               ->withInput()
                               ->with("update-failed", "Manning failed to update");
               }else{
-  
-                             
-                
-                  $coordinator = Manning::find($id);
 
+                  $coordinator = Manning::find($id);
                   $coordinator ->is_active = $status;
                   $coordinator ->update();
-                   
                 //   return redirect(('/accountsupervisor/coordinator'))->with('update-success', "Coordinator update successfully");
-          
-                 
               }
-            
   
-
-           
     }
+
+    // this is for date picker
+    public function index(Request $request)
+    {
+        // Default to today if no date is provided
+        $selectedDate = $request->input('date', now()->format('Y-m-d'));
+
+        // Fetch records for the specified date
+        $records = Record::whereDate('date', $selectedDate)->get();
+
+        // Return data to view
+        return view('records.index', [
+            'records' => $records,
+            'selectedDate' => $selectedDate
+        ]);
+    }
+    // this is for date picker
 }
+
+

@@ -29,6 +29,10 @@
         .button-image3{
     cursor: pointer;
         }
+
+        .sidebar{
+            background: #f7f7f0;
+        }
     </style>
 
 </head>
@@ -36,7 +40,7 @@
 <body>
 
     <!-- start: Sidebar -->
-    <div class="sidebar position-fixed top-0 bottom-0 bg-white border-end">
+    <div class="sidebar position-fixed top-0 bottom-0 border-end">
         <div class="d-flex align-items-center p-3">
             <a href="#" class="sidebar-logo text-uppercase fw-bold text-decoration-none text-indigo fs-4">Payroll Head</a>
             <i class="sidebar-toggle ri-arrow-left-circle-line ms-auto fs-5 d-none d-md-block"></i>
@@ -47,18 +51,20 @@
                     <i class="ri-dashboard-line sidebar-menu-item-icon"></i>Dashboard
                 </a>
             </li>
-            <li class="sidebar-menu-divider mt-3 mb-1 text-uppercase">Clients</li>
-            <li class="sidebar-menu-item">
+        </ul>
+        <ul class="sidebar-menu p-3 m-0 mb-0">
+            <li class="sidebar-menu-divider mb-1 text-uppercase">Clients</li>
+            <li class="sidebar-menu-item mt-2">
                 <a href="{{ route('payrollhead.view.efcpayrollhead') }}">
                     <i class="bi bi-dash-square sidebar-menu-item-icon"></i>EFC
                 </a>
             </li>
-            <li class="sidebar-menu-item ">
+            <li class="sidebar-menu-item mt-2">
                 <a href="{{ route('payrollhead.view.mckenziepayrollhead') }}">
                     <i class="bi bi-dash-square sidebar-menu-item-icon"></i>McKenzie
                 </a>
             </li>
-            <li class="sidebar-menu-item ">
+            <!-- <li class="sidebar-menu-item ">
                 <a href="{{ route('payrollhead.view.rfmpayrollhead') }}">
                     <i class="bi bi-dash-square sidebar-menu-item-icon"></i>RFM
                 </a>
@@ -67,15 +73,16 @@
                 <a href="{{ route('payrollhead.view.magispayrollhead') }}">
                     <i class="bi bi-dash-square sidebar-menu-item-icon"></i>Magis
                 </a>
-            </li>          
-            <li class="sidebar-menu-item mt-auto">
-                <a href="{{ route('logout') }}" style="margin-top: 220px;">
+            </li>           -->
+            <li class="sidebar-menu-item mt-2">
+                <a href="{{ route('logout') }}">
                     <i class="ri-logout-box-line sidebar-menu-item-icon"></i>
                     Logout
                 </a>
             </li>
         </ul>
     </div>
+
     <div class="sidebar-overlay"></div>
     
     <!-- end: Sidebar -->

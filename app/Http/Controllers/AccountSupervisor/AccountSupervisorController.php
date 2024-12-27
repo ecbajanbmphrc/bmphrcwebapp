@@ -9,6 +9,7 @@ use App\Models\Coordinator;
 use App\Models\Merchandiser;
 use App\Models\CompanyDoor;
 use App\Models\Manning;
+use App\Models\RateCard;
 
 use Session;
 use DB;
@@ -49,14 +50,9 @@ class AccountSupervisorController extends Controller
 
         $company_me =  session('user')['company_id'];
       
-        // $coordinators = Coordinator::where('first_name', '!=', 'none')
-        // // ->select('name', 'id')
-        // ->pluck('first_name' , 'id')
-        // ->toArray();
-
-
         $coordinators = Coordinator::
         select(DB::raw("CONCAT(first_name ,' ',  last_name) AS display_name"),'id')
+        ->where('company_id' , '=', $company_me)
         ->get()
         ->pluck('display_name','id')
         ->toArray();
@@ -81,7 +77,16 @@ class AccountSupervisorController extends Controller
 
     public function view_merchandiser(){
 
-        return view('accountsupervisor.merchandiser');
+        $rates = RateCard::get()
+        ->pluck('region')
+        ->toArray();
+
+        $ratess = RateCard::get()
+        // ->pluck('region')
+        ->toArray();
+
+
+        return view('accountsupervisor.merchandiser' , compact('rates' , 'ratess'));
 
     }
 
@@ -91,8 +96,11 @@ class AccountSupervisorController extends Controller
         
         $store_array = [0 => "None"];
 
-        $merchandiser_array = [0 => "None"];
-      
+        $coordinator_array = [0 => "None"];
+
+        // $address_array = [0 => "None"];
+        
+
 
         $company_doors = CompanyDoor::
         where([
@@ -107,24 +115,21 @@ class AccountSupervisorController extends Controller
 
 
 
-        $merchandisers = Merchandiser::
+        $coordinators = Coordinator::
         select(DB::raw("CONCAT(first_name ,' ',  last_name) AS display_name"),'id')
         ->get()
         ->pluck('display_name','id')
         ->toArray();
 
-        $merchandisers = Merchandiser::
+        $coordinators = Coordinator::
         select(DB::raw("CONCAT(first_name ,' ',  last_name) AS display_name"),'id')
         ->get()
         ->pluck('display_name','id')
         ->toArray();
 
+        $coordinator_array += $coordinators;
 
-
-
-        $merchandiser_array += $merchandisers;
-
-        return view('accountsupervisor.manning' , compact('store_array', 'merchandiser_array'));
+        return view('accountsupervisor.manning' , compact('store_array', 'coordinator_array'));
 
     }
 

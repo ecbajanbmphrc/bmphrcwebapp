@@ -25,72 +25,36 @@
             <a href="#" class="sidebar-logo text-uppercase fw-bold text-decoration-none text-light fs-4">Account Supervisor</a>
             <i class="sidebar-toggle ri-arrow-left-circle-line ms-auto fs-5 d-none d-md-block"></i>
         </div>
-        <ul class="sidebar-menu p-3 m-0 mb-0 flex-glow-1">
+        <ul class="sidebar-menu p-3 m-0 mb-0">
             <li class="sidebar-menu-item active">
-                <a href="#">
+                <a href="{{ route('accountsupervisor.view.dashboard') }}">
                     <i class="ri-dashboard-line sidebar-menu-item-icon"></i>Dashboard
                 </a>
             </li>
-            <li class="sidebar-menu-item">
-                <a href="{{ route('accountsupervisor.view.door') }}">
-                    <i class="ri-store-line sidebar-menu-item-icon"></i>Store
-                </a>
-            </li>
-            <li class="sidebar-menu-item">
+        </ul>    
+        <ul class="sidebar-menu p-3 m-0 mb-0">
+            <li class="sidebar-menu-item mt-2 ">
                 <a href="{{ route('accountsupervisor.view.coordinator') }}">
                     <i class="ri-account-pin-circle-line sidebar-menu-item-icon"></i>Coordinator
                 </a>
             </li>
-            <li class="sidebar-menu-item">
-                <a href="{{ route('accountsupervisor.view.merchandiser') }}">
-                    <i class="ri-account-pin-box-line sidebar-menu-item-icon"></i>Merchandiser
-                </a>
-            </li>
-            <li class="sidebar-menu-item">
+            <li class="sidebar-menu-item  mt-2">
                 <a href="{{ route('accountsupervisor.view.manning') }}">
                     <i class="ri-file-user-line sidebar-menu-item-icon"></i>Manning
                 </a>
             </li>
-            <li class="sidebar-menu-item has-dropdown">
-                <a href="#">
-                    <i class="ri-pages-line sidebar-menu-item-icon"></i>Reserve Page
-                    <i class="ri-arrow-down-s-line sidebar-menu-item-accordion ms-auto"></i>
+            <li class="sidebar-menu-item  mt-2">
+                <a href="{{ route('accountsupervisor.view.merchandiser') }}">
+                    <i class="ri-account-pin-box-line sidebar-menu-item-icon"></i>Merchandiser
                 </a>
-                <ul class="sidebar-dropdown-menu">
-                    <li class="sidebar-dropdown-menu-item">
-                        <a href="#">User Profile</a>
-                    </li>
-                    <li class="sidebar-dropdown-menu-item has-dropdown">
-                        <a href="#">Blog<i class="ri-arrow-down-s-line sidebar-menu-item-accordion ms-auto"></i>
-                        </a>
-                        <ul class="sidebar-dropdown-menu">
-                            <li class="sidebar-dropdown-menu-item">
-                                <a href="#">Home</a>
-                            </li>
-                            <li class="sidebar-dropdown-menu-item">
-                                <a href="#">Post</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
             </li>
-            <li class="sidebar-menu-item has-dropdown">
-                <a href="#">
-                    <i class="bi bi-people me-3" style="font-size: 18px; margin-left: 3px;"></i>
-                    Accounts
-                    <i class="ri-arrow-down-s-line sidebar-menu-item-accordion ms-auto"></i>
+            <li class="sidebar-menu-item mt-2">
+                <a href="{{ route('accountsupervisor.view.door') }}">
+                    <i class="ri-store-line sidebar-menu-item-icon"></i>Store
                 </a>
-                <ul class="sidebar-dropdown-menu">
-                    <li class="sidebar-dropdown-menu-item">
-                        <a href="#">Payroll Officer</a>
-                    </li>
-                    <li class="sidebar-dropdown-menu-item">
-                        <a href="#">Account Sup</a>
-                    </li>
-                </ul>
             </li>
-            <li class="sidebar-menu-item mt-auto">
-                <a href="{{ route('logout') }}" style="margin-top: 220px;">
+            <li class="sidebar-menu-item  mt-2">
+                <a href="{{ route('logout') }}">
                     <i class="ri-logout-box-line sidebar-menu-item-icon"></i>
                     Logout
                 </a>

@@ -42,11 +42,8 @@
                     <i class="ri-dashboard-line sidebar-menu-item-icon"></i>Dashboard
                 </a>
             </li>
-            <li class="sidebar-menu-item">
-                <a href="#">
-                    <i class="ri-dashboard-line sidebar-menu-item-icon"></i>Sample
-                </a>
-            </li>
+        </ul>
+        <ul class="sidebar-menu p-3 m-0 mb-0">
             <li class="sidebar-menu-item has-dropdown mt-2">
                 <a href="#">
                     <i class="ri-user-line sidebar-menu-item-icon"></i>Accounts
@@ -54,26 +51,25 @@
                 </a>
                 <ul class="sidebar-dropdown-menu">
                     <li class="sidebar-dropdown-menu-item">
+                        <a href="{{ route('superadmin.view.accountsupervisor') }}">Account Supervisor</a>
+                    </li>
+                    <li class="sidebar-dropdown-menu-item">
                         <a href="{{ route('superadmin.view.superadmin') }}">Admin</a>
                     </li>
                     <li class="sidebar-dropdown-menu-item">
-                        <a href="{{ route('superadmin.view.payrollhead')}}">Payroll Head</a>
+                        <a href="{{ route('superadmin.view.payrollhead') }}">Payroll Head</a>
                     </li>
                     <li class="sidebar-dropdown-menu-item">
-                        <a href="{{ route('superadmin.view.payrollofficer') }}">Payroll Officer</a>
-                    </li>
-                    <li class="sidebar-dropdown-menu-item">
-                        <a href="{{ route('superadmin.view.accountsupervisor') }}">Account Supervisor</a>
+                    <a href="{{ route('superadmin.view.payrollofficer') }}">Payroll Officer</a>
                     </li>
                     <li class="sidebar-dropdown-menu-item">
                         <a href="{{ route('superadmin.view.treasury') }}">Treasury</a>
                     </li>
                 </ul>
             </li>
-            <li class="sidebar-menu-item has-dropdown mt-2">
+            <li class="sidebar-menu-item has-dropdown">
                 <a href="#">
-          
-                    <i class="ri-building-line sidebar-menu-item-icon"></i>Client
+                    <i class="ri-building-line sidebar-menu-item-icon mt-2"></i>Clients
                     <i class="ri-arrow-down-s-line sidebar-menu-item-accordion ms-auto"></i>
                 </a>
                 <ul class="sidebar-dropdown-menu">
@@ -83,22 +79,23 @@
                     <li class="sidebar-dropdown-menu-item">
                         <a href="{{ route('superadmin.view.mckenzie') }}">MCKENZIE</a>
                     </li>
-                    <li class="sidebar-dropdown-menu-item">
+                    <!-- <li class="sidebar-dropdown-menu-item">
                         <a href="{{ route('superadmin.view.rfm') }}">RFM</a>
                     </li>
                     <li class="sidebar-dropdown-menu-item">
                         <a href="{{ route('superadmin.view.magis') }}">MAGIS</a>
-                    </li>
+                    </li> -->
                 </ul>
             </li>
-            <li class="sidebar-menu-item">
-                <a href="{{ route('logout')}}">
+            <li class="sidebar-menu-item mt-2">
+                <a href="{{ route('logout') }}">
                     <i class="ri-logout-box-line sidebar-menu-item-icon"></i>
                     Logout
                 </a>
             </li>
         </ul>
     </div>
+    
     <div class="sidebar-overlay"></div>
     <!-- end: Sidebar -->
 
@@ -108,7 +105,7 @@
             <!-- start: Navbar -->
             <nav class="px-3 py-2 bg-white rounded shadow-sm">
                 <i class="ri-menu-line sidebar-toggle me-3 d-block d-md-none"></i>
-                <h5 class="fw-bold mb-0 me-auto">Payroll Head List</h5>
+                <h5 class="fw-bold mb-0 me-auto">Accounts</h5>
                 <div class="dropdown me-3 d-none d-sm-block">
                     <div class="cursor-pointer dropdown-toggle navbar-link" data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -149,34 +146,37 @@
             </div>
 
             <div class="card">
-  <div class="card-header">
-  <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#createUserModal" id="hitme" name="hitme">
-  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
-  <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0"/>
-</svg>
-  ADD</button>
-  </div>
-  <div class="card-body">
-    <h5 class="card-title">Account List</h5>
-    <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
-    
-    <table id="payrollhead" class="table table-hover" style="width:100%">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th style="display:none">ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Status</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-      
-    </table>
-  </div>
-</div>
+                <div class="card-header" style="height:5vh">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5 class="mt-2">Payroll Head Lists</h5>
+                        </div>
+                        <div class="col-md-6 text-end">
+                            <button  type="button" class="btn btn-secondary" data-toggle="modal" data-target="#createUserModal" id="hitme" name="hitme">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square-fill mb-1" viewBox="0 0 16 16">
+                                <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0"/>
+                                </svg> ADD
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table id="payrollhead" class="table table-bordered" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th style="display:none">ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
           
             <!-- end: Navbar -->

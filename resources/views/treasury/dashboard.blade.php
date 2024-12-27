@@ -31,30 +31,24 @@
                     <i class="ri-dashboard-line sidebar-menu-item-icon"></i>Dashboard
                 </a>
             </li>
-           
-            
-            
-           
+        </ul>
+        <ul class="sidebar-menu p-3 m-0 mb-0">
             <li class="sidebar-menu-item">
-            <a href="{{route('treasury.view.rate')}}">
+                <a href="{{route('treasury.view.rate')}}">
                     <i class="ri-bill-line sidebar-menu-item-icon"></i>
-                    Rate
+                    Rates
                 </a>
             </li>
-            <li class="sidebar-menu-item">
-                <a href="#">
-                    <i class="ri-calendar-line sidebar-menu-item-icon"></i>
-                    Calendar
-                </a>
-            </li>
-            <li class="sidebar-menu-item mt-auto">
-                <a href="{{ route('logout') }}" style="margin-top: 220px;">
+            <li class="sidebar-menu-item mt-2">
+                <a href="{{ route('logout') }}">
                     <i class="ri-logout-box-line sidebar-menu-item-icon"></i>
                     Logout
                 </a>
             </li>
         </ul>
     </div>
+
+    
     <div class="sidebar-overlay"></div>
     <!-- end: Sidebar -->
 

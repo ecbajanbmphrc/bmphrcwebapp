@@ -42,40 +42,44 @@
             <i class="sidebar-toggle ri-arrow-left-circle-line ms-auto fs-5 d-none d-md-block"></i>
         </div>
         <ul class="sidebar-menu p-3 m-0 mb-0">
-            <li class="sidebar-menu-item">
+            <li class="sidebar-menu-item active">
                 <a href="{{ route('payrollhead.view.dashboard') }}">
                     <i class="ri-dashboard-line sidebar-menu-item-icon"></i>Dashboard
                 </a>
             </li>
-            <li class="sidebar-menu-divider mt-3 mb-1 text-uppercase">Clients</li>
-            <li class="sidebar-menu-item ">
+        </ul>
+        <ul class="sidebar-menu p-3 m-0 mb-0">
+            <li class="sidebar-menu-divider mb-1 text-uppercase">Clients</li>
+            <li class="sidebar-menu-item mt-2">
                 <a href="{{ route('payrollhead.view.efcpayrollhead') }}">
                     <i class="bi bi-dash-square sidebar-menu-item-icon"></i>EFC
                 </a>
             </li>
-            <li class="sidebar-menu-item ">
+            <li class="sidebar-menu-item mt-2">
                 <a href="{{ route('payrollhead.view.mckenziepayrollhead') }}">
                     <i class="bi bi-dash-square sidebar-menu-item-icon"></i>McKenzie
                 </a>
             </li>
-            <li class="sidebar-menu-item">
+            <!-- <li class="sidebar-menu-item ">
                 <a href="{{ route('payrollhead.view.rfmpayrollhead') }}">
                     <i class="bi bi-dash-square sidebar-menu-item-icon"></i>RFM
                 </a>
             </li>
-            <li class="sidebar-menu-item active">
+            <li class="sidebar-menu-item ">
                 <a href="{{ route('payrollhead.view.magispayrollhead') }}">
                     <i class="bi bi-dash-square sidebar-menu-item-icon"></i>Magis
                 </a>
-            </li>          
-            <li class="sidebar-menu-item mt-auto">
-                <a href="{{ route('logout') }}" style="margin-top: 220px;">
+            </li>           -->
+            <li class="sidebar-menu-item mt-2">
+                <a href="{{ route('logout') }}">
                     <i class="ri-logout-box-line sidebar-menu-item-icon"></i>
                     Logout
                 </a>
             </li>
         </ul>
     </div>
+
+    
     <div class="sidebar-overlay"></div>
     
     <!-- end: Sidebar -->
@@ -145,6 +149,7 @@
                             <th>Account</th>
                             <th>Region</th>
                             <th>Store</th>
+                            <th>Payroll Officer</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -228,6 +233,7 @@
                     { data: 'account' },
                     { data: 'region' },
                     { data: 'store_name' }, 
+                    { data: '' },
                     { data: 'actions', orderable: false }
                 ]
             });

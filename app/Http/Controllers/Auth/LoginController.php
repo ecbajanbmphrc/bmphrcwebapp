@@ -12,7 +12,6 @@ Use App\Models\Company;
 
 use App\Http\Middleware\Guest;
 
-
 use Session;
 use Auth;
 
@@ -66,7 +65,8 @@ class LoginController extends Controller
 
                   
     
-                    Session::put('user', ['current_user_id' => $users->id , 'usernum' => $user_check , 'first_name' => $users->first_name , 'last_name' => $users->last_name , 'company' => $users->company_name, 'company_id' => $users->company_id]);
+                    Session::put('user', ['current_user_id' => $users->id , 'usernum' => $user_check , 'first_name' => $users->first_name , 'last_name' => $users->last_name , 
+                    'company' => $users->company_name, 'company_id' => $users->company_id,'user_email'=> $users->email]);
                 
                     $fname = session('user')['first_name']; 
 
@@ -96,7 +96,8 @@ class LoginController extends Controller
     
                     //$request->session()->put('current_user_id', $user->id);
     
-                    Session::put('user', ['current_user_id' => $users->id , 'usernum' => $user_check , 'first_name' => $users->first_name , 'last_name' => $users->last_name , 'company' => $users->company_name , 'company_id' => $users->company_id]);
+                    Session::put('user', ['current_user_id' => $users->id , 'usernum' => $user_check , 'first_name' => $users->first_name , 'last_name' => $users->last_name ,
+                    'company' => $users->company_name , 'company_id' => $users->company_id , 'user_email'=> $users->email]);
     
                   
     
@@ -133,7 +134,8 @@ class LoginController extends Controller
         
                         //$request->session()->put('current_user_id', $user->id);
         
-                        Session::put('user', ['current_user_id' => $users->id , 'usernum' => $user_check , 'first_name' => $users->first_name , 'last_name' => $users->last_name , 'company' => $users->company_name , 'company_id' => $users->company_id]);
+                        Session::put('user', ['current_user_id' => $users->id , 'usernum' => $user_check , 'first_name' => $users->first_name , 'last_name' => $users->last_name , 
+                        'company' => $users->company_name , 'company_id' => $users->company_id , 'user_email'=> $users->email]);
         
                       
         
@@ -172,7 +174,8 @@ class LoginController extends Controller
             
                             //$request->session()->put('current_user_id', $user->id);
             
-                            Session::put('user', ['current_user_id' => $users->id , 'usernum' => $user_check , 'first_name' => $users->first_name , 'last_name' => $users->last_name , 'company' => $users->company_name , 'company_id' => $users->company_id]);
+                            Session::put('user', ['current_user_id' => $users->id , 'usernum' => $user_check , 'first_name' => $users->first_name , 'last_name' => $users->last_name , 
+                            'company' => $users->company_name , 'company_id' => $users->company_id , 'user_email'=> $users->email]);
             
                             $fname = session('user')['first_name']; 
 
@@ -210,7 +213,8 @@ class LoginController extends Controller
 
                   
     
-                  Session::put('user', ['current_user_id' => $users->id , 'usernum' => $user_check , 'first_name' => $users->first_name , 'last_name' => $users->last_name , 'company' => $users->company_name , 'company_id' => $users->company_id]);
+                  Session::put('user', ['current_user_id' => $users->id , 'usernum' => $user_check , 'first_name' => $users->first_name , 'last_name' => $users->last_name , 
+                  'company' => $users->company_name , 'company_id' => $users->company_id , 'user_email'=> $users->email]);
                     $fname = session('user')['first_name']; 
 
                     toast("Login success ! Welcome user {$fname}" ,'success');
@@ -241,7 +245,8 @@ class LoginController extends Controller
     
                     //$request->session()->put('current_user_id', $user->id);
     
-                    Session::put('user', ['current_user_id' => $users->id , 'usernum' => $user_check , 'first_name' => $users->first_name , 'last_name' => $users->last_name , 'company' => $users->company_name , 'company_id' => $users->company_id]);
+                    Session::put('user', ['current_user_id' => $users->id , 'usernum' => $user_check , 'first_name' => $users->first_name , 'last_name' => $users->last_name , 
+                    'company' => $users->company_name , 'company_id' => $users->company_id , 'user_email'=> $users->email]);
     
                     
                     $fname = session('user')['first_name']; 
@@ -261,6 +266,8 @@ class LoginController extends Controller
                 
                 }
             break;
+
+
 
          }
 
@@ -310,10 +317,5 @@ class LoginController extends Controller
         }
     }
    
-   
-
-        
-    
-
 
 }

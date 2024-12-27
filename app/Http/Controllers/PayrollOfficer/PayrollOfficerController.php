@@ -35,6 +35,7 @@ class PayrollOfficerController extends Controller
 
     public function view_payrolltransferlist(){
         $data = array();
+        $data =  session('user')['company_id'];
         if (Session::has('user')){
             $data = User::where('id', '=', Session::get('user')['current_user_id'])->first();
         
@@ -47,5 +48,49 @@ class PayrollOfficerController extends Controller
 
         return view('payrollofficer.payrollofficerinput');
     }
+
+    public function view_payrollgcash(){
+
+        return view('payrollofficer.payrollgcash');
+    }
+
+    public function view_payrollrcbc(){
+
+        return view('payrollofficer.payrollrcbc');
+    }
+
+    public function view_payrollrcbcwallet(){
+
+        return view('payrollofficer.payrollrcbcwallet');
+    }
+
+    public function view_payrollcebuana(){
+
+        return view('payrollofficer.payrollcebuana');
+    }
+
+    public function view_payrolleastwest(){
+
+        return view('payrollofficer.payrolleastwest');
+    }
+
+    public function view_payrollbpi(){
+
+        return view('payrollofficer.payrollbpi');
+    }
+
+    public function view_payrollbdo(){
+
+        return view('payrollofficer.payrollbdo');
+    }
+
+    public function view_payrollbank(){
+
+        return view('payrollofficer.payrollbank');
+    }
+
+    
+    
+
 
 }
